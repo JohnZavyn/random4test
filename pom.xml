@@ -1,11 +1,158 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
     <version>1.0.0-SNAPSHOT</version>
 
+    <name>Random For Test</name>
+    <description>A testing library that provides random numbers, strings, and Collections.</description>
+
+    <organization>
+        <name>ThreeLeaf.com</name>
+        <url>https://www.threeleaf.com/</url>
+    </organization>
+
+    <developers>
+        <developer>
+            <id>zavyn</id>
+            <name>John A. Marsh</name>
+            <organization>ThreeLeaf.com</organization>
+            <organizationUrl>http://www.threeleaf.com/</organizationUrl>
+            <roles>
+                <role>Project Owner</role>
+            </roles>
+            <timezone>-5</timezone>
+        </developer>
+    </developers>
+
+    <scm>
+        <connection>scm:git@github.com:JohnZavyn/random4test.git</connection>
+        <url>https://github.com/JohnZavyn/random4test.git</url>
+    </scm>
+
+    <properties>
+        <build.timestamp>${maven.build.timestamp}</build.timestamp>
+        <java.version>1.8</java.version>
+        <maven.build.timestamp.format>yyyy-MM-dd HH:mm z Z</maven.build.timestamp.format>
+        <org.apache.maven.version>3.5</org.apache.maven.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <version.rules.dir>${project.basedir}</version.rules.dir>
+        <!-- Dependency versions -->
+        <io.github.benas.version>[3.7.0, 4.0.0)</io.github.benas.version>
+        <joda-time.version>2.10.1</joda-time.version>
+        <junit.version>[4.12, 5.0)</junit.version>
+        <org.projectlombok.version>[1.16.20, 2.0.0)</org.projectlombok.version>
+        <!-- Plugin versions -->
+        <org.apache.maven.plugins.compiler.version>3.8.0</org.apache.maven.plugins.compiler.version>
+        <org.apache.maven.plugins.enforcer.version>3.0.0-M2</org.apache.maven.plugins.enforcer.version>
+        <org.apache.maven.plugins.jar.version>3.1.1</org.apache.maven.plugins.jar.version>
+        <org.apache.maven.plugins.surefire.version>3.0.0-M3</org.apache.maven.plugins.surefire.version>
+        <org.codehaus.mojo.version.maven.plugin.version>2.5</org.codehaus.mojo.version.maven.plugin.version>
+    </properties>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>joda-time</groupId>
+                <artifactId>joda-time</artifactId>
+                <version>${joda-time.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>io.github.benas</groupId>
+                <artifactId>random-beans</artifactId>
+                <version>${io.github.benas.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${org.projectlombok.version}</version>
+                <scope>provided</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>io.github.benas</groupId>
+            <artifactId>random-beans</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda-time.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${org.apache.maven.plugins.surefire.version}</version>
+                    <configuration>
+                        <trimStackTrace>false</trimStackTrace>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-enforcer-plugin</artifactId>
+                <version>${org.apache.maven.plugins.enforcer.version}</version>
+                <executions>
+                    <execution>
+                        <id>verify</id>
+                        <goals>
+                            <goal>enforce</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <rules>
+                        <requireMavenVersion>
+                            <version>${org.apache.maven.version}</version>
+                        </requireMavenVersion>
+                        <requireJavaVersion>
+                            <version>${java.version}</version>
+                        </requireJavaVersion>
+                    </rules>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>${org.apache.maven.plugins.compiler.version}</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                    <showWarnings>true</showWarnings>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>${org.apache.maven.plugins.jar.version}</version>
+                <configuration>
+                    <archive>
+                        <index>true</index>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                        </manifest>
+                        <manifestEntries>
+                            <!-- We do not create an explicit module-info file, but we want to specify the module name for future stability. -->
+                            <Automatic-Module-Name>${project.groupId}.common.test</Automatic-Module-Name>
+                        </manifestEntries>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>
