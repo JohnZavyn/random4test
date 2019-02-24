@@ -5,6 +5,7 @@
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
     <version>1.0.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
 
     <name>Random For Test</name>
     <description>A testing library that provides random numbers, strings, and Collections.</description>
@@ -13,6 +14,13 @@
         <name>ThreeLeaf.com</name>
         <url>https://www.threeleaf.com/</url>
     </organization>
+
+    <licenses>
+        <license>
+            <name>MIT License</name>
+            <url>http://www.opensource.org/licenses/mit-license.php</url>
+        </license>
+    </licenses>
 
     <developers>
         <developer>
@@ -28,7 +36,8 @@
     </developers>
 
     <scm>
-        <connection>scm:git@github.com:JohnZavyn/random4test.git</connection>
+        <connection>scm:git:git@github.com:JohnZavyn/random4test.git</connection>
+        <developerConnection>scm:git:ssh://github.com:JohnZavyn/random4test.git</developerConnection>
         <url>https://github.com/JohnZavyn/random4test.git</url>
     </scm>
 
