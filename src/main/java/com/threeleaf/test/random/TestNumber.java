@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 public class TestNumber
 {
 
-    /** Test random {@link BigDecimal) number. */
+    /** Test random {@link BigDecimal} number. */
     public final BigDecimal BIG_DECIMAL = TestNumberUtil.randomBigDecimal();
 
     /** Test random, positive byte. */
