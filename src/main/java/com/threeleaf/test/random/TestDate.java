@@ -6,28 +6,38 @@ import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Date;
-import java.util.Locale;
+
+import static java.util.Locale.US;
 
 /** Date constants to be used in JUnit tests. */
 @UtilityClass
-@SuppressWarnings("WeakerAccess")
-public final class TestDate
+@SuppressWarnings({"WeakerAccess", "unused"})
+public class TestDate
 {
 
     /** Joda date-time object. */
-    public static final DateTime DATE_TIME = new DateTime();
+    public static final DateTime DATE_TIME = TestDateUtil.getDateTime();
 
-    /** Yesterday's date. */
+    /** Date from last month. */
     public static final Date LAST_MONTH = DATE_TIME.minusMonths(1).toDate();
 
     /** Date from last week. */
     public static final Date LAST_WEEK = DATE_TIME.minusWeeks(1).toDate();
 
-    /** Date format to use at top of page. */
-    public static final DateTimeFormatter LONGER_DATE_FORMAT = DateTimeFormat.forPattern("MMM d, yyyy");
+    /** Date for next month. */
+    public static final Date NEXT_MONTH = DATE_TIME.plusMonths(1).toDate();
 
-    /** The current date. */
-    public static final Date NOW = DATE_TIME.toDate();
+    /** Date for next week. */
+    public static final Date NEXT_WEEK = DATE_TIME.plusWeeks(1).toDate();
+
+    /** Timestamp format including milliseconds. */
+    public static final DateTimeFormatter TIMESTAMP_FORMAT = DateTimeFormat.forPattern("yyyyMMddHHmmssSSS").withLocale(US);
+
+    /** Timestamp */
+    public static final String TIMESTAMP = TestDateUtil.getTimestamp();
+
+    /** Today's date. */
+    public static final Date TODAY = DATE_TIME.toDate();
 
     /** Tomorrow's date. */
     public static final Date TOMORROW = DATE_TIME.plusDays(1).toDate();
@@ -37,37 +47,4 @@ public final class TestDate
 
     /** Yesterday's date. */
     public static final Date YESTERDAY = DATE_TIME.minusDays(1).toDate();
-
-
-    /**
-     * Gets the long date now string.
-     *
-     * @return the long date now string
-     */
-    public static String getLongDateNowString()
-    {
-        return LONGER_DATE_FORMAT.print(DATE_TIME);
-    }
-
-    /**
-     * Gets the short date now string.
-     *
-     * @return the short date now string
-     */
-    public static String getShortDateNowString()
-    {
-        return getShortDateNowString(NOW);
-    }
-
-    /**
-     * Gets the short date now string.
-     *
-     * @param date the date
-     *
-     * @return the short date now string
-     */
-    public static String getShortDateNowString(final Date date)
-    {
-        return new DateTime(date).toString(DateTimeFormat.patternForStyle("S-", Locale.US));
-    }
 }

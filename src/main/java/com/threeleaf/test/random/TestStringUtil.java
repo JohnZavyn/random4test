@@ -1,15 +1,17 @@
 package com.threeleaf.test.random;
 
+import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 import java.util.*;
 
-import static com.threeleaf.test.random.TestString.EMPTY;
+import static com.threeleaf.test.random.TestNumberUtil.randomBetween;
+import static com.threeleaf.test.random.TestString.*;
 
 /** Test string utilities. */
 @UtilityClass
-@SuppressWarnings("WeakerAccess")
-public final class TestStringUtil
+@SuppressWarnings({"WeakerAccess", "unused"})
+public class TestStringUtil
 {
 
     /** Maximum length for a name. */
@@ -27,14 +29,6 @@ public final class TestStringUtil
     /** Prefix used for test strings. */
     public static final String TEST_PREFIX = "TEST~";
 
-    /** Alphabet, lower case, in an array. */
-    private static final char[] ALPHABET_ARRAY = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
-
-    /**
-     * RANDOM_CHARS contains characters that are not easily visually confused with each other. For example, {O, 0}, {I, 1}, {D, O}, etc.
-     */
-    private static final String RANDOM_CHARS = "ABCEFGHJKMNPQRSTUVWXYZ23456789";
-
     /**
      * Extract suffix from a test string. Specifically, return the random string attached after the last underscore (_) or tilde (~).
      *
@@ -42,11 +36,16 @@ public final class TestStringUtil
      *
      * @return the string
      */
-    public static String extractSuffix(final String string)
+    public static String extractSuffix(@NonNull final String string)
     {
         final String[] stringParts = string.split("[_~]");
 
         return stringParts[stringParts.length - 1];
+    }
+
+    public static boolean isEmpty(final CharSequence cs)
+    {
+        return cs == null || cs.length() == 0;
     }
 
     /**
@@ -66,7 +65,7 @@ public final class TestStringUtil
      */
     public static String randomLetter()
     {
-        return String.valueOf(ALPHABET_ARRAY[TestNumberUtil.randomBetween(0, ALPHABET_ARRAY.length - 1)]);
+        return String.valueOf(ALPHABET_ARRAY[randomBetween(0, ALPHABET_ARRAY.length - 1)]);
     }
 
     /**
@@ -76,7 +75,7 @@ public final class TestStringUtil
      */
     public static String randomName()
     {
-        return TEST_PREFIX + TestStringUtil.randomString(TestNumberUtil.randomBetween(NAME_LENGTH_MIN, NAME_LENGTH_MAX));
+        return TEST_PREFIX + randomString(randomBetween(NAME_LENGTH_MIN, NAME_LENGTH_MAX));
     }
 
     /**
@@ -88,7 +87,7 @@ public final class TestStringUtil
      */
     public static String randomName(final String entityName)
     {
-        return TEST_PREFIX + TestStringUtil.safeString(entityName).toUpperCase(Locale.US) + "_" + TestStringUtil.randomString(TestNumberUtil.randomBetween(NAME_LENGTH_MIN, NAME_LENGTH_MAX));
+        return TEST_PREFIX + safeString(entityName).toUpperCase(Locale.US) + "_" + randomString(randomBetween(NAME_LENGTH_MIN, NAME_LENGTH_MAX));
     }
 
     /**
@@ -98,7 +97,7 @@ public final class TestStringUtil
      */
     public static String randomString()
     {
-        return TestStringUtil.randomString(TestNumberUtil.randomBetween(STRING_LENGTH_MIN, STRING_LENGTH_MAX));
+        return randomString(randomBetween(STRING_LENGTH_MIN, STRING_LENGTH_MAX));
     }
 
     /**
@@ -169,8 +168,5 @@ public final class TestStringUtil
         }
 
         return shuffledString.toString();
-    }
-    public static boolean isEmpty(final CharSequence cs) {
-        return cs == null || cs.length() == 0;
     }
 }

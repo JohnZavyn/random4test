@@ -1,9 +1,11 @@
 package com.threeleaf.test.random;
 
+import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 /** Enum test utilities. */
 @UtilityClass
+@SuppressWarnings({"unused", "WeakerAccess"})
 public class TestEnumUtil
 {
 
@@ -15,10 +17,10 @@ public class TestEnumUtil
      *
      * @return the random enum
      */
-    public <E extends Enum<E>> E getRandom(final Class<E> enumClass)
+    public <E extends Enum<E>> E getRandom(@NonNull final Class<E> enumClass)
     {
         final E[] values = enumClass.getEnumConstants();
 
-        return values[TestNumberUtil.RANDOM.nextInt(values.length)];
+        return values[TestRandom.RANDOM.nextInt(values.length)];
     }
 }

@@ -2,10 +2,12 @@ package com.threeleaf.test.random;
 
 import lombok.experimental.UtilityClass;
 
+import static com.threeleaf.test.random.TestStringUtil.randomString;
+
 /** String constants to be used in JUnit tests. */
 @UtilityClass
-@SuppressWarnings("unused")
-public final class TestString
+@SuppressWarnings({"WeakerAccess", "unused"})
+public class TestString
 {
 
     /** The letters "abc". */
@@ -14,26 +16,14 @@ public final class TestString
     /** Alphabet, lower case. */
     public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 
+    /** Alphabet, lower case, in an array. */
+    public static final char[] ALPHABET_ARRAY = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+
     /** Alphabet, upper case. */
     public static final String ALPHABET_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    /** Test string consisting of 5 random characters. */
-    public static final String CHAR_05 = TestStringUtil.randomString(5);
-
-    /** Test string consisting of 8 random characters. */
-    public static final String CHAR_08 = TestStringUtil.randomString(8);
-
-    /** Test string consisting of 10 random characters. */
-    public static final String CHAR_10 = TestStringUtil.randomString(10);
-
-    /** Test string consisting of 16 random characters. */
-    public static final String CHAR_16 = TestStringUtil.randomString(16);
-
-    /** Test string consisting of 32 random characters. */
-    public static final String CHAR_32 = TestStringUtil.randomString(32);
-
-    /** Test string consisting of 99 random characters. */
-    public static final String CHAR_99 = TestStringUtil.randomString(99);
+    /** An empty string. */
+    public static final String EMPTY = "";
 
     /** Numeric characters. */
     public static final String NUMBERS = "0123456789";
@@ -41,11 +31,36 @@ public final class TestString
     /** Punctuation characters. */
     public static final String PUNCTUATION = "`~!@#$%^&*()_-+={[}]|\\:;\"'<,>.?/";
 
+    /**
+     * RANDOM_CHARS contains characters that are not easily visually confused with each other.
+     * For example, {O, 0}, {I, 1}, {D, O}, etc.
+     */
+    public static final String RANDOM_CHARS = "ABCEFGHJKMNPQRSTUVWXYZ23456789";
+
+    /** Test string consisting of 5 random characters. */
+    public static final String CHAR_05 = randomString(5);
+
+    /** Test string consisting of 8 random characters. */
+    public static final String CHAR_08 = randomString(8);
+
+    /** Test string consisting of 10 random characters. */
+    public static final String CHAR_10 = randomString(10);
+
+    /** Test string consisting of 16 random characters. */
+    public static final String CHAR_16 = randomString(16);
+
+    /** Test string consisting of 32 random characters. */
+    public static final String CHAR_32 = randomString(32);
+
+    /** Test string consisting of 99 random characters. */
+    public static final String CHAR_99 = randomString(99);
+
+    /** A space */
+    public static final String SPACE = " ";
+
     /** The string "test string". */
     public static final String TEST_STRING = "test string";
 
     /** Whitespace characters. */
     public static final String WHITESPACE = " \t\r\n";
-    public static final String EMPTY = "";
-    public static final String SPACE = " ";
 }
