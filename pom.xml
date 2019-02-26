@@ -4,7 +4,7 @@
 
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>Random For Test</name>
@@ -205,7 +205,6 @@
                         </execution>
                     </executions>
                     <configuration>
-                        <additionalOptions>-html5</additionalOptions>
                         <quiet>true</quiet>
                         <source>8</source>
                     </configuration>
