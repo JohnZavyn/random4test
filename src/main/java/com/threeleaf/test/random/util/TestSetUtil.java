@@ -1,4 +1,4 @@
-package com.threeleaf.test.random;
+package com.threeleaf.test.random.util;
 
 import io.github.benas.randombeans.api.EnhancedRandom;
 import lombok.NonNull;
@@ -6,7 +6,7 @@ import lombok.experimental.UtilityClass;
 
 import java.util.Set;
 
-import static com.threeleaf.test.random.TestNumberUtil.random1to10;
+import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
 
 @UtilityClass
 @SuppressWarnings({"WeakerAccess"})

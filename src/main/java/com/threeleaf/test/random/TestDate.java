@@ -2,12 +2,14 @@ package com.threeleaf.test.random;
 
 import lombok.experimental.UtilityClass;
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Date;
 
+import static com.threeleaf.test.random.util.TestDateUtil.getDateTime;
+import static com.threeleaf.test.random.util.TestDateUtil.getTimestamp;
 import static java.util.Locale.US;
+import static org.joda.time.format.DateTimeFormat.forPattern;
 
 /** Date constants to be used in JUnit tests. */
 @UtilityClass
@@ -16,7 +18,7 @@ public class TestDate
 {
 
     /** Joda date-time object. */
-    public static final DateTime DATE_TIME = TestDateUtil.getDateTime();
+    public static final DateTime DATE_TIME = getDateTime();
 
     /** Date from last month. */
     public static final Date LAST_MONTH = DATE_TIME.minusMonths(1).toDate();
@@ -31,10 +33,10 @@ public class TestDate
     public static final Date NEXT_WEEK = DATE_TIME.plusWeeks(1).toDate();
 
     /** Timestamp format including milliseconds. */
-    public static final DateTimeFormatter TIMESTAMP_FORMAT = DateTimeFormat.forPattern("yyyyMMddHHmmssSSS").withLocale(US);
+    public static final DateTimeFormatter TIMESTAMP_FORMAT = forPattern("yyyyMMddHHmmssSSS").withLocale(US);
 
     /** Timestamp */
-    public static final String TIMESTAMP = TestDateUtil.getTimestamp();
+    public static final String TIMESTAMP = getTimestamp();
 
     /** Today's date. */
     public static final Date TODAY = DATE_TIME.toDate();

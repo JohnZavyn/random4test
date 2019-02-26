@@ -2,7 +2,7 @@ package com.threeleaf.test.random;
 
 import lombok.experimental.UtilityClass;
 
-import static com.threeleaf.test.random.TestStringUtil.randomString;
+import static com.threeleaf.test.random.util.TestStringUtil.randomString;
 
 /** String constants to be used in JUnit tests. */
 @UtilityClass

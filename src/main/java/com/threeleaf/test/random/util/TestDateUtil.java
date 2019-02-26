@@ -1,4 +1,4 @@
-package com.threeleaf.test.random;
+package com.threeleaf.test.random.util;
 
 import lombok.experimental.UtilityClass;
 import org.joda.time.DateTime;

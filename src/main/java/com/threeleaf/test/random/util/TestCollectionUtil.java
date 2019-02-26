@@ -1,13 +1,13 @@
-package com.threeleaf.test.random;
+package com.threeleaf.test.random.util;
 
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 import java.util.Collection;
 
-import static com.threeleaf.test.random.TestBooleanUtil.coinFlip;
-import static com.threeleaf.test.random.TestListUtil.randomListOf;
-import static com.threeleaf.test.random.TestSetUtil.randomSetOf;
+import static com.threeleaf.test.random.util.TestBooleanUtil.coinFlip;
+import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
+import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
 
 @UtilityClass
 @SuppressWarnings({"WeakerAccess", "unused"})
@@ -22,7 +22,7 @@ public class TestCollectionUtil
      *
      * @return a random object
      */
-    public static <T> T chooseOneOf(@NonNull final Collection<T> collection)
+    public static <T> T chooseOneFrom(@NonNull final Collection<T> collection)
     {
         // @formatter:off //
         return collection.stream()

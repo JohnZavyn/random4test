@@ -4,7 +4,7 @@ import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
 
-import static com.threeleaf.test.random.TestNumberUtil.*;
+import static com.threeleaf.test.random.util.TestNumberUtil.*;
 import static java.math.BigDecimal.ROUND_HALF_UP;
 import static java.math.BigDecimal.valueOf;
 

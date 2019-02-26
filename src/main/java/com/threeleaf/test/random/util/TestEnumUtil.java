@@ -1,5 +1,6 @@
-package com.threeleaf.test.random;
+package com.threeleaf.test.random.util;
 
+import com.threeleaf.test.random.TestRandom;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 

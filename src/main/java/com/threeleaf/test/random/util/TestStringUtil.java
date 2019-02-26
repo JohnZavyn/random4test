@@ -1,12 +1,12 @@
-package com.threeleaf.test.random;
+package com.threeleaf.test.random.util;
 
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 import java.util.*;
 
-import static com.threeleaf.test.random.TestNumberUtil.randomBetween;
 import static com.threeleaf.test.random.TestString.*;
+import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
 
 /** Test string utilities. */
 @UtilityClass

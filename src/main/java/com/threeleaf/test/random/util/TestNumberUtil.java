@@ -1,5 +1,6 @@
-package com.threeleaf.test.random;
+package com.threeleaf.test.random.util;
 
+import com.threeleaf.test.random.TestRandom;
 import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
