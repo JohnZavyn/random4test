@@ -1,17 +1,46 @@
-package com.threeleaf.test.random;
+package com.threeleaf.test.random.util;
 
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 import java.util.*;
 
-import static com.threeleaf.test.random.TestSetUtil.randomSetOf;
+import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
+import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
 import static io.github.benas.randombeans.api.EnhancedRandom.random;
 
 @UtilityClass
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class TestMapUtil
 {
+
+    /**
+     * Pick a random key from a map.
+     *
+     * @param map the map of interest
+     * @param <K> the Key class
+     * @param <V> the Value class
+     *
+     * @return a random key
+     */
+    public static <K, V> K chooseOneKeyFrom(Map<K, V> map)
+    {
+        return chooseOneFrom(map.keySet());
+    }
+
+    /**
+     * Pick a random value from a map.
+     *
+     * @param map the map of interest
+     * @param <K> the Key class
+     * @param <V> the Value class
+     *
+     * @return a random value
+     */
+    public static <K, V> V chooseOneValueFrom(Map<K, V> map)
+    {
+        return map.get(chooseOneFrom(map.keySet()));
+    }
 
     /**
      * Return a map of 1 to 10 randomized key-value pairs.

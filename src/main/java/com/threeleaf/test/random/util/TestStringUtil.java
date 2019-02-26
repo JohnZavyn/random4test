@@ -1,12 +1,12 @@
-package com.threeleaf.test.random;
+package com.threeleaf.test.random.util;
 
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 import java.util.*;
 
-import static com.threeleaf.test.random.TestNumberUtil.randomBetween;
 import static com.threeleaf.test.random.TestString.*;
+import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
 
 /** Test string utilities. */
 @UtilityClass
@@ -30,7 +30,8 @@ public class TestStringUtil
     public static final String TEST_PREFIX = "TEST~";
 
     /**
-     * Extract suffix from a test string. Specifically, return the random string attached after the last underscore (_) or tilde (~).
+     * Extract suffix from a test string.
+     * Specifically, return the random string attached after the last underscore (_) or tilde (~).
      *
      * @param string the string
      *

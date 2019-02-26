@@ -1,5 +1,6 @@
-package com.threeleaf.test.random;
+package com.threeleaf.test.random.util;
 
+import com.threeleaf.test.random.TestRandom;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
@@ -17,7 +18,7 @@ public class TestEnumUtil
      *
      * @return the random enum
      */
-    public <E extends Enum<E>> E getRandom(@NonNull final Class<E> enumClass)
+    public <E extends Enum<E>> E chooseOneFrom(@NonNull final Class<E> enumClass)
     {
         final E[] values = enumClass.getEnumConstants();
 

@@ -1,10 +1,10 @@
-package com.threeleaf.test.random;
+package com.threeleaf.test.random.util;
 
 import lombok.experimental.UtilityClass;
 
 import static com.threeleaf.test.random.TestNumber.INT_01;
 import static com.threeleaf.test.random.TestNumber.INT_02;
-import static com.threeleaf.test.random.TestNumberUtil.randomBetween;
+import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
 
 @UtilityClass
 @SuppressWarnings({"WeakerAccess"})
