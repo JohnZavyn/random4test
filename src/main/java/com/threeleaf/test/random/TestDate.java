@@ -2,6 +2,7 @@ package com.threeleaf.test.random;
 
 import lombok.experimental.UtilityClass;
 import org.joda.time.DateTime;
+import org.joda.time.DateTimeZone;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Date;
@@ -17,23 +18,29 @@ import static org.joda.time.format.DateTimeFormat.forPattern;
 public class TestDate
 {
 
+    /** The timestamp format string. */
+    public static final String TIMESTAMP_FORMAT = "yyyyMMddHHmmssSSS";
+
+    /** Timestamp format including milliseconds. */
+    public static final DateTimeFormatter TIMESTAMP_FORMATTER = forPattern(TIMESTAMP_FORMAT).withLocale(US);
+
+    /** The time zone */
+    public static final DateTimeZone TIME_ZONE = DateTimeZone.forID("America/New_York");
+
     /** Joda date-time object. */
     public static final DateTime DATE_TIME = getDateTime();
 
     /** Date from last month. */
-    public static final Date LAST_MONTH = DATE_TIME.minusMonths(1).toDate();
+    public static final Date LAST_MONTH = getDateTime().minusMonths(1).toDate();
 
     /** Date from last week. */
-    public static final Date LAST_WEEK = DATE_TIME.minusWeeks(1).toDate();
+    public static final Date LAST_WEEK = getDateTime().minusWeeks(1).toDate();
 
     /** Date for next month. */
-    public static final Date NEXT_MONTH = DATE_TIME.plusMonths(1).toDate();
+    public static final Date NEXT_MONTH = getDateTime().plusMonths(1).toDate();
 
     /** Date for next week. */
-    public static final Date NEXT_WEEK = DATE_TIME.plusWeeks(1).toDate();
-
-    /** Timestamp format including milliseconds. */
-    public static final DateTimeFormatter TIMESTAMP_FORMAT = forPattern("yyyyMMddHHmmssSSS").withLocale(US);
+    public static final Date NEXT_WEEK = getDateTime().plusWeeks(1).toDate();
 
     /** Timestamp */
     public static final String TIMESTAMP = getTimestamp();

@@ -30,7 +30,8 @@ public class TestStringUtil
     public static final String TEST_PREFIX = "TEST~";
 
     /**
-     * Extract suffix from a test string. Specifically, return the random string attached after the last underscore (_) or tilde (~).
+     * Extract suffix from a test string.
+     * Specifically, return the random string attached after the last underscore (_) or tilde (~).
      *
      * @param string the string
      *

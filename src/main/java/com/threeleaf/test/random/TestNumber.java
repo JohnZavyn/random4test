@@ -29,6 +29,9 @@ public class TestNumber
     /** Test random integer between 1 and 254. */
     public static final Integer INTEGER_SMALL = randomBetween(1, Byte.MAX_VALUE * 2);
 
+    /** The integer 0. */
+    public static final Integer INT_00 = 0;
+
     /** The integer 1. */
     public static final Integer INT_01 = 1;
 

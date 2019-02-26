@@ -18,7 +18,7 @@ public class TestEnumUtil
      *
      * @return the random enum
      */
-    public <E extends Enum<E>> E getRandom(@NonNull final Class<E> enumClass)
+    public <E extends Enum<E>> E chooseOneFrom(@NonNull final Class<E> enumClass)
     {
         final E[] values = enumClass.getEnumConstants();
 

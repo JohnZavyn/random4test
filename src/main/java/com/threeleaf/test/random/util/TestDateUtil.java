@@ -2,9 +2,9 @@ package com.threeleaf.test.random.util;
 
 import lombok.experimental.UtilityClass;
 import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
 
-import static com.threeleaf.test.random.TestDate.TIMESTAMP_FORMAT;
+import static com.threeleaf.test.random.TestDate.TIMESTAMP_FORMATTER;
+import static com.threeleaf.test.random.TestDate.TIME_ZONE;
 
 /** Date and time utilities. */
 @UtilityClass
@@ -17,9 +17,9 @@ public class TestDateUtil
      *
      * @return the DateTime
      */
-    public DateTime getDateTime()
+    public static DateTime getDateTime()
     {
-        return new DateTime(DateTimeZone.forID("America/New_York"));
+        return new DateTime(TIME_ZONE);
     }
 
     /**
@@ -27,8 +27,8 @@ public class TestDateUtil
      *
      * @return the timestamp
      */
-    public String getTimestamp()
+    public static String getTimestamp()
     {
-        return getDateTime().toString(TIMESTAMP_FORMAT);
+        return getDateTime().toString(TIMESTAMP_FORMATTER);
     }
 }
