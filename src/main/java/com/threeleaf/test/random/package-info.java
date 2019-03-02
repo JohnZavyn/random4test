@@ -1,2 +1,2 @@
-/** Classes containing test data constants and generators. */
+/** Classes containing test data constants. */
 package com.threeleaf.test.random;
