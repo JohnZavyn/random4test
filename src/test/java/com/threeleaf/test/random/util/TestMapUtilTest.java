@@ -35,7 +35,7 @@ public class TestMapUtilTest
         }
     }
 
-    /** Test {@link TestMapUtil#chooseOneValueFrom(Map<K,V>)}. */
+    /** Test {@link TestMapUtil#chooseOneValueFrom(Map)}. */
     @Test
     public void chooseOneValueFrom()
     {
