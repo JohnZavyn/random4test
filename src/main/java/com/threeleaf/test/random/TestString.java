@@ -3,6 +3,7 @@ package com.threeleaf.test.random;
 import lombok.experimental.UtilityClass;
 
 import static com.threeleaf.test.random.util.TestStringUtil.randomString;
+import static com.threeleaf.test.random.util.TestStringUtil.randomUuid;
 
 /** String constants to be used in JUnit tests. */
 @UtilityClass
@@ -60,6 +61,9 @@ public class TestString
 
     /** The string "test string". */
     public static final String TEST_STRING = "test string";
+
+    /** A UUID string. */
+    public static final String UUID_STRING = randomUuid();
 
     /** Whitespace characters. */
     public static final String WHITESPACE = " \t\r\n";

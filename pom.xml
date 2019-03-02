@@ -10,7 +10,7 @@
 
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>Random For Test</name>
@@ -69,9 +69,13 @@
         <!-- Plugin versions -->
         <org.apache.maven.plugins.compiler.version>3.8.0</org.apache.maven.plugins.compiler.version>
         <org.apache.maven.plugins.enforcer.version>3.0.0-M2</org.apache.maven.plugins.enforcer.version>
+        <org.apache.maven.plugins.gpg.version>1.6</org.apache.maven.plugins.gpg.version>
         <org.apache.maven.plugins.jar.version>3.1.1</org.apache.maven.plugins.jar.version>
+        <org.apache.maven.plugins.javadoc.version>3.0.1</org.apache.maven.plugins.javadoc.version>
+        <org.apache.maven.plugins.source.version>3.0.1</org.apache.maven.plugins.source.version>
         <org.apache.maven.plugins.surefire.version>3.0.0-M3</org.apache.maven.plugins.surefire.version>
         <org.codehaus.mojo.version.maven.plugin.version>2.5</org.codehaus.mojo.version.maven.plugin.version>
+        <org.sonatype.plugins.nexus.staging.version>1.6.8</org.sonatype.plugins.nexus.staging.version>
     </properties>
 
     <dependencyManagement>
@@ -202,4 +206,95 @@
             </plugin>
         </plugins>
     </build>
+    <profiles>
+        <profile>
+            <id>sonatype-oss-release</id>
+            <build>
+                <pluginManagement>
+                    <plugins>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-source-plugin</artifactId>
+                            <version>${org.apache.maven.plugins.source.version}</version>
+                            <executions>
+                                <execution>
+                                    <id>attach-sources</id>
+                                    <goals>
+                                        <goal>jar-no-fork</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-javadoc-plugin</artifactId>
+                            <version>${org.apache.maven.plugins.javadoc.version}</version>
+                            <executions>
+                                <execution>
+                                    <id>attach-javadocs</id>
+                                    <goals>
+                                        <goal>jar</goal>
+                                    </goals>
+                                </execution>
+                            </executions>
+                            <configuration>
+                                <quiet>true</quiet>
+                                <source>8</source>
+                            </configuration>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-gpg-plugin</artifactId>
+                            <version>${org.apache.maven.plugins.gpg.version}</version>
+                            <executions>
+                                <execution>
+                                    <id>sign-artifacts</id>
+                                    <phase>verify</phase>
+                                    <goals>
+                                        <goal>sign</goal>
+                                    </goals>
+                                    <configuration>
+                                        <gpgArguments>
+                                            <arg>--pinentry-mode</arg>
+                                            <arg>loopback</arg>
+                                            <arg>--no-tty</arg>
+                                        </gpgArguments>
+                                    </configuration>
+                                </execution>
+                            </executions>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.sonatype.plugins</groupId>
+                            <artifactId>nexus-staging-maven-plugin</artifactId>
+                            <version>${org.sonatype.plugins.nexus.staging.version}</version>
+                            <extensions>true</extensions>
+                            <configuration>
+                                <serverId>ossrh</serverId>
+                                <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                                <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                            </configuration>
+                        </plugin>
+                    </plugins>
+                </pluginManagement>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-source-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-gpg-plugin</artifactId>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.sonatype.plugins</groupId>
+                        <artifactId>nexus-staging-maven-plugin</artifactId>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

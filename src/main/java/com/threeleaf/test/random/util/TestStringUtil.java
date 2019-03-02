@@ -123,6 +123,16 @@ public class TestStringUtil
     }
 
     /**
+     * Generate a UUID.
+     *
+     * @return a UUID
+     */
+    public static String randomUuid()
+    {
+        return UUID.randomUUID().toString();
+    }
+
+    /**
      * Returns the string, converting a null value to an empty string.
      *
      * @param string the string

@@ -1,8 +1,9 @@
 package com.threeleaf.test.random.util;
 
-import com.threeleaf.test.random.TestRandom;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
+
+import static com.threeleaf.test.random.TestRandom.RANDOM;
 
 /** Enum test utilities. */
 @UtilityClass
@@ -22,6 +23,6 @@ public class TestEnumUtil
     {
         final E[] values = enumClass.getEnumConstants();
 
-        return values[TestRandom.RANDOM.nextInt(values.length)];
+        return values[RANDOM.nextInt(values.length)];
     }
 }

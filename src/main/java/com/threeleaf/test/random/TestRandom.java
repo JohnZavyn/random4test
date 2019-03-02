@@ -4,6 +4,7 @@ import lombok.experimental.UtilityClass;
 
 import java.util.Random;
 
+/** Class to contain the random generator. */
 @UtilityClass
 @SuppressWarnings("WeakerAccess")
 public class TestRandom

@@ -1,11 +1,11 @@
 package com.threeleaf.test.random.util;
 
-import com.threeleaf.test.random.TestRandom;
 import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
 
 import static com.threeleaf.test.random.TestNumber.*;
+import static com.threeleaf.test.random.TestRandom.RANDOM;
 import static java.lang.Integer.MAX_VALUE;
 
 /** Test Number Utilities. */
@@ -64,7 +64,7 @@ public class TestNumberUtil
      */
     public static int randomBetween(final int minValue, final int maxValue)
     {
-        return TestRandom.RANDOM.nextInt(maxValue - minValue + 1) + minValue;
+        return RANDOM.nextInt(maxValue - minValue + 1) + minValue;
     }
 
     /**

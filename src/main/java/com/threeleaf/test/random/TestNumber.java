@@ -8,7 +8,7 @@ import static com.threeleaf.test.random.util.TestNumberUtil.*;
 import static java.math.BigDecimal.ROUND_HALF_UP;
 import static java.math.BigDecimal.valueOf;
 
-/** Number methods and constants for use in testing. */
+/** Number constants for use in testing. */
 @UtilityClass
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class TestNumber
