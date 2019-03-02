@@ -18,7 +18,7 @@ public class TestBooleanUtilTest
      * boundary for failure in a loop where we are tying to collect
      * some kind of statistics.
      */
-    public static int LOOP_COUNT_MAX = 100;
+    public static final int LOOP_COUNT_MAX = 100;
 
     /** Test {@link TestBooleanUtil#coinFlip()}. */
     @Test

@@ -4,8 +4,8 @@ import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
 import java.lang.reflect.Array;
-import java.util.List;
 
+import static com.threeleaf.test.random.TestNumber.INT_00;
 import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
 import static io.github.benas.randombeans.api.EnhancedRandom.randomListOf;
 
@@ -13,6 +13,20 @@ import static io.github.benas.randombeans.api.EnhancedRandom.randomListOf;
 @SuppressWarnings({"WeakerAccess", "unchecked"})
 public class TestArrayUtil
 {
+
+    /**
+     * Return an array of randomized objects.
+     *
+     * @param size the size of array
+     * @param type type of Class
+     * @param <T>  the Class
+     *
+     * @return the array of randomized objects
+     */
+    public static <T> T[] randomArrayOf(final int size, @NonNull Class<T> type)
+    {
+        return randomListOf(size, type).toArray((T[]) Array.newInstance(type, INT_00));
+    }
 
     /**
      * Return an array of 1 to 10 randomized objects.
@@ -24,8 +38,6 @@ public class TestArrayUtil
      */
     public static <T> T[] randomArrayOf(@NonNull Class<T> type)
     {
-        List<T> list = randomListOf(random1to10(), type);
-
-        return list.toArray((T[]) Array.newInstance(type, list.size()));
+        return randomArrayOf(random1to10(), type);
     }
 }
