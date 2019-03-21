@@ -15,7 +15,6 @@ public class TestMapTest
     {
         assertFalse(INTEGER_MAP.isEmpty());
         assertFalse(LONG_MAP.isEmpty());
-        assertFalse(OBJECT_MAP.isEmpty());
         assertFalse(STRING_MAP.isEmpty());
     }
 }

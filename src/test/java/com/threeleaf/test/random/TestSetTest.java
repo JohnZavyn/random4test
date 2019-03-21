@@ -15,7 +15,6 @@ public class TestSetTest
     {
         assertFalse(INTEGER_SET.isEmpty());
         assertFalse(LONG_SET.isEmpty());
-        assertFalse(OBJECT_SET.isEmpty());
         assertFalse(STRING_SET.isEmpty());
     }
 }
