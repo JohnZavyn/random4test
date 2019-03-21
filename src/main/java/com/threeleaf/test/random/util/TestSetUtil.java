@@ -1,6 +1,6 @@
 package com.threeleaf.test.random.util;
 
-import io.github.benas.randombeans.api.EnhancedRandom;
+import com.threeleaf.test.random.TestRandom;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
@@ -28,7 +28,7 @@ public class TestSetUtil
      */
     private static <T> HashSet<T> randomHashSetOf(final int size, final @NonNull Class<T> type)
     {
-        return (HashSet<T>) EnhancedRandom.randomSetOf(size, type);
+        return (HashSet<T>) TestRandom.randomSetOf(size, type);
     }
 
     /**

@@ -1,6 +1,6 @@
 package com.threeleaf.test.random.util;
 
-import io.github.benas.randombeans.api.EnhancedRandom;
+import com.threeleaf.test.random.TestRandom;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
@@ -27,7 +27,7 @@ public class TestListUtil
      */
     private static <T> ArrayList<T> randomArrayListOf(final int size, final @NonNull Class<T> type)
     {
-        return (ArrayList<T>) EnhancedRandom.randomListOf(size, type);
+        return (ArrayList<T>) TestRandom.randomListOf(size, type);
     }
 
     /**
@@ -54,7 +54,7 @@ public class TestListUtil
      */
     private static <T> LinkedList<T> randomLinkedListOf(final int size, final @NonNull Class<T> type)
     {
-        return new LinkedList<>(EnhancedRandom.randomListOf(size, type));
+        return new LinkedList<>(TestRandom.randomListOf(size, type));
     }
 
     /**
@@ -135,6 +135,6 @@ public class TestListUtil
      */
     private static <T> Vector<T> randomVectorOf(final int size, final @NonNull Class<T> type)
     {
-        return new Vector<>(randomArrayListOf(size, type));
+        return new Vector<>(TestRandom.randomListOf(size, type));
     }
 }

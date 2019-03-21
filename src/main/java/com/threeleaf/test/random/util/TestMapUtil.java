@@ -7,11 +7,11 @@ import java.util.*;
 
 import static com.threeleaf.test.random.TestNumber.INT_01;
 import static com.threeleaf.test.random.TestNumber.INT_03;
+import static com.threeleaf.test.random.TestRandom.random;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
 import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
 import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
-import static io.github.benas.randombeans.api.EnhancedRandom.random;
 
 @UtilityClass
 @SuppressWarnings({"unused", "WeakerAccess"})
