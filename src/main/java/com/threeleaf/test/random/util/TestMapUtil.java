@@ -5,10 +5,13 @@ import lombok.experimental.UtilityClass;
 
 import java.util.*;
 
+import static com.threeleaf.test.random.TestNumber.INT_01;
+import static com.threeleaf.test.random.TestNumber.INT_03;
+import static com.threeleaf.test.random.TestRandom.random;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
-import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
-import static io.github.benas.randombeans.api.EnhancedRandom.random;
+import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
+import static com.threeleaf.test.random.util.TestSetUtil.randomHashSetOf;
 
 @UtilityClass
 @SuppressWarnings({"unused", "WeakerAccess"})
@@ -44,7 +47,7 @@ public class TestMapUtil
     }
 
     /**
-     * Return a map of 1 to 10 randomized key-value pairs.
+     * Return a {@link HashMap} of randomized key-value pairs.
      *
      * @param size      the number of key-value pairs in the map
      * @param keyType   type of keys in the map
@@ -54,10 +57,10 @@ public class TestMapUtil
      *
      * @return the list of randomized objects
      */
-    public static <K, V> Map<K, V> randomMapOf(final int size, @NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    public static <K, V> HashMap<K, V> randomHashMapOf(final int size, final @NonNull Class<K> keyType, final @NonNull Class<V> valueType)
     {
-        final Map<K, V> randomMap = new HashMap<>();
-        final Set<K>    keySet    = randomSetOf(size, keyType);
+        final HashMap<K, V> randomMap = new HashMap<>();
+        final Set<K>        keySet    = randomHashSetOf(size, keyType);
         for (final K key : keySet)
         {
             randomMap.put(key, random(valueType));
@@ -67,7 +70,53 @@ public class TestMapUtil
     }
 
     /**
-     * Return a map of 1 to 10 randomized key-value pairs.
+     * Return a {@link HashMap} of 1 to 10 randomized key-value pairs.
+     *
+     * @param keyType   type of keys in the map
+     * @param valueType the type of values in the map
+     * @param <K>       the key Class
+     * @param <V>       the value Class
+     *
+     * @return the list of randomized objects
+     */
+    public static <K, V> HashMap<K, V> randomHashMapOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    {
+        return randomHashMapOf(random1to10(), keyType, valueType);
+    }
+
+    /**
+     * Return a {@link LinkedHashMap} of randomized key-value pairs.
+     *
+     * @param size      the number of key-value pairs in the map
+     * @param keyType   type of keys in the map
+     * @param valueType the type of values in the map
+     * @param <K>       the key Class
+     * @param <V>       the value Class
+     *
+     * @return the list of randomized objects
+     */
+    public static <K, V> LinkedHashMap<K, V> randomLinkedHashMapOf(final int size, final @NonNull Class<K> keyType, final @NonNull Class<V> valueType)
+    {
+        return new LinkedHashMap<>(randomHashMapOf(size, keyType, valueType));
+    }
+
+    /**
+     * Return a {@link LinkedHashMap} of 1 to 10 randomized key-value pairs.
+     *
+     * @param keyType   type of keys in the map
+     * @param valueType the type of values in the map
+     * @param <K>       the key Class
+     * @param <V>       the value Class
+     *
+     * @return the list of randomized objects
+     */
+    public static <K, V> LinkedHashMap<K, V> randomLinkedHashMapOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    {
+        return randomLinkedHashMapOf(random1to10(), keyType, valueType);
+    }
+
+    /**
+     * Return a {@link Map} of 1 to 10 randomized key-value pairs.
      *
      * @param keyType   type of keys in the map
      * @param valueType the type of values in the map
@@ -79,5 +128,66 @@ public class TestMapUtil
     public static <K, V> Map<K, V> randomMapOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
     {
         return randomMapOf(random1to10(), keyType, valueType);
+    }
+
+    /**
+     * Return a {@link Map} of 1 to 10 randomized key-value pairs.
+     *
+     * @param size      the number of key-value pairs in the map
+     * @param keyType   type of keys in the map
+     * @param valueType the type of values in the map
+     * @param <K>       the key Class
+     * @param <V>       the value Class
+     *
+     * @return the list of randomized objects
+     */
+    public static <K, V> Map<K, V> randomMapOf(final int size, @NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    {
+        Map<K, V> map;
+        switch (randomBetween(INT_01, INT_03))
+        {
+            case 1:
+                map = randomHashMapOf(size, keyType, valueType);
+                break;
+            case 2:
+                map = randomLinkedHashMapOf(size, keyType, valueType);
+                break;
+            default:
+                map = randomTreeMapOf(size, keyType, valueType);
+                break;
+        }
+
+        return map;
+    }
+
+    /**
+     * Return a {@link TreeMap} of randomized key-value pairs.
+     *
+     * @param size      the number of key-value pairs in the map
+     * @param keyType   type of keys in the map
+     * @param valueType the type of values in the map
+     * @param <K>       the key Class
+     * @param <V>       the value Class
+     *
+     * @return the list of randomized objects
+     */
+    public static <K, V> TreeMap<K, V> randomTreeMapOf(final int size, final @NonNull Class<K> keyType, final @NonNull Class<V> valueType)
+    {
+        return new TreeMap<>(randomHashMapOf(size, keyType, valueType));
+    }
+
+    /**
+     * Return a {@link TreeMap} of 1 to 10 randomized key-value pairs.
+     *
+     * @param keyType   type of keys in the map
+     * @param valueType the type of values in the map
+     * @param <K>       the key Class
+     * @param <V>       the value Class
+     *
+     * @return the list of randomized objects
+     */
+    public static <K, V> TreeMap<K, V> randomTreeMapOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    {
+        return randomTreeMapOf(random1to10(), keyType, valueType);
     }
 }

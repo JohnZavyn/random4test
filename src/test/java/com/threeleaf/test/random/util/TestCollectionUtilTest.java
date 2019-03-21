@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.*;
 
+import static com.threeleaf.test.random.TestNumber.INT_10;
 import static com.threeleaf.test.random.TestString.*;
 import static com.threeleaf.test.random.util.TestBooleanUtilTest.LOOP_COUNT_MAX;
 import static java.util.Arrays.asList;
@@ -41,8 +42,11 @@ public class TestCollectionUtilTest
     @Test
     public void randomCollectionOf()
     {
-        final Collection<Long> result = TestCollectionUtil.randomCollectionOf(Long.class);
+        for (int counter = 0; counter < INT_10; counter++)
+        {
+            final Collection<Long> result = TestCollectionUtil.randomCollectionOf(Long.class);
 
-        assertFalse(result.isEmpty());
+            assertFalse(result.isEmpty());
+        }
     }
 }

@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.util.*;
 
+import static com.threeleaf.test.random.TestNumber.INT_10;
 import static com.threeleaf.test.random.util.TestBooleanUtilTest.LOOP_COUNT_MAX;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.fail;
@@ -58,10 +59,34 @@ public class TestMapUtilTest
         }
     }
 
+    /** Test {@link TestMapUtil#randomHashMapOf(Class, Class)}. */
+    @Test
+    public void randomHashMapOf()
+    {
+        assertFalse(TestMapUtil.randomHashMapOf(Long.class, String.class).isEmpty());
+    }
+
+    /** Test {@link TestMapUtil#randomLinkedHashMapOf(Class, Class)}. */
+    @Test
+    public void randomLinkedHashMapOf()
+    {
+        assertFalse(TestMapUtil.randomLinkedHashMapOf(Long.class, String.class).isEmpty());
+    }
+
     /** Test {@link TestMapUtil#randomMapOf(Class, Class)}. */
     @Test
     public void randomMapOf()
     {
-        assertFalse(TestMapUtil.randomMapOf(Integer.class, Double.class).isEmpty());
+        for (int counter = 0; counter < INT_10; counter++)
+        {
+            assertFalse(TestMapUtil.randomMapOf(Integer.class, Double.class).isEmpty());
+        }
+    }
+
+    /** Test {@link TestMapUtil#randomTreeMapOf(Class, Class)}. */
+    @Test
+    public void randomTreeMapOf()
+    {
+        assertFalse(TestMapUtil.randomTreeMapOf(Integer.class, Float.class).isEmpty());
     }
 }
