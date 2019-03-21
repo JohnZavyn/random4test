@@ -19,20 +19,20 @@ public class TestListUtilTest
     @Test
     public void randomLinkedListOf()
     {
-        assertFalse(TestListUtil.randomLinkedListOf(Byte.class).isEmpty());
+        assertFalse(TestListUtil.randomLinkedListOf(Character.class).isEmpty());
     }
 
     /** Test {@link TestListUtil#randomListOf(Class)}. */
     @Test
     public void randomListOf()
     {
-        assertFalse(TestListUtil.randomListOf(Byte.class).isEmpty());
+        assertFalse(TestListUtil.randomListOf(Boolean.class).isEmpty());
     }
 
     /** Test {@link TestListUtil#randomVectorOf(Class)}. */
     @Test
     public void randomVectorOf()
     {
-        assertFalse(TestListUtil.randomVectorOf(Byte.class).isEmpty());
+        assertFalse(TestListUtil.randomVectorOf(Short.class).isEmpty());
     }
 }

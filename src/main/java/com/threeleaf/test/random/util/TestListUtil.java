@@ -25,7 +25,7 @@ public class TestListUtil
      *
      * @return the list of randomized objects
      */
-    private static <T> ArrayList<T> randomArrayListOf(final int size, final @NonNull Class<T> type)
+    public static <T> ArrayList<T> randomArrayListOf(final int size, final @NonNull Class<T> type)
     {
         return (ArrayList<T>) TestRandom.randomListOf(size, type);
     }
@@ -52,7 +52,7 @@ public class TestListUtil
      *
      * @return the list of randomized objects
      */
-    private static <T> LinkedList<T> randomLinkedListOf(final int size, final @NonNull Class<T> type)
+    public static <T> LinkedList<T> randomLinkedListOf(final int size, final @NonNull Class<T> type)
     {
         return new LinkedList<>(TestRandom.randomListOf(size, type));
     }
@@ -133,7 +133,7 @@ public class TestListUtil
      *
      * @return the list of randomized objects
      */
-    private static <T> Vector<T> randomVectorOf(final int size, final @NonNull Class<T> type)
+    public static <T> Vector<T> randomVectorOf(final int size, final @NonNull Class<T> type)
     {
         return new Vector<>(TestRandom.randomListOf(size, type));
     }

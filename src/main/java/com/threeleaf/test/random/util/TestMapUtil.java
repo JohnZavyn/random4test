@@ -11,7 +11,7 @@ import static com.threeleaf.test.random.TestRandom.random;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
 import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
-import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
+import static com.threeleaf.test.random.util.TestSetUtil.randomHashSetOf;
 
 @UtilityClass
 @SuppressWarnings({"unused", "WeakerAccess"})
@@ -57,10 +57,10 @@ public class TestMapUtil
      *
      * @return the list of randomized objects
      */
-    private static <K, V> HashMap<K, V> randomHashMapOf(final int size, final @NonNull Class<K> keyType, final @NonNull Class<V> valueType)
+    public static <K, V> HashMap<K, V> randomHashMapOf(final int size, final @NonNull Class<K> keyType, final @NonNull Class<V> valueType)
     {
         final HashMap<K, V> randomMap = new HashMap<>();
-        final Set<K>        keySet    = randomSetOf(size, keyType);
+        final Set<K>        keySet    = randomHashSetOf(size, keyType);
         for (final K key : keySet)
         {
             randomMap.put(key, random(valueType));
@@ -95,7 +95,7 @@ public class TestMapUtil
      *
      * @return the list of randomized objects
      */
-    private static <K, V> LinkedHashMap<K, V> randomLinkedHashMapOf(final int size, final @NonNull Class<K> keyType, final @NonNull Class<V> valueType)
+    public static <K, V> LinkedHashMap<K, V> randomLinkedHashMapOf(final int size, final @NonNull Class<K> keyType, final @NonNull Class<V> valueType)
     {
         return new LinkedHashMap<>(randomHashMapOf(size, keyType, valueType));
     }
@@ -171,7 +171,7 @@ public class TestMapUtil
      *
      * @return the list of randomized objects
      */
-    private static <K, V> TreeMap<K, V> randomTreeMapOf(final int size, final @NonNull Class<K> keyType, final @NonNull Class<V> valueType)
+    public static <K, V> TreeMap<K, V> randomTreeMapOf(final int size, final @NonNull Class<K> keyType, final @NonNull Class<V> valueType)
     {
         return new TreeMap<>(randomHashMapOf(size, keyType, valueType));
     }

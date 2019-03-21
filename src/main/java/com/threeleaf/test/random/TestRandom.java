@@ -18,9 +18,7 @@ public class TestRandom
      */
     public static final Random RANDOM = new Random();
 
-    /**
-     *
-     */
+    /** The {@link EnhancedRandom} engine. */
     private static final EnhancedRandom enhancedRandom = new EnhancedRandomBuilder().build();
 
     /** A random {@link Object}. */

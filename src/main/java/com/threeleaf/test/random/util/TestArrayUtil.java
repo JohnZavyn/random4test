@@ -6,7 +6,7 @@ import lombok.experimental.UtilityClass;
 import java.lang.reflect.Array;
 
 import static com.threeleaf.test.random.TestNumber.INT_00;
-import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
+import static com.threeleaf.test.random.util.TestListUtil.randomArrayListOf;
 import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
 
 @UtilityClass
@@ -25,7 +25,7 @@ public class TestArrayUtil
      */
     public static <T> T[] randomArrayOf(final int size, @NonNull Class<T> type)
     {
-        return randomListOf(size, type).toArray((T[]) Array.newInstance(type, INT_00));
+        return randomArrayListOf(size, type).toArray((T[]) Array.newInstance(type, INT_00));
     }
 
     /**

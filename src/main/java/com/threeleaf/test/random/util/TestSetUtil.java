@@ -26,7 +26,7 @@ public class TestSetUtil
      *
      * @return the set of randomized objects
      */
-    private static <T> HashSet<T> randomHashSetOf(final int size, final @NonNull Class<T> type)
+    public static <T> HashSet<T> randomHashSetOf(final int size, final @NonNull Class<T> type)
     {
         return (HashSet<T>) TestRandom.randomSetOf(size, type);
     }
@@ -39,7 +39,7 @@ public class TestSetUtil
      *
      * @return the set of randomized objects
      */
-    private static <T> HashSet<T> randomHashSetOf(final @NonNull Class<T> type)
+    public static <T> HashSet<T> randomHashSetOf(final @NonNull Class<T> type)
     {
         return (HashSet<T>) randomSetOf(random1to10(), type);
     }
@@ -52,7 +52,7 @@ public class TestSetUtil
      *
      * @return the set of randomized objects
      */
-    private static <T> HashSet<T> randomLinkedHashSetOf(final @NonNull Class<T> type)
+    public static <T> HashSet<T> randomLinkedHashSetOf(final @NonNull Class<T> type)
     {
         return randomLinkedHashSetOf(random1to10(), type);
     }
@@ -66,7 +66,7 @@ public class TestSetUtil
      *
      * @return the set of randomized objects
      */
-    private static <T> HashSet<T> randomLinkedHashSetOf(final int size, final @NonNull Class<T> type)
+    public static <T> HashSet<T> randomLinkedHashSetOf(final int size, final @NonNull Class<T> type)
     {
         return new LinkedHashSet<>(randomHashSetOf(size, type));
     }
@@ -121,7 +121,7 @@ public class TestSetUtil
      *
      * @return the set of randomized objects
      */
-    private static <T> SortedSet<T> randomSortedSetOf(final int size, final @NonNull Class<T> type)
+    public static <T> SortedSet<T> randomSortedSetOf(final int size, final @NonNull Class<T> type)
     {
         return randomTreeSetOf(size, type);
     }
@@ -134,7 +134,7 @@ public class TestSetUtil
      *
      * @return the set of randomized objects
      */
-    private static <T> SortedSet<T> randomSortedSetOf(final @NonNull Class<T> type)
+    public static <T> SortedSet<T> randomSortedSetOf(final @NonNull Class<T> type)
     {
         return randomSortedSetOf(random1to10(), type);
     }
@@ -148,7 +148,7 @@ public class TestSetUtil
      *
      * @return the set of randomized objects
      */
-    private static <T> TreeSet<T> randomTreeSetOf(final int size, final @NonNull Class<T> type)
+    public static <T> TreeSet<T> randomTreeSetOf(final int size, final @NonNull Class<T> type)
     {
         return new TreeSet<>(randomHashSetOf(size, type));
     }
@@ -161,7 +161,7 @@ public class TestSetUtil
      *
      * @return the set of randomized objects
      */
-    private static <T> TreeSet<T> randomTreeSetOf(final @NonNull Class<T> type)
+    public static <T> TreeSet<T> randomTreeSetOf(final @NonNull Class<T> type)
     {
         return randomTreeSetOf(random1to10(), type);
     }
