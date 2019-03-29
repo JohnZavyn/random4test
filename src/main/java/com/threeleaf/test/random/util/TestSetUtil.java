@@ -150,7 +150,20 @@ public class TestSetUtil
      */
     public static <T> TreeSet<T> randomTreeSetOf(final int size, final @NonNull Class<T> type)
     {
-        return new TreeSet<>(randomHashSetOf(size, type));
+        Set<T>     set = randomHashSetOf(size, type);
+        TreeSet<T> treeSet;
+        /* A TreeSet must be of a Comparable type or be constructed with a Comparator. */
+        try
+        {
+            treeSet = new TreeSet<>(set);
+        }
+        catch (ClassCastException e)
+        {
+            treeSet = new TreeSet<>((object1, object2) -> object1.toString().compareTo(object2.toString()));
+            treeSet.addAll(set);
+        }
+
+        return treeSet;
     }
 
     /**

@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
 
-/** Test {@link TestListUtil} */
+/** Test {@link TestListUtil}. */
 public class TestListUtilTest
 {
 
