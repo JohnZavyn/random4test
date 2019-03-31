@@ -14,16 +14,16 @@ public class TestSetTest
     @Test
     public void constants()
     {
-        assertFalse(INTEGER_SET.isEmpty());
-        assertFalse(LONG_SET.isEmpty());
-        assertFalse(OBJECT_SET.isEmpty());
-        assertFalse(STRING_SET.isEmpty());
+        assertFalse(SET_INTEGER.isEmpty());
+        assertFalse(SET_LONG.isEmpty());
+        assertFalse(SET_OBJECT.isEmpty());
+        assertFalse(SET_STRING.isEmpty());
     }
 
     /** Test {@link TestSet} constant unmodifiable. */
     @Test(expected = UnsupportedOperationException.class)
     public void unmodifiable()
     {
-        INTEGER_SET.add(INTEGER);
+        SET_INTEGER.add(INTEGER);
     }
 }

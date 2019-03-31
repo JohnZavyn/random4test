@@ -13,9 +13,9 @@ public class TestListTest
     @Test
     public void constants()
     {
-        assertFalse(INTEGER_LIST.isEmpty());
-        assertFalse(LONG_LIST.isEmpty());
-        assertFalse(OBJECT_LIST.isEmpty());
-        assertFalse(STRING_LIST.isEmpty());
+        assertFalse(LIST_INTEGER.isEmpty());
+        assertFalse(LIST_LONG.isEmpty());
+        assertFalse(LIST_OBJECT.isEmpty());
+        assertFalse(LIST_STRING.isEmpty());
     }
 }
