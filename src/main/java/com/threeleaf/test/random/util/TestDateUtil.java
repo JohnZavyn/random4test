@@ -8,7 +8,7 @@ import static com.threeleaf.test.random.TestDate.TIME_ZONE;
 
 /** Date and time utilities. */
 @UtilityClass
-@SuppressWarnings({"WeakerAccess"})
+@SuppressWarnings("WeakerAccess")
 public class TestDateUtil
 {
 

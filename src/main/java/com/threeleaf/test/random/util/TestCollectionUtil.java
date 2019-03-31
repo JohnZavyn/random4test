@@ -12,22 +12,24 @@ import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
 import static java.util.Arrays.asList;
 
 @UtilityClass
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public class TestCollectionUtil
 {
 
     /**
      * Choose a random item from an array.
+     * Method placed here to allow for easier overloading when
+     * statically importing classes.
      *
      * @param array the collection to choose from
      * @param <T>   the type of objects in the collection
      *
      * @return a random object
+     *
+     * @see TestArrayUtil#chooseOneFrom(Object[])
      */
     public static <T> T chooseOneFrom(@NonNull final T[] array)
     {
-        /* Method placed here to allow for easier overloading when
-         * statically importing classes. */
         return chooseOneFrom(asList(array));
     }
 
@@ -53,36 +55,38 @@ public class TestCollectionUtil
      * Return a collection of 1 to 10 randomized objects.
      * May be either a List or Set.
      *
-     * @param type type of Class
-     * @param <T>  the Class
+     * @param type           type of Class
+     * @param excludedFields (optional) fields that should not be randomized
+     * @param <T>            the generic type
      *
      * @return the collection of randomized objects
      */
-    public static <T> Collection<T> randomCollectionOf(@NonNull Class<T> type)
+    public static <T> Collection<T> randomCollectionOf(@NonNull final Class<T> type, final String... excludedFields)
     {
-        return randomCollectionOf(random1to10(), type);
+        return randomCollectionOf(random1to10(), type, excludedFields);
     }
 
     /**
      * Return a collection of randomized objects.
      * May be either a List or Set.
      *
-     * @param size number of objects in the collection
-     * @param type type of Class
-     * @param <T>  the Class
+     * @param size           number of objects in the collection
+     * @param type           type of Class
+     * @param excludedFields (optional) fields that should not be randomized
+     * @param <T>            the generic type
      *
      * @return the collection of randomized objects
      */
-    public static <T> Collection<T> randomCollectionOf(final int size, @NonNull Class<T> type)
+    public static <T> Collection<T> randomCollectionOf(final int size, @NonNull final Class<T> type, final String... excludedFields)
     {
         Collection<T> collection;
         if (coinFlip())
         {
-            collection = randomSetOf(size, type);
+            collection = randomSetOf(size, type, excludedFields);
         }
         else
         {
-            collection = randomListOf(size, type);
+            collection = randomListOf(size, type, excludedFields);
         }
 
         return collection;

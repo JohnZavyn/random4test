@@ -9,19 +9,19 @@ import static java.util.Collections.unmodifiableList;
 
 /** List constants for use in testing. */
 @UtilityClass
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public class TestList
 {
 
     /** An {@link Integer} list. */
-    public static final List<Integer> INTEGER_LIST = unmodifiableList(randomListOf(Integer.class));
+    public static final List<Integer> LIST_INTEGER = unmodifiableList(randomListOf(Integer.class));
 
     /** An {@link Long} list. */
-    public static final List<Long> LONG_LIST = unmodifiableList(randomListOf(Long.class));
+    public static final List<Long> LIST_LONG = unmodifiableList(randomListOf(Long.class));
 
     /** An {@link Object} list. */
-    public static final List<Object> OBJECT_LIST = unmodifiableList(randomListOf(Object.class));
+    public static final List<Object> LIST_OBJECT = unmodifiableList(randomListOf(Object.class));
 
     /** An {@link String} list. */
-    public static final List<String> STRING_LIST = unmodifiableList(randomListOf(String.class));
+    public static final List<String> LIST_STRING = unmodifiableList(randomListOf(String.class));
 }

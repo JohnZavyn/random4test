@@ -6,19 +6,19 @@ import static com.threeleaf.test.random.util.TestArrayUtil.randomArrayOf;
 
 /** Array constants for use in testing. */
 @UtilityClass
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public class TestArray
 {
 
     /** An {@link Integer} array. */
-    public static final Integer[] INTEGER_ARRAY = randomArrayOf(Integer.class);
+    public static final Integer[] ARRAY_INTEGER = randomArrayOf(Integer.class);
 
     /** An {@link Long} array. */
-    public static final Long[] LONG_ARRAY = randomArrayOf(Long.class);
+    public static final Long[] ARRAY_LONG = randomArrayOf(Long.class);
 
     /** An {@link Object} array. */
-    public static final Object[] OBJECT_ARRAY = randomArrayOf(Object.class);
+    public static final Object[] ARRAY_OBJECT = randomArrayOf(Object.class);
 
     /** An {@link String} array. */
-    public static final String[] STRING_ARRAY = randomArrayOf(String.class);
+    public static final String[] ARRAY_STRING = randomArrayOf(String.class);
 }

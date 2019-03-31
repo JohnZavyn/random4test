@@ -7,7 +7,7 @@ import static com.threeleaf.test.random.TestNumber.INT_02;
 import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
 
 @UtilityClass
-@SuppressWarnings({"WeakerAccess"})
+@SuppressWarnings("WeakerAccess")
 public class TestBooleanUtil
 {
 
