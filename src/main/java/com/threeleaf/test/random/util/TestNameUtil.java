@@ -9,7 +9,7 @@ import static com.threeleaf.test.random.util.TestBooleanUtil.coinFlip;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 
 @UtilityClass
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "SpellCheckingInspection"})
 public class TestNameUtil
 {
 

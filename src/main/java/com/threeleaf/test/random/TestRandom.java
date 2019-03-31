@@ -9,7 +9,7 @@ import java.util.Random;
 
 /** Class to contain the random generator. */
 @UtilityClass
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public class TestRandom
 {
 

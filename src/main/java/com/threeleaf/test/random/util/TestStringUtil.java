@@ -7,10 +7,11 @@ import java.util.*;
 
 import static com.threeleaf.test.random.TestString.*;
 import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
+import static java.util.UUID.randomUUID;
 
 /** Test string utilities. */
 @UtilityClass
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public class TestStringUtil
 {
 
@@ -25,9 +26,6 @@ public class TestStringUtil
 
     /** Minimum length for a string. */
     public static final int STRING_LENGTH_MIN = 10;
-
-    /** Prefix used for test strings. */
-    public static final String TEST_PREFIX = "TEST~";
 
     /**
      * Extract suffix from a test string.
@@ -129,7 +127,7 @@ public class TestStringUtil
      */
     public static String randomUuid()
     {
-        return UUID.randomUUID().toString();
+        return randomUUID().toString();
     }
 
     /**

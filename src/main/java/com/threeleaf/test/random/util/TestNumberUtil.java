@@ -10,7 +10,7 @@ import static java.lang.Integer.MAX_VALUE;
 
 /** Test Number Utilities. */
 @UtilityClass
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public class TestNumberUtil
 {
 

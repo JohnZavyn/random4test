@@ -14,7 +14,7 @@ import static java.util.Comparator.comparing;
 
 /** Test Set Utilities. */
 @UtilityClass
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public class TestSetUtil
 {
 

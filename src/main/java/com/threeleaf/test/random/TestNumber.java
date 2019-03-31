@@ -10,7 +10,7 @@ import static java.math.BigDecimal.valueOf;
 
 /** Number constants for use in testing. */
 @UtilityClass
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public class TestNumber
 {
 

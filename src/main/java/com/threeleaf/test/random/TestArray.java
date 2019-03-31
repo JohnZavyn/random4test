@@ -6,7 +6,7 @@ import static com.threeleaf.test.random.util.TestArrayUtil.randomArrayOf;
 
 /** Array constants for use in testing. */
 @UtilityClass
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public class TestArray
 {
 

@@ -14,7 +14,9 @@ public class TestMapTest
     public void constants()
     {
         assertFalse(MAP_INTEGER.isEmpty());
+        assertFalse(MAP_INTEGER_STRING.isEmpty());
         assertFalse(MAP_LONG.isEmpty());
+        assertFalse(MAP_LONG_STRING.isEmpty());
         assertFalse(MAP_OBJECT.isEmpty());
         assertFalse(MAP_STRING.isEmpty());
     }

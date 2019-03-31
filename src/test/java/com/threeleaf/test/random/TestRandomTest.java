@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.lang.management.MemoryNotificationInfo;
 import java.security.KeyPair;
 
+import static com.threeleaf.test.random.TestRandom.OBJECT;
 import static org.junit.Assert.*;
 
 /** Test {@link TestRandom}. */
@@ -32,5 +33,12 @@ public class TestRandomTest
         assertNotNull(memoryNotificationInfo.getPoolName());
         assertEquals(0L, memoryNotificationInfo.getCount());
         assertNull(memoryNotificationInfo.getUsage());
+    }
+
+    /** Test {@link TestRandom#OBJECT}. */
+    @Test
+    public void randomObject()
+    {
+        assertNotNull(OBJECT);
     }
 }

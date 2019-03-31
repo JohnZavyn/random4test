@@ -9,7 +9,7 @@ import static java.util.Collections.unmodifiableList;
 
 /** List constants for use in testing. */
 @UtilityClass
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public class TestList
 {
 

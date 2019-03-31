@@ -14,7 +14,7 @@ import static org.joda.time.format.DateTimeFormat.forPattern;
 
 /** Date constants to be used in JUnit tests. */
 @UtilityClass
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public class TestDate
 {
 

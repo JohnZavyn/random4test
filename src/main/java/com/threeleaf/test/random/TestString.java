@@ -2,12 +2,14 @@ package com.threeleaf.test.random;
 
 import lombok.experimental.UtilityClass;
 
+import static com.threeleaf.test.random.util.TestNameUtil.randomNameFirst;
+import static com.threeleaf.test.random.util.TestNameUtil.randomNameLast;
 import static com.threeleaf.test.random.util.TestStringUtil.randomString;
 import static com.threeleaf.test.random.util.TestStringUtil.randomUuid;
 
 /** String constants to be used in JUnit tests. */
 @UtilityClass
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public class TestString
 {
 
@@ -57,7 +59,7 @@ public class TestString
     public static final String CHAR_99 = randomString(99);
 
     /* A bogus e-mail address. */
-    public static final String EMAIL = randomString() + "@test." + randomString() + ".example.com";
+    public static final String EMAIL = randomNameFirst() + '.' + randomNameLast() + "@test." + randomString() + ".example.com";
 
     /** A space */
     public static final String SPACE = " ";

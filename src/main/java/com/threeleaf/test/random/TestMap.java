@@ -9,7 +9,7 @@ import static java.util.Collections.unmodifiableMap;
 
 /** Map constants for use in testing. */
 @UtilityClass
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings("WeakerAccess")
 public class TestMap
 {
 
