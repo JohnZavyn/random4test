@@ -10,28 +10,28 @@ import static org.junit.Assert.assertFalse;
 public class TestSetUtilTest
 {
 
-    /** Test {@link TestSetUtil#randomHashSetOf(Class)}. */
+    /** Test {@link TestSetUtil#randomHashSetOf(Class, String...)}. */
     @Test
     public void randomHashSetOf()
     {
         assertFalse(TestSetUtil.randomHashSetOf(Byte.class).isEmpty());
     }
 
-    /** Test {@link TestSetUtil#randomLinkedHashSetOf(Class)}. */
+    /** Test {@link TestSetUtil#randomLinkedHashSetOf(Class, String...)}. */
     @Test
     public void randomLinkedHashSetOf()
     {
         assertFalse(TestSetUtil.randomLinkedHashSetOf(Character.class).isEmpty());
     }
 
-    /** Test {@link TestSetUtil#randomSetOf(Class)}. */
+    /** Test {@link TestSetUtil#randomSetOf(Class, String...)}. */
     @Test
     public void randomSetOf()
     {
         assertFalse(TestSetUtil.randomSetOf(Boolean.class).isEmpty());
     }
 
-    /** Test {@link TestSetUtil#randomSortedSetOf(Class)}. */
+    /** Test {@link TestSetUtil#randomSortedSetOf(Class, String...)}. */
     @Test
     public void randomSortedSetOf()
     {

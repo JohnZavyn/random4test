@@ -38,7 +38,30 @@ public class TestCollectionUtilTest
         }
     }
 
-    /** Test {@link TestCollectionUtil#randomCollectionOf(Class)}. */
+    /** Test {@link TestCollectionUtil#chooseOneFrom(Object[])}. */
+    @Test
+    public void chooseOneFromArray()
+    {
+        final Object[]    array                 = new Object[]{CHAR_10, CHAR_16, CHAR_32, CHAR_99};
+        final Set<String> results               = new HashSet<>();
+        boolean           allPossibilitiesFound = false;
+
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++)
+        {
+            results.add((String) TestCollectionUtil.chooseOneFrom(array));
+            if (results.size() == array.length)
+            {
+                allPossibilitiesFound = true;
+                break;
+            }
+        }
+        if (!allPossibilitiesFound)
+        {
+            fail("Expected all possible results, but only found " + results);
+        }
+    }
+
+    /** Test {@link TestCollectionUtil#randomCollectionOf(Class, String...)}. */
     @Test
     public void randomCollectionOf()
     {

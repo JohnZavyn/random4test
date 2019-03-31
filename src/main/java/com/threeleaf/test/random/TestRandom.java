@@ -2,9 +2,10 @@ package com.threeleaf.test.random;
 
 import io.github.benas.randombeans.EnhancedRandomBuilder;
 import io.github.benas.randombeans.api.EnhancedRandom;
+import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
-import java.util.*;
+import java.util.Random;
 
 /** Class to contain the random generator. */
 @UtilityClass
@@ -24,50 +25,19 @@ public class TestRandom
     /** A random {@link Object}. */
     public static final Object OBJECT = random(Object.class);
 
-    public static <T> T random(final Class<T> type, final String... excludedFields)
+    /**
+     * Return an object with randomized fields.
+     * This is a helper/wrapper method around
+     * {@link EnhancedRandom#nextObject(Class, String...)}.
+     *
+     * @param type           the class of object to create
+     * @param excludedFields (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return a randomized object
+     */
+    public static <T> T random(@NonNull final Class<T> type, final String... excludedFields)
     {
         return enhancedRandom.nextObject(type, excludedFields);
-    }
-
-    /**
-     * Generate a List of randomized Objects.
-     *
-     * @param size           number of objects in list
-     * @param type           the type of objects in list
-     * @param excludedFields fields to exclude from randomization
-     * @param <T>            the Type
-     *
-     * @return the randomized Object List
-     */
-    public static <T> List<T> randomListOf(final int size, final Class<T> type, final String... excludedFields)
-    {
-        final List<T> randomObjects = new ArrayList<>();
-        for (int index = 0; index < size; index++)
-        {
-            randomObjects.add(random(type, excludedFields));
-        }
-
-        return randomObjects;
-    }
-
-    /**
-     * Generate a Set of randomized Objects.
-     *
-     * @param size           number of objects in set
-     * @param type           the type of objects in set
-     * @param excludedFields fields to exclude from randomization
-     * @param <T>            the Type
-     *
-     * @return the randomized Object Set
-     */
-    public static <T> Set<T> randomSetOf(final int size, final Class<T> type, final String... excludedFields)
-    {
-        final Set<T> randomObjects = new HashSet<>();
-        for (int index = 0; index < size; index++)
-        {
-            randomObjects.add(random(type, excludedFields));
-        }
-
-        return randomObjects;
     }
 }
