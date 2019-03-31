@@ -33,27 +33,27 @@ public class TestArrayUtil
      *
      * @param size           the size of array
      * @param type           type of Class
-     * @param excludedFields (optional) fields that should not be randomized
+     * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
      * @return the array of randomized objects
      */
-    public static <T> T[] randomArrayOf(final int size, @NonNull final Class<T> type, final String... excludedFields)
+    public static <T> T[] randomArrayOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
     {
-        return randomArrayListOf(size, type, excludedFields).toArray((T[]) Array.newInstance(type, INT_00));
+        return randomArrayListOf(size, type, fieldsExcluded).toArray((T[]) Array.newInstance(type, INT_00));
     }
 
     /**
      * Return an array of 1 to 10 randomized objects.
      *
      * @param type           type of Class
-     * @param excludedFields (optional) fields that should not be randomized
+     * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
      * @return the array of randomized objects
      */
-    public static <T> T[] randomArrayOf(@NonNull final Class<T> type, final String... excludedFields)
+    public static <T> T[] randomArrayOf(@NonNull final Class<T> type, final String... fieldsExcluded)
     {
-        return randomArrayOf(random1to10(), type, excludedFields);
+        return randomArrayOf(random1to10(), type, fieldsExcluded);
     }
 }

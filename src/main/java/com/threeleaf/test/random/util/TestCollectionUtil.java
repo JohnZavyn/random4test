@@ -56,14 +56,14 @@ public class TestCollectionUtil
      * May be either a List or Set.
      *
      * @param type           type of Class
-     * @param excludedFields (optional) fields that should not be randomized
+     * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
      * @return the collection of randomized objects
      */
-    public static <T> Collection<T> randomCollectionOf(@NonNull final Class<T> type, final String... excludedFields)
+    public static <T> Collection<T> randomCollectionOf(@NonNull final Class<T> type, final String... fieldsExcluded)
     {
-        return randomCollectionOf(random1to10(), type, excludedFields);
+        return randomCollectionOf(random1to10(), type, fieldsExcluded);
     }
 
     /**
@@ -72,21 +72,21 @@ public class TestCollectionUtil
      *
      * @param size           number of objects in the collection
      * @param type           type of Class
-     * @param excludedFields (optional) fields that should not be randomized
+     * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
      * @return the collection of randomized objects
      */
-    public static <T> Collection<T> randomCollectionOf(final int size, @NonNull final Class<T> type, final String... excludedFields)
+    public static <T> Collection<T> randomCollectionOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
     {
         Collection<T> collection;
         if (coinFlip())
         {
-            collection = randomSetOf(size, type, excludedFields);
+            collection = randomSetOf(size, type, fieldsExcluded);
         }
         else
         {
-            collection = randomListOf(size, type, excludedFields);
+            collection = randomListOf(size, type, fieldsExcluded);
         }
 
         return collection;
