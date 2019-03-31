@@ -7,7 +7,7 @@ import static com.threeleaf.test.random.TestRandom.RANDOM;
 
 /** Enum test utilities. */
 @UtilityClass
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings("WeakerAccess")
 public class TestEnumUtil
 {
 

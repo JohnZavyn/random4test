@@ -12,9 +12,10 @@ import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
 import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
 import static com.threeleaf.test.random.util.TestSetUtil.randomHashSetOf;
+import static java.util.Comparator.comparing;
 
 @UtilityClass
-@SuppressWarnings({"unused", "WeakerAccess"})
+@SuppressWarnings("WeakerAccess")
 public class TestMapUtil
 {
 
@@ -162,6 +163,8 @@ public class TestMapUtil
 
     /**
      * Return a {@link TreeMap} of randomized key-value pairs.
+     * If the specified type is not Comparable, then a
+     * toString Comparator will automatically be added.
      *
      * @param size      the number of key-value pairs in the map
      * @param keyType   type of keys in the map
@@ -173,7 +176,20 @@ public class TestMapUtil
      */
     public static <K, V> TreeMap<K, V> randomTreeMapOf(final int size, final @NonNull Class<K> keyType, final @NonNull Class<V> valueType)
     {
-        return new TreeMap<>(randomHashMapOf(size, keyType, valueType));
+        Map<K, V>     map = randomHashMapOf(size, keyType, valueType);
+        TreeMap<K, V> treeMap;
+        /* A TreeMap must be of a Comparable type or be constructed with a Comparator. */
+        try
+        {
+            treeMap = new TreeMap<>(map);
+        }
+        catch (ClassCastException e)
+        {
+            treeMap = new TreeMap<>(comparing(Object::toString));
+            treeMap.putAll(map);
+        }
+
+        return treeMap;
     }
 
     /**
