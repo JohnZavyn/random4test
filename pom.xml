@@ -71,7 +71,9 @@
         <org.apache.maven.plugins.enforcer.version>3.0.0-M2</org.apache.maven.plugins.enforcer.version>
         <org.apache.maven.plugins.gpg.version>1.6</org.apache.maven.plugins.gpg.version>
         <org.apache.maven.plugins.jar.version>3.1.1</org.apache.maven.plugins.jar.version>
-        <org.apache.maven.plugins.javadoc.version>3.0.1</org.apache.maven.plugins.javadoc.version>
+        <org.apache.maven.plugins.javadoc.version>3.1.0</org.apache.maven.plugins.javadoc.version>
+        <org.apache.maven.plugins.project.info.reports.version>3.0.0</org.apache.maven.plugins.project.info.reports.version>
+        <org.apache.maven.plugins.site.version>3.7.1</org.apache.maven.plugins.site.version>
         <org.apache.maven.plugins.source.version>3.0.1</org.apache.maven.plugins.source.version>
         <org.apache.maven.plugins.surefire.version>3.0.0-M3</org.apache.maven.plugins.surefire.version>
         <org.codehaus.mojo.version.maven.plugin.version>2.5</org.codehaus.mojo.version.maven.plugin.version>
@@ -274,6 +276,16 @@
                                 <autoReleaseAfterClose>true</autoReleaseAfterClose>
                             </configuration>
                         </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-site-plugin</artifactId>
+                            <version>${org.apache.maven.plugins.site.version}</version>
+                        </plugin>
+                        <plugin>
+                            <groupId>org.apache.maven.plugins</groupId>
+                            <artifactId>maven-project-info-reports-plugin</artifactId>
+                            <version>${org.apache.maven.plugins.project.info.reports.version}</version>
+                        </plugin>
                     </plugins>
                 </pluginManagement>
                 <plugins>
@@ -293,8 +305,21 @@
                         <groupId>org.sonatype.plugins</groupId>
                         <artifactId>nexus-staging-maven-plugin</artifactId>
                     </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-project-info-reports-plugin</artifactId>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
     </profiles>
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-project-info-reports-plugin</artifactId>
+                <version>3.0.0</version>
+            </plugin>
+        </plugins>
+    </reporting>
 </project>
