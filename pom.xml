@@ -66,6 +66,7 @@
         <joda-time.version>2.10.1</joda-time.version>
         <junit.version>[4.12, 5.0)</junit.version>
         <org.projectlombok.version>[1.16.20, 2.0.0)</org.projectlombok.version>
+        <com.google.guava.version>[27,30)</com.google.guava.version>
         <!-- Plugin versions -->
         <org.apache.maven.plugins.compiler.version>3.8.0</org.apache.maven.plugins.compiler.version>
         <org.apache.maven.plugins.enforcer.version>3.0.0-M2</org.apache.maven.plugins.enforcer.version>
@@ -104,6 +105,11 @@
                 <version>${junit.version}</version>
                 <scope>test</scope>
             </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${com.google.guava.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
@@ -123,6 +129,10 @@
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
         </dependency>
     </dependencies>
 
