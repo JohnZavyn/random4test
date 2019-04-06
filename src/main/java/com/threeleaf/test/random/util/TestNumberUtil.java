@@ -3,10 +3,12 @@ package com.threeleaf.test.random.util;
 import lombok.experimental.UtilityClass;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 
-import static com.threeleaf.test.random.TestNumber.*;
+import static com.threeleaf.test.random.TestNumber.MAX_DIGIT;
+import static com.threeleaf.test.random.TestNumber.MIN_DIGIT;
+import static com.threeleaf.test.random.TestPrimitive.*;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
-import static java.lang.Integer.MAX_VALUE;
 
 /** Test Number Utilities. */
 @UtilityClass
@@ -68,13 +70,33 @@ public class TestNumberUtil
     }
 
     /**
-     * Return a random {@link BigDecimal} between 1 and {@value Integer#MAX_VALUE}.
+     * Return a random {@link BigDecimal}.
      *
-     * @return the double
+     * @return the big decimal
      */
     public static BigDecimal randomBigDecimal()
     {
-        return BigDecimal.valueOf(randomDouble());
+        return BigDecimal.valueOf(RANDOM.nextDouble());
+    }
+
+    /**
+     * Return a random {@link BigInteger}.
+     *
+     * @return the big decimal
+     */
+    public static BigInteger randomBigInteger()
+    {
+        return BigInteger.valueOf(RANDOM.nextLong());
+    }
+
+    /**
+     * Return a random byte.
+     *
+     * @return the byte
+     */
+    public static byte randomByte()
+    {
+        return (byte) randomBetween(Byte.MIN_VALUE, Byte.MAX_VALUE);
     }
 
     /**
@@ -88,23 +110,43 @@ public class TestNumberUtil
     }
 
     /**
-     * Return a random double between 1 and {@value Integer#MAX_VALUE}.
+     * Return a random double.
      *
      * @return the double
      */
     public static double randomDouble()
     {
-        return (double) randomNumber() / (double) (random1to10());
+        return RANDOM.nextDouble();
     }
 
     /**
-     * Return a random number between 1 and {@value Integer#MAX_VALUE}.
+     * Return a random float.
      *
-     * @return the random number
+     * @return the float
      */
-    public static int randomNumber()
+    public static float randomFloat()
     {
-        return randomBetween(INT_01, MAX_VALUE);
+        return RANDOM.nextFloat();
+    }
+
+    /**
+     * Return a random int.
+     *
+     * @return the int
+     */
+    public static int randomInt()
+    {
+        return RANDOM.nextInt();
+    }
+
+    /**
+     * Return a random int.
+     *
+     * @return the int
+     */
+    public static long randomLong()
+    {
+        return RANDOM.nextLong();
     }
 
     /**
@@ -115,5 +157,15 @@ public class TestNumberUtil
     public static double randomPercent()
     {
         return (double) randomBetween(0, INT_10000) / (double) INT_100;
+    }
+
+    /**
+     * Return a random short.
+     *
+     * @return the short
+     */
+    public static short randomShort()
+    {
+        return (short) randomBetween(Short.MIN_VALUE, Short.MAX_VALUE);
     }
 }

@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 
 import java.lang.reflect.Array;
 
-import static com.threeleaf.test.random.TestNumber.INT_00;
+import static com.threeleaf.test.random.TestPrimitive.INT_00;
 import static com.threeleaf.test.random.util.TestListUtil.randomArrayListOf;
 import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
 import static java.util.Arrays.asList;

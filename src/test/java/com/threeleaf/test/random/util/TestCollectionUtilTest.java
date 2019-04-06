@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.util.*;
 
-import static com.threeleaf.test.random.TestNumber.INT_10;
+import static com.threeleaf.test.random.TestPrimitive.INT_10;
 import static com.threeleaf.test.random.TestString.*;
 import static com.threeleaf.test.random.util.TestBooleanUtilTest.LOOP_COUNT_MAX;
 import static java.util.Arrays.asList;

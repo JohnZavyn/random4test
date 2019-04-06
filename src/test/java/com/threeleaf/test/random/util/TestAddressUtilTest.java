@@ -2,8 +2,8 @@ package com.threeleaf.test.random.util;
 
 import org.junit.Test;
 
-import static com.threeleaf.test.random.TestNumber.INT_02;
-import static com.threeleaf.test.random.TestNumber.INT_05;
+import static com.threeleaf.test.random.TestPrimitive.INT_02;
+import static com.threeleaf.test.random.TestPrimitive.INT_05;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
@@ -15,7 +15,7 @@ public class TestAddressUtilTest
     @Test
     public void randomState()
     {
-        assertEquals((int) INT_02, TestAddressUtil.randomState().length());
+        assertEquals(INT_02, TestAddressUtil.randomState().length());
     }
 
     /** Test {@link TestAddressUtil#randomStateName()}. */
@@ -29,13 +29,13 @@ public class TestAddressUtilTest
     @Test
     public void randomZip()
     {
-        assertEquals((int) INT_05, TestAddressUtil.randomZip().length());
+        assertEquals(INT_05, TestAddressUtil.randomZip().length());
     }
 
     /** Test {@link TestAddressUtil#randomZip(String)}. */
     @Test
     public void randomZipInState()
     {
-        assertEquals((int) INT_05, TestAddressUtil.randomZip(TestAddressUtil.randomState()).length());
+        assertEquals(INT_05, TestAddressUtil.randomZip(TestAddressUtil.randomState()).length());
     }
 }

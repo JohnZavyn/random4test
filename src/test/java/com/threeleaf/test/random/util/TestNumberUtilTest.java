@@ -2,7 +2,7 @@ package com.threeleaf.test.random.util;
 
 import org.junit.Test;
 
-import static com.threeleaf.test.random.TestNumber.*;
+import static com.threeleaf.test.random.TestPrimitive.*;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -54,10 +54,7 @@ public class TestNumberUtilTest
     @Test
     public void randomBetween()
     {
-        final int minValue = INT_05;
-        final int maxValue = INT_10;
-
-        final int number = TestNumberUtil.randomBetween(minValue, maxValue);
+        final int number = TestNumberUtil.randomBetween(INT_05, INT_10);
 
         assertTrue(number >= INT_05);
         assertTrue(number <= INT_10);
