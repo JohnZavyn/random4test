@@ -6,10 +6,12 @@ import lombok.experimental.UtilityClass;
 import java.lang.reflect.Array;
 
 import static com.threeleaf.test.random.TestPrimitive.INT_00;
+import static com.threeleaf.test.random.TestPrimitive.INT_01;
 import static com.threeleaf.test.random.util.TestListUtil.randomArrayListOf;
 import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
 import static java.util.Arrays.asList;
 
+/** Utilities to generate randomly populated Array objects. */
 @UtilityClass
 @SuppressWarnings({"WeakerAccess", "unchecked"})
 public class TestArrayUtil
@@ -32,11 +34,11 @@ public class TestArrayUtil
      * Return an array of randomized objects.
      *
      * @param size           the size of array
-     * @param type           type of Class
+     * @param type           the object type
      * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
-     * @return the array of randomized objects
+     * @return an Array of randomized objects
      */
     public static <T> T[] randomArrayOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
     {
@@ -46,14 +48,28 @@ public class TestArrayUtil
     /**
      * Return an array of 1 to 10 randomized objects.
      *
-     * @param type           type of Class
+     * @param type           the object type
      * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
-     * @return the array of randomized objects
+     * @return an Array of randomized objects
      */
     public static <T> T[] randomArrayOf(@NonNull final Class<T> type, final String... fieldsExcluded)
     {
         return randomArrayOf(random1to10(), type, fieldsExcluded);
+    }
+
+    /**
+     * Return an array with a single randomized object.
+     *
+     * @param type           the object type
+     * @param fieldsExcluded (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return an Array with a randomized object
+     */
+    public static <T> T[] randomArraySingle(@NonNull final Class<T> type, final String... fieldsExcluded)
+    {
+        return randomArrayOf(INT_01, type, fieldsExcluded);
     }
 }

@@ -1,7 +1,11 @@
 package com.threeleaf.test.random;
 
+import lombok.experimental.UtilityClass;
+
 import static com.threeleaf.test.random.util.TestNumberUtil.*;
 
+/** Primitive constants for use in testing. */
+@UtilityClass
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class TestPrimitive
 {

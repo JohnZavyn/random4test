@@ -2,14 +2,34 @@ package com.threeleaf.test.random.util;
 
 import org.junit.Test;
 
+import java.lang.reflect.*;
+
 import static com.threeleaf.test.random.TestString.*;
 import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
-import static com.threeleaf.test.random.util.TestStringUtil.*;
+import static com.threeleaf.test.random.util.TestStringUtil.STRING_LENGTH_MAX;
+import static com.threeleaf.test.random.util.TestStringUtil.STRING_LENGTH_MIN;
 import static org.junit.Assert.*;
 
 /** Test {@link TestStringUtil} */
 public class TestStringUtilTest
 {
+
+    /** Test {@link TestStringUtil} constructor. */
+    @Test
+    public void constructor() throws Exception
+    {
+        Constructor<TestStringUtil> constructor = TestStringUtil.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        try
+        {
+            constructor.newInstance();
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof InvocationTargetException);
+        }
+    }
 
     /** Test {@link TestStringUtil#extractSuffix(String)}. */
     @Test

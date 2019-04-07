@@ -2,14 +2,46 @@ package com.threeleaf.test.random.util;
 
 import org.junit.Test;
 
+import java.lang.reflect.*;
+
 import static com.threeleaf.test.random.TestPrimitive.INT_02;
 import static com.threeleaf.test.random.TestPrimitive.INT_05;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.*;
 
 /** Test {@link TestAddressUtil}. */
 public class TestAddressUtilTest
 {
+
+    /** Test {@link TestAddressUtil} constructor. */
+    @Test
+    public void constructor() throws Exception
+    {
+        Constructor<TestAddressUtil> constructor = TestAddressUtil.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        try
+        {
+            constructor.newInstance();
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof InvocationTargetException);
+        }
+    }
+
+    /** Test {@link TestAddressUtil#findCapital(String)}. */
+    @Test
+    public void findCapital()
+    {
+        assertNotNull(TestAddressUtil.findCapital(TestAddressUtil.randomState()));
+    }
+
+    /** Test {@link TestAddressUtil#findCapitalZip(String)}. */
+    @Test
+    public void findCapitalZip()
+    {
+        assertEquals(INT_05, TestAddressUtil.findCapitalZip(TestAddressUtil.randomState()).length());
+    }
 
     /** Test {@link TestAddressUtil#randomState()}. */
     @Test

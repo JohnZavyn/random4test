@@ -12,7 +12,7 @@ import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
 import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
 import static java.util.Comparator.comparing;
 
-/** Test Set Utilities. */
+/** Utilities to generate randomly populated Set objects. */
 @UtilityClass
 @SuppressWarnings("WeakerAccess")
 public class TestSetUtil
@@ -26,7 +26,7 @@ public class TestSetUtil
      * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
-     * @return the set of randomized objects
+     * @return a HashSet of randomized objects
      */
     public static <T> HashSet<T> randomHashSetOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
     {
@@ -46,11 +46,25 @@ public class TestSetUtil
      * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
-     * @return the set of randomized objects
+     * @return a HashSet of randomized objects
      */
     public static <T> HashSet<T> randomHashSetOf(@NonNull final Class<T> type, final String... fieldsExcluded)
     {
         return randomHashSetOf(random1to10(), type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link HashSet} with a single randomized object.
+     *
+     * @param type           type of Class
+     * @param fieldsExcluded (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return a HashSet with a randomized object
+     */
+    public static <T> HashSet<T> randomHashSetSingle(@NonNull final Class<T> type, final String... fieldsExcluded)
+    {
+        return randomHashSetOf(INT_01, type, fieldsExcluded);
     }
 
     /**
@@ -60,26 +74,40 @@ public class TestSetUtil
      * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
-     * @return the set of randomized objects
+     * @return a LinkedHashSet of randomized objects
      */
-    public static <T> HashSet<T> randomLinkedHashSetOf(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> LinkedHashSet<T> randomLinkedHashSetOf(@NonNull final Class<T> type, final String... fieldsExcluded)
     {
         return randomLinkedHashSetOf(random1to10(), type, fieldsExcluded);
     }
 
     /**
-     * Return a {@link HashSet} of randomized objects.
+     * Return a {@link LinkedHashSet} of randomized objects.
      *
      * @param size           size of set
      * @param type           type of Class
      * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
-     * @return the set of randomized objects
+     * @return a LinkedHashSet of randomized objects
      */
-    public static <T> HashSet<T> randomLinkedHashSetOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> LinkedHashSet<T> randomLinkedHashSetOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
     {
         return new LinkedHashSet<>(randomHashSetOf(size, type, fieldsExcluded));
+    }
+
+    /**
+     * Return a {@link LinkedHashSet} with a single randomized object.
+     *
+     * @param type           type of Class
+     * @param fieldsExcluded (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return a LinkedHashSet with a randomized object
+     */
+    public static <T> LinkedHashSet<T> randomLinkedHashSetSingle(@NonNull final Class<T> type, final String... fieldsExcluded)
+    {
+        return randomLinkedHashSetOf(INT_01, type, fieldsExcluded);
     }
 
     /**
@@ -89,7 +117,7 @@ public class TestSetUtil
      * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
-     * @return the set of randomized objects
+     * @return a HashSet, TreeSet, or LinkedHashSet of randomized objects
      */
     public static <T> Set<T> randomSetOf(@NonNull final Class<T> type, final String... fieldsExcluded)
     {
@@ -104,7 +132,7 @@ public class TestSetUtil
      * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
-     * @return the set of randomized objects
+     * @return a HashSet, TreeSet, or LinkedHashSet of randomized objects
      */
     public static <T> Set<T> randomSetOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
     {
@@ -126,6 +154,20 @@ public class TestSetUtil
     }
 
     /**
+     * Return a {@link Set} with a single randomized object.
+     *
+     * @param type           type of Class
+     * @param fieldsExcluded (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return a HashSet, TreeSet, or LinkedHashSet with a randomized object
+     */
+    public static <T> Set<T> randomSetSingle(@NonNull final Class<T> type, final String... fieldsExcluded)
+    {
+        return randomSetOf(INT_01, type, fieldsExcluded);
+    }
+
+    /**
      * Return a {@link SortedSet} of randomized objects.
      *
      * @param size           size of set
@@ -133,7 +175,7 @@ public class TestSetUtil
      * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
-     * @return the set of randomized objects
+     * @return a SortedSet of randomized objects
      */
     public static <T> SortedSet<T> randomSortedSetOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
     {
@@ -147,11 +189,25 @@ public class TestSetUtil
      * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
-     * @return the set of randomized objects
+     * @return a SortedSet of randomized objects
      */
     public static <T> SortedSet<T> randomSortedSetOf(@NonNull final Class<T> type, final String... fieldsExcluded)
     {
         return randomSortedSetOf(random1to10(), type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link SortedSet} with a single randomized object.
+     *
+     * @param type           type of Class
+     * @param fieldsExcluded (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return a SortedSet with a randomized object
+     */
+    public static <T> SortedSet<T> randomSortedSetSingle(@NonNull final Class<T> type, final String... fieldsExcluded)
+    {
+        return randomSortedSetOf(INT_01, type, fieldsExcluded);
     }
 
     /**
@@ -164,7 +220,7 @@ public class TestSetUtil
      * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
-     * @return the set of randomized objects
+     * @return a TreeSet of randomized objects
      */
     public static <T> TreeSet<T> randomTreeSetOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
     {
@@ -191,10 +247,24 @@ public class TestSetUtil
      * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
-     * @return the set of randomized objects
+     * @return a TreeSet of randomized objects
      */
     public static <T> TreeSet<T> randomTreeSetOf(@NonNull final Class<T> type, final String... fieldsExcluded)
     {
         return randomTreeSetOf(random1to10(), type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link TreeSet} with a single randomized object.
+     *
+     * @param type           type of Class
+     * @param fieldsExcluded (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return a TreeSet with a randomized object
+     */
+    public static <T> TreeSet<T> randomTreeSetSingle(@NonNull final Class<T> type, final String... fieldsExcluded)
+    {
+        return randomTreeSetOf(INT_01, type, fieldsExcluded);
     }
 }

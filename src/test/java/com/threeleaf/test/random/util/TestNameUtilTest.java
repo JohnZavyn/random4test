@@ -2,6 +2,8 @@ package com.threeleaf.test.random.util;
 
 import org.junit.Test;
 
+import java.lang.reflect.*;
+
 import static com.threeleaf.test.random.util.TestNameUtil.*;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -10,6 +12,22 @@ import static org.junit.Assert.assertTrue;
 public class TestNameUtilTest
 {
 
+    /** Test {@link TestNameUtil} constructor. */
+    @Test
+    public void constructor() throws Exception
+    {
+        Constructor<TestNameUtil> constructor = TestNameUtil.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        try
+        {
+            constructor.newInstance();
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof InvocationTargetException);
+        }
+    }
     /** Test {@link TestNameUtil#randomName()}. */
     @Test
     public void randomName()
