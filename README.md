@@ -6,7 +6,7 @@ Add to Maven projects with:
 <dependency>
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>1.0.5</version>
+    <version>1.0.6-SNAPSHOT</version>
 </dependency>
 ```
 For more dependency options: https://mvnrepository.com/artifact/com.threeleaf/random4test
