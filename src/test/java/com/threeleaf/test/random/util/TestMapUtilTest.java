@@ -56,7 +56,7 @@ public class TestMapUtilTest
         }
         if (!allPossibilitiesFound)
         {
-            fail("Expected all possible results, but only found " + results);
+            fail("Expected all in" + map + ", but only found " + results);
         }
     }
 

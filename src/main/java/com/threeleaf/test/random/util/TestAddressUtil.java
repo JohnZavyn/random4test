@@ -1,10 +1,17 @@
 package com.threeleaf.test.random.util;
 
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
+import com.threeleaf.test.random.model.Address;
 import lombok.experimental.UtilityClass;
 
+import java.util.List;
 import java.util.Map;
 
+import static com.threeleaf.test.random.TestPrimitive.INT_01;
+import static com.threeleaf.test.random.TestPrimitive.INT_10000;
+import static com.threeleaf.test.random.TestString.EMPTY;
+import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static com.threeleaf.test.random.util.TestMapUtil.chooseOneKeyFrom;
 import static com.threeleaf.test.random.util.TestMapUtil.chooseOneValueFrom;
 import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
@@ -31,7 +38,7 @@ public class TestAddressUtil
      * See http://www.aip2.com/zip2.htm
      * https://www.irs.gov/pub/irs-utl/zip%20code%20and%20state%20abbreviations.pdf
      */
-    public static final Map<String, Object[]> STATE_INFORMATION = ImmutableMap.<String, Object[]>builder()  // @formatter:off //
+    public static final Map<String, Object[]> STATE_INFORMATION = ImmutableMap.<String, Object[]>builder() // @formatter:off //
           .put("AL", new Object[]{"Alabama",          35004, 36925, "Montgomery",     "36101" })
           .put("AK", new Object[]{"Alaska",           99501, 99950, "Juneau",         "99801" })
           .put("AZ", new Object[]{"Arizona",          85001, 86556, "Phoenix",        "85001" })
@@ -83,7 +90,137 @@ public class TestAddressUtil
           .put("WV", new Object[]{"West Virginia",    24701, 26886, "Charleston",     "25301" })
           .put("WI", new Object[]{"Wisconsin",        53001, 54990, "Madison",        "53701" })
           .put("WY", new Object[]{"Wyoming",          82001, 83128, "Cheyenne",       "82001" })
-          .build();  // @formatter:on //
+      .build();  // @formatter:on //
+
+    /**
+     * A list of common street names in the US.
+     * See https://fivethirtyeight.com/features/whats-the-most-common-street-name-in-america/
+     */
+    public static final List<String> STREET_NAMES = ImmutableList.<String>builder() // @formatter:off //
+          .add("Main")
+          .add("First")
+          .add("Second")
+          .add("Third")
+          .add("Fourth")
+          .add("Fifth")
+          .add("Sixth")
+          .add("Seventh")
+          .add("Eighth")
+          .add("Ninth")
+          .add("Tenth")
+          .add("Park")
+          .add("Oak")
+          .add("Pine")
+          .add("Maple")
+          .add("Cedar")
+          .add("Elm")
+          .add("View")
+          .add("Washington")
+          .add("Lake")
+          .add("Hill")
+          .add("Walnut")
+          .add("Spring")
+          .add("North")
+          .add("Ridge")
+          .add("Lincoln")
+          .add("Church")
+          .add("Willow")
+          .add("Mill")
+          .add("Sunset")
+          .add("Railroad")
+          .add("Jackson")
+          .add("Cherry")
+          .add("West")
+          .add("South")
+          .add("Center")
+          .add("Highland")
+          .add("Johnson")
+          .add("Forest")
+          .add("Jefferson")
+          .add("Hickory")
+          .add("Wilson")
+          .add("River")
+          .add("Meadow")
+          .add("Valley")
+          .add("Smith")
+          .add("East")
+          .add("Chestnut")
+          .add("Franklin")
+          .add("Adams")
+          .add("Spruce")
+          .add("Laural")
+          .add("Davis")
+          .add("Birch")
+          .add("Williams")
+          .add("Lee")
+          .add("Dogwood")
+          .add("Green")
+          .add("Poplar")
+          .add("Locust")
+          .add("Woodland")
+          .add("Taylor")
+          .add("Ash")
+          .add("Madison")
+          .add("Hillcrest")
+          .add("Sycamore")
+          .add("Broadway")
+          .add("Miller")
+          .add("Lakeview")
+          .add("College")
+          .add("Central")
+    .build(); // @formatter:on //
+
+    /**
+     * A list of street suffixes.
+     * See https://en.wikipedia.org/wiki/Street_suffix
+     */
+    public static final List<String> STREET_SUFFIXES = ImmutableList.<String>builder() // @formatter:off //
+          .add("Avenue")
+          .add("Branch")
+          .add("Brook")
+          .add("Circle")
+          .add("Course")
+          .add("Crescent")
+          .add("Crossing")
+          .add("Drive")
+          .add("Estate")
+          .add("Ferry")
+          .add("Garden")
+          .add("Grove")
+          .add("Haven")
+          .add("Heights")
+          .add("Hollow")
+          .add("Junction")
+          .add("Landing")
+          .add("Lane")
+          .add("Loop")
+          .add("Manor")
+          .add("Meadow")
+          .add("Mews")
+          .add("Oval")
+          .add("Pass")
+          .add("Perch")
+          .add("Place")
+          .add("Point")
+          .add("Road")
+          .add("Run")
+          .add("Shore")
+          .add("Spur")
+          .add("Square")
+          .add("Station")
+          .add("Street")
+          .add("Terrace")
+          .add("Trace")
+          .add("Track")
+          .add("Trail")
+          .add("Vale")
+          .add("Valley")
+          .add("View")
+          .add("Villa")
+          .add("Vista")
+          .add("Walk")
+          .add("Way")
+    .build(); // @formatter:on //
 
     /**
      * Find the capital of the given state
@@ -110,9 +247,28 @@ public class TestAddressUtil
     }
 
     /**
+     * Generate a random US mailing {@link Address}.
+     * Obviously, these are not intended to be real addresses,
+     * but should be good approximation for many testing purposes.
+     *
+     * @return an address
+     */
+    public static Address randomAddress()
+    {
+        Address address = new Address();
+        address.setNameResident(TestNameUtil.randomName());
+        address.setStreetAddress(EMPTY + randomBetween(INT_01, INT_10000) + ' ' + randomStreetName() + ' ' + randomStreetSuffix());
+        address.setState(randomState());
+        address.setCity(findCapital(address.getState()));
+        address.setZipCode(findCapitalZip(address.getState()));
+
+        return address;
+    }
+
+    /**
      * Return a random US state abbreviation.
      *
-     * @return state abbreviation
+     * @return a state abbreviation
      */
     public static String randomState()
     {
@@ -122,7 +278,7 @@ public class TestAddressUtil
     /**
      * Return a random US state name.
      *
-     * @return state name
+     * @return a state name
      */
     public static String randomStateName()
     {
@@ -130,13 +286,23 @@ public class TestAddressUtil
     }
 
     /**
-     * Return any random zip code.
+     * Return a random street name
      *
-     * @return a zip code
+     * @return a street name
      */
-    public static String randomZip()
+    public static String randomStreetName()
     {
-        return randomZip(randomState());
+        return chooseOneFrom(STREET_NAMES);
+    }
+
+    /**
+     * Return a random street suffix
+     *
+     * @return a street suffix
+     */
+    public static String randomStreetSuffix()
+    {
+        return chooseOneFrom(STREET_SUFFIXES);
     }
 
     /**
@@ -154,5 +320,15 @@ public class TestAddressUtil
         final Object[] stateInfo = STATE_INFORMATION.get(stateAbbreviation);
 
         return String.format("%05d", randomBetween((int) stateInfo[1], (int) stateInfo[2]));
+    }
+
+    /**
+     * Return any random zip code.
+     *
+     * @return a zip code
+     */
+    public static String randomZip()
+    {
+        return randomZip(randomState());
     }
 }

@@ -43,6 +43,13 @@ public class TestAddressUtilTest
         assertEquals(INT_05, TestAddressUtil.findCapitalZip(TestAddressUtil.randomState()).length());
     }
 
+    /** Test {@link TestAddressUtil#randomAddress()}. */
+    @Test
+    public void randomAddress()
+    {
+        assertNotNull(TestAddressUtil.randomAddress());
+    }
+
     /** Test {@link TestAddressUtil#randomState()}. */
     @Test
     public void randomState()
@@ -55,6 +62,20 @@ public class TestAddressUtilTest
     public void randomStateName()
     {
         assertNotNull(TestAddressUtil.randomStateName());
+    }
+
+    /** Test {@link TestAddressUtil#randomStreetName()}. */
+    @Test
+    public void randomStreetName()
+    {
+        assertNotNull(TestAddressUtil.randomStreetName());
+    }
+
+    /** Test {@link TestAddressUtil#randomStreetSuffix()}. */
+    @Test
+    public void randomStreetSuffix()
+    {
+        assertNotNull(TestAddressUtil.randomStreetSuffix());
     }
 
     /** Test {@link TestAddressUtil#randomZip()}. */
