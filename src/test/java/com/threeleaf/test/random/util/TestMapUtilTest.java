@@ -2,12 +2,13 @@ package com.threeleaf.test.random.util;
 
 import org.junit.Test;
 
+import java.lang.reflect.*;
 import java.util.*;
 
-import static com.threeleaf.test.random.TestNumber.INT_10;
+import static com.threeleaf.test.random.TestPrimitive.INT_01;
+import static com.threeleaf.test.random.TestPrimitive.INT_10;
 import static com.threeleaf.test.random.util.TestBooleanUtilTest.LOOP_COUNT_MAX;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 /** Test {@link TestMapUtil} */
 public class TestMapUtilTest
@@ -55,7 +56,24 @@ public class TestMapUtilTest
         }
         if (!allPossibilitiesFound)
         {
-            fail("Expected all possible results, but only found " + results);
+            fail("Expected all in" + map + ", but only found " + results);
+        }
+    }
+
+    /** Test {@link TestMapUtil} constructor. */
+    @Test
+    public void constructor() throws Exception
+    {
+        Constructor<TestMapUtil> constructor = TestMapUtil.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        try
+        {
+            constructor.newInstance();
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof InvocationTargetException);
         }
     }
 
@@ -66,11 +84,25 @@ public class TestMapUtilTest
         assertFalse(TestMapUtil.randomHashMapOf(Long.class, String.class).isEmpty());
     }
 
+    /** Test {@link TestMapUtil#randomHashMapSingle(Class, Class)}. */
+    @Test
+    public void randomHashMapSingle()
+    {
+        assertEquals(INT_01, TestMapUtil.randomHashMapSingle(Long.class, String.class).size());
+    }
+
     /** Test {@link TestMapUtil#randomLinkedHashMapOf(Class, Class)}. */
     @Test
     public void randomLinkedHashMapOf()
     {
         assertFalse(TestMapUtil.randomLinkedHashMapOf(Long.class, String.class).isEmpty());
+    }
+
+    /** Test {@link TestMapUtil#randomLinkedHashMapSingle(Class, Class)}. */
+    @Test
+    public void randomLinkedHashMapSingle()
+    {
+        assertEquals(INT_01, TestMapUtil.randomLinkedHashMapSingle(Long.class, String.class).size());
     }
 
     /** Test {@link TestMapUtil#randomMapOf(Class, Class)}. */
@@ -83,10 +115,28 @@ public class TestMapUtilTest
         }
     }
 
+    /** Test {@link TestMapUtil#randomMapSingle(Class, Class)}. */
+    @Test
+    public void randomMapSingle()
+    {
+        for (int counter = 0; counter < INT_10; counter++)
+        {
+            assertEquals(INT_01, TestMapUtil.randomMapSingle(Integer.class, Double.class).size());
+        }
+    }
+
     /** Test {@link TestMapUtil#randomTreeMapOf(Class, Class)}. */
     @Test
     public void randomTreeMapOf()
     {
         assertFalse(TestMapUtil.randomTreeMapOf(Integer.class, Float.class).isEmpty());
+        assertFalse(TestMapUtil.randomTreeMapOf(Object.class, Object.class).isEmpty());
+    }
+
+    /** Test {@link TestMapUtil#randomTreeMapSingle(Class, Class)}. */
+    @Test
+    public void randomTreeMapSingle()
+    {
+        assertEquals(INT_01, TestMapUtil.randomTreeMapSingle(Integer.class, Float.class).size());
     }
 }

@@ -2,15 +2,34 @@ package com.threeleaf.test.random.util;
 
 import org.junit.Test;
 
+import java.lang.reflect.*;
 import java.util.HashSet;
 import java.util.Set;
 
 import static com.threeleaf.test.random.util.TestBooleanUtilTest.LOOP_COUNT_MAX;
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /** Test {@link TestEnumUtil} */
 public class TestEnumUtilTest
 {
+
+    /** Test {@link TestEnumUtil} constructor. */
+    @Test
+    public void constructor() throws Exception
+    {
+        Constructor<TestEnumUtil> constructor = TestEnumUtil.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        try
+        {
+            constructor.newInstance();
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof InvocationTargetException);
+        }
+    }
 
     /** Test {@link TestEnumUtil#chooseOneFrom(Class)}. */
     @Test

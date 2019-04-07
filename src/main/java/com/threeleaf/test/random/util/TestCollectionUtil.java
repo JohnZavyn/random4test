@@ -5,12 +5,14 @@ import lombok.experimental.UtilityClass;
 
 import java.util.Collection;
 
+import static com.threeleaf.test.random.TestPrimitive.INT_01;
 import static com.threeleaf.test.random.util.TestBooleanUtil.coinFlip;
 import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
 import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
 import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
 import static java.util.Arrays.asList;
 
+/** Utilities to generate randomly populated Collections. */
 @UtilityClass
 @SuppressWarnings("WeakerAccess")
 public class TestCollectionUtil
@@ -53,42 +55,54 @@ public class TestCollectionUtil
 
     /**
      * Return a collection of 1 to 10 randomized objects.
-     * May be either a List or Set.
      *
      * @param type           type of Class
-     * @param excludedFields (optional) fields that should not be randomized
+     * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
-     * @return the collection of randomized objects
+     * @return a List or Set of randomized objects
      */
-    public static <T> Collection<T> randomCollectionOf(@NonNull final Class<T> type, final String... excludedFields)
+    public static <T> Collection<T> randomCollectionOf(@NonNull final Class<T> type, final String... fieldsExcluded)
     {
-        return randomCollectionOf(random1to10(), type, excludedFields);
+        return randomCollectionOf(random1to10(), type, fieldsExcluded);
     }
 
     /**
      * Return a collection of randomized objects.
-     * May be either a List or Set.
      *
      * @param size           number of objects in the collection
      * @param type           type of Class
-     * @param excludedFields (optional) fields that should not be randomized
+     * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
-     * @return the collection of randomized objects
+     * @return a List or Set of randomized objects
      */
-    public static <T> Collection<T> randomCollectionOf(final int size, @NonNull final Class<T> type, final String... excludedFields)
+    public static <T> Collection<T> randomCollectionOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
     {
         Collection<T> collection;
         if (coinFlip())
         {
-            collection = randomSetOf(size, type, excludedFields);
+            collection = randomSetOf(size, type, fieldsExcluded);
         }
         else
         {
-            collection = randomListOf(size, type, excludedFields);
+            collection = randomListOf(size, type, fieldsExcluded);
         }
 
         return collection;
+    }
+
+    /**
+     * Return a collection with a single randomized object.
+     *
+     * @param type           type of Class
+     * @param fieldsExcluded (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return a List or Set with a randomized object
+     */
+    public static <T> Collection<T> randomCollectionSingle(@NonNull final Class<T> type, final String... fieldsExcluded)
+    {
+        return randomCollectionOf(INT_01, type, fieldsExcluded);
     }
 }

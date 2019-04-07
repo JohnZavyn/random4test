@@ -1,7 +1,17 @@
 # random4test
 Easily provide random numbers, strings, and collections to JUnit tests
 
+Add to Maven projects with:
+```xml
+<dependency>
+    <groupId>com.threeleaf</groupId>
+    <artifactId>random4test</artifactId>
+    <version>1.0.5</version>
+</dependency>
 ```
+For more dependency options: https://mvnrepository.com/artifact/com.threeleaf/random4test
+
+```java
 /** Test {@link MyResource#update(int, int, String, String, TreeSet)}. */
 @Test
 public void update()
@@ -13,3 +23,4 @@ public void update()
     assertEquals(myUploadResponse, response.getBody());
 }
 ```
+

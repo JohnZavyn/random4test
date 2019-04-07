@@ -2,14 +2,15 @@ package com.threeleaf.test.random.util;
 
 import org.junit.Test;
 
+import java.lang.reflect.*;
 import java.util.*;
 
-import static com.threeleaf.test.random.TestNumber.INT_10;
+import static com.threeleaf.test.random.TestPrimitive.INT_01;
+import static com.threeleaf.test.random.TestPrimitive.INT_10;
 import static com.threeleaf.test.random.TestString.*;
 import static com.threeleaf.test.random.util.TestBooleanUtilTest.LOOP_COUNT_MAX;
 import static java.util.Arrays.asList;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 /** Test {@link TestCollectionUtil} */
 public class TestCollectionUtilTest
@@ -61,6 +62,23 @@ public class TestCollectionUtilTest
         }
     }
 
+    /** Test {@link TestCollectionUtil} constructor. */
+    @Test
+    public void constructor() throws Exception
+    {
+        Constructor<TestCollectionUtil> constructor = TestCollectionUtil.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        try
+        {
+            constructor.newInstance();
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof InvocationTargetException);
+        }
+    }
+
     /** Test {@link TestCollectionUtil#randomCollectionOf(Class, String...)}. */
     @Test
     public void randomCollectionOf()
@@ -71,5 +89,12 @@ public class TestCollectionUtilTest
 
             assertFalse(result.isEmpty());
         }
+    }
+
+    /** Test {@link TestCollectionUtil#randomCollectionSingle(Class, String...)} */
+    @Test
+    public void testRandomCollectionSingle()
+    {
+        assertEquals(INT_01, TestCollectionUtil.randomCollectionSingle(Object.class).size());
     }
 }

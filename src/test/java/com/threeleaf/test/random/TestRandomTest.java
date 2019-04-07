@@ -3,6 +3,7 @@ package com.threeleaf.test.random;
 import org.junit.Test;
 
 import java.lang.management.MemoryNotificationInfo;
+import java.lang.reflect.*;
 import java.security.KeyPair;
 
 import static com.threeleaf.test.random.TestRandom.OBJECT;
@@ -40,5 +41,22 @@ public class TestRandomTest
     public void randomObject()
     {
         assertNotNull(OBJECT);
+    }
+
+    /** Test {@link TestRandom} constructor. */
+    @Test
+    public void constructor() throws Exception
+    {
+        Constructor<TestRandom> constructor = TestRandom.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        try
+        {
+            constructor.newInstance();
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof InvocationTargetException);
+        }
     }
 }

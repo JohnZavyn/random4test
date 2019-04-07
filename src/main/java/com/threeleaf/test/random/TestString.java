@@ -9,7 +9,7 @@ import static com.threeleaf.test.random.util.TestStringUtil.randomUuid;
 
 /** String constants to be used in JUnit tests. */
 @UtilityClass
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unused"})
 public class TestString
 {
 

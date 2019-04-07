@@ -2,9 +2,11 @@ package com.threeleaf.test.random.util;
 
 import org.junit.Test;
 
+import java.lang.reflect.*;
 import java.util.HashSet;
 import java.util.Set;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 /** Test {@link TestBooleanUtil} */
@@ -12,6 +14,22 @@ import static org.junit.Assert.fail;
 public class TestBooleanUtilTest
 {
 
+    /** Test {@link TestBooleanUtil} constructor. */
+    @Test
+    public void constructor() throws Exception
+    {
+        Constructor<TestBooleanUtil> constructor = TestBooleanUtil.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        try
+        {
+            constructor.newInstance();
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof InvocationTargetException);
+        }
+    }
     /**
      * The maximum number of times to loop through a test call.
      * Testing randomness is difficult, so we want to have an upper

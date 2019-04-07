@@ -31,13 +31,13 @@ public class TestRandom
      * {@link EnhancedRandom#nextObject(Class, String...)}.
      *
      * @param type           the class of object to create
-     * @param excludedFields (optional) fields that should not be randomized
+     * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
      * @return a randomized object
      */
-    public static <T> T random(@NonNull final Class<T> type, final String... excludedFields)
+    public static <T> T random(@NonNull final Class<T> type, final String... fieldsExcluded)
     {
-        return enhancedRandom.nextObject(type, excludedFields);
+        return enhancedRandom.nextObject(type, fieldsExcluded);
     }
 }
