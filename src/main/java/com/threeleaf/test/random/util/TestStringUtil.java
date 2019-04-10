@@ -6,6 +6,8 @@ import lombok.experimental.UtilityClass;
 import java.util.*;
 
 import static com.threeleaf.test.random.TestString.*;
+import static com.threeleaf.test.random.util.TestNameUtil.randomNameFirst;
+import static com.threeleaf.test.random.util.TestNameUtil.randomNameLast;
 import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
 import static java.util.UUID.randomUUID;
 
@@ -66,7 +68,7 @@ public class TestStringUtil
      */
     public static String randomEmail()
     {
-        return randomName("EMAIL").replace('~', '_') + "@example.com";
+        return randomNameFirst() + '.' + randomNameLast() + "@test." + randomString() + ".example.com";
     }
 
     /**
