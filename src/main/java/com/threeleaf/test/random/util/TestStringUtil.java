@@ -28,6 +28,18 @@ public class TestStringUtil
     public static final int STRING_LENGTH_MIN = 10;
 
     /**
+     * Capitalize first letter of a string.
+     *
+     * @param string the String to capitalize
+     *
+     * @return the capitalized string
+     */
+    public static String capitalize(String string)
+    {
+        return isEmpty(string) ? string : string.substring(0, 1).toUpperCase() + string.substring(1);
+    }
+
+    /**
      * Extract suffix from a test string.
      * Specifically, return the random string attached after the last underscore (_) or tilde (~).
      *
