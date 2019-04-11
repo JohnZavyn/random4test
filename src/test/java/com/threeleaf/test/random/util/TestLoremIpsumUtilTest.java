@@ -31,58 +31,58 @@ public class TestLoremIpsumUtilTest
         }
     }
 
-    /** Test {@link TestLoremIpsumUtil# generateChapter()}. */
+    /** Test {@link TestLoremIpsumUtil# randomChapter()}. */
     @Test
-    public void generateChapter()
+    public void randomChapter()
     {
-        final String result = TestLoremIpsumUtil.generateChapter();
+        final String result = TestLoremIpsumUtil.randomChapter();
 
         assertTrue(result.length() > INT_10);
     }
 
-    /** Test {@link TestLoremIpsumUtil# generateChapter(int)}. */
+    /** Test {@link TestLoremIpsumUtil# randomChapter(int)}. */
     @Test
-    public void generateChapterParagraphs()
+    public void randomChapterParagraphs()
     {
         final int paragraphCount = random1to10();
 
-        final String result = TestLoremIpsumUtil.generateChapter(paragraphCount);
+        final String result = TestLoremIpsumUtil.randomChapter(paragraphCount);
 
         assertEquals(paragraphCount, result.split("\n").length);
     }
 
     /** Test {@link TestLoremIpsumUtil}. */
     @Test
-    public void generateParagraph()
+    public void randomParagraph()
     {
-        assertTrue(TestLoremIpsumUtil.generateParagraph().length() > INT_10);
+        assertTrue(TestLoremIpsumUtil.randomParagraph().length() > INT_10);
     }
 
     /** Test {@link TestLoremIpsumUtil}. */
     @Test
-    public void generateParagraphSentences()
+    public void randomParagraphSentences()
     {
         final int sentenceCount = random1to10();
 
-        final String result = TestLoremIpsumUtil.generateParagraph(sentenceCount);
+        final String result = TestLoremIpsumUtil.randomParagraph(sentenceCount);
 
         assertEquals(sentenceCount, result.split("[.?!]").length);
     }
 
     /** Test {@link TestLoremIpsumUtil}. */
     @Test
-    public void generateSentence()
+    public void randomSentence()
     {
-        assertTrue(TestLoremIpsumUtil.generateSentence().length() > INT_10);
+        assertTrue(TestLoremIpsumUtil.randomSentence().length() > INT_10);
     }
 
     /** Test {@link TestLoremIpsumUtil}. */
     @Test
-    public void generateSentenceWords()
+    public void randomSentenceWords()
     {
         final int wordCount = random1to10();
 
-        final String result = TestLoremIpsumUtil.generateSentence(wordCount);
+        final String result = TestLoremIpsumUtil.randomSentence(wordCount);
 
         assertEquals(wordCount, result.split(SPACE).length);
     }

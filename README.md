@@ -9,7 +9,7 @@ Add to Maven projects with:
     <version>1.1.0-SNAPSHOT</version>
 </dependency>
 ```
-For more dependency options: https://mvnrepository.com/artifact/com.threeleaf/random4test
+For more dependency options: <https://mvnrepository.com/artifact/com.threeleaf/random4test>
 
 ```java
 /** Test {@link MyResource#update(int, int, String, String, TreeSet)}. */
@@ -17,8 +17,9 @@ For more dependency options: https://mvnrepository.com/artifact/com.threeleaf/ra
 public void update()
 {
     final MyUploadResponse myUploadResponse = mock(MyUploadResponse.class);
-    when(myService.update(INTEGER, INTEGER_SMALL, CHAR_05, CHAR_08, null)).thenReturn(myUploadResponse);
-    final ResponseEntity<MyUploadResponse> response = myResource.update(INTEGER, INTEGER_SMALL, CHAR_05, CHAR_08, null);
+    final TreeSet<String> params = randomTreeSetOf(String.class);
+    when(myService.update(INTEGER, INT_SMALL, STRING_05, STRING_08, params)).thenReturn(myUploadResponse);
+    final ResponseEntity<MyUploadResponse> response = myResource.update(INTEGER, INT_SMALL, STRING_05, STRING_08, params);
     assertEquals(OK, response.getStatusCode());
     assertEquals(myUploadResponse, response.getBody());
 }

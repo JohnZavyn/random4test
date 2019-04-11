@@ -1,9 +1,7 @@
 package com.threeleaf.test.random.util;
 
-import com.google.common.collect.ImmutableList;
 import lombok.experimental.UtilityClass;
 
-import java.util.List;
 import java.util.Set;
 
 import static com.google.common.collect.Sets.newHashSet;
@@ -11,6 +9,7 @@ import static com.threeleaf.test.random.TestPrimitive.*;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
 import static com.threeleaf.test.random.util.TestStringUtil.capitalize;
+import static com.threeleaf.test.random.util.TestStringUtil.randomPunctuationTerminal;
 
 /** Utilities to generate greeking text. Useful when you need longer randomized Strings. */
 @UtilityClass
@@ -18,14 +17,12 @@ import static com.threeleaf.test.random.util.TestStringUtil.capitalize;
 public class TestLoremIpsumUtil
 {
 
-    /** Punctuation marks to be used at the end of sentences. */
-    public static final List<String> PUNCTUATION = ImmutableList.<String>builder().add(".", ".", ".", "?", "?", "!").build();
-
     /**
-     * Sections 1.10.32-33 of Cicero's <em>De finibus bonorum et malorum</em>.
-     * See https://en.wikipedia.org/wiki/Lorem_ipsum
+     * The unique words from Sections 1.10.32-33 of Cicero's
+     * <em>De finibus bonorum et malorum</em>.
+     * See https://en.wikipedia.org/wiki/Lorem_ipsum.
      */
-    public static final String TEXT_DE_FINIBUS =// @formatter:off //
+    public static final Set<String> WORDS_DE_FINIBUS = newHashSet(( // @formatter:off //
         "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium " +
         "doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore " +
         "veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim " +
@@ -48,19 +45,17 @@ public class TestLoremIpsumUtil
         "aut officiis debitis aut rerum necessitatibus saepe eveniet, ut et voluptates " +
         "repudiandae sint et molestiae non-recusandae. Itaque earum rerum hic tenetur a " +
         "sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut " +
-        "perferendis doloribus asperiores repellat"; // @formatter:on //
-
-    /** The unique words from <em>De finibus bonorum et malorum</em>. */
-    public static final Set<String> WORDS_DE_FINIBUS = newHashSet(TEXT_DE_FINIBUS.split("[\\p{Punct}\\s]+"));
+        "perferendis doloribus asperiores repellat"
+    ).split("[\\p{Punct}\\s]+")); // @formatter:on //
 
     /**
      * Generate a chapter of text with 2-10 paragraphs.
      *
      * @return the chapter
      */
-    public static String generateChapter()
+    public static String randomChapter()
     {
-        return generateChapter(randomBetween(INT_02, INT_10));
+        return randomChapter(randomBetween(INT_02, INT_10));
     }
 
     /**
@@ -70,12 +65,12 @@ public class TestLoremIpsumUtil
      *
      * @return the chapter
      */
-    public static String generateChapter(final int paragraphCount)
+    public static String randomChapter(final int paragraphCount)
     {
-        final StringBuilder chapter = new StringBuilder(generateParagraph());
+        final StringBuilder chapter = new StringBuilder(randomParagraph());
         for (int count = 1; count < paragraphCount; count++)
         {
-            chapter.append("\n").append(generateParagraph());
+            chapter.append("\n").append(randomParagraph());
         }
 
         return chapter.toString();
@@ -86,9 +81,9 @@ public class TestLoremIpsumUtil
      *
      * @return the paragraph
      */
-    public static String generateParagraph()
+    public static String randomParagraph()
     {
-        return generateParagraph(randomBetween(INT_02, INT_10));
+        return randomParagraph(randomBetween(INT_02, INT_10));
     }
 
     /**
@@ -98,12 +93,12 @@ public class TestLoremIpsumUtil
      *
      * @return the paragraph
      */
-    public static String generateParagraph(final int sentenceCount)
+    public static String randomParagraph(final int sentenceCount)
     {
-        final StringBuilder paragraph = new StringBuilder(generateSentence());
+        final StringBuilder paragraph = new StringBuilder(randomSentence());
         for (int count = 1; count < sentenceCount; count++)
         {
-            paragraph.append(' ').append(generateSentence());
+            paragraph.append(' ').append(randomSentence());
         }
 
         return paragraph.toString();
@@ -114,9 +109,9 @@ public class TestLoremIpsumUtil
      *
      * @return the sentence
      */
-    public static String generateSentence()
+    public static String randomSentence()
     {
-        return generateSentence(randomBetween(INT_05, INT_10));
+        return randomSentence(randomBetween(INT_05, INT_10));
     }
 
     /**
@@ -126,14 +121,14 @@ public class TestLoremIpsumUtil
      *
      * @return the sentence
      */
-    public static String generateSentence(final int wordCount)
+    public static String randomSentence(final int wordCount)
     {
         final StringBuilder sentence = new StringBuilder(capitalize(chooseOneFrom(WORDS_DE_FINIBUS)));
         for (int count = 1; count < wordCount; count++)
         {
             sentence.append(' ').append(chooseOneFrom(WORDS_DE_FINIBUS));
         }
-        sentence.append(chooseOneFrom(PUNCTUATION));
+        sentence.append(randomPunctuationTerminal());
 
         return sentence.toString();
     }

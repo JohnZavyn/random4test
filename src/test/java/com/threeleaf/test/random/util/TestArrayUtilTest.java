@@ -36,7 +36,7 @@ public class TestArrayUtilTest
     @Test
     public void chooseOneFrom()
     {
-        final Object[]    array                 = new Object[]{CHAR_10, CHAR_16, CHAR_32, CHAR_99};
+        final Object[]    array                 = new Object[]{STRING_10, STRING_16, STRING_32, STRING_99};
         final Set<String> results               = new HashSet<>();
         boolean           allPossibilitiesFound = false;
 

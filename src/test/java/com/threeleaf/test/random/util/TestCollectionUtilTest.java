@@ -20,7 +20,7 @@ public class TestCollectionUtilTest
     @Test
     public void chooseOneFrom()
     {
-        final List<String> collection            = asList(CHAR_05, CHAR_08, CHAR_10, CHAR_16);
+        final List<String> collection            = asList(STRING_05, STRING_08, STRING_10, STRING_16);
         final Set<String>  results               = new HashSet<>();
         boolean            allPossibilitiesFound = false;
 
@@ -43,7 +43,7 @@ public class TestCollectionUtilTest
     @Test
     public void chooseOneFromArray()
     {
-        final Object[]    array                 = new Object[]{CHAR_10, CHAR_16, CHAR_32, CHAR_99};
+        final Object[]    array                 = new Object[]{STRING_10, STRING_16, STRING_32, STRING_99};
         final Set<String> results               = new HashSet<>();
         boolean           allPossibilitiesFound = false;
 
