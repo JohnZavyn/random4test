@@ -2,15 +2,33 @@ package com.threeleaf.test.random.util;
 
 import org.junit.Test;
 
+import java.lang.reflect.*;
+
 import static com.threeleaf.test.random.TestPrimitive.INT_04;
 import static com.threeleaf.test.random.TestString.SPACE;
 import static com.threeleaf.test.random.util.TestStringUtil.isBlank;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.*;
 
 /** Test {@link TestWordUtil}. */
 public class TestWordUtilTest
 {
+
+    /** Test {@link TestWordUtil} constructor. */
+    @Test
+    public void constructor() throws Exception
+    {
+        Constructor<TestWordUtil> constructor = TestWordUtil.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        try
+        {
+            constructor.newInstance();
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof InvocationTargetException);
+        }
+    }
 
     /** Test {@link TestWordUtil#randomAdjective()}. */
     @Test
