@@ -3,7 +3,7 @@ package com.threeleaf.test.random.util;
 import lombok.experimental.UtilityClass;
 
 import static com.threeleaf.test.random.TestPrimitive.INT_01;
-import static com.threeleaf.test.random.TestPrimitive.INT_02;
+import static com.threeleaf.test.random.TestRandom.RANDOM;
 import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
 
 @UtilityClass
@@ -18,7 +18,7 @@ public class TestBooleanUtil
      */
     public static boolean coinFlip()
     {
-        return oneOutOf(INT_02);
+        return RANDOM.nextBoolean();
     }
 
     /**
@@ -33,5 +33,15 @@ public class TestBooleanUtil
         assert (number > 0);
 
         return randomBetween(INT_01, number) == INT_01;
+    }
+
+    /**
+     * Return a random boolean.
+     *
+     * @return true or false
+     */
+    public static boolean randomBoolean()
+    {
+        return RANDOM.nextBoolean();
     }
 }

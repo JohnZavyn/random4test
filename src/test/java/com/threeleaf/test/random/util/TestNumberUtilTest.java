@@ -4,6 +4,8 @@ import org.junit.Test;
 
 import java.lang.reflect.*;
 
+import static com.threeleaf.test.random.TestNumber.LONG_05;
+import static com.threeleaf.test.random.TestNumber.LONG_10;
 import static com.threeleaf.test.random.TestPrimitive.*;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -77,6 +79,16 @@ public class TestNumberUtilTest
 
         assertTrue(number >= INT_05);
         assertTrue(number <= INT_10);
+    }
+
+    /** Test {@link TestNumberUtil#randomBetween(long, long)}. */
+    @Test
+    public void randomBetweenLong()
+    {
+        final long number = TestNumberUtil.randomBetween(LONG_10, LONG_05);
+
+        assertTrue(number >= LONG_05);
+        assertTrue(number <= LONG_10);
     }
 
     /** Test {@link TestNumberUtil#randomBigDecimal()}. */

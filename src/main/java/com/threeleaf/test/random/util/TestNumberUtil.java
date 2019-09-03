@@ -9,6 +9,7 @@ import static com.threeleaf.test.random.TestNumber.MAX_DIGIT;
 import static com.threeleaf.test.random.TestNumber.MIN_DIGIT;
 import static com.threeleaf.test.random.TestPrimitive.*;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
+import static java.lang.Math.*;
 
 /** Test Number Utilities. */
 @UtilityClass
@@ -57,16 +58,35 @@ public class TestNumberUtil
     }
 
     /**
-     * Return a random integer between minValue and maxValue, inclusive.
+     * Return a random integer between two integers, inclusive.
      *
-     * @param minValue the minimum number
-     * @param maxValue the maximum number
+     * @param number1 a number
+     * @param number2 another number
      *
      * @return the random integer
      */
-    public static int randomBetween(final int minValue, final int maxValue)
+    public static int randomBetween(final int number1, final int number2)
     {
-        return RANDOM.nextInt(maxValue - minValue + 1) + minValue;
+        final int min = min(number1, number2);
+        final int max = max(number1, number2);
+
+        return min + RANDOM.nextInt(max - min + 1);
+    }
+
+    /**
+     * Return a random long between two longs, inclusive.
+     *
+     * @param number1 a number
+     * @param number2 another number
+     *
+     * @return the random long
+     */
+    public static long randomBetween(final long number1, final long number2)
+    {
+        final long min = min(number1, number2);
+        final long max = max(number1, number2);
+
+        return min + (long) ((max - min + 1) * random());
     }
 
     /**
