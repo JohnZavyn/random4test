@@ -44,6 +44,22 @@ public class TestWordUtilTest
         assertFalse(isBlank(TestWordUtil.randomAdverb()));
     }
 
+    /** Test {@link TestWordUtil#randomColor()}. */
+    @Test
+    public void randomColor()
+    {
+        final String color = TestWordUtil.randomColor();
+        assertFalse(isBlank(color));
+        assertFalse(color.startsWith("#"));
+    }
+
+    /** Test {@link TestWordUtil#randomColorHex()}. */
+    @Test
+    public void randomColorHex()
+    {
+        assertTrue(TestWordUtil.randomColorHex().startsWith("#"));
+    }
+
     /** Test {@link TestWordUtil#randomNoun()}. */
     @Test
     public void randomNoun()

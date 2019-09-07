@@ -12,16 +12,6 @@ public class TestBooleanUtil
 {
 
     /**
-     * Simple two-sided coin flip.
-     *
-     * @return true if heads
-     */
-    public static boolean coinFlip()
-    {
-        return RANDOM.nextBoolean();
-    }
-
-    /**
      * Roll a die of a given number of sides, and see if it is one.
      *
      * @param number the number of sides on the die (must be &gt; 0)

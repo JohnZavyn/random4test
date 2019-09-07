@@ -1,7 +1,9 @@
 package com.threeleaf.test.random.util;
 
+import com.google.common.collect.ImmutableMap;
 import lombok.experimental.UtilityClass;
 
+import java.util.Map;
 import java.util.Set;
 
 import static com.google.common.collect.Sets.newHashSet;
@@ -13,6 +15,142 @@ import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 @SuppressWarnings("WeakerAccess")
 public class TestWordUtil
 {
+
+    /** Common CSS color HEX values and related W3C extended color keywords. */
+    public static final Map<String, String> COLORS = ImmutableMap.<String, String>builder() // @formatter:off //
+          .put("#008080", "Teal")
+          .put("#008b8b", "DarkCyan")
+          .put("#00bfff", "DeepSkyBlue")
+          .put("#00ced1", "DarkTurquoise")
+          .put("#00fa9a", "MediumSpringGreen")
+          .put("#00ff00", "Lime")
+          .put("#00ff7f", "SpringGreen")
+          .put("#00ffff", "Cyan")
+          .put("#191970", "MidnightBlue")
+          .put("#1e90ff", "DodgerBlue")
+          .put("#20b2aa", "LightSeaGreen")
+          .put("#228b22", "ForestGreen")
+          .put("#2e8b57", "SeaGreen")
+          .put("#2f4f4f", "DarkSlateGray")
+          .put("#32cd32", "LimeGreen")
+          .put("#3cb371", "MediumSeaGreen")
+          .put("#40e0d0", "Turquoise")
+          .put("#4169e1", "RoyalBlue")
+          .put("#4682b4", "SteelBlue")
+          .put("#483d8b", "DarkSlateBlue")
+          .put("#48d1cc", "MediumTurquoise")
+          .put("#4b0082", "Indigo ")
+          .put("#556b2f", "DarkOliveGreen")
+          .put("#5f9ea0", "CadetBlue")
+          .put("#6495ed", "CornflowerBlue")
+          .put("#663399", "RebeccaPurple")
+          .put("#66cdaa", "MediumAquaMarine")
+          .put("#696969", "DimGray")
+          .put("#6a5acd", "SlateBlue")
+          .put("#6b8e23", "OliveDrab")
+          .put("#708090", "SlateGray")
+          .put("#778899", "LightSlateGray")
+          .put("#7b68ee", "MediumSlateBlue")
+          .put("#7cfc00", "LawnGreen")
+          .put("#7fff00", "Chartreuse")
+          .put("#7fffd4", "Aquamarine")
+          .put("#800000", "Maroon")
+          .put("#800080", "Purple")
+          .put("#808000", "Olive")
+          .put("#808080", "Gray")
+          .put("#87ceeb", "SkyBlue")
+          .put("#87cefa", "LightSkyBlue")
+          .put("#8a2be2", "BlueViolet")
+          .put("#8b0000", "DarkRed")
+          .put("#8b008b", "DarkMagenta")
+          .put("#8b4513", "SaddleBrown")
+          .put("#8fbc8f", "DarkSeaGreen")
+          .put("#90ee90", "LightGreen")
+          .put("#9370db", "MediumPurple")
+          .put("#9400d3", "DarkViolet")
+          .put("#98fb98", "PaleGreen")
+          .put("#9932cc", "DarkOrchid")
+          .put("#9acd32", "YellowGreen")
+          .put("#a0522d", "Sienna")
+          .put("#a52a2a", "Brown")
+          .put("#a9a9a9", "DarkGray")
+          .put("#add8e6", "LightBlue")
+          .put("#adff2f", "GreenYellow")
+          .put("#afeeee", "PaleTurquoise")
+          .put("#b0c4de", "LightSteelBlue")
+          .put("#b0e0e6", "PowderBlue")
+          .put("#b22222", "FireBrick")
+          .put("#b8860b", "DarkGoldenRod")
+          .put("#ba55d3", "MediumOrchid")
+          .put("#bc8f8f", "RosyBrown")
+          .put("#bdb76b", "DarkKhaki")
+          .put("#c0c0c0", "Silver")
+          .put("#c71585", "MediumVioletRed")
+          .put("#cd5c5c", "IndianRed ")
+          .put("#cd853f", "Peru")
+          .put("#d2691e", "Chocolate")
+          .put("#d2b48c", "Tan")
+          .put("#d3d3d3", "LightGray")
+          .put("#d8bfd8", "Thistle")
+          .put("#da70d6", "Orchid")
+          .put("#daa520", "GoldenRod")
+          .put("#db7093", "PaleVioletRed")
+          .put("#dc143c", "Crimson")
+          .put("#dcdcdc", "Gainsboro")
+          .put("#dda0dd", "Plum")
+          .put("#deb887", "BurlyWood")
+          .put("#e0ffff", "LightCyan")
+          .put("#e6e6fa", "Lavender")
+          .put("#e9967a", "DarkSalmon")
+          .put("#ee82ee", "Violet")
+          .put("#eee8aa", "PaleGoldenRod")
+          .put("#f08080", "LightCoral")
+          .put("#f0e68c", "Khaki")
+          .put("#f0f8ff", "AliceBlue")
+          .put("#f0fff0", "HoneyDew")
+          .put("#f0ffff", "Azure")
+          .put("#f4a460", "SandyBrown")
+          .put("#f5deb3", "Wheat")
+          .put("#f5f5dc", "Beige")
+          .put("#f5f5f5", "WhiteSmoke")
+          .put("#f5fffa", "MintCream")
+          .put("#f8f8ff", "GhostWhite")
+          .put("#fa8072", "Salmon")
+          .put("#faebd7", "AntiqueWhite")
+          .put("#faf0e6", "Linen")
+          .put("#fafad2", "LightGoldenRodYellow")
+          .put("#fdf5e6", "OldLace")
+          .put("#ff0000", "Red")
+          .put("#ff00ff", "Magenta")
+          .put("#ff1493", "DeepPink")
+          .put("#ff4500", "OrangeRed")
+          .put("#ff6347", "Tomato")
+          .put("#ff69b4", "HotPink")
+          .put("#ff7f50", "Coral")
+          .put("#ff8c00", "DarkOrange")
+          .put("#ffa07a", "LightSalmon")
+          .put("#ffa500", "Orange")
+          .put("#ffb6c1", "LightPink")
+          .put("#ffc0cb", "Pink")
+          .put("#ffd700", "Gold")
+          .put("#ffdab9", "PeachPuff")
+          .put("#ffdead", "NavajoWhite")
+          .put("#ffe4b5", "Moccasin")
+          .put("#ffe4c4", "Bisque")
+          .put("#ffe4e1", "MistyRose")
+          .put("#ffebcd", "BlanchedAlmond")
+          .put("#ffefd5", "PapayaWhip")
+          .put("#fff0f5", "LavenderBlush")
+          .put("#fff5ee", "SeaShell")
+          .put("#fff8dc", "Cornsilk")
+          .put("#fffacd", "LemonChiffon")
+          .put("#fffaf0", "FloralWhite")
+          .put("#fffafa", "Snow")
+          .put("#ffff00", "Yellow")
+          .put("#ffffe0", "LightYellow")
+          .put("#fffff0", "Ivory")
+          .put("#ffffff", "White")
+    .build(); // @formatter:on //
 
     /** A Set of unique adjectives. */
     public static final Set<String> WORDS_ADJECTIVES = newHashSet(( // @formatter:off //
@@ -364,6 +502,26 @@ public class TestWordUtil
     public static String randomAdverb()
     {
         return chooseOneFrom(WORDS_ADVERBS);
+    }
+
+    /**
+     * Get a random CSS color name.
+     *
+     * @return a color
+     */
+    public static String randomColor()
+    {
+        return chooseOneFrom(COLORS.values());
+    }
+
+    /**
+     * Get a random CSS color hex value.
+     *
+     * @return a color hex
+     */
+    public static String randomColorHex()
+    {
+        return chooseOneFrom(COLORS.keySet());
     }
 
     /**

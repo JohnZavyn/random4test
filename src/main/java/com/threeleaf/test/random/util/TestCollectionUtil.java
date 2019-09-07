@@ -6,7 +6,7 @@ import lombok.experimental.UtilityClass;
 import java.util.Collection;
 
 import static com.threeleaf.test.random.TestPrimitive.INT_01;
-import static com.threeleaf.test.random.util.TestBooleanUtil.coinFlip;
+import static com.threeleaf.test.random.util.TestBooleanUtil.randomBoolean;
 import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
 import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
 import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
@@ -80,7 +80,7 @@ public class TestCollectionUtil
     public static <T> Collection<T> randomCollectionOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
     {
         Collection<T> collection;
-        if (coinFlip())
+        if (randomBoolean())
         {
             collection = randomSetOf(size, type, fieldsExcluded);
         }

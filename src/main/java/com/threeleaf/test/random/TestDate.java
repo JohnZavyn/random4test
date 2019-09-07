@@ -1,14 +1,12 @@
 package com.threeleaf.test.random;
 
 import lombok.experimental.UtilityClass;
-import org.joda.time.DateTime;
-import org.joda.time.DateTimeZone;
+import org.joda.time.*;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Date;
 
-import static com.threeleaf.test.random.util.TestDateUtil.getDateTime;
-import static com.threeleaf.test.random.util.TestDateUtil.getTimestamp;
+import static com.threeleaf.test.random.util.TestDateUtil.*;
 import static java.util.Locale.US;
 import static org.joda.time.format.DateTimeFormat.forPattern;
 
@@ -18,17 +16,14 @@ import static org.joda.time.format.DateTimeFormat.forPattern;
 public class TestDate
 {
 
-    /** The timestamp format string. */
-    public static final String TIMESTAMP_FORMAT = "yyyyMMddHHmmssSSS";
-
-    /** Timestamp format including milliseconds. */
-    public static final DateTimeFormatter TIMESTAMP_FORMATTER = forPattern(TIMESTAMP_FORMAT).withLocale(US);
-
-    /** The time zone */
-    public static final DateTimeZone TIME_ZONE = DateTimeZone.forID("America/New_York");
-
     /** Joda date-time object. */
     public static final DateTime DATE_TIME = getDateTime();
+
+    /** Joda local date object. */
+    public static final LocalDate LOCAL_DATE = getLocalDate();
+
+    /** Joda local date-time object. */
+    public static final LocalDateTime LOCAL_DATE_TIME = getLocalDateTime();
 
     /** Date from last month. */
     public static final Date MONTH_LAST = getDateTime().minusMonths(1).toDate();
@@ -36,8 +31,17 @@ public class TestDate
     /** Date for next month. */
     public static final Date MONTH_NEXT = getDateTime().plusMonths(1).toDate();
 
+    /** The timestamp format string. */
+    public static final String TIMESTAMP_FORMAT = "yyyyMMddHHmmssSSS";
+
+    /** Timestamp format including milliseconds. */
+    public static final DateTimeFormatter TIMESTAMP_FORMATTER = forPattern(TIMESTAMP_FORMAT).withLocale(US);
+
     /** Timestamp */
     public static final String TIMESTAMP = getTimestamp();
+
+    /** The time zone */
+    public static final DateTimeZone TIME_ZONE = DateTimeZone.forID("America/New_York");
 
     /** Today's date. */
     public static final Date TODAY = DATE_TIME.toDate();
@@ -53,6 +57,12 @@ public class TestDate
 
     /** The current year. */
     public static final int YEAR = DATE_TIME.getYear();
+
+    /** Date from last year. */
+    public static final Date YEAR_LAST = getDateTime().minusYears(1).toDate();
+
+    /** Date for next year. */
+    public static final Date YEAR_NEXT = getDateTime().plusYears(1).toDate();
 
     /** Yesterday's date. */
     public static final Date YESTERDAY = DATE_TIME.minusDays(1).toDate();

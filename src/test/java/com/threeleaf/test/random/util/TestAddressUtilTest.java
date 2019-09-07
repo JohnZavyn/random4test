@@ -1,5 +1,6 @@
 package com.threeleaf.test.random.util;
 
+import com.threeleaf.test.random.model.Address;
 import org.junit.Test;
 
 import java.lang.reflect.*;
@@ -47,7 +48,14 @@ public class TestAddressUtilTest
     @Test
     public void randomAddress()
     {
-        assertNotNull(TestAddressUtil.randomAddress());
+        final Address address = TestAddressUtil.randomAddress();
+
+        assertNotNull(address);
+        assertNotNull(address.getState());
+        assertNotNull(address.getCity());
+        assertNotNull(address.getNameResident());
+        assertNotNull(address.getStreetAddress());
+        assertNotNull(address.getZipCode());
     }
 
     /** Test {@link TestAddressUtil#randomState()}. */

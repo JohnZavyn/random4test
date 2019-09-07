@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.threeleaf.test.random.util.TestBooleanUtil.coinFlip;
+import static com.threeleaf.test.random.util.TestBooleanUtil.randomBoolean;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 
 @UtilityClass
@@ -1232,7 +1232,7 @@ public class TestNameUtil
      */
     public static String randomNameFirst()
     {
-        return coinFlip() ? randomNameFirstFemale() : randomNameFirstMale();
+        return randomBoolean() ? randomNameFirstFemale() : randomNameFirstMale();
     }
 
     /**

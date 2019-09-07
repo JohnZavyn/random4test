@@ -22,28 +22,6 @@ public class TestBooleanUtilTest
      */
     public static final int LOOP_COUNT_MAX = 100;
 
-    /** Test {@link TestBooleanUtil#coinFlip()}. */
-    @Test
-    public void coinFlip()
-    {
-        final Set<Boolean> results               = new HashSet<>();
-        boolean            allPossibilitiesFound = false;
-
-        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++)
-        {
-            results.add(TestBooleanUtil.coinFlip());
-            if (results.size() == 2)
-            {
-                allPossibilitiesFound = true;
-                break;
-            }
-        }
-        if (!allPossibilitiesFound)
-        {
-            fail("Expected all possible results, but only found " + results);
-        }
-    }
-
     /** Test {@link TestBooleanUtil} constructor. */
     @Test
     public void constructor() throws Exception
