@@ -101,7 +101,7 @@ public class TestCollectionUtil
      *
      * @return a List or Set with a randomized object
      */
-    public static <T> Collection<T> randomCollectionSingle(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> Collection<T> randomCollectionSingleOf(@NonNull final Class<T> type, final String... fieldsExcluded)
     {
         return randomCollectionOf(INT_01, type, fieldsExcluded);
     }

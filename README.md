@@ -6,7 +6,7 @@ Add to Maven projects with:
 <dependency>
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>1.1.0</version>
+    <version>2.0.0</version>
 </dependency>
 ```
 For more dependency options: <https://mvnrepository.com/artifact/com.threeleaf/random4test>
@@ -24,4 +24,5 @@ public void update()
     assertEquals(myUploadResponse, response.getBody());
 }
 ```
+
 

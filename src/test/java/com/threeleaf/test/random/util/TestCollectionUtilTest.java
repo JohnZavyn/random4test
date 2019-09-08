@@ -91,10 +91,10 @@ public class TestCollectionUtilTest
         }
     }
 
-    /** Test {@link TestCollectionUtil#randomCollectionSingle(Class, String...)} */
+    /** Test {@link TestCollectionUtil#randomCollectionSingleOf(Class, String...)} */
     @Test
-    public void testRandomCollectionSingle()
+    public void testRandomCollectionSingleOf()
     {
-        assertEquals(INT_01, TestCollectionUtil.randomCollectionSingle(Object.class).size());
+        assertEquals(INT_01, TestCollectionUtil.randomCollectionSingleOf(Object.class).size());
     }
 }

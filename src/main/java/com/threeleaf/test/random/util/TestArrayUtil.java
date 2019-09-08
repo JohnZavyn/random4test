@@ -68,7 +68,7 @@ public class TestArrayUtil
      *
      * @return an Array with a randomized object
      */
-    public static <T> T[] randomArraySingle(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> T[] randomArraySingleOf(@NonNull final Class<T> type, final String... fieldsExcluded)
     {
         return randomArrayOf(INT_01, type, fieldsExcluded);
     }

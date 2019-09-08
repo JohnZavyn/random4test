@@ -96,7 +96,7 @@ public class TestMapUtil
      *
      * @return a HashMap with a randomized key-value pair
      */
-    public static <K, V> HashMap<K, V> randomHashMapSingle(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    public static <K, V> HashMap<K, V> randomHashMapSingleOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
     {
         return randomHashMapOf(INT_01, keyType, valueType);
     }
@@ -142,7 +142,7 @@ public class TestMapUtil
      *
      * @return a LinkedHashMap with a randomized key-value pair
      */
-    public static <K, V> LinkedHashMap<K, V> randomLinkedHashMapSingle(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    public static <K, V> LinkedHashMap<K, V> randomLinkedHashMapSingleOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
     {
         return randomLinkedHashMapOf(INT_01, keyType, valueType);
     }
@@ -202,7 +202,7 @@ public class TestMapUtil
      *
      * @return a HashMap, LinkedHashMap, or TreeMap with a randomized key-value pair
      */
-    public static <K, V> Map<K, V> randomMapSingle(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    public static <K, V> Map<K, V> randomMapSingleOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
     {
         return randomMapOf(INT_01, keyType, valueType);
     }
@@ -263,7 +263,7 @@ public class TestMapUtil
      *
      * @return a TreeMap with a randomized key-value pair
      */
-    public static <K, V> TreeMap<K, V> randomTreeMapSingle(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    public static <K, V> TreeMap<K, V> randomTreeMapSingleOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
     {
         return randomTreeMapOf(INT_01, keyType, valueType);
     }

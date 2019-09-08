@@ -84,11 +84,11 @@ public class TestMapUtilTest
         assertFalse(TestMapUtil.randomHashMapOf(Long.class, String.class).isEmpty());
     }
 
-    /** Test {@link TestMapUtil#randomHashMapSingle(Class, Class)}. */
+    /** Test {@link TestMapUtil#randomHashMapSingleOf(Class, Class)}. */
     @Test
-    public void randomHashMapSingle()
+    public void randomHashMapSingleOf()
     {
-        assertEquals(INT_01, TestMapUtil.randomHashMapSingle(Long.class, String.class).size());
+        assertEquals(INT_01, TestMapUtil.randomHashMapSingleOf(Long.class, String.class).size());
     }
 
     /** Test {@link TestMapUtil#randomLinkedHashMapOf(Class, Class)}. */
@@ -98,11 +98,11 @@ public class TestMapUtilTest
         assertFalse(TestMapUtil.randomLinkedHashMapOf(Long.class, String.class).isEmpty());
     }
 
-    /** Test {@link TestMapUtil#randomLinkedHashMapSingle(Class, Class)}. */
+    /** Test {@link TestMapUtil#randomLinkedHashMapSingleOf(Class, Class)}. */
     @Test
-    public void randomLinkedHashMapSingle()
+    public void randomLinkedHashMapSingleOf()
     {
-        assertEquals(INT_01, TestMapUtil.randomLinkedHashMapSingle(Long.class, String.class).size());
+        assertEquals(INT_01, TestMapUtil.randomLinkedHashMapSingleOf(Long.class, String.class).size());
     }
 
     /** Test {@link TestMapUtil#randomMapOf(Class, Class)}. */
@@ -115,13 +115,13 @@ public class TestMapUtilTest
         }
     }
 
-    /** Test {@link TestMapUtil#randomMapSingle(Class, Class)}. */
+    /** Test {@link TestMapUtil#randomMapSingleOf(Class, Class)}. */
     @Test
-    public void randomMapSingle()
+    public void randomMapSingleOf()
     {
         for (int counter = 0; counter < INT_10; counter++)
         {
-            assertEquals(INT_01, TestMapUtil.randomMapSingle(Integer.class, Double.class).size());
+            assertEquals(INT_01, TestMapUtil.randomMapSingleOf(Integer.class, Double.class).size());
         }
     }
 
@@ -133,10 +133,10 @@ public class TestMapUtilTest
         assertFalse(TestMapUtil.randomTreeMapOf(Object.class, Object.class).isEmpty());
     }
 
-    /** Test {@link TestMapUtil#randomTreeMapSingle(Class, Class)}. */
+    /** Test {@link TestMapUtil#randomTreeMapSingleOf(Class, Class)}. */
     @Test
-    public void randomTreeMapSingle()
+    public void randomTreeMapSingleOf()
     {
-        assertEquals(INT_01, TestMapUtil.randomTreeMapSingle(Integer.class, Float.class).size());
+        assertEquals(INT_01, TestMapUtil.randomTreeMapSingleOf(Integer.class, Float.class).size());
     }
 }
