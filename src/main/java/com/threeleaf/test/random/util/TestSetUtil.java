@@ -19,6 +19,37 @@ public class TestSetUtil
 {
 
     /**
+     * Convert any collection into a {@link TreeSet}.
+     * <ul>
+     *     <li>If the provided collection is not a {@link Set},
+     *      then the normal rules of converting to set will apply</li>
+     *     <li>If the specified type is not Comparable, then a
+     *      toString Comparator will automatically be added</li>
+     * </ul>
+     *
+     * @param collection the original collection of objects
+     * @param <T>        the set type
+     *
+     * @return the TreeSet of object
+     */
+    public static <T> TreeSet<T> convertToTreeSet(final Collection<T> collection)
+    {
+        TreeSet<T> treeSet;
+        /* A TreeSet must be of a Comparable type or be constructed with a Comparator. */
+        try
+        {
+            treeSet = new TreeSet<>(collection);
+        }
+        catch (ClassCastException e)
+        {
+            treeSet = new TreeSet<>(comparing(Object::toString));
+            treeSet.addAll(collection);
+        }
+
+        return treeSet;
+    }
+
+    /**
      * Return a {@link HashSet} of randomized objects.
      *
      * @param size           size of set
@@ -212,8 +243,6 @@ public class TestSetUtil
 
     /**
      * Return a {@link TreeSet} of randomized objects.
-     * If the specified type is not Comparable, then a
-     * toString Comparator will automatically be added.
      *
      * @param size           size of set
      * @param type           type of Class
@@ -224,20 +253,7 @@ public class TestSetUtil
      */
     public static <T> TreeSet<T> randomTreeSetOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
     {
-        Set<T>     set = randomHashSetOf(size, type, fieldsExcluded);
-        TreeSet<T> treeSet;
-        /* A TreeSet must be of a Comparable type or be constructed with a Comparator. */
-        try
-        {
-            treeSet = new TreeSet<>(set);
-        }
-        catch (ClassCastException e)
-        {
-            treeSet = new TreeSet<>(comparing(Object::toString));
-            treeSet.addAll(set);
-        }
-
-        return treeSet;
+        return convertToTreeSet(randomHashSetOf(size, type, fieldsExcluded));
     }
 
     /**

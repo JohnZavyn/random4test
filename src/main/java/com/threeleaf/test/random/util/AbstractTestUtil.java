@@ -2,16 +2,16 @@ package com.threeleaf.test.random.util;
 
 import com.threeleaf.test.random.TestRandom;
 
+import java.lang.reflect.Array;
 import java.util.*;
 
-import static com.threeleaf.test.random.util.TestArrayUtil.randomArrayOf;
-import static com.threeleaf.test.random.util.TestArrayUtil.randomArraySingleOf;
-import static com.threeleaf.test.random.util.TestCollectionUtil.randomCollectionOf;
-import static com.threeleaf.test.random.util.TestCollectionUtil.randomCollectionSingleOf;
-import static com.threeleaf.test.random.util.TestListUtil.*;
-import static com.threeleaf.test.random.util.TestSetUtil.*;
+import static com.threeleaf.test.random.TestPrimitive.*;
+import static com.threeleaf.test.random.util.TestBooleanUtil.randomBoolean;
+import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
+import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
+import static com.threeleaf.test.random.util.TestSetUtil.convertToTreeSet;
 
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unchecked"})
 public abstract class AbstractTestUtil<T>
 {
 
@@ -23,7 +23,9 @@ public abstract class AbstractTestUtil<T>
     }
 
     /**
-     * Return a randomized object;
+     * Return a randomized object.
+     * This method may be overridden to provide customized randomization suitable
+     * to the applications test needs.
      *
      * @param fieldsExcluded the fields to not randomize
      *
@@ -43,7 +45,7 @@ public abstract class AbstractTestUtil<T>
      */
     public T[] randomArray(final String... fieldsExcluded)
     {
-        return randomArrayOf(type, fieldsExcluded);
+        return randomArray(random1to10(), fieldsExcluded);
     }
 
     /**
@@ -56,7 +58,7 @@ public abstract class AbstractTestUtil<T>
      */
     public T[] randomArray(final int size, final String... fieldsExcluded)
     {
-        return randomArrayOf(size, type, fieldsExcluded);
+        return randomArrayList(size, fieldsExcluded).toArray((T[]) Array.newInstance(type, INT_00));
     }
 
     /**
@@ -68,7 +70,7 @@ public abstract class AbstractTestUtil<T>
      */
     public ArrayList<T> randomArrayList(final String... fieldsExcluded)
     {
-        return randomArrayListOf(type, fieldsExcluded);
+        return randomArrayList(random1to10(), fieldsExcluded);
     }
 
     /**
@@ -81,7 +83,13 @@ public abstract class AbstractTestUtil<T>
      */
     public ArrayList<T> randomArrayList(final int size, final String... fieldsExcluded)
     {
-        return randomArrayListOf(size, type, fieldsExcluded);
+        final ArrayList<T> randomObjects = new ArrayList<>();
+        for (int index = 0; index < size; index++)
+        {
+            randomObjects.add(random(fieldsExcluded));
+        }
+
+        return randomObjects;
     }
 
     /**
@@ -93,7 +101,7 @@ public abstract class AbstractTestUtil<T>
      */
     public ArrayList<T> randomArrayListSingle(final String... fieldsExcluded)
     {
-        return randomArrayListSingleOf(type, fieldsExcluded);
+        return randomArrayList(INT_01, fieldsExcluded);
     }
 
     /**
@@ -105,7 +113,7 @@ public abstract class AbstractTestUtil<T>
      */
     public T[] randomArraySingle(final String... fieldsExcluded)
     {
-        return randomArraySingleOf(type, fieldsExcluded);
+        return randomArray(INT_01, fieldsExcluded);
     }
 
     /**
@@ -117,7 +125,7 @@ public abstract class AbstractTestUtil<T>
      */
     public Collection<T> randomCollection(final String... fieldsExcluded)
     {
-        return randomCollectionOf(type, fieldsExcluded);
+        return randomCollection(random1to10(), fieldsExcluded);
     }
 
     /**
@@ -130,7 +138,17 @@ public abstract class AbstractTestUtil<T>
      */
     public Collection<T> randomCollection(final int size, final String... fieldsExcluded)
     {
-        return randomCollectionOf(size, type, fieldsExcluded);
+        Collection<T> collection;
+        if (randomBoolean())
+        {
+            collection = randomSet(size, fieldsExcluded);
+        }
+        else
+        {
+            collection = randomList(size, fieldsExcluded);
+        }
+
+        return collection;
     }
 
     /**
@@ -142,7 +160,7 @@ public abstract class AbstractTestUtil<T>
      */
     public Collection<T> randomCollectionSingle(final String... fieldsExcluded)
     {
-        return randomCollectionSingleOf(type, fieldsExcluded);
+        return randomCollection(INT_01, fieldsExcluded);
     }
 
     /**
@@ -154,7 +172,7 @@ public abstract class AbstractTestUtil<T>
      */
     public HashSet<T> randomHashSet(final String... fieldsExcluded)
     {
-        return randomHashSetOf(type, fieldsExcluded);
+        return randomHashSet(random1to10(), fieldsExcluded);
     }
 
     /**
@@ -167,7 +185,7 @@ public abstract class AbstractTestUtil<T>
      */
     public HashSet<T> randomHashSet(final int size, final String... fieldsExcluded)
     {
-        return randomHashSetOf(size, type, fieldsExcluded);
+        return new HashSet<>(randomArrayList(size, fieldsExcluded));
     }
 
     /**
@@ -179,7 +197,7 @@ public abstract class AbstractTestUtil<T>
      */
     public HashSet<T> randomHashSetSingle(final String... fieldsExcluded)
     {
-        return randomHashSetSingleOf(type, fieldsExcluded);
+        return randomHashSet(INT_01, fieldsExcluded);
     }
 
     /**
@@ -191,7 +209,7 @@ public abstract class AbstractTestUtil<T>
      */
     public LinkedHashSet<T> randomLinkedHashSet(final String... fieldsExcluded)
     {
-        return randomLinkedHashSetOf(type, fieldsExcluded);
+        return randomLinkedHashSet(random1to10(), fieldsExcluded);
     }
 
     /**
@@ -204,7 +222,7 @@ public abstract class AbstractTestUtil<T>
      */
     public LinkedHashSet<T> randomLinkedHashSet(final int size, final String... fieldsExcluded)
     {
-        return randomLinkedHashSetOf(size, type, fieldsExcluded);
+        return new LinkedHashSet<>(randomArrayList(size, fieldsExcluded));
     }
 
     /**
@@ -216,7 +234,7 @@ public abstract class AbstractTestUtil<T>
      */
     public LinkedHashSet<T> randomLinkedHashSetSingle(final String... fieldsExcluded)
     {
-        return randomLinkedHashSetSingleOf(type, fieldsExcluded);
+        return randomLinkedHashSet(INT_01, fieldsExcluded);
     }
 
     /**
@@ -228,7 +246,7 @@ public abstract class AbstractTestUtil<T>
      */
     public LinkedList<T> randomLinkedList(final String... fieldsExcluded)
     {
-        return randomLinkedListOf(type, fieldsExcluded);
+        return randomLinkedList(random1to10(), fieldsExcluded);
     }
 
     /**
@@ -241,7 +259,7 @@ public abstract class AbstractTestUtil<T>
      */
     public LinkedList<T> randomLinkedList(final int size, final String... fieldsExcluded)
     {
-        return randomLinkedListOf(size, type, fieldsExcluded);
+        return new LinkedList<>(randomArrayList(size, fieldsExcluded));
     }
 
     /**
@@ -253,7 +271,7 @@ public abstract class AbstractTestUtil<T>
      */
     public LinkedList<T> randomLinkedListSingle(final String... fieldsExcluded)
     {
-        return randomLinkedListSingleOf(type, fieldsExcluded);
+        return randomLinkedList(INT_01, fieldsExcluded);
     }
 
     /**
@@ -265,7 +283,7 @@ public abstract class AbstractTestUtil<T>
      */
     public List<T> randomList(final String... fieldsExcluded)
     {
-        return randomListOf(type, fieldsExcluded);
+        return randomList(random1to10(), fieldsExcluded);
     }
 
     /**
@@ -278,7 +296,21 @@ public abstract class AbstractTestUtil<T>
      */
     public List<T> randomList(final int size, final String... fieldsExcluded)
     {
-        return randomListOf(size, type, fieldsExcluded);
+        List<T> list;
+        switch (randomBetween(INT_01, INT_03))
+        {
+            case 1:
+                list = randomArrayList(size, fieldsExcluded);
+                break;
+            case 2:
+                list = randomLinkedList(size, fieldsExcluded);
+                break;
+            default:
+                list = randomVector(size, fieldsExcluded);
+                break;
+        }
+
+        return list;
     }
 
     /**
@@ -290,7 +322,7 @@ public abstract class AbstractTestUtil<T>
      */
     public List<T> randomListSingle(final String... fieldsExcluded)
     {
-        return randomListSingleOf(type, fieldsExcluded);
+        return randomList(INT_01, fieldsExcluded);
     }
 
     /**
@@ -302,7 +334,7 @@ public abstract class AbstractTestUtil<T>
      */
     public Set<T> randomSet(final String... fieldsExcluded)
     {
-        return randomSetOf(type, fieldsExcluded);
+        return randomSet(random1to10(), fieldsExcluded);
     }
 
     /**
@@ -315,7 +347,21 @@ public abstract class AbstractTestUtil<T>
      */
     public Set<T> randomSet(final int size, final String... fieldsExcluded)
     {
-        return randomSetOf(size, type, fieldsExcluded);
+        Set<T> set;
+        switch (randomBetween(INT_01, INT_03))
+        {
+            case 1:
+                set = randomHashSet(size, fieldsExcluded);
+                break;
+            case 2:
+                set = randomTreeSet(size, fieldsExcluded);
+                break;
+            default:
+                set = randomLinkedHashSet(size, fieldsExcluded);
+                break;
+        }
+
+        return set;
     }
 
     /**
@@ -327,7 +373,7 @@ public abstract class AbstractTestUtil<T>
      */
     public Set<T> randomSetSingle(final String... fieldsExcluded)
     {
-        return randomSetSingleOf(type, fieldsExcluded);
+        return randomSet(INT_01, fieldsExcluded);
     }
 
     /**
@@ -339,7 +385,7 @@ public abstract class AbstractTestUtil<T>
      */
     public SortedSet<T> randomSortedSet(final String... fieldsExcluded)
     {
-        return randomSortedSetOf(type, fieldsExcluded);
+        return randomSortedSet(random1to10(), fieldsExcluded);
     }
 
     /**
@@ -352,7 +398,7 @@ public abstract class AbstractTestUtil<T>
      */
     public SortedSet<T> randomSortedSet(final int size, final String... fieldsExcluded)
     {
-        return randomSortedSetOf(size, type, fieldsExcluded);
+        return randomTreeSet(size, fieldsExcluded);
     }
 
     /**
@@ -364,7 +410,7 @@ public abstract class AbstractTestUtil<T>
      */
     public SortedSet<T> randomSortedSetSingle(final String... fieldsExcluded)
     {
-        return randomSortedSetSingleOf(type, fieldsExcluded);
+        return randomSortedSet(INT_01, fieldsExcluded);
     }
 
     /**
@@ -376,7 +422,7 @@ public abstract class AbstractTestUtil<T>
      */
     public TreeSet<T> randomTreeSet(final String... fieldsExcluded)
     {
-        return randomTreeSetOf(type, fieldsExcluded);
+        return randomTreeSet(random1to10(), fieldsExcluded);
     }
 
     /**
@@ -389,7 +435,7 @@ public abstract class AbstractTestUtil<T>
      */
     public TreeSet<T> randomTreeSet(final int size, final String... fieldsExcluded)
     {
-        return randomTreeSetOf(size, type, fieldsExcluded);
+        return convertToTreeSet(randomHashSet(size, fieldsExcluded));
     }
 
     /**
@@ -401,7 +447,7 @@ public abstract class AbstractTestUtil<T>
      */
     public TreeSet<T> randomTreeSetSingle(final String... fieldsExcluded)
     {
-        return randomTreeSetSingleOf(type, fieldsExcluded);
+        return randomTreeSet(INT_01, fieldsExcluded);
     }
 
     /**
@@ -413,7 +459,7 @@ public abstract class AbstractTestUtil<T>
      */
     public Vector<T> randomVector(final String... fieldsExcluded)
     {
-        return randomVectorOf(type, fieldsExcluded);
+        return randomVector(random1to10(), fieldsExcluded);
     }
 
     /**
@@ -426,7 +472,7 @@ public abstract class AbstractTestUtil<T>
      */
     public Vector<T> randomVector(final int size, final String... fieldsExcluded)
     {
-        return randomVectorOf(size, type, fieldsExcluded);
+        return new Vector<>(randomArrayList(size, fieldsExcluded));
     }
 
     /**
@@ -438,6 +484,6 @@ public abstract class AbstractTestUtil<T>
      */
     public Vector<T> randomVectorSingle(final String... fieldsExcluded)
     {
-        return randomVectorSingleOf(type, fieldsExcluded);
+        return randomVector(INT_01, fieldsExcluded);
     }
 }
