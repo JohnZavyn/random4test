@@ -1,6 +1,7 @@
 package com.threeleaf.test.random.util;
 
 import com.threeleaf.test.random.TestRandom;
+import lombok.Getter;
 
 import java.lang.reflect.Array;
 import java.util.*;
@@ -11,12 +12,28 @@ import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
 import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
 import static com.threeleaf.test.random.util.TestSetUtil.convertToTreeSet;
 
+/**
+ * An abstract class to be extended to produce randomized objects of a specified type.
+ * <ul>
+ *     <li>Provides many helper methods that will produce single instances and collections of objects.</li>
+ *     <li>The default method for randomizing objects is provided, and can be overridden to customize
+ *  how the objects are randomized to suit specific needs of the tests.</li>
+ *     <li>Extension also allows for the use of class-level methods and variables as needed.</li>
+ * </ul>
+ */
+@Getter
 @SuppressWarnings({"WeakerAccess", "unchecked"})
 public abstract class AbstractTestUtil<T>
 {
 
-    private Class<T> type;
+    /** The type of objects to be randomized. */
+    private final Class<T> type;
 
+    /**
+     * Instantiate a utility to produce randomized objects of the given type.
+     *
+     * @param theType the type of object to randomize
+     */
     public AbstractTestUtil(final Class<T> theType)
     {
         type = theType;
@@ -25,7 +42,7 @@ public abstract class AbstractTestUtil<T>
     /**
      * Return a randomized object.
      * This method may be overridden to provide customized randomization suitable
-     * to the applications test needs.
+     * to the application's test needs.
      *
      * @param fieldsExcluded the fields to not randomize
      *
