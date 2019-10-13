@@ -1,12 +1,11 @@
-package com.threeleaf.test.random.util;
+package com.threeleaf.test.random;
 
-import com.threeleaf.test.random.TestRandom;
 import lombok.Getter;
 
 import java.lang.reflect.Array;
 import java.util.*;
 
-import static com.threeleaf.test.random.util.RandomIntegerUtil.*;
+import static com.threeleaf.test.random.TestInteger.*;
 import static com.threeleaf.test.random.util.TestBooleanUtil.randomBoolean;
 import static com.threeleaf.test.random.util.TestSetUtil.convertToTreeSet;
 
@@ -48,6 +47,7 @@ public abstract class AbstractTestUtil<T>
     {
         return TestRandom.random(type);
     }
+
     /**
      * Return a randomized object.
      * This method may be overridden to provide customized randomization suitable
@@ -323,7 +323,7 @@ public abstract class AbstractTestUtil<T>
     public List<T> randomList(final int size, final String... fieldsExcluded)
     {
         List<T> list;
-        switch (RandomIntegerUtil.randomBetween(INT_01, INT_03))
+        switch (TestInteger.randomBetween(INT_01, INT_03))
         {
             case 1:
                 list = randomArrayList(size, fieldsExcluded);
@@ -374,7 +374,7 @@ public abstract class AbstractTestUtil<T>
     public Set<T> randomSet(final int size, final String... fieldsExcluded)
     {
         Set<T> set;
-        switch (RandomIntegerUtil.randomBetween(INT_01, INT_03))
+        switch (TestInteger.randomBetween(INT_01, INT_03))
         {
             case 1:
                 set = randomHashSet(size, fieldsExcluded);

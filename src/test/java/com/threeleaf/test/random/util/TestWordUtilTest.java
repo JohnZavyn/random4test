@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import java.lang.reflect.*;
 
+import static com.threeleaf.test.random.TestInteger.INT_04;
 import static com.threeleaf.test.random.TestString.SPACE;
-import static com.threeleaf.test.random.util.RandomIntegerUtil.INT_04;
 import static com.threeleaf.test.random.util.TestStringUtil.isBlank;
 import static org.junit.Assert.*;
 

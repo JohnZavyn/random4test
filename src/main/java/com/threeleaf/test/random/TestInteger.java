@@ -1,18 +1,36 @@
-package com.threeleaf.test.random.util;
+package com.threeleaf.test.random;
+
+import java.util.*;
 
 import static com.threeleaf.test.random.TestRandom.RANDOM;
+import static com.threeleaf.test.random.util.TestArrayUtil.randomArrayOf;
+import static com.threeleaf.test.random.util.TestArrayUtil.randomArraySingleOf;
+import static com.threeleaf.test.random.util.TestCollectionUtil.randomCollectionOf;
+import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
+import static com.threeleaf.test.random.util.TestMapUtil.randomMapOf;
+import static com.threeleaf.test.random.util.TestMapUtil.randomMapSingleOf;
+import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
+import static com.threeleaf.test.random.util.TestSetUtil.randomSetSingleOf;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import static java.util.Collections.*;
 
+/** Utilities for random {@link Integer} creation */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class RandomIntegerUtil extends AbstractTestUtil<Integer>
+public class TestInteger extends AbstractTestUtil<Integer>
 {
+
+    /** An {@link Integer} array. */
+    public static final Integer[] ARRAY_INTEGER = randomArrayOf(Integer.class);
 
     /** Maximum digit value. */
     public static final int DIGIT_MAX = 9;
 
     /** Minimum digit value. */
     public static final int DIGIT_MIN = 0;
+
+    /** An {@link Integer} array with a single value. */
+    public static final Integer[] ARRAY_INTEGER_SINGLE = randomArraySingleOf(Integer.class);
 
     /** A random Integer. */
     public final static Integer INTEGER = randomInt();
@@ -359,6 +377,9 @@ public class RandomIntegerUtil extends AbstractTestUtil<Integer>
     /** The primitive int 01. */
     public final static int INT_01 = 1;
 
+    /** An {@link Integer} collection. */
+    public static final Collection<Integer> COLLECTION_INTEGER = unmodifiableCollection(randomCollectionOf(Integer.class));
+
     /** The primitive int 02. */
     public final static int INT_02 = 2;
 
@@ -385,6 +406,12 @@ public class RandomIntegerUtil extends AbstractTestUtil<Integer>
 
     /** The primitive int 10. */
     public final static int INT_10 = 10;
+
+    /** An single {@link Integer} collection. */
+    public static final Collection<Integer> COLLECTION_INTEGER_SINGLE = singleton(TestRandom.random(Integer.class));
+
+    /** The instance of {@link TestInteger}. */
+    public static final TestInteger INSTANCE = new TestInteger();
 
     /** The primitive int 100. */
     public final static int INT_100 = 100;
@@ -689,8 +716,32 @@ public class RandomIntegerUtil extends AbstractTestUtil<Integer>
     /** A small primitive int between 0-100. */
     public final static int INT_SMALL = randomBetween(0, 100);
 
+    /** An {@link Integer} list. */
+    public static final List<Integer> LIST_INTEGER = unmodifiableList(randomListOf(Integer.class));
+
+    /** An single {@link Integer} list. */
+    public static final List<Integer> LIST_INTEGER_SINGLE = singletonList(TestRandom.random(Integer.class));
+
+    /** An {@link Integer} map. */
+    public static final Map<Integer, Integer> MAP_INTEGER = unmodifiableMap(randomMapOf(Integer.class, Integer.class));
+
+    /** An {@link Integer} map with a single key-value pair. */
+    public static final Map<Integer, Integer> MAP_INTEGER_SINGLE = unmodifiableMap(randomMapSingleOf(Integer.class, Integer.class));
+
+    /** An {@link Integer} key and {@link String} value map. */
+    public static final Map<Integer, String> MAP_INTEGER_STRING = unmodifiableMap(randomMapOf(Integer.class, String.class));
+
+    /** An {@link Integer} key and {@link String} value map with a single key-value pair. */
+    public static final Map<Integer, String> MAP_INTEGER_STRING_SINGLE = unmodifiableMap(randomMapSingleOf(Integer.class, String.class));
+
+    /** An {@link Integer} set. */
+    public static final Set<Integer> SET_INTEGER = unmodifiableSet(randomSetOf(Integer.class));
+
+    /** An {@link Integer} set with a single value. */
+    public static final Set<Integer> SET_INTEGER_SINGLE = unmodifiableSet(randomSetSingleOf(Integer.class));
+
     /** Instantiate a utility to produce randomized Integer objects. */
-    public RandomIntegerUtil()
+    public TestInteger()
     {
         super(Integer.class);
     }

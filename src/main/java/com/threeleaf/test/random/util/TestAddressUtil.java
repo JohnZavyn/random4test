@@ -8,8 +8,8 @@ import lombok.experimental.UtilityClass;
 import java.util.List;
 import java.util.Map;
 
+import static com.threeleaf.test.random.TestInteger.*;
 import static com.threeleaf.test.random.TestString.EMPTY;
-import static com.threeleaf.test.random.util.RandomIntegerUtil.*;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static com.threeleaf.test.random.util.TestMapUtil.chooseOneKeyFrom;
 import static com.threeleaf.test.random.util.TestMapUtil.chooseOneValueFrom;

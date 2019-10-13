@@ -1,6 +1,5 @@
 package com.threeleaf.test.random;
 
-import lombok.experimental.UtilityClass;
 import org.joda.time.*;
 import org.joda.time.format.DateTimeFormatter;
 
@@ -11,13 +10,15 @@ import static java.util.Locale.US;
 import static org.joda.time.format.DateTimeFormat.forPattern;
 
 /** Date constants to be used in JUnit tests. */
-@UtilityClass
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestDate
+public class TestDate extends AbstractTestUtil<Date>
 {
 
     /** Joda date-time object. */
     public static final DateTime DATE_TIME = getDateTime();
+
+    /** The instance of {@link TestDate}. */
+    public static final TestDate INSTANCE = new TestDate();
 
     /** Joda local date object. */
     public static final LocalDate LOCAL_DATE = getLocalDate();
@@ -66,4 +67,10 @@ public class TestDate
 
     /** Yesterday's date. */
     public static final Date YESTERDAY = DATE_TIME.minusDays(1).toDate();
+
+    /** Instantiate a utility to produce randomized objects of the given type. */
+    public TestDate()
+    {
+        super(Date.class);
+    }
 }

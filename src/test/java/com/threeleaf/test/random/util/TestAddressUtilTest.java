@@ -5,8 +5,8 @@ import org.junit.Test;
 
 import java.lang.reflect.*;
 
-import static com.threeleaf.test.random.util.RandomIntegerUtil.INT_02;
-import static com.threeleaf.test.random.util.RandomIntegerUtil.INT_05;
+import static com.threeleaf.test.random.TestInteger.INT_02;
+import static com.threeleaf.test.random.TestInteger.INT_05;
 import static org.junit.Assert.*;
 
 /** Test {@link TestAddressUtil}. */

@@ -1,12 +1,13 @@
 package com.threeleaf.test.random.util;
 
+import com.threeleaf.test.random.AbstractTestUtil;
 import com.threeleaf.test.random.model.Address;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.*;
 
-import static com.threeleaf.test.random.util.RandomIntegerUtil.*;
+import static com.threeleaf.test.random.TestInteger.*;
 import static org.junit.Assert.*;
 
 /** Test {@link AbstractTestUtil}. */

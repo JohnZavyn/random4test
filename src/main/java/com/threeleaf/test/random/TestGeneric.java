@@ -1,4 +1,4 @@
-package com.threeleaf.test.random.util;
+package com.threeleaf.test.random;
 
 /**
  * Simple concrete extension of {@link AbstractTestUtil} to provide
@@ -6,7 +6,7 @@ package com.threeleaf.test.random.util;
  * only the default functionality is required.
  */
 @SuppressWarnings("WeakerAccess")
-public class Random4TestUtil<T> extends AbstractTestUtil<T>
+public class TestGeneric<T> extends AbstractTestUtil<T>
 {
 
     /**
@@ -14,7 +14,7 @@ public class Random4TestUtil<T> extends AbstractTestUtil<T>
      *
      * @param theType the type of object to randomize
      */
-    public Random4TestUtil(final Class<T> theType)
+    public TestGeneric(final Class<T> theType)
     {
         super(theType);
     }

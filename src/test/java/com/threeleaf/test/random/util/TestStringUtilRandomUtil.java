@@ -4,14 +4,14 @@ import org.junit.Test;
 
 import java.lang.reflect.*;
 
+import static com.threeleaf.test.random.TestInteger.random1to10;
 import static com.threeleaf.test.random.TestString.*;
-import static com.threeleaf.test.random.util.RandomIntegerUtil.random1to10;
 import static com.threeleaf.test.random.util.TestStringUtil.STRING_LENGTH_MAX;
 import static com.threeleaf.test.random.util.TestStringUtil.STRING_LENGTH_MIN;
 import static org.junit.Assert.*;
 
 /** Test {@link TestStringUtil} */
-public class TestStringUtilTest
+public class TestStringUtilRandomUtil
 {
 
     /** Test {@link TestStringUtil} constructor. */

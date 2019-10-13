@@ -5,8 +5,8 @@ import lombok.experimental.UtilityClass;
 
 import java.util.*;
 
+import static com.threeleaf.test.random.TestInteger.*;
 import static com.threeleaf.test.random.TestRandom.random;
-import static com.threeleaf.test.random.util.RandomIntegerUtil.*;
 import static java.util.Comparator.comparing;
 
 /** Utilities to generate randomly populated Set objects. */

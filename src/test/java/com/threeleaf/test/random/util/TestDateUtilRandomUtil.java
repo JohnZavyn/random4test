@@ -13,7 +13,7 @@ import static java.lang.Math.min;
 import static org.junit.Assert.*;
 
 /** Test {@link TestDateUtil} */
-public class TestDateUtilTest
+public class TestDateUtilRandomUtil
 {
 
     /** Test {@link TestDateUtil} constructor. */

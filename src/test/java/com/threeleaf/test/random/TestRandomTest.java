@@ -6,7 +6,7 @@ import java.lang.management.MemoryNotificationInfo;
 import java.lang.reflect.*;
 import java.security.KeyPair;
 
-import static com.threeleaf.test.random.TestRandom.OBJECT;
+import static com.threeleaf.test.random.TestObject.OBJECT;
 import static org.junit.Assert.*;
 
 /** Test {@link TestRandom}. */
@@ -36,7 +36,7 @@ public class TestRandomTest
         assertNull(memoryNotificationInfo.getUsage());
     }
 
-    /** Test {@link TestRandom#OBJECT}. */
+    /** Test {@link TestObject#OBJECT}. */
     @Test
     public void randomObject()
     {

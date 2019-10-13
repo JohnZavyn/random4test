@@ -4,9 +4,9 @@ import org.junit.Test;
 
 import java.lang.reflect.*;
 
+import static com.threeleaf.test.random.TestInteger.INT_10;
+import static com.threeleaf.test.random.TestInteger.random1to10;
 import static com.threeleaf.test.random.TestString.SPACE;
-import static com.threeleaf.test.random.util.RandomIntegerUtil.INT_10;
-import static com.threeleaf.test.random.util.RandomIntegerUtil.random1to10;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 

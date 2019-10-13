@@ -1,5 +1,6 @@
 package com.threeleaf.test.random.util;
 
+import com.threeleaf.test.random.TestLong;
 import lombok.experimental.UtilityClass;
 import org.joda.time.*;
 
@@ -63,7 +64,7 @@ public class TestDateUtil
      */
     public Date randomBetween(final Date date1, final Date date2)
     {
-        return new Date(RandomLongUtil.randomBetween(date1.getTime(), date2.getTime()));
+        return new Date(TestLong.randomBetween(date1.getTime(), date2.getTime()));
     }
 
     /**

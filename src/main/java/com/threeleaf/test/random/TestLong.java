@@ -1,12 +1,45 @@
-package com.threeleaf.test.random.util;
+package com.threeleaf.test.random;
+
+import java.util.*;
 
 import static com.threeleaf.test.random.TestRandom.RANDOM;
+import static com.threeleaf.test.random.util.TestArrayUtil.randomArrayOf;
+import static com.threeleaf.test.random.util.TestArrayUtil.randomArraySingleOf;
+import static com.threeleaf.test.random.util.TestCollectionUtil.randomCollectionOf;
+import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
+import static com.threeleaf.test.random.util.TestMapUtil.randomMapOf;
+import static com.threeleaf.test.random.util.TestMapUtil.randomMapSingleOf;
+import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
+import static com.threeleaf.test.random.util.TestSetUtil.randomSetSingleOf;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import static java.util.Collections.*;
 
+/** Utilities for random {@link Long} creation */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class RandomLongUtil extends AbstractTestUtil<Long>
+public class TestLong extends AbstractTestUtil<Long>
 {
+
+    /** An {@link Long} array. */
+    public static final Long[] ARRAY_LONG = randomArrayOf(Long.class);
+
+    /** An {@link Long} array with a single value. */
+    public static final Long[] ARRAY_LONG_SINGLE = randomArraySingleOf(Long.class);
+
+    /** An {@link Long} collection. */
+    public static final Collection<Long> COLLECTION_LONG = unmodifiableCollection(randomCollectionOf(Long.class));
+
+    /** An single {@link Integer} collection. */
+    public static final Collection<Long> COLLECTION_LONG_SINGLE = singleton(TestRandom.random(Long.class));
+
+    /** The instance of {@link TestLong}. */
+    public static final TestLong INSTANCE = new TestLong();
+
+    /** An {@link Long} list. */
+    public static final List<Long> LIST_LONG = unmodifiableList(randomListOf(Long.class));
+
+    /** An single {@link Integer} list. */
+    public static final List<Long> LIST_LONG_SINGLE = singletonList(TestRandom.random(Long.class));
 
     /** A random Long. */
     public final static Long LONG = randomLong();
@@ -345,7 +378,7 @@ public class RandomLongUtil extends AbstractTestUtil<Long>
     public final static Long LONG_RANDOM = randomLong();
 
     /** A small Long between 0-100. */
-    public final static Long LONG_SMALL = (long) RandomIntegerUtil.randomBetween(0, 100);
+    public final static Long LONG_SMALL = (long) TestInteger.randomBetween(0, 100);
 
     /** The primitive long 00. */
     public final static long L_00 = 0;
@@ -681,10 +714,28 @@ public class RandomLongUtil extends AbstractTestUtil<Long>
     public final static long L_RANDOM = randomLong();
 
     /** A small primitive long between 0-100. */
-    public final static long L_SMALL = RandomIntegerUtil.randomBetween(0, 100);
+    public final static long L_SMALL = TestInteger.randomBetween(0, 100);
+
+    /** An {@link Long} map. */
+    public static final Map<Long, Long> MAP_LONG = unmodifiableMap(randomMapOf(Long.class, Long.class));
+
+    /** An {@link Long} map with a single key-value pair. */
+    public static final Map<Long, Long> MAP_LONG_SINGLE = unmodifiableMap(randomMapSingleOf(Long.class, Long.class));
+
+    /** An {@link Long} key and {@link String} value map. */
+    public static final Map<Long, String> MAP_LONG_STRING = unmodifiableMap(randomMapOf(Long.class, String.class));
+
+    /** An {@link Long} key and {@link String} value map with a single key-value pair. */
+    public static final Map<Long, String> MAP_LONG_STRING_SINGLE = unmodifiableMap(randomMapSingleOf(Long.class, String.class));
+
+    /** An {@link Long} set. */
+    public static final Set<Long> SET_LONG = unmodifiableSet(randomSetOf(Long.class));
+
+    /** An {@link Long} set with a single value. */
+    public static final Set<Long> SET_LONG_SINGLE = unmodifiableSet(randomSetSingleOf(Long.class));
 
     /** Instantiate a utility to produce randomized Long objects. */
-    public RandomLongUtil()
+    public TestLong()
     {
         super(Long.class);
     }

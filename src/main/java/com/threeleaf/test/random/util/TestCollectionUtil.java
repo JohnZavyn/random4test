@@ -5,8 +5,8 @@ import lombok.experimental.UtilityClass;
 
 import java.util.Collection;
 
-import static com.threeleaf.test.random.util.RandomIntegerUtil.INT_01;
-import static com.threeleaf.test.random.util.RandomIntegerUtil.random1to10;
+import static com.threeleaf.test.random.TestInteger.INT_01;
+import static com.threeleaf.test.random.TestInteger.random1to10;
 import static com.threeleaf.test.random.util.TestBooleanUtil.randomBoolean;
 import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
 import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;

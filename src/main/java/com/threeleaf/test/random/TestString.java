@@ -1,13 +1,21 @@
 package com.threeleaf.test.random;
 
-import lombok.experimental.UtilityClass;
+import java.util.*;
 
+import static com.threeleaf.test.random.util.TestArrayUtil.randomArrayOf;
+import static com.threeleaf.test.random.util.TestArrayUtil.randomArraySingleOf;
+import static com.threeleaf.test.random.util.TestCollectionUtil.randomCollectionOf;
+import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
+import static com.threeleaf.test.random.util.TestMapUtil.randomMapOf;
+import static com.threeleaf.test.random.util.TestMapUtil.randomMapSingleOf;
+import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
+import static com.threeleaf.test.random.util.TestSetUtil.randomSetSingleOf;
 import static com.threeleaf.test.random.util.TestStringUtil.*;
+import static java.util.Collections.*;
 
 /** String constants to be used in JUnit tests. */
-@UtilityClass
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestString
+public class TestString extends AbstractTestUtil<String>
 {
 
     /** The letters "abc". */
@@ -22,8 +30,35 @@ public class TestString
     /** Alphabet, upper case. */
     public static final String ALPHABET_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
+    /** An {@link String} array. */
+    public static final String[] ARRAY_STRING = randomArrayOf(String.class);
+
+    /** An {@link String} array with a single value. */
+    public static final String[] ARRAY_STRING_SINGLE = randomArraySingleOf(String.class);
+
+    /** An {@link String} collection. */
+    public static final Collection<String> COLLECTION_STRING = unmodifiableCollection(randomCollectionOf(String.class));
+
+    /** An single {@link Integer} collection. */
+    public static final Collection<String> COLLECTION_STRING_SINGLE = singleton(TestRandom.random(String.class));
+
     /** An empty string. */
     public static final String EMPTY = "";
+
+    /** The instance of {@link TestString}. */
+    public static final TestString INSTANCE = new TestString();
+
+    /** An {@link String} list. */
+    public static final List<String> LIST_STRING = unmodifiableList(randomListOf(String.class));
+
+    /** An single {@link Integer} list. */
+    public static final List<String> LIST_STRING_SINGLE = singletonList(TestRandom.random(String.class));
+
+    /** An {@link String} map. */
+    public static final Map<String, String> MAP_STRING = unmodifiableMap(randomMapOf(String.class, String.class));
+
+    /** An {@link String} map with a single key-value pair. */
+    public static final Map<String, String> MAP_STRING_SINGLE = unmodifiableMap(randomMapSingleOf(String.class, String.class));
 
     /** Numeric characters. */
     public static final String NUMBERS = "0123456789";
@@ -39,6 +74,12 @@ public class TestString
 
     /* A bogus e-mail address. */
     public static final String EMAIL = randomEmail();
+
+    /** An {@link String} set. */
+    public static final Set<String> SET_STRING = unmodifiableSet(randomSetOf(String.class));
+
+    /** An {@link String} set with a single value. */
+    public static final Set<String> SET_STRING_SINGLE = unmodifiableSet(randomSetSingleOf(String.class));
 
     /** A space */
     public static final String SPACE = " ";
@@ -357,4 +398,10 @@ public class TestString
 
     /** Whitespace characters. */
     public static final String WHITESPACE = " \t\r\n";
+
+    /** Instantiate a utility to produce randomized objects of the given type. */
+    public TestString()
+    {
+        super(String.class);
+    }
 }
