@@ -4,7 +4,7 @@ import static com.threeleaf.test.random.TestRandom.RANDOM;
 
 /** Utilities for random {@link Float} creation */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestFloat extends AbstractTestUtil<Float>
+public class TestFloat extends AbstractTest<Float>
 {
 
     /** The Float 00. */

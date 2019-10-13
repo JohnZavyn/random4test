@@ -6,7 +6,7 @@ import static com.threeleaf.test.random.TestRandom.RANDOM;
 
 /** Utilities for random {@link BigInteger} creation */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestBigInteger extends AbstractTestUtil<BigInteger>
+public class TestBigInteger extends AbstractTest<BigInteger>
 {
 
     /** A random {@link BigInteger} from 0-100. */

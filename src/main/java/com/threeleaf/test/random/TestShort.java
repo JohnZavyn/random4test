@@ -2,7 +2,7 @@ package com.threeleaf.test.random;
 
 /** Utilities for random {@link Short} creation */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestShort extends AbstractTestUtil<Short>
+public class TestShort extends AbstractTest<Short>
 {
 
     /** The instance of {@link TestShort}. */

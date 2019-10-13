@@ -18,9 +18,9 @@ import static com.threeleaf.test.random.util.TestSetUtil.convertToTreeSet;
  *     <li>Extension also allows for the use of class-level methods and variables as needed.</li>
  * </ul>
  */
+@SuppressWarnings("WeakerAccess")
 @Getter
-@SuppressWarnings({"WeakerAccess", "unchecked"})
-public abstract class AbstractTestUtil<T>
+public abstract class AbstractTest<T>
 {
 
     /** The type of objects to be randomized. */
@@ -31,7 +31,7 @@ public abstract class AbstractTestUtil<T>
      *
      * @param theType the type of object to randomize
      */
-    public AbstractTestUtil(final Class<T> theType)
+    public AbstractTest(final Class<T> theType)
     {
         type = theType;
     }
@@ -82,6 +82,7 @@ public abstract class AbstractTestUtil<T>
      *
      * @return the Array of objects
      */
+    @SuppressWarnings("unchecked")
     public T[] randomArray(final int size, final String... fieldsExcluded)
     {
         return randomArrayList(size, fieldsExcluded).toArray((T[]) Array.newInstance(type, INT_00));

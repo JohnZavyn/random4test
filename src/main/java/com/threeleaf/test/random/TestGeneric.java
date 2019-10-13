@@ -1,12 +1,12 @@
 package com.threeleaf.test.random;
 
 /**
- * Simple concrete extension of {@link AbstractTestUtil} to provide
+ * Simple concrete extension of {@link AbstractTest} to provide
  * an alternative to extending the abstract, or as a convenience when
  * only the default functionality is required.
  */
 @SuppressWarnings("WeakerAccess")
-public class TestGeneric<T> extends AbstractTestUtil<T>
+public class TestGeneric<T> extends AbstractTest<T>
 {
 
     /**

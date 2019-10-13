@@ -13,7 +13,7 @@ import static com.threeleaf.test.random.util.TestSetUtil.randomSetSingleOf;
 import static java.util.Collections.*;
 
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestObject extends AbstractTestUtil<Object>
+public class TestObject extends AbstractTest<Object>
 {
 
     /** An {@link Object} array. */

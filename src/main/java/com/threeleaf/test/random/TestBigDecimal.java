@@ -8,7 +8,7 @@ import static java.math.BigDecimal.valueOf;
 
 /** Utilities for random {@link BigDecimal} creation */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestBigDecimal extends AbstractTestUtil<BigDecimal>
+public class TestBigDecimal extends AbstractTest<BigDecimal>
 {
 
     /** A random {@link BigDecimal}. */

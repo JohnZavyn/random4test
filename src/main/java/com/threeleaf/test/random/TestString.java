@@ -15,7 +15,7 @@ import static java.util.Collections.*;
 
 /** String constants to be used in JUnit tests. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestString extends AbstractTestUtil<String>
+public class TestString extends AbstractTest<String>
 {
 
     /** The letters "abc". */

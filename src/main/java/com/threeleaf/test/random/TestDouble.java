@@ -6,7 +6,7 @@ import static com.threeleaf.test.random.TestRandom.RANDOM;
 
 /** Utilities for random {@link Double} creation */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestDouble extends AbstractTestUtil<Double>
+public class TestDouble extends AbstractTest<Double>
 {
 
     /** A random Double. */

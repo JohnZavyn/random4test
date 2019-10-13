@@ -2,7 +2,7 @@ package com.threeleaf.test.random;
 
 /** Utilities for random {@link Byte} creation */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestByte extends AbstractTestUtil<Byte>
+public class TestByte extends AbstractTest<Byte>
 {
 
     /** The Byte 00. */

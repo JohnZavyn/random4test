@@ -17,7 +17,7 @@ import static java.util.Collections.*;
 
 /** Utilities for random {@link Integer} creation */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestInteger extends AbstractTestUtil<Integer>
+public class TestInteger extends AbstractTest<Integer>
 {
 
     /** An {@link Integer} array. */
