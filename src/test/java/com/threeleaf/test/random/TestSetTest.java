@@ -4,9 +4,9 @@ import org.junit.Test;
 
 import java.lang.reflect.*;
 
-import static com.threeleaf.test.random.TestNumber.INTEGER;
-import static com.threeleaf.test.random.TestPrimitive.INT_01;
 import static com.threeleaf.test.random.TestSet.*;
+import static com.threeleaf.test.random.util.RandomIntegerUtil.INTEGER;
+import static com.threeleaf.test.random.util.RandomIntegerUtil.INT_01;
 import static org.junit.Assert.*;
 
 /** Test {@link TestSet}. */

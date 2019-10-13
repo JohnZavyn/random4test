@@ -5,9 +5,8 @@ import lombok.experimental.UtilityClass;
 import java.util.Set;
 
 import static com.google.common.collect.Sets.newHashSet;
-import static com.threeleaf.test.random.TestPrimitive.*;
+import static com.threeleaf.test.random.util.RandomIntegerUtil.*;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
-import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
 import static com.threeleaf.test.random.util.TestStringUtil.capitalize;
 import static com.threeleaf.test.random.util.TestStringUtil.randomPunctuationTerminal;
 

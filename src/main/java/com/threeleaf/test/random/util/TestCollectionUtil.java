@@ -5,10 +5,10 @@ import lombok.experimental.UtilityClass;
 
 import java.util.Collection;
 
-import static com.threeleaf.test.random.TestPrimitive.INT_01;
+import static com.threeleaf.test.random.util.RandomIntegerUtil.INT_01;
+import static com.threeleaf.test.random.util.RandomIntegerUtil.random1to10;
 import static com.threeleaf.test.random.util.TestBooleanUtil.randomBoolean;
 import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
-import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
 import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
 import static java.util.Arrays.asList;
 

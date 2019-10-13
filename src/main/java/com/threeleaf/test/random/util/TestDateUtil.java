@@ -63,7 +63,7 @@ public class TestDateUtil
      */
     public Date randomBetween(final Date date1, final Date date2)
     {
-        return new Date(TestNumberUtil.randomBetween(date1.getTime(), date2.getTime()));
+        return new Date(RandomLongUtil.randomBetween(date1.getTime(), date2.getTime()));
     }
 
     /**

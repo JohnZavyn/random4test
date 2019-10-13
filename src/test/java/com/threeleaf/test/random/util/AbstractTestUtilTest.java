@@ -6,9 +6,7 @@ import org.junit.Test;
 
 import java.util.*;
 
-import static com.threeleaf.test.random.TestPrimitive.INT_01;
-import static com.threeleaf.test.random.TestPrimitive.INT_10;
-import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
+import static com.threeleaf.test.random.util.RandomIntegerUtil.*;
 import static org.junit.Assert.*;
 
 /** Test {@link AbstractTestUtil}. */

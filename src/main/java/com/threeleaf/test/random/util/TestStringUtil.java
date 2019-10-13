@@ -7,10 +7,10 @@ import lombok.experimental.UtilityClass;
 import java.util.*;
 
 import static com.threeleaf.test.random.TestString.*;
+import static com.threeleaf.test.random.util.RandomIntegerUtil.randomBetween;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static com.threeleaf.test.random.util.TestNameUtil.randomNameFirst;
 import static com.threeleaf.test.random.util.TestNameUtil.randomNameLast;
-import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
 import static java.lang.Character.isWhitespace;
 import static java.util.UUID.randomUUID;
 

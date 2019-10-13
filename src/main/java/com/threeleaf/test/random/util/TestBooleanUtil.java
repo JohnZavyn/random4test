@@ -2,9 +2,9 @@ package com.threeleaf.test.random.util;
 
 import lombok.experimental.UtilityClass;
 
-import static com.threeleaf.test.random.TestPrimitive.INT_01;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
-import static com.threeleaf.test.random.util.TestNumberUtil.randomBetween;
+import static com.threeleaf.test.random.util.RandomIntegerUtil.INT_01;
+import static com.threeleaf.test.random.util.RandomIntegerUtil.randomBetween;
 
 @UtilityClass
 @SuppressWarnings("WeakerAccess")
