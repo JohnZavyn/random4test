@@ -3,14 +3,6 @@ package com.threeleaf.test.random;
 import java.util.*;
 
 import static com.threeleaf.test.random.TestRandom.RANDOM;
-import static com.threeleaf.test.random.util.TestArrayUtil.randomArrayOf;
-import static com.threeleaf.test.random.util.TestArrayUtil.randomArraySingleOf;
-import static com.threeleaf.test.random.util.TestCollectionUtil.randomCollectionOf;
-import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
-import static com.threeleaf.test.random.util.TestMapUtil.randomMapOf;
-import static com.threeleaf.test.random.util.TestMapUtil.randomMapSingleOf;
-import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
-import static com.threeleaf.test.random.util.TestSetUtil.randomSetSingleOf;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static java.util.Collections.*;
@@ -20,20 +12,17 @@ import static java.util.Collections.*;
 public class TestInteger extends AbstractTest<Integer>
 {
 
-    /** An {@link Integer} array. */
-    public static final Integer[] ARRAY_INTEGER = randomArrayOf(Integer.class);
-
     /** Maximum digit value. */
     public static final int DIGIT_MAX = 9;
 
     /** Minimum digit value. */
     public static final int DIGIT_MIN = 0;
 
-    /** An {@link Integer} array with a single value. */
-    public static final Integer[] ARRAY_INTEGER_SINGLE = randomArraySingleOf(Integer.class);
+    /** The instance of {@link TestInteger}. */
+    public static final TestInteger INSTANCE = new TestInteger();
 
     /** A random Integer. */
-    public final static Integer INTEGER = randomInt();
+    public final static Integer INTEGER = randomInteger();
 
     /** The Integer 00. */
     public final static Integer INTEGER_00 = 0;
@@ -359,14 +348,20 @@ public class TestInteger extends AbstractTest<Integer>
     /** The Integer 9999. */
     public final static Integer INTEGER_9999 = 9999;
 
-    /** A negative Integer. */
-    public final static Integer INTEGER_NEGATIVE = -Math.abs(randomInt());
+    /** An {@link Integer} array. */
+    public static final Integer[] INTEGER_ARRAY = INSTANCE.randomArray();
 
-    /** A positive Integer. */
-    public final static Integer INTEGER_POSITIVE = Math.abs(randomInt());
+    /** An {@link Integer} array with a single value. */
+    public static final Integer[] INTEGER_ARRAY_SINGLE = INSTANCE.randomArraySingle();
 
-    /** A random Integer. */
-    public final static Integer INTEGER_RANDOM = randomInt();
+    /** An {@link Integer} collection. */
+    public static final Collection<Integer> INTEGER_COLLECTION = unmodifiableCollection(INSTANCE.randomCollection());
+
+    /** An single {@link Integer} collection. */
+    public static final Collection<Integer> INTEGER_COLLECTION_SINGLE = singleton(randomInteger());
+
+    /** An {@link Integer} list. */
+    public static final List<Integer> INTEGER_LIST = unmodifiableList(INSTANCE.randomList());
 
     /** A small Integer between 0-100. */
     public final static Integer INTEGER_SMALL = randomBetween(0, 100);
@@ -377,14 +372,20 @@ public class TestInteger extends AbstractTest<Integer>
     /** The primitive int 01. */
     public final static int INT_01 = 1;
 
-    /** An {@link Integer} collection. */
-    public static final Collection<Integer> COLLECTION_INTEGER = unmodifiableCollection(randomCollectionOf(Integer.class));
+    /** An single {@link Integer} list. */
+    public static final List<Integer> INTEGER_LIST_SINGLE = singletonList(randomInteger());
 
     /** The primitive int 02. */
     public final static int INT_02 = 2;
 
     /** The primitive int 03. */
     public final static int INT_03 = 3;
+
+    /** An {@link Integer} map. */
+    public static final Map<Integer, Integer> INTEGER_MAP = unmodifiableMap(INSTANCE.randomMap(Integer.class));
+
+    /** An {@link Integer} map with a single key-value pair. */
+    public static final Map<Integer, Integer> INTEGER_MAP_SINGLE = unmodifiableMap(INSTANCE.randomMapSingle(Integer.class));
 
     /** The primitive int 04. */
     public final static int INT_04 = 4;
@@ -407,11 +408,20 @@ public class TestInteger extends AbstractTest<Integer>
     /** The primitive int 10. */
     public final static int INT_10 = 10;
 
-    /** An single {@link Integer} collection. */
-    public static final Collection<Integer> COLLECTION_INTEGER_SINGLE = singleton(TestRandom.random(Integer.class));
+    /** A negative Integer. */
+    public final static Integer INTEGER_NEGATIVE = -Math.abs(randomInteger());
 
-    /** The instance of {@link TestInteger}. */
-    public static final TestInteger INSTANCE = new TestInteger();
+    /** A positive Integer. */
+    public final static Integer INTEGER_POSITIVE = Math.abs(randomInteger());
+
+    /** A random Integer. */
+    public final static Integer INTEGER_RANDOM = randomInteger();
+
+    /** An {@link Integer} set. */
+    public static final Set<Integer> INTEGER_SET = unmodifiableSet(INSTANCE.randomSet());
+
+    /** An {@link Integer} set with a single value. */
+    public static final Set<Integer> INTEGER_SET_SINGLE = unmodifiableSet(INSTANCE.randomSetSingle());
 
     /** The primitive int 100. */
     public final static int INT_100 = 100;
@@ -705,40 +715,16 @@ public class TestInteger extends AbstractTest<Integer>
     public final static int INT_9999 = 9999;
 
     /** A negative primitive int. */
-    public final static int INT_NEGATIVE = -Math.abs(randomInt());
+    public final static int INT_NEGATIVE = -Math.abs(randomInteger());
 
     /** A positive primitive int. */
-    public final static int INT_POSITIVE = Math.abs(randomInt());
+    public final static int INT_POSITIVE = Math.abs(randomInteger());
 
     /** A random primitive int. */
-    public final static int INT_RANDOM = randomInt();
+    public final static int INT_RANDOM = randomInteger();
 
     /** A small primitive int between 0-100. */
     public final static int INT_SMALL = randomBetween(0, 100);
-
-    /** An {@link Integer} list. */
-    public static final List<Integer> LIST_INTEGER = unmodifiableList(randomListOf(Integer.class));
-
-    /** An single {@link Integer} list. */
-    public static final List<Integer> LIST_INTEGER_SINGLE = singletonList(TestRandom.random(Integer.class));
-
-    /** An {@link Integer} map. */
-    public static final Map<Integer, Integer> MAP_INTEGER = unmodifiableMap(randomMapOf(Integer.class, Integer.class));
-
-    /** An {@link Integer} map with a single key-value pair. */
-    public static final Map<Integer, Integer> MAP_INTEGER_SINGLE = unmodifiableMap(randomMapSingleOf(Integer.class, Integer.class));
-
-    /** An {@link Integer} key and {@link String} value map. */
-    public static final Map<Integer, String> MAP_INTEGER_STRING = unmodifiableMap(randomMapOf(Integer.class, String.class));
-
-    /** An {@link Integer} key and {@link String} value map with a single key-value pair. */
-    public static final Map<Integer, String> MAP_INTEGER_STRING_SINGLE = unmodifiableMap(randomMapSingleOf(Integer.class, String.class));
-
-    /** An {@link Integer} set. */
-    public static final Set<Integer> SET_INTEGER = unmodifiableSet(randomSetOf(Integer.class));
-
-    /** An {@link Integer} set with a single value. */
-    public static final Set<Integer> SET_INTEGER_SINGLE = unmodifiableSet(randomSetSingleOf(Integer.class));
 
     /** Instantiate a utility to produce randomized Integer objects. */
     public TestInteger()
@@ -819,7 +805,7 @@ public class TestInteger extends AbstractTest<Integer>
      */
     public static int randomInt()
     {
-        return RANDOM.nextInt();
+        return randomInteger();
     }
 
     /**
@@ -829,7 +815,7 @@ public class TestInteger extends AbstractTest<Integer>
      */
     public static Integer randomInteger()
     {
-        return RANDOM.nextInt();
+        return INSTANCE.random();
     }
 
     /**

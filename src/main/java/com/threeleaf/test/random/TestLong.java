@@ -3,14 +3,6 @@ package com.threeleaf.test.random;
 import java.util.*;
 
 import static com.threeleaf.test.random.TestRandom.RANDOM;
-import static com.threeleaf.test.random.util.TestArrayUtil.randomArrayOf;
-import static com.threeleaf.test.random.util.TestArrayUtil.randomArraySingleOf;
-import static com.threeleaf.test.random.util.TestCollectionUtil.randomCollectionOf;
-import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
-import static com.threeleaf.test.random.util.TestMapUtil.randomMapOf;
-import static com.threeleaf.test.random.util.TestMapUtil.randomMapSingleOf;
-import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
-import static com.threeleaf.test.random.util.TestSetUtil.randomSetSingleOf;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static java.util.Collections.*;
@@ -20,26 +12,8 @@ import static java.util.Collections.*;
 public class TestLong extends AbstractTest<Long>
 {
 
-    /** An {@link Long} array. */
-    public static final Long[] ARRAY_LONG = randomArrayOf(Long.class);
-
-    /** An {@link Long} array with a single value. */
-    public static final Long[] ARRAY_LONG_SINGLE = randomArraySingleOf(Long.class);
-
-    /** An {@link Long} collection. */
-    public static final Collection<Long> COLLECTION_LONG = unmodifiableCollection(randomCollectionOf(Long.class));
-
-    /** An single {@link Integer} collection. */
-    public static final Collection<Long> COLLECTION_LONG_SINGLE = singleton(TestRandom.random(Long.class));
-
     /** The instance of {@link TestLong}. */
     public static final TestLong INSTANCE = new TestLong();
-
-    /** An {@link Long} list. */
-    public static final List<Long> LIST_LONG = unmodifiableList(randomListOf(Long.class));
-
-    /** An single {@link Integer} list. */
-    public static final List<Long> LIST_LONG_SINGLE = singletonList(TestRandom.random(Long.class));
 
     /** A random Long. */
     public final static Long LONG = randomLong();
@@ -368,6 +342,30 @@ public class TestLong extends AbstractTest<Long>
     /** The Long 9999. */
     public final static Long LONG_9999 = 9999L;
 
+    /** An {@link Long} array. */
+    public static final Long[] LONG_ARRAY = INSTANCE.randomArray();
+
+    /** An {@link Long} array with a single value. */
+    public static final Long[] LONG_ARRAY_SINGLE = INSTANCE.randomArraySingle();
+
+    /** An {@link Long} collection. */
+    public static final Collection<Long> LONG_COLLECTION = unmodifiableCollection(INSTANCE.randomCollection());
+
+    /** An single {@link Integer} collection. */
+    public static final Collection<Long> LONG_COLLECTION_SINGLE = singleton(randomLong());
+
+    /** An {@link Long} list. */
+    public static final List<Long> LONG_LIST = unmodifiableList(INSTANCE.randomList());
+
+    /** An single {@link Integer} list. */
+    public static final List<Long> LONG_LIST_SINGLE = singletonList(randomLong());
+
+    /** An {@link Long} map. */
+    public static final Map<Long, Long> LONG_MAP = unmodifiableMap(INSTANCE.randomMap(Long.class));
+
+    /** An {@link Long} map with a single key-value pair. */
+    public static final Map<Long, Long> LONG_MAP_SINGLE = unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
+
     /** A negative Long. */
     public final static Long LONG_NEGATIVE = -Math.abs(randomLong());
 
@@ -376,6 +374,12 @@ public class TestLong extends AbstractTest<Long>
 
     /** A random Long. */
     public final static Long LONG_RANDOM = randomLong();
+
+    /** An {@link Long} set. */
+    public static final Set<Long> LONG_SET = unmodifiableSet(INSTANCE.randomSet());
+
+    /** An {@link Long} set with a single value. */
+    public static final Set<Long> LONG_SET_SINGLE = unmodifiableSet(INSTANCE.randomSetSingle());
 
     /** A small Long between 0-100. */
     public final static Long LONG_SMALL = (long) TestInteger.randomBetween(0, 100);
@@ -716,24 +720,6 @@ public class TestLong extends AbstractTest<Long>
     /** A small primitive long between 0-100. */
     public final static long L_SMALL = TestInteger.randomBetween(0, 100);
 
-    /** An {@link Long} map. */
-    public static final Map<Long, Long> MAP_LONG = unmodifiableMap(randomMapOf(Long.class, Long.class));
-
-    /** An {@link Long} map with a single key-value pair. */
-    public static final Map<Long, Long> MAP_LONG_SINGLE = unmodifiableMap(randomMapSingleOf(Long.class, Long.class));
-
-    /** An {@link Long} key and {@link String} value map. */
-    public static final Map<Long, String> MAP_LONG_STRING = unmodifiableMap(randomMapOf(Long.class, String.class));
-
-    /** An {@link Long} key and {@link String} value map with a single key-value pair. */
-    public static final Map<Long, String> MAP_LONG_STRING_SINGLE = unmodifiableMap(randomMapSingleOf(Long.class, String.class));
-
-    /** An {@link Long} set. */
-    public static final Set<Long> SET_LONG = unmodifiableSet(randomSetOf(Long.class));
-
-    /** An {@link Long} set with a single value. */
-    public static final Set<Long> SET_LONG_SINGLE = unmodifiableSet(randomSetSingleOf(Long.class));
-
     /** Instantiate a utility to produce randomized Long objects. */
     public TestLong()
     {
@@ -763,7 +749,7 @@ public class TestLong extends AbstractTest<Long>
      */
     public static long randomLong()
     {
-        return RANDOM.nextLong();
+        return INSTANCE.random();
     }
 
     /**

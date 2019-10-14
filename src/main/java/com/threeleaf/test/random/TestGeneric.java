@@ -5,7 +5,6 @@ package com.threeleaf.test.random;
  * an alternative to extending the abstract, or as a convenience when
  * only the default functionality is required.
  */
-@SuppressWarnings("WeakerAccess")
 public class TestGeneric<T> extends AbstractTest<T>
 {
 

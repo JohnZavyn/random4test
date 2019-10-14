@@ -1,8 +1,8 @@
 package com.threeleaf.test.random.util;
 
-import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
+import javax.annotation.Nonnull;
 import java.util.Collection;
 
 import static com.threeleaf.test.random.TestInteger.INT_01;
@@ -30,7 +30,7 @@ public class TestCollectionUtil
      *
      * @see TestArrayUtil#chooseOneFrom(Object[])
      */
-    public static <T> T chooseOneFrom(@NonNull final T[] array)
+    public static <T> T chooseOneFrom(@Nonnull final T[] array)
     {
         return chooseOneFrom(asList(array));
     }
@@ -43,7 +43,7 @@ public class TestCollectionUtil
      *
      * @return a random object
      */
-    public static <T> T chooseOneFrom(@NonNull final Collection<T> collection)
+    public static <T> T chooseOneFrom(@Nonnull final Collection<T> collection)
     {
         // @formatter:off //
         return collection.stream()
@@ -62,7 +62,7 @@ public class TestCollectionUtil
      *
      * @return a List or Set of randomized objects
      */
-    public static <T> Collection<T> randomCollectionOf(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> Collection<T> randomCollectionOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return randomCollectionOf(random1to10(), type, fieldsExcluded);
     }
@@ -77,7 +77,7 @@ public class TestCollectionUtil
      *
      * @return a List or Set of randomized objects
      */
-    public static <T> Collection<T> randomCollectionOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> Collection<T> randomCollectionOf(final int size, @Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         Collection<T> collection;
         if (randomBoolean())
@@ -101,7 +101,7 @@ public class TestCollectionUtil
      *
      * @return a List or Set with a randomized object
      */
-    public static <T> Collection<T> randomCollectionSingleOf(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> Collection<T> randomCollectionSingleOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return randomCollectionOf(INT_01, type, fieldsExcluded);
     }

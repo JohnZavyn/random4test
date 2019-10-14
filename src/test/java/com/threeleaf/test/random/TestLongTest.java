@@ -15,18 +15,18 @@ public class TestLongTest
     @Test
     public void constants()
     {
-        assertNotEquals(INT_00, ARRAY_LONG.length);
-        assertEquals(INT_01, ARRAY_LONG_SINGLE.length);
-        assertNotEquals(INT_00, COLLECTION_LONG.size());
-        assertEquals(INT_01, COLLECTION_LONG_SINGLE.size());
-        assertFalse(LIST_LONG.isEmpty());
-        assertEquals(INT_01, LIST_LONG_SINGLE.size());
-        assertFalse(MAP_LONG.isEmpty());
-        assertFalse(MAP_LONG_STRING.isEmpty());
-        assertEquals(INT_01, MAP_LONG_SINGLE.size());
-        assertEquals(INT_01, MAP_LONG_STRING_SINGLE.size());
-        assertFalse(SET_LONG.isEmpty());
-        assertEquals(INT_01, SET_LONG_SINGLE.size());
+        assertNotEquals(INT_00, LONG_ARRAY.length);
+        assertEquals(INT_01, LONG_ARRAY_SINGLE.length);
+        assertNotEquals(INT_00, LONG_COLLECTION.size());
+        assertEquals(INT_01, LONG_COLLECTION_SINGLE.size());
+        assertFalse(LONG_LIST.isEmpty());
+        assertEquals(INT_01, LONG_LIST_SINGLE.size());
+        assertFalse(LONG_MAP.isEmpty());
+        assertFalse(TestString.STRING_MAP_LONG.isEmpty());
+        assertEquals(INT_01, LONG_MAP_SINGLE.size());
+        assertEquals(INT_01, TestString.STRING_MAP_LONG_SINGLE.size());
+        assertFalse(LONG_SET.isEmpty());
+        assertEquals(INT_01, LONG_SET_SINGLE.size());
     }
 
     /** Test {@link TestLong#randomBetween(long, long)}. */

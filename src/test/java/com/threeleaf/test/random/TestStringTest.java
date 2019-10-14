@@ -15,16 +15,16 @@ public class TestStringTest
     @Test
     public void constants()
     {
-        assertNotEquals(INT_00, ARRAY_STRING.length);
-        assertEquals(INT_01, ARRAY_STRING_SINGLE.length);
-        assertNotEquals(INT_00, COLLECTION_STRING.size());
-        assertEquals(INT_01, COLLECTION_STRING_SINGLE.size());
-        assertFalse(LIST_STRING.isEmpty());
-        assertEquals(INT_01, LIST_STRING_SINGLE.size());
-        assertFalse(MAP_STRING.isEmpty());
-        assertEquals(INT_01, MAP_STRING_SINGLE.size());
-        assertFalse(SET_STRING.isEmpty());
-        assertEquals(INT_01, SET_STRING_SINGLE.size());
+        assertNotEquals(INT_00, STRING_ARRAY.length);
+        assertEquals(INT_01, STRING_ARRAY_SINGLE.length);
+        assertNotEquals(INT_00, STRING_COLLECTION.size());
+        assertEquals(INT_01, STRING_COLLECTION_SINGLE.size());
+        assertFalse(STRING_LIST.isEmpty());
+        assertEquals(INT_01, STRING_LIST_SINGLE.size());
+        assertFalse(STRING_MAP.isEmpty());
+        assertEquals(INT_01, STRING_MAP_SINGLE.size());
+        assertFalse(STRING_SET.isEmpty());
+        assertEquals(INT_01, STRING_SET_SINGLE.size());
     }
 
 }

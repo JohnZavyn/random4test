@@ -1,8 +1,8 @@
 package com.threeleaf.test.random.util;
 
-import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 
 import static com.threeleaf.test.random.TestInteger.*;
@@ -56,7 +56,7 @@ public class TestSetUtil
      *
      * @return a HashSet of randomized objects
      */
-    public static <T> HashSet<T> randomHashSetOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> HashSet<T> randomHashSetOf(final int size, @Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         final HashSet<T> randomObjects = new HashSet<>();
         for (int index = 0; index < size; index++)
@@ -76,7 +76,7 @@ public class TestSetUtil
      *
      * @return a HashSet of randomized objects
      */
-    public static <T> HashSet<T> randomHashSetOf(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> HashSet<T> randomHashSetOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return randomHashSetOf(random1to10(), type, fieldsExcluded);
     }
@@ -90,7 +90,7 @@ public class TestSetUtil
      *
      * @return a HashSet with a randomized object
      */
-    public static <T> HashSet<T> randomHashSetSingleOf(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> HashSet<T> randomHashSetSingleOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return randomHashSetOf(INT_01, type, fieldsExcluded);
     }
@@ -104,7 +104,7 @@ public class TestSetUtil
      *
      * @return a LinkedHashSet of randomized objects
      */
-    public static <T> LinkedHashSet<T> randomLinkedHashSetOf(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> LinkedHashSet<T> randomLinkedHashSetOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return randomLinkedHashSetOf(random1to10(), type, fieldsExcluded);
     }
@@ -119,7 +119,7 @@ public class TestSetUtil
      *
      * @return a LinkedHashSet of randomized objects
      */
-    public static <T> LinkedHashSet<T> randomLinkedHashSetOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> LinkedHashSet<T> randomLinkedHashSetOf(final int size, @Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return new LinkedHashSet<>(randomHashSetOf(size, type, fieldsExcluded));
     }
@@ -133,7 +133,7 @@ public class TestSetUtil
      *
      * @return a LinkedHashSet with a randomized object
      */
-    public static <T> LinkedHashSet<T> randomLinkedHashSetSingleOf(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> LinkedHashSet<T> randomLinkedHashSetSingleOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return randomLinkedHashSetOf(INT_01, type, fieldsExcluded);
     }
@@ -147,7 +147,7 @@ public class TestSetUtil
      *
      * @return a HashSet, TreeSet, or LinkedHashSet of randomized objects
      */
-    public static <T> Set<T> randomSetOf(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> Set<T> randomSetOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return randomSetOf(random1to10(), type, fieldsExcluded);
     }
@@ -162,7 +162,7 @@ public class TestSetUtil
      *
      * @return a HashSet, TreeSet, or LinkedHashSet of randomized objects
      */
-    public static <T> Set<T> randomSetOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> Set<T> randomSetOf(final int size, @Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         Set<T> set;
         switch (randomBetween(INT_01, INT_03))
@@ -190,7 +190,7 @@ public class TestSetUtil
      *
      * @return a HashSet, TreeSet, or LinkedHashSet with a randomized object
      */
-    public static <T> Set<T> randomSetSingleOf(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> Set<T> randomSetSingleOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return randomSetOf(INT_01, type, fieldsExcluded);
     }
@@ -205,7 +205,7 @@ public class TestSetUtil
      *
      * @return a SortedSet of randomized objects
      */
-    public static <T> SortedSet<T> randomSortedSetOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> SortedSet<T> randomSortedSetOf(final int size, @Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return randomTreeSetOf(size, type, fieldsExcluded);
     }
@@ -219,7 +219,7 @@ public class TestSetUtil
      *
      * @return a SortedSet of randomized objects
      */
-    public static <T> SortedSet<T> randomSortedSetOf(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> SortedSet<T> randomSortedSetOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return randomSortedSetOf(random1to10(), type, fieldsExcluded);
     }
@@ -233,7 +233,7 @@ public class TestSetUtil
      *
      * @return a SortedSet with a randomized object
      */
-    public static <T> SortedSet<T> randomSortedSetSingleOf(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> SortedSet<T> randomSortedSetSingleOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return randomSortedSetOf(INT_01, type, fieldsExcluded);
     }
@@ -248,7 +248,7 @@ public class TestSetUtil
      *
      * @return a TreeSet of randomized objects
      */
-    public static <T> TreeSet<T> randomTreeSetOf(final int size, @NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> TreeSet<T> randomTreeSetOf(final int size, @Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return convertToTreeSet(randomHashSetOf(size, type, fieldsExcluded));
     }
@@ -262,7 +262,7 @@ public class TestSetUtil
      *
      * @return a TreeSet of randomized objects
      */
-    public static <T> TreeSet<T> randomTreeSetOf(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> TreeSet<T> randomTreeSetOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return randomTreeSetOf(random1to10(), type, fieldsExcluded);
     }
@@ -276,7 +276,7 @@ public class TestSetUtil
      *
      * @return a TreeSet with a randomized object
      */
-    public static <T> TreeSet<T> randomTreeSetSingleOf(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> TreeSet<T> randomTreeSetSingleOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
     {
         return randomTreeSetOf(INT_01, type, fieldsExcluded);
     }

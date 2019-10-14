@@ -1,9 +1,9 @@
 package com.threeleaf.test.random.util;
 
 import com.google.common.collect.ImmutableList;
-import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 
 import static com.threeleaf.test.random.TestInteger.randomBetween;
@@ -55,7 +55,7 @@ public class TestStringUtil
      *
      * @return the string
      */
-    public static String extractSuffix(@NonNull final String string)
+    public static String extractSuffix(@Nonnull final String string)
     {
         final String[] stringParts = string.split("[_~]");
 

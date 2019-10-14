@@ -1,8 +1,8 @@
 package com.threeleaf.test.random.util;
 
-import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
+import javax.annotation.Nonnull;
 import java.util.*;
 
 import static com.threeleaf.test.random.TestInteger.*;
@@ -48,21 +48,22 @@ public class TestMapUtil
     /**
      * Return a {@link HashMap} of randomized key-value pairs.
      *
-     * @param size      the number of key-value pairs in the map
-     * @param keyType   type of keys in the map
-     * @param valueType the type of values in the map
-     * @param <K>       the key Class
-     * @param <V>       the value Class
+     * @param size           the number of key-value pairs in the map
+     * @param keyType        type of keys in the map
+     * @param valueType      the type of values in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     * @param <V>            the value Class
      *
      * @return a HashMap of randomized key-value pairs
      */
-    public static <K, V> HashMap<K, V> randomHashMapOf(final int size, final @NonNull Class<K> keyType, final @NonNull Class<V> valueType)
+    public static <K, V> HashMap<K, V> randomHashMapOf(final int size, final @Nonnull Class<K> keyType, final @Nonnull Class<V> valueType, final String... fieldsExcluded)
     {
         final HashMap<K, V> randomMap = new HashMap<>();
         final Set<K>        keySet    = randomHashSetOf(size, keyType);
         for (final K key : keySet)
         {
-            randomMap.put(key, random(valueType));
+            randomMap.put(key, random(valueType, fieldsExcluded));
         }
 
         return randomMap;
@@ -71,118 +72,125 @@ public class TestMapUtil
     /**
      * Return a {@link HashMap} of 1 to 10 randomized key-value pairs.
      *
-     * @param keyType   type of keys in the map
-     * @param valueType the type of values in the map
-     * @param <K>       the key Class
-     * @param <V>       the value Class
+     * @param keyType        type of keys in the map
+     * @param valueType      the type of values in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     * @param <V>            the value Class
      *
      * @return a HashMap of randomized key-value pairs
      */
-    public static <K, V> HashMap<K, V> randomHashMapOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    public static <K, V> HashMap<K, V> randomHashMapOf(@Nonnull Class<K> keyType, @Nonnull final Class<V> valueType, final String... fieldsExcluded)
     {
-        return randomHashMapOf(random1to10(), keyType, valueType);
+        return randomHashMapOf(random1to10(), keyType, valueType, fieldsExcluded);
     }
 
     /**
      * Return a {@link HashMap} with a single randomized key-value pair.
      *
-     * @param keyType   type of keys in the map
-     * @param valueType the type of values in the map
-     * @param <K>       the key Class
-     * @param <V>       the value Class
+     * @param keyType        type of keys in the map
+     * @param valueType      the type of values in the map
+     * @param fieldsExcluded the fields to exclude in the value object
+     * @param <K>            the key Class
+     * @param <V>            the value Class
      *
      * @return a HashMap with a randomized key-value pair
      */
-    public static <K, V> HashMap<K, V> randomHashMapSingleOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    public static <K, V> HashMap<K, V> randomHashMapSingleOf(@Nonnull Class<K> keyType, @Nonnull final Class<V> valueType, final String... fieldsExcluded)
     {
-        return randomHashMapOf(INT_01, keyType, valueType);
+        return randomHashMapOf(INT_01, keyType, valueType, fieldsExcluded);
     }
 
     /**
      * Return a {@link LinkedHashMap} of randomized key-value pairs.
      *
-     * @param size      the number of key-value pairs in the map
-     * @param keyType   type of keys in the map
-     * @param valueType the type of values in the map
-     * @param <K>       the key Class
-     * @param <V>       the value Class
+     * @param size           the number of key-value pairs in the map
+     * @param keyType        type of keys in the map
+     * @param valueType      the type of values in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     * @param <V>            the value Class
      *
      * @return a LinkedHashMap of randomized key-value pairs
      */
-    public static <K, V> LinkedHashMap<K, V> randomLinkedHashMapOf(final int size, final @NonNull Class<K> keyType, final @NonNull Class<V> valueType)
+    public static <K, V> LinkedHashMap<K, V> randomLinkedHashMapOf(final int size, final @Nonnull Class<K> keyType, final @Nonnull Class<V> valueType, final String... fieldsExcluded)
     {
-        return new LinkedHashMap<>(randomHashMapOf(size, keyType, valueType));
+        return new LinkedHashMap<>(randomHashMapOf(size, keyType, valueType, fieldsExcluded));
     }
 
     /**
      * Return a {@link LinkedHashMap} of 1 to 10 randomized key-value pairs.
      *
-     * @param keyType   type of keys in the map
-     * @param valueType the type of values in the map
-     * @param <K>       the key Class
-     * @param <V>       the value Class
+     * @param keyType        type of keys in the map
+     * @param valueType      the type of values in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     * @param <V>            the value Class
      *
      * @return a LinkedHashMap of randomized key-value pairs
      */
-    public static <K, V> LinkedHashMap<K, V> randomLinkedHashMapOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    public static <K, V> LinkedHashMap<K, V> randomLinkedHashMapOf(@Nonnull Class<K> keyType, @Nonnull final Class<V> valueType, final String... fieldsExcluded)
     {
-        return randomLinkedHashMapOf(random1to10(), keyType, valueType);
+        return randomLinkedHashMapOf(random1to10(), keyType, valueType, fieldsExcluded);
     }
 
     /**
      * Return a {@link LinkedHashMap} with a single randomized key-value pair.
      *
-     * @param keyType   type of keys in the map
-     * @param valueType the type of values in the map
-     * @param <K>       the key Class
-     * @param <V>       the value Class
+     * @param keyType        type of keys in the map
+     * @param valueType      the type of values in the map
+     * @param fieldsExcluded the fields to exclude in the value object
+     * @param <K>            the key Class
+     * @param <V>            the value Class
      *
      * @return a LinkedHashMap with a randomized key-value pair
      */
-    public static <K, V> LinkedHashMap<K, V> randomLinkedHashMapSingleOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    public static <K, V> LinkedHashMap<K, V> randomLinkedHashMapSingleOf(@Nonnull Class<K> keyType, @Nonnull final Class<V> valueType, final String... fieldsExcluded)
     {
-        return randomLinkedHashMapOf(INT_01, keyType, valueType);
+        return randomLinkedHashMapOf(INT_01, keyType, valueType, fieldsExcluded);
     }
 
     /**
      * Return a {@link Map} of 1 to 10 randomized key-value pairs.
      *
-     * @param keyType   type of keys in the map
-     * @param valueType the type of values in the map
-     * @param <K>       the key Class
-     * @param <V>       the value Class
+     * @param keyType        type of keys in the map
+     * @param valueType      the type of values in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     * @param <V>            the value Class
      *
      * @return a HashMap, LinkedHashMap, or TreeMap of randomized key-value pairs
      */
-    public static <K, V> Map<K, V> randomMapOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    public static <K, V> Map<K, V> randomMapOf(@Nonnull Class<K> keyType, @Nonnull final Class<V> valueType, final String... fieldsExcluded)
     {
-        return randomMapOf(random1to10(), keyType, valueType);
+        return randomMapOf(random1to10(), keyType, valueType, fieldsExcluded);
     }
 
     /**
      * Return a {@link Map} of randomized key-value pairs.
      *
-     * @param size      the number of key-value pairs in the map
-     * @param keyType   type of keys in the map
-     * @param valueType the type of values in the map
-     * @param <K>       the key Class
-     * @param <V>       the value Class
+     * @param size           the number of key-value pairs in the map
+     * @param keyType        type of keys in the map
+     * @param valueType      the type of values in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     * @param <V>            the value Class
      *
      * @return a HashMap, LinkedHashMap, or TreeMap of randomized key-value pairs
      */
-    public static <K, V> Map<K, V> randomMapOf(final int size, @NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    public static <K, V> Map<K, V> randomMapOf(final int size, @Nonnull Class<K> keyType, @Nonnull final Class<V> valueType, final String... fieldsExcluded)
     {
         Map<K, V> map;
         switch (randomBetween(INT_01, INT_03))
         {
             case 1:
-                map = randomHashMapOf(size, keyType, valueType);
+                map = randomHashMapOf(size, keyType, valueType, fieldsExcluded);
                 break;
             case 2:
-                map = randomLinkedHashMapOf(size, keyType, valueType);
+                map = randomLinkedHashMapOf(size, keyType, valueType, fieldsExcluded);
                 break;
             default:
-                map = randomTreeMapOf(size, keyType, valueType);
+                map = randomTreeMapOf(size, keyType, valueType, fieldsExcluded);
                 break;
         }
 
@@ -192,16 +200,17 @@ public class TestMapUtil
     /**
      * Return a {@link Map} with a single randomized key-value pair.
      *
-     * @param keyType   type of keys in the map
-     * @param valueType the type of values in the map
-     * @param <K>       the key Class
-     * @param <V>       the value Class
+     * @param keyType        type of keys in the map
+     * @param valueType      the type of values in the map
+     * @param fieldsExcluded the fields to exclude in the value object
+     * @param <K>            the key Class
+     * @param <V>            the value Class
      *
      * @return a HashMap, LinkedHashMap, or TreeMap with a randomized key-value pair
      */
-    public static <K, V> Map<K, V> randomMapSingleOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    public static <K, V> Map<K, V> randomMapSingleOf(@Nonnull Class<K> keyType, @Nonnull final Class<V> valueType, final String... fieldsExcluded)
     {
-        return randomMapOf(INT_01, keyType, valueType);
+        return randomMapOf(INT_01, keyType, valueType, fieldsExcluded);
     }
 
     /**
@@ -209,17 +218,18 @@ public class TestMapUtil
      * If the specified type is not Comparable, then a
      * toString Comparator will automatically be added.
      *
-     * @param size      the number of key-value pairs in the map
-     * @param keyType   type of keys in the map
-     * @param valueType the type of values in the map
-     * @param <K>       the key Class
-     * @param <V>       the value Class
+     * @param size           the number of key-value pairs in the map
+     * @param keyType        type of keys in the map
+     * @param valueType      the type of values in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     * @param <V>            the value Class
      *
      * @return a TreeMap of randomized key-value pairs
      */
-    public static <K, V> TreeMap<K, V> randomTreeMapOf(final int size, final @NonNull Class<K> keyType, final @NonNull Class<V> valueType)
+    public static <K, V> TreeMap<K, V> randomTreeMapOf(final int size, final @Nonnull Class<K> keyType, final @Nonnull Class<V> valueType, final String... fieldsExcluded)
     {
-        Map<K, V>     map = randomHashMapOf(size, keyType, valueType);
+        Map<K, V>     map = randomHashMapOf(size, keyType, valueType, fieldsExcluded);
         TreeMap<K, V> treeMap;
         /* A TreeMap must be of a Comparable type or be constructed with a Comparator. */
         try
@@ -238,30 +248,32 @@ public class TestMapUtil
     /**
      * Return a {@link TreeMap} of 1 to 10 randomized key-value pairs.
      *
-     * @param keyType   type of keys in the map
-     * @param valueType the type of values in the map
-     * @param <K>       the key Class
-     * @param <V>       the value Class
+     * @param keyType        type of keys in the map
+     * @param valueType      the type of values in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     * @param <V>            the value Class
      *
      * @return a TreeMap of randomized key-value pairs
      */
-    public static <K, V> TreeMap<K, V> randomTreeMapOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    public static <K, V> TreeMap<K, V> randomTreeMapOf(@Nonnull Class<K> keyType, @Nonnull final Class<V> valueType, final String... fieldsExcluded)
     {
-        return randomTreeMapOf(random1to10(), keyType, valueType);
+        return randomTreeMapOf(random1to10(), keyType, valueType, fieldsExcluded);
     }
 
     /**
      * Return a {@link TreeMap} with a single randomized key-value pair.
      *
-     * @param keyType   type of keys in the map
-     * @param valueType the type of values in the map
-     * @param <K>       the key Class
-     * @param <V>       the value Class
+     * @param keyType        type of keys in the map
+     * @param valueType      the type of values in the map
+     * @param fieldsExcluded the fields to exclude in the value object
+     * @param <K>            the key Class
+     * @param <V>            the value Class
      *
      * @return a TreeMap with a randomized key-value pair
      */
-    public static <K, V> TreeMap<K, V> randomTreeMapSingleOf(@NonNull Class<K> keyType, @NonNull final Class<V> valueType)
+    public static <K, V> TreeMap<K, V> randomTreeMapSingleOf(@Nonnull Class<K> keyType, @Nonnull final Class<V> valueType, final String... fieldsExcluded)
     {
-        return randomTreeMapOf(INT_01, keyType, valueType);
+        return randomTreeMapOf(INT_01, keyType, valueType, fieldsExcluded);
     }
 }

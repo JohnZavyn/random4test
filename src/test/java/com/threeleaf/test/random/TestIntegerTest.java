@@ -13,18 +13,18 @@ public class TestIntegerTest
     @Test
     public void constants()
     {
-        assertNotEquals(INT_00, ARRAY_INTEGER.length);
-        assertEquals(INT_01, ARRAY_INTEGER_SINGLE.length);
-        assertNotEquals(INT_00, COLLECTION_INTEGER.size());
-        assertEquals(INT_01, COLLECTION_INTEGER_SINGLE.size());
-        assertFalse(LIST_INTEGER.isEmpty());
-        assertEquals(INT_01, LIST_INTEGER_SINGLE.size());
-        assertFalse(MAP_INTEGER.isEmpty());
-        assertFalse(MAP_INTEGER_STRING.isEmpty());
-        assertEquals(INT_01, MAP_INTEGER_SINGLE.size());
-        assertEquals(INT_01, MAP_INTEGER_STRING_SINGLE.size());
-        assertFalse(SET_INTEGER.isEmpty());
-        assertEquals(INT_01, SET_INTEGER_SINGLE.size());
+        assertNotEquals(INT_00, INTEGER_ARRAY.length);
+        assertEquals(INT_01, INTEGER_ARRAY_SINGLE.length);
+        assertNotEquals(INT_00, INTEGER_COLLECTION.size());
+        assertEquals(INT_01, INTEGER_COLLECTION_SINGLE.size());
+        assertFalse(INTEGER_LIST.isEmpty());
+        assertEquals(INT_01, INTEGER_LIST_SINGLE.size());
+        assertFalse(INTEGER_MAP.isEmpty());
+        assertFalse(TestString.STRING_MAP_INTEGER.isEmpty());
+        assertEquals(INT_01, INTEGER_MAP_SINGLE.size());
+        assertEquals(INT_01, TestString.STRING_MAP_INTEGER_SINGLE.size());
+        assertFalse(INTEGER_SET.isEmpty());
+        assertEquals(INT_01, INTEGER_SET_SINGLE.size());
     }
 
     /** Test {@link TestInteger#random0to10()}. */
@@ -91,6 +91,6 @@ public class TestIntegerTest
     @Test(expected = UnsupportedOperationException.class)
     public void unmodifiable()
     {
-        SET_INTEGER.add(INTEGER);
+        INTEGER_SET.add(INTEGER);
     }
 }

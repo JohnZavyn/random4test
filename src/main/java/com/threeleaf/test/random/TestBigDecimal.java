@@ -11,17 +11,17 @@ import static java.math.BigDecimal.valueOf;
 public class TestBigDecimal extends AbstractTest<BigDecimal>
 {
 
-    /** A random {@link BigDecimal}. */
-    public static final BigDecimal BIG_DECIMAL = randomBigDecimal();
-
-    /** A random {@link BigDecimal}. */
-    public static final BigDecimal BIG_DECIMAL_RANDOM = randomBigDecimal();
-
     /** A random {@link BigDecimal} from 0-100. */
     public static final BigDecimal BIG_DECIMAL_SMALL = BigDecimal.valueOf(TestInteger.randomBetween(1, 10000) / 100D).setScale(2, ROUND_HALF_UP);
 
     /** The instance of {@link TestBigDecimal}. */
     public static final TestBigDecimal INSTANCE = new TestBigDecimal();
+
+    /** A random {@link BigDecimal}. */
+    public static final BigDecimal BIG_DECIMAL = randomBigDecimal();
+
+    /** A random {@link BigDecimal}. */
+    public static final BigDecimal BIG_DECIMAL_RANDOM = randomBigDecimal();
 
     /** Instantiate a utility to produce randomized {link BigDecimal} objects. */
     public TestBigDecimal()
@@ -35,6 +35,16 @@ public class TestBigDecimal extends AbstractTest<BigDecimal>
      * @return the big decimal
      */
     public static BigDecimal randomBigDecimal()
+    {
+        return INSTANCE.random();
+    }
+
+    /**
+     * Return a random {@link BigDecimal}.
+     *
+     * @return the big decimal
+     */
+    public BigDecimal random()
     {
         return valueOf(RANDOM.nextDouble());
     }

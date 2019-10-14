@@ -1,13 +1,12 @@
 package com.threeleaf.test.random;
 
+import com.threeleaf.test.random.util.*;
 import lombok.Getter;
 
-import java.lang.reflect.Array;
+import javax.annotation.Nonnull;
 import java.util.*;
 
-import static com.threeleaf.test.random.TestInteger.*;
-import static com.threeleaf.test.random.util.TestBooleanUtil.randomBoolean;
-import static com.threeleaf.test.random.util.TestSetUtil.convertToTreeSet;
+import static com.threeleaf.test.random.TestInteger.random1to10;
 
 /**
  * An abstract class to be extended to produce randomized objects of a specified type.
@@ -18,7 +17,7 @@ import static com.threeleaf.test.random.util.TestSetUtil.convertToTreeSet;
  *     <li>Extension also allows for the use of class-level methods and variables as needed.</li>
  * </ul>
  */
-@SuppressWarnings("WeakerAccess")
+@SuppressWarnings({"WeakerAccess", "unused"})
 @Getter
 public abstract class AbstractTest<T>
 {
@@ -71,7 +70,7 @@ public abstract class AbstractTest<T>
      */
     public T[] randomArray(final String... fieldsExcluded)
     {
-        return randomArray(random1to10(), fieldsExcluded);
+        return TestArrayUtil.randomArrayOf(type, fieldsExcluded);
     }
 
     /**
@@ -82,10 +81,9 @@ public abstract class AbstractTest<T>
      *
      * @return the Array of objects
      */
-    @SuppressWarnings("unchecked")
     public T[] randomArray(final int size, final String... fieldsExcluded)
     {
-        return randomArrayList(size, fieldsExcluded).toArray((T[]) Array.newInstance(type, INT_00));
+        return TestArrayUtil.randomArrayOf(size, type, fieldsExcluded);
     }
 
     /**
@@ -97,7 +95,7 @@ public abstract class AbstractTest<T>
      */
     public ArrayList<T> randomArrayList(final String... fieldsExcluded)
     {
-        return randomArrayList(random1to10(), fieldsExcluded);
+        return TestListUtil.randomArrayListOf(type, fieldsExcluded);
     }
 
     /**
@@ -110,13 +108,7 @@ public abstract class AbstractTest<T>
      */
     public ArrayList<T> randomArrayList(final int size, final String... fieldsExcluded)
     {
-        final ArrayList<T> randomObjects = new ArrayList<>();
-        for (int index = 0; index < size; index++)
-        {
-            randomObjects.add(random(fieldsExcluded));
-        }
-
-        return randomObjects;
+        return TestListUtil.randomArrayListOf(size, type, fieldsExcluded);
     }
 
     /**
@@ -128,7 +120,7 @@ public abstract class AbstractTest<T>
      */
     public ArrayList<T> randomArrayListSingle(final String... fieldsExcluded)
     {
-        return randomArrayList(INT_01, fieldsExcluded);
+        return TestListUtil.randomArrayListSingleOf(type, fieldsExcluded);
     }
 
     /**
@@ -140,7 +132,7 @@ public abstract class AbstractTest<T>
      */
     public T[] randomArraySingle(final String... fieldsExcluded)
     {
-        return randomArray(INT_01, fieldsExcluded);
+        return TestArrayUtil.randomArraySingleOf(type, fieldsExcluded);
     }
 
     /**
@@ -165,17 +157,7 @@ public abstract class AbstractTest<T>
      */
     public Collection<T> randomCollection(final int size, final String... fieldsExcluded)
     {
-        Collection<T> collection;
-        if (randomBoolean())
-        {
-            collection = randomSet(size, fieldsExcluded);
-        }
-        else
-        {
-            collection = randomList(size, fieldsExcluded);
-        }
-
-        return collection;
+        return TestCollectionUtil.randomCollectionOf(size, type, fieldsExcluded);
     }
 
     /**
@@ -187,7 +169,50 @@ public abstract class AbstractTest<T>
      */
     public Collection<T> randomCollectionSingle(final String... fieldsExcluded)
     {
-        return randomCollection(INT_01, fieldsExcluded);
+        return TestCollectionUtil.randomCollectionSingleOf(type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link HashMap} of randomized key-value pairs.
+     *
+     * @param size           the number of key-value pairs in the map
+     * @param keyType        type of keys in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     *
+     * @return a HashMap of randomized key-value pairs
+     */
+    public <K> Map<K, T> randomHashMap(final int size, final @Nonnull Class<K> keyType, final String... fieldsExcluded)
+    {
+        return TestMapUtil.randomHashMapOf(size, keyType, type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link HashMap} of 1 to 10 randomized key-value pairs.
+     *
+     * @param keyType        type of keys in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     *
+     * @return a HashMap of randomized key-value pairs
+     */
+    public <K> Map<K, T> randomHashMap(@Nonnull Class<K> keyType, final String... fieldsExcluded)
+    {
+        return TestMapUtil.randomHashMapOf(keyType, type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link HashMap} with a single randomized key-value pair.
+     *
+     * @param keyType        type of keys in the map
+     * @param fieldsExcluded the fields to exclude in the value object
+     * @param <K>            the key Class
+     *
+     * @return a HashMap with a randomized key-value pair
+     */
+    public <K> Map<K, T> randomHashMapSingle(@Nonnull Class<K> keyType, final String... fieldsExcluded)
+    {
+        return TestMapUtil.randomHashMapSingleOf(keyType, type, fieldsExcluded);
     }
 
     /**
@@ -199,7 +224,7 @@ public abstract class AbstractTest<T>
      */
     public HashSet<T> randomHashSet(final String... fieldsExcluded)
     {
-        return randomHashSet(random1to10(), fieldsExcluded);
+        return TestSetUtil.randomHashSetOf(type, fieldsExcluded);
     }
 
     /**
@@ -212,7 +237,7 @@ public abstract class AbstractTest<T>
      */
     public HashSet<T> randomHashSet(final int size, final String... fieldsExcluded)
     {
-        return new HashSet<>(randomArrayList(size, fieldsExcluded));
+        return TestSetUtil.randomHashSetOf(size, type, fieldsExcluded);
     }
 
     /**
@@ -224,7 +249,50 @@ public abstract class AbstractTest<T>
      */
     public HashSet<T> randomHashSetSingle(final String... fieldsExcluded)
     {
-        return randomHashSet(INT_01, fieldsExcluded);
+        return TestSetUtil.randomHashSetSingleOf(type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link LinkedHashMap} of randomized key-value pairs.
+     *
+     * @param size           the number of key-value pairs in the map
+     * @param keyType        type of keys in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     *
+     * @return a LinkedHashMap of randomized key-value pairs
+     */
+    public <K> Map<K, T> randomLinkedHashMap(final int size, final @Nonnull Class<K> keyType, final String... fieldsExcluded)
+    {
+        return TestMapUtil.randomLinkedHashMapOf(size, keyType, type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link LinkedHashMap} of 1 to 10 randomized key-value pairs.
+     *
+     * @param keyType        type of keys in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     *
+     * @return a LinkedHashMap of randomized key-value pairs
+     */
+    public <K> Map<K, T> randomLinkedHashMap(@Nonnull Class<K> keyType, final String... fieldsExcluded)
+    {
+        return TestMapUtil.randomLinkedHashMapOf(keyType, type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link LinkedHashMap} with a single randomized key-value pair.
+     *
+     * @param keyType        type of keys in the map
+     * @param fieldsExcluded the fields to exclude in the value object
+     * @param <K>            the key Class
+     *
+     * @return a LinkedHashMap with a randomized key-value pair
+     */
+    public <K> Map<K, T> randomLinkedHashMapSingle(@Nonnull Class<K> keyType, final String... fieldsExcluded)
+    {
+        return TestMapUtil.randomLinkedHashMapSingleOf(keyType, type, fieldsExcluded);
     }
 
     /**
@@ -236,7 +304,7 @@ public abstract class AbstractTest<T>
      */
     public LinkedHashSet<T> randomLinkedHashSet(final String... fieldsExcluded)
     {
-        return randomLinkedHashSet(random1to10(), fieldsExcluded);
+        return TestSetUtil.randomLinkedHashSetOf(type, fieldsExcluded);
     }
 
     /**
@@ -249,7 +317,7 @@ public abstract class AbstractTest<T>
      */
     public LinkedHashSet<T> randomLinkedHashSet(final int size, final String... fieldsExcluded)
     {
-        return new LinkedHashSet<>(randomArrayList(size, fieldsExcluded));
+        return TestSetUtil.randomLinkedHashSetOf(size, type, fieldsExcluded);
     }
 
     /**
@@ -261,7 +329,7 @@ public abstract class AbstractTest<T>
      */
     public LinkedHashSet<T> randomLinkedHashSetSingle(final String... fieldsExcluded)
     {
-        return randomLinkedHashSet(INT_01, fieldsExcluded);
+        return TestSetUtil.randomLinkedHashSetSingleOf(type, fieldsExcluded);
     }
 
     /**
@@ -273,7 +341,7 @@ public abstract class AbstractTest<T>
      */
     public LinkedList<T> randomLinkedList(final String... fieldsExcluded)
     {
-        return randomLinkedList(random1to10(), fieldsExcluded);
+        return TestListUtil.randomLinkedListOf(type, fieldsExcluded);
     }
 
     /**
@@ -286,7 +354,7 @@ public abstract class AbstractTest<T>
      */
     public LinkedList<T> randomLinkedList(final int size, final String... fieldsExcluded)
     {
-        return new LinkedList<>(randomArrayList(size, fieldsExcluded));
+        return TestListUtil.randomLinkedListOf(size, type, fieldsExcluded);
     }
 
     /**
@@ -298,7 +366,7 @@ public abstract class AbstractTest<T>
      */
     public LinkedList<T> randomLinkedListSingle(final String... fieldsExcluded)
     {
-        return randomLinkedList(INT_01, fieldsExcluded);
+        return TestListUtil.randomLinkedListSingleOf(type, fieldsExcluded);
     }
 
     /**
@@ -310,7 +378,7 @@ public abstract class AbstractTest<T>
      */
     public List<T> randomList(final String... fieldsExcluded)
     {
-        return randomList(random1to10(), fieldsExcluded);
+        return TestListUtil.randomListOf(type, fieldsExcluded);
     }
 
     /**
@@ -323,21 +391,7 @@ public abstract class AbstractTest<T>
      */
     public List<T> randomList(final int size, final String... fieldsExcluded)
     {
-        List<T> list;
-        switch (TestInteger.randomBetween(INT_01, INT_03))
-        {
-            case 1:
-                list = randomArrayList(size, fieldsExcluded);
-                break;
-            case 2:
-                list = randomLinkedList(size, fieldsExcluded);
-                break;
-            default:
-                list = randomVector(size, fieldsExcluded);
-                break;
-        }
-
-        return list;
+        return TestListUtil.randomListOf(size, type, fieldsExcluded);
     }
 
     /**
@@ -349,7 +403,50 @@ public abstract class AbstractTest<T>
      */
     public List<T> randomListSingle(final String... fieldsExcluded)
     {
-        return randomList(INT_01, fieldsExcluded);
+        return TestListUtil.randomListSingleOf(type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link Map} of 1 to 10 randomized key-value pairs.
+     *
+     * @param keyType        type of keys in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     *
+     * @return a HashMap, LinkedHashMap, or TreeMap of randomized key-value pairs
+     */
+    public <K> Map<K, T> randomMap(@Nonnull Class<K> keyType, final String... fieldsExcluded)
+    {
+        return TestMapUtil.randomMapOf(keyType, type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link Map} of randomized key-value pairs.
+     *
+     * @param size           the number of key-value pairs in the map
+     * @param keyType        type of keys in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     *
+     * @return a HashMap, LinkedHashMap, or TreeMap of randomized key-value pairs
+     */
+    public <K> Map<K, T> randomMap(final int size, @Nonnull Class<K> keyType, final String... fieldsExcluded)
+    {
+        return TestMapUtil.randomMapOf(size, keyType, type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link Map} with a single randomized key-value pair.
+     *
+     * @param keyType        type of keys in the map
+     * @param fieldsExcluded the fields to exclude in the value object
+     * @param <K>            the key Class
+     *
+     * @return a HashMap, LinkedHashMap, or TreeMap with a randomized key-value pair
+     */
+    public <K> Map<K, T> randomMapSingle(@Nonnull Class<K> keyType, final String... fieldsExcluded)
+    {
+        return TestMapUtil.randomMapSingleOf(keyType, type, fieldsExcluded);
     }
 
     /**
@@ -361,7 +458,7 @@ public abstract class AbstractTest<T>
      */
     public Set<T> randomSet(final String... fieldsExcluded)
     {
-        return randomSet(random1to10(), fieldsExcluded);
+        return TestSetUtil.randomSetOf(type, fieldsExcluded);
     }
 
     /**
@@ -374,21 +471,7 @@ public abstract class AbstractTest<T>
      */
     public Set<T> randomSet(final int size, final String... fieldsExcluded)
     {
-        Set<T> set;
-        switch (TestInteger.randomBetween(INT_01, INT_03))
-        {
-            case 1:
-                set = randomHashSet(size, fieldsExcluded);
-                break;
-            case 2:
-                set = randomTreeSet(size, fieldsExcluded);
-                break;
-            default:
-                set = randomLinkedHashSet(size, fieldsExcluded);
-                break;
-        }
-
-        return set;
+        return TestSetUtil.randomSetOf(size, type, fieldsExcluded);
     }
 
     /**
@@ -400,7 +483,7 @@ public abstract class AbstractTest<T>
      */
     public Set<T> randomSetSingle(final String... fieldsExcluded)
     {
-        return randomSet(INT_01, fieldsExcluded);
+        return TestSetUtil.randomSetSingleOf(type, fieldsExcluded);
     }
 
     /**
@@ -412,7 +495,7 @@ public abstract class AbstractTest<T>
      */
     public SortedSet<T> randomSortedSet(final String... fieldsExcluded)
     {
-        return randomSortedSet(random1to10(), fieldsExcluded);
+        return TestSetUtil.randomSortedSetOf(type, fieldsExcluded);
     }
 
     /**
@@ -425,7 +508,7 @@ public abstract class AbstractTest<T>
      */
     public SortedSet<T> randomSortedSet(final int size, final String... fieldsExcluded)
     {
-        return randomTreeSet(size, fieldsExcluded);
+        return TestSetUtil.randomSortedSetOf(size, type, fieldsExcluded);
     }
 
     /**
@@ -437,7 +520,52 @@ public abstract class AbstractTest<T>
      */
     public SortedSet<T> randomSortedSetSingle(final String... fieldsExcluded)
     {
-        return randomSortedSet(INT_01, fieldsExcluded);
+        return TestSetUtil.randomSortedSetSingleOf(type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link TreeMap} of randomized key-value pairs.
+     * If the specified type is not Comparable, then a
+     * toString Comparator will automatically be added.
+     *
+     * @param size           the number of key-value pairs in the map
+     * @param keyType        type of keys in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     *
+     * @return a TreeMap of randomized key-value pairs
+     */
+    public <K> Map<K, T> randomTreeMap(final int size, final @Nonnull Class<K> keyType, final String... fieldsExcluded)
+    {
+        return TestMapUtil.randomTreeMapOf(size, keyType, type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link TreeMap} of 1 to 10 randomized key-value pairs.
+     *
+     * @param keyType        type of keys in the map
+     * @param fieldsExcluded the fields to exclude in the value objects
+     * @param <K>            the key Class
+     *
+     * @return a TreeMap of randomized key-value pairs
+     */
+    public <K> Map<K, T> randomTreeMap(@Nonnull Class<K> keyType, final String... fieldsExcluded)
+    {
+        return TestMapUtil.randomTreeMapOf(keyType, type, fieldsExcluded);
+    }
+
+    /**
+     * Return a {@link TreeMap} with a single randomized key-value pair.
+     *
+     * @param keyType        type of keys in the map
+     * @param fieldsExcluded the fields to exclude in the value object
+     * @param <K>            the key Class
+     *
+     * @return a TreeMap with a randomized key-value pair
+     */
+    public <K> Map<K, T> randomTreeMapSingle(@Nonnull Class<K> keyType, final String... fieldsExcluded)
+    {
+        return TestMapUtil.randomTreeMapSingleOf(keyType, type, fieldsExcluded);
     }
 
     /**
@@ -449,7 +577,7 @@ public abstract class AbstractTest<T>
      */
     public TreeSet<T> randomTreeSet(final String... fieldsExcluded)
     {
-        return randomTreeSet(random1to10(), fieldsExcluded);
+        return TestSetUtil.randomTreeSetOf(type, fieldsExcluded);
     }
 
     /**
@@ -462,7 +590,7 @@ public abstract class AbstractTest<T>
      */
     public TreeSet<T> randomTreeSet(final int size, final String... fieldsExcluded)
     {
-        return convertToTreeSet(randomHashSet(size, fieldsExcluded));
+        return TestSetUtil.randomTreeSetOf(size, type, fieldsExcluded);
     }
 
     /**
@@ -474,7 +602,7 @@ public abstract class AbstractTest<T>
      */
     public TreeSet<T> randomTreeSetSingle(final String... fieldsExcluded)
     {
-        return randomTreeSet(INT_01, fieldsExcluded);
+        return TestSetUtil.randomTreeSetSingleOf(type, fieldsExcluded);
     }
 
     /**
@@ -486,7 +614,7 @@ public abstract class AbstractTest<T>
      */
     public Vector<T> randomVector(final String... fieldsExcluded)
     {
-        return randomVector(random1to10(), fieldsExcluded);
+        return TestListUtil.randomVectorOf(type, fieldsExcluded);
     }
 
     /**
@@ -499,7 +627,7 @@ public abstract class AbstractTest<T>
      */
     public Vector<T> randomVector(final int size, final String... fieldsExcluded)
     {
-        return new Vector<>(randomArrayList(size, fieldsExcluded));
+        return TestListUtil.randomVectorOf(size, type, fieldsExcluded);
     }
 
     /**
@@ -511,6 +639,6 @@ public abstract class AbstractTest<T>
      */
     public Vector<T> randomVectorSingle(final String... fieldsExcluded)
     {
-        return randomVector(INT_01, fieldsExcluded);
+        return TestListUtil.randomVectorSingleOf(type, fieldsExcluded);
     }
 }

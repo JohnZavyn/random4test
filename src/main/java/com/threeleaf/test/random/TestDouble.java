@@ -9,9 +9,6 @@ import static com.threeleaf.test.random.TestRandom.RANDOM;
 public class TestDouble extends AbstractTest<Double>
 {
 
-    /** A random Double. */
-    public final static Double DOUBLE = randomDouble();
-
     /** The Double 00. */
     public final static Double DOUBLE_00 = 0D;
 
@@ -338,15 +335,6 @@ public class TestDouble extends AbstractTest<Double>
 
     /** A known double. */
     public static final Double DOUBLE_FIXED = 12345.67890;
-
-    /** A negative Double. */
-    public final static Double DOUBLE_NEGATIVE = -Math.abs(randomDouble());
-
-    /** A positive Double. */
-    public final static Double DOUBLE_POSITIVE = Math.abs(randomDouble());
-
-    /** A random Double. */
-    public final static Double DOUBLE_RANDOM = randomDouble();
 
     /** A small Double between 0-100. */
     public final static Double DOUBLE_SMALL = TestInteger.randomBetween(0, 10000) / 100D;
@@ -675,6 +663,24 @@ public class TestDouble extends AbstractTest<Double>
     /** The primitive double 9999. */
     public final static double D_9999 = 9999;
 
+    /** A small primitive double between 0-100. */
+    public final static double D_SMALL = TestInteger.randomBetween(0, 10000) / 100D;
+
+    /** The instance of {@link TestDouble}. */
+    public static final TestDouble INSTANCE = new TestDouble();
+
+    /** A random Double. */
+    public final static Double DOUBLE = randomDouble();
+
+    /** A negative Double. */
+    public final static Double DOUBLE_NEGATIVE = -Math.abs(randomDouble());
+
+    /** A positive Double. */
+    public final static Double DOUBLE_POSITIVE = Math.abs(randomDouble());
+
+    /** A random Double. */
+    public final static Double DOUBLE_RANDOM = randomDouble();
+
     /** A negative primitive double. */
     public final static double D_NEGATIVE = -Math.abs(randomDouble());
 
@@ -683,12 +689,6 @@ public class TestDouble extends AbstractTest<Double>
 
     /** A random primitive double. */
     public final static double D_RANDOM = randomDouble();
-
-    /** A small primitive double between 0-100. */
-    public final static double D_SMALL = TestInteger.randomBetween(0, 10000) / 100D;
-
-    /** The instance of {@link TestDouble}. */
-    public static final TestDouble INSTANCE = new TestDouble();
 
     /** Instantiate a utility to produce randomized {@link Double} objects. */
     public TestDouble()
@@ -703,7 +703,7 @@ public class TestDouble extends AbstractTest<Double>
      */
     public static double randomDouble()
     {
-        return RANDOM.nextDouble();
+        return INSTANCE.random();
     }
 
     /**
@@ -714,5 +714,15 @@ public class TestDouble extends AbstractTest<Double>
     public static double randomPercent()
     {
         return (double) TestInteger.randomBetween(0, INT_10000) / (double) INT_100;
+    }
+
+    /**
+     * Return a random double.
+     *
+     * @return the double
+     */
+    public Double random()
+    {
+        return RANDOM.nextDouble();
     }
 }
