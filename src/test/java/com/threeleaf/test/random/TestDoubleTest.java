@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static com.threeleaf.test.random.TestDouble.D_00;
 import static com.threeleaf.test.random.TestDouble.D_100;
+import static com.threeleaf.test.random.TestInteger.INT_10000;
 import static org.junit.Assert.assertTrue;
 
 /** Test {@link TestDouble}. */
@@ -27,7 +28,7 @@ public class TestDoubleTest
         double max = 0;
         double min = 100;
 
-        for (int i = 1; i < 100000; i++)
+        for (int i = 1; i < INT_10000; i++)
         {
             final double percent = TestDouble.randomPercent();
 

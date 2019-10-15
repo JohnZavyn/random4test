@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import static com.threeleaf.test.random.TestFloat.F_00;
 import static com.threeleaf.test.random.TestFloat.F_100;
+import static com.threeleaf.test.random.TestInteger.INT_10000;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -26,7 +27,7 @@ public class TestFloatTest
         float max = 0;
         float min = 100;
 
-        for (int i = 1; i < 100000; i++)
+        for (int i = 1; i < INT_10000; i++)
         {
             final float percent = TestFloat.randomPercent();
 
