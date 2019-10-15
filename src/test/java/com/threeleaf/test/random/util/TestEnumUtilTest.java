@@ -14,23 +14,6 @@ import static org.junit.Assert.fail;
 public class TestEnumUtilTest
 {
 
-    /** Test {@link TestEnumUtil} constructor. */
-    @Test
-    public void constructor() throws Exception
-    {
-        Constructor<TestEnumUtil> constructor = TestEnumUtil.class.getDeclaredConstructor();
-        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-        constructor.setAccessible(true);
-        try
-        {
-            constructor.newInstance();
-        }
-        catch (Exception e)
-        {
-            assertTrue(e instanceof InvocationTargetException);
-        }
-    }
-
     /** Test {@link TestEnumUtil#chooseOneFrom(Class)}. */
     @Test
     public void chooseOneFrom()
@@ -50,6 +33,23 @@ public class TestEnumUtilTest
         if (!allPossibilitiesFound)
         {
             fail("Expected all possible results, but only found " + results);
+        }
+    }
+
+    /** Test {@link TestEnumUtil} constructor. */
+    @Test
+    public void constructor() throws Exception
+    {
+        Constructor<TestEnumUtil> constructor = TestEnumUtil.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        try
+        {
+            constructor.newInstance();
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof InvocationTargetException);
         }
     }
 

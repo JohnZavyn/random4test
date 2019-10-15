@@ -13,6 +13,23 @@ import static org.junit.Assert.*;
 public class TestRandomTest
 {
 
+    /** Test {@link TestRandom} constructor. */
+    @Test
+    public void constructor() throws Exception
+    {
+        Constructor<TestRandom> constructor = TestRandom.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        try
+        {
+            constructor.newInstance();
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof InvocationTargetException);
+        }
+    }
+
     /** Test {@link TestRandom#random(Class, String...)}. */
     @Test
     public void random()
@@ -41,22 +58,5 @@ public class TestRandomTest
     public void randomObject()
     {
         assertNotNull(OBJECT);
-    }
-
-    /** Test {@link TestRandom} constructor. */
-    @Test
-    public void constructor() throws Exception
-    {
-        Constructor<TestRandom> constructor = TestRandom.class.getDeclaredConstructor();
-        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-        constructor.setAccessible(true);
-        try
-        {
-            constructor.newInstance();
-        }
-        catch (Exception e)
-        {
-            assertTrue(e instanceof InvocationTargetException);
-        }
     }
 }

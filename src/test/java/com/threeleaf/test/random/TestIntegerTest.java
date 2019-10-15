@@ -37,11 +37,11 @@ public class TestIntegerTest
         assertTrue(number <= INT_10);
     }
 
-    /** Test {@link TestInteger#random0to100()}. */
+    /** Test {@link TestInteger#randomPercent()}}. */
     @Test
     public void random0to100()
     {
-        final int number = TestInteger.random0to100();
+        final int number = TestInteger.randomPercent();
 
         assertTrue(number >= INT_00);
         assertTrue(number <= INT_100);

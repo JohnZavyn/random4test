@@ -1,5 +1,10 @@
 package com.threeleaf.test.random;
 
+import static com.threeleaf.test.random.TestInteger.INT_01;
+import static com.threeleaf.test.random.TestInteger.INT_100;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 /** Utilities for random {@link Short} creation */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class TestShort extends AbstractTest<Short>
@@ -336,16 +341,16 @@ public class TestShort extends AbstractTest<Short>
     public final static Short SHORT_9999 = 9999;
 
     /** A negative Short. */
-    public final static Short SHORT_NEGATIVE = (short) -Math.abs(randomShort());
+    public final static Short SHORT_NEGATIVE = randomNegative();
 
     /** A positive Short. */
-    public final static Short SHORT_POSITIVE = (short) Math.abs(randomShort());
+    public final static Short SHORT_POSITIVE = randomPositive();
 
     /** A random Short. */
     public final static Short SHORT_RANDOM = randomShort();
 
     /** A small Short between 0-100. */
-    public final static Short SHORT_SMALL = (short) TestInteger.randomBetween(0, 100);
+    public final static Short SHORT_SMALL = randomPercent();
 
     /** The primitive short 00. */
     public final static short S_00 = 0;
@@ -672,21 +677,67 @@ public class TestShort extends AbstractTest<Short>
     public final static short S_9999 = 9999;
 
     /** A negative primitive short. */
-    public final static short S_NEGATIVE = (short) -Math.abs(randomShort());
+    public final static short S_NEGATIVE = randomNegative();
 
     /** A positive primitive short. */
-    public final static short S_POSITIVE = (short) Math.abs(randomShort());
+    public final static short S_POSITIVE = randomPositive();
 
     /** A random primitive short. */
     public final static short S_RANDOM = randomShort();
 
     /** A small primitive short between 0-100. */
-    public final static short S_SMALL = (short) TestInteger.randomBetween(0, 100);
+    public final static short S_SMALL = randomPercent();
 
     /** Instantiate a utility to produce randomized {@link Short} objects. */
     public TestShort()
     {
         super(Short.class);
+    }
+
+    /**
+     * Return a random short between two shorts, inclusive.
+     *
+     * @param number1 a number
+     * @param number2 another number
+     *
+     * @return the random short
+     */
+    public static short randomBetween(final int number1, final int number2)
+    {
+        final int min = min(number1, number2);
+        final int max = max(number1, number2);
+
+        return (short) (min + ((max - min + 1) * Math.random()));
+    }
+
+    /**
+     * Return a random negative {@link Short}.
+     *
+     * @return the big decimal
+     */
+    public static short randomNegative()
+    {
+        return randomBetween(Short.MIN_VALUE, -1);
+    }
+
+    /**
+     * Get a random number between 0 and 100.
+     *
+     * @return a number between 0 and 100 inclusive
+     */
+    public static short randomPercent()
+    {
+        return randomBetween(0, INT_100);
+    }
+
+    /**
+     * Return a random positive {@link Short}.
+     *
+     * @return the big decimal
+     */
+    public static short randomPositive()
+    {
+        return randomBetween(INT_01, Short.MAX_VALUE);
     }
 
     /**
@@ -706,6 +757,6 @@ public class TestShort extends AbstractTest<Short>
      */
     public Short random()
     {
-        return (short) TestInteger.randomBetween(Short.MIN_VALUE, Short.MAX_VALUE);
+        return randomBetween(Short.MIN_VALUE, Short.MAX_VALUE);
     }
 }

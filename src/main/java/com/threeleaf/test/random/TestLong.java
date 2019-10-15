@@ -5,6 +5,7 @@ import java.util.*;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import static java.lang.Math.*;
 import static java.util.Collections.*;
 
 /** Utilities for random {@link Long} creation */
@@ -367,10 +368,10 @@ public class TestLong extends AbstractTest<Long>
     public static final Map<Long, Long> LONG_MAP_SINGLE = unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
 
     /** A negative Long. */
-    public final static Long LONG_NEGATIVE = -Math.abs(randomLong());
+    public final static Long LONG_NEGATIVE = randomNegative();
 
     /** A positive Long. */
-    public final static Long LONG_POSITIVE = Math.abs(randomLong());
+    public final static Long LONG_POSITIVE = randomPositive();
 
     /** A random Long. */
     public final static Long LONG_RANDOM = randomLong();
@@ -380,9 +381,6 @@ public class TestLong extends AbstractTest<Long>
 
     /** An {@link Long} set with a single value. */
     public static final Set<Long> LONG_SET_SINGLE = unmodifiableSet(INSTANCE.randomSetSingle());
-
-    /** A small Long between 0-100. */
-    public final static Long LONG_SMALL = (long) TestInteger.randomBetween(0, 100);
 
     /** The primitive long 00. */
     public final static long L_00 = 0;
@@ -419,6 +417,9 @@ public class TestLong extends AbstractTest<Long>
 
     /** The primitive long 100. */
     public final static long L_100 = 100;
+
+    /** A small Long between 0-100. */
+    public final static Long LONG_SMALL = randomPercent();
 
     /** The primitive long 1000. */
     public final static long L_1000 = 1000;
@@ -709,16 +710,16 @@ public class TestLong extends AbstractTest<Long>
     public final static long L_9999 = 9999;
 
     /** A negative primitive long. */
-    public final static long L_NEGATIVE = -Math.abs(randomLong());
+    public final static long L_NEGATIVE = randomNegative();
 
     /** A positive primitive long. */
-    public final static long L_POSITIVE = Math.abs(randomLong());
+    public final static long L_POSITIVE = randomPositive();
 
     /** A random primitive long. */
     public final static long L_RANDOM = randomLong();
 
     /** A small primitive long between 0-100. */
-    public final static long L_SMALL = TestInteger.randomBetween(0, 100);
+    public final static long L_SMALL = randomPercent();
 
     /** Instantiate a utility to produce randomized Long objects. */
     public TestLong()
@@ -750,6 +751,36 @@ public class TestLong extends AbstractTest<Long>
     public static long randomLong()
     {
         return INSTANCE.random();
+    }
+
+    /**
+     * Return a random negative {@link Long}.
+     *
+     * @return the big decimal
+     */
+    public static long randomNegative()
+    {
+        return -abs(RANDOM.nextLong());
+    }
+
+    /**
+     * Get a random number between 0 and 100.
+     *
+     * @return a number between 0 and 100 inclusive
+     */
+    public static long randomPercent()
+    {
+        return randomBetween(0, L_100);
+    }
+
+    /**
+     * Return a random positive {@link Long}.
+     *
+     * @return the big decimal
+     */
+    public static long randomPositive()
+    {
+        return abs(RANDOM.nextLong());
     }
 
     /**

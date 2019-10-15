@@ -28,7 +28,8 @@ public class TestDateTest
     @Test
     public void randomRecent()
     {
-        final Date randomDate = TestDate.randomPast();
+        final Date randomDate = TestDate.randomRecent();
+
         assertTrue(randomDate.getTime() > TestDate.YEAR_LAST.getTime() - 1);
         assertTrue(randomDate.getTime() < TestDate.YEAR_NEXT.getTime() + 1);
     }

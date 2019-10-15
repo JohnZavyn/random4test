@@ -27,7 +27,8 @@ public class TestJodaLocalDateTimeTest
     @Test
     public void randomRecent()
     {
-        final LocalDateTime randomDate = TestJodaLocalDateTime.randomPast();
+        final LocalDateTime randomDate = TestJodaLocalDateTime.randomRecent();
+
         assertTrue(randomDate.isAfter(TestJodaLocalDateTime.YEAR_LAST.minusDays(1)));
         assertTrue(randomDate.isBefore(TestJodaLocalDateTime.YEAR_NEXT.plusDays(1)));
     }

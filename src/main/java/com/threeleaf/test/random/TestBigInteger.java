@@ -2,7 +2,9 @@ package com.threeleaf.test.random;
 
 import java.math.BigInteger;
 
+import static com.threeleaf.test.random.TestInteger.INT_100;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
+import static java.math.BigInteger.valueOf;
 
 /** Utilities for random {@link BigInteger} creation */
 @SuppressWarnings({"WeakerAccess", "unused"})
@@ -28,6 +30,32 @@ public class TestBigInteger extends AbstractTest<BigInteger>
     }
 
     /**
+     * Return a random short between two shorts, inclusive.
+     *
+     * @param number1 a number
+     * @param number2 another number
+     *
+     * @return the random short
+     */
+    public static BigInteger randomBetween(final long number1, final long number2)
+    {
+        return valueOf(TestLong.randomBetween(number1, number2));
+    }
+
+    /**
+     * Return a random short between two shorts, inclusive.
+     *
+     * @param number1 a number
+     * @param number2 another number
+     *
+     * @return the random short
+     */
+    public static BigInteger randomBetween(final BigInteger number1, final BigInteger number2)
+    {
+        return randomBetween(number1.longValue(), number2.longValue());
+    }
+
+    /**
      * Return a random {@link BigInteger}.
      *
      * @return the big integer
@@ -35,6 +63,36 @@ public class TestBigInteger extends AbstractTest<BigInteger>
     public static BigInteger randomBigInteger()
     {
         return INSTANCE.random();
+    }
+
+    /**
+     * Return a random negative {@link BigInteger}.
+     *
+     * @return the big decimal
+     */
+    public static BigInteger randomNegative()
+    {
+        return valueOf(TestLong.randomNegative());
+    }
+
+    /**
+     * Get a random number between 0 and 100.
+     *
+     * @return a number between 0 and 100 inclusive
+     */
+    public static BigInteger randomPercent()
+    {
+        return randomBetween(0, INT_100);
+    }
+
+    /**
+     * Return a random positive {@link BigInteger}.
+     *
+     * @return the big decimal
+     */
+    public static BigInteger randomPositive()
+    {
+        return valueOf(TestLong.randomPositive());
     }
 
     /**

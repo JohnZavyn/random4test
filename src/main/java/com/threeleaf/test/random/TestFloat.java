@@ -1,6 +1,8 @@
 package com.threeleaf.test.random;
 
+import static com.threeleaf.test.random.TestInteger.INT_100;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
+import static java.lang.Math.*;
 
 /** Utilities for random {@link Float} creation */
 @SuppressWarnings({"WeakerAccess", "unused"})
@@ -331,8 +333,14 @@ public class TestFloat extends AbstractTest<Float>
     /** The Float 9999. */
     public final static Float FLOAT_9999 = 9999F;
 
+    /** A negative Float. */
+    public final static Float FLOAT_NEGATIVE = randomNegative();
+
+    /** A positive Float. */
+    public final static Float FLOAT_POSITIVE = randomPositive();
+
     /** A small Float between 0-100. */
-    public final static Float FLOAT_SMALL = TestInteger.randomBetween(0, 10000) / 100F;
+    public final static Float FLOAT_SMALL = randomPercent();
 
     /** The primitive float 00. */
     public final static float F_00 = 0;
@@ -658,8 +666,14 @@ public class TestFloat extends AbstractTest<Float>
     /** The primitive float 9999. */
     public final static float F_9999 = 9999;
 
+    /** A negative primitive float. */
+    public final static float F_NEGATIVE = randomNegative();
+
+    /** A positive primitive float. */
+    public final static float F_POSITIVE = randomPositive();
+
     /** A small primitive float between 0-100. */
-    public final static float F_SMALL = TestInteger.randomBetween(0, 10000) / 100F;
+    public final static float F_SMALL = randomPercent();
 
     /** The instance of {@link TestFloat}. */
     public static final TestFloat INSTANCE = new TestFloat();
@@ -667,20 +681,8 @@ public class TestFloat extends AbstractTest<Float>
     /** A random Float. */
     public final static Float FLOAT = randomFloat();
 
-    /** A negative Float. */
-    public final static Float FLOAT_NEGATIVE = -Math.abs(randomFloat());
-
-    /** A positive Float. */
-    public final static Float FLOAT_POSITIVE = Math.abs(randomFloat());
-
     /** A random Float. */
     public final static Float FLOAT_RANDOM = randomFloat();
-
-    /** A negative primitive float. */
-    public final static float F_NEGATIVE = -Math.abs(randomFloat());
-
-    /** A positive primitive float. */
-    public final static float F_POSITIVE = Math.abs(randomFloat());
 
     /** A random primitive float. */
     public final static float F_RANDOM = randomFloat();
@@ -692,6 +694,22 @@ public class TestFloat extends AbstractTest<Float>
     }
 
     /**
+     * Return a random float between two floats, inclusive.
+     *
+     * @param number1 a number
+     * @param number2 another number
+     *
+     * @return the random float
+     */
+    public static float randomBetween(final float number1, final float number2)
+    {
+        final float min = min(number1, number2);
+        final float max = max(number1, number2);
+
+        return min + (float) ((max - min) * Math.random());
+    }
+
+    /**
      * Return a random float.
      *
      * @return the float
@@ -699,6 +717,36 @@ public class TestFloat extends AbstractTest<Float>
     public static float randomFloat()
     {
         return INSTANCE.random();
+    }
+
+    /**
+     * Return a random negative {@link Float}.
+     *
+     * @return the big decimal
+     */
+    public static float randomNegative()
+    {
+        return -abs(RANDOM.nextFloat());
+    }
+
+    /**
+     * Get a random number between 0 and 100.
+     *
+     * @return a number between 0 and 100 inclusive
+     */
+    public static float randomPercent()
+    {
+        return randomBetween(0, INT_100);
+    }
+
+    /**
+     * Return a random positive {@link Float}.
+     *
+     * @return the big decimal
+     */
+    public static float randomPositive()
+    {
+        return abs(RANDOM.nextFloat());
     }
 
     /**

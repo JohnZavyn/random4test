@@ -1,8 +1,10 @@
 package com.threeleaf.test.random;
 
+import static com.threeleaf.test.random.TestInteger.INT_01;
 import static com.threeleaf.test.random.TestInteger.INT_100;
-import static com.threeleaf.test.random.TestInteger.INT_10000;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 /** Utilities for random {@link Double} creation */
 @SuppressWarnings({"WeakerAccess", "unused"})
@@ -336,8 +338,14 @@ public class TestDouble extends AbstractTest<Double>
     /** A known double. */
     public static final Double DOUBLE_FIXED = 12345.67890;
 
+    /** A negative Double. */
+    public final static Double DOUBLE_NEGATIVE = randomNegative();
+
+    /** A positive Double. */
+    public final static Double DOUBLE_POSITIVE = randomPositive();
+
     /** A small Double between 0-100. */
-    public final static Double DOUBLE_SMALL = TestInteger.randomBetween(0, 10000) / 100D;
+    public final static Double DOUBLE_SMALL = randomPercent();
 
     /** The primitive double 00. */
     public final static double D_00 = 0;
@@ -663,8 +671,14 @@ public class TestDouble extends AbstractTest<Double>
     /** The primitive double 9999. */
     public final static double D_9999 = 9999;
 
+    /** A negative primitive double. */
+    public final static double D_NEGATIVE = randomNegative();
+
+    /** A positive primitive double. */
+    public final static double D_POSITIVE = randomPositive();
+
     /** A small primitive double between 0-100. */
-    public final static double D_SMALL = TestInteger.randomBetween(0, 10000) / 100D;
+    public final static double D_SMALL = randomPercent();
 
     /** The instance of {@link TestDouble}. */
     public static final TestDouble INSTANCE = new TestDouble();
@@ -672,20 +686,8 @@ public class TestDouble extends AbstractTest<Double>
     /** A random Double. */
     public final static Double DOUBLE = randomDouble();
 
-    /** A negative Double. */
-    public final static Double DOUBLE_NEGATIVE = -Math.abs(randomDouble());
-
-    /** A positive Double. */
-    public final static Double DOUBLE_POSITIVE = Math.abs(randomDouble());
-
     /** A random Double. */
     public final static Double DOUBLE_RANDOM = randomDouble();
-
-    /** A negative primitive double. */
-    public final static double D_NEGATIVE = -Math.abs(randomDouble());
-
-    /** A positive primitive double. */
-    public final static double D_POSITIVE = Math.abs(randomDouble());
 
     /** A random primitive double. */
     public final static double D_RANDOM = randomDouble();
@@ -694,6 +696,22 @@ public class TestDouble extends AbstractTest<Double>
     public TestDouble()
     {
         super(Double.class);
+    }
+
+    /**
+     * Return a random double between two doubles, inclusive.
+     *
+     * @param number1 a number
+     * @param number2 another number
+     *
+     * @return the random double
+     */
+    public static double randomBetween(final double number1, final double number2)
+    {
+        final double min = min(number1, number2);
+        final double max = max(number1, number2);
+
+        return min + ((max - min) * Math.random());
     }
 
     /**
@@ -707,13 +725,33 @@ public class TestDouble extends AbstractTest<Double>
     }
 
     /**
-     * Get a random number between 0.00 and 100.00.
+     * Return a random negative {@link Double}.
      *
-     * @return a number between 0.00 and 100.00 inclusive
+     * @return the big decimal
+     */
+    public static double randomNegative()
+    {
+        return -randomPositive();
+    }
+
+    /**
+     * Get a random number between 0 and 100.
+     *
+     * @return a number between 0 and 100 inclusive
      */
     public static double randomPercent()
     {
-        return (double) TestInteger.randomBetween(0, INT_10000) / (double) INT_100;
+        return randomBetween(0, INT_100);
+    }
+
+    /**
+     * Return a random positive {@link Double}.
+     *
+     * @return the big decimal
+     */
+    public static double randomPositive()
+    {
+        return randomBetween(INT_01, Double.MAX_VALUE);
     }
 
     /**

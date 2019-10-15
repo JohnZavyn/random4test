@@ -28,6 +28,7 @@ public class TestNameUtilTest
             assertTrue(e instanceof InvocationTargetException);
         }
     }
+
     /** Test {@link TestNameUtil#randomName()}. */
     @Test
     public void randomName()

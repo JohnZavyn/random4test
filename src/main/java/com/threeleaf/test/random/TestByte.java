@@ -1,5 +1,10 @@
 package com.threeleaf.test.random;
 
+import static com.threeleaf.test.random.TestInteger.INT_01;
+import static com.threeleaf.test.random.TestInteger.INT_100;
+import static java.lang.Math.max;
+import static java.lang.Math.min;
+
 /** Utilities for random {@link Byte} creation */
 @SuppressWarnings({"WeakerAccess", "unused"})
 public class TestByte extends AbstractTest<Byte>
@@ -311,8 +316,14 @@ public class TestByte extends AbstractTest<Byte>
     /** The Byte 99. */
     public final static Byte BYTE_99 = 99;
 
+    /** A negative Byte. */
+    public final static Byte BYTE_NEGATIVE = randomNegative();
+
+    /** A positive Byte. */
+    public final static Byte BYTE_POSITIVE = randomPositive();
+
     /** A small Byte from 0-100. */
-    public final static Byte BYTE_SMALL = (byte) TestInteger.randomBetween(0, 100);
+    public final static Byte BYTE_SMALL = randomPercent();
 
     /** The primitive byte 00. */
     public final static byte B_00 = 0;
@@ -620,8 +631,14 @@ public class TestByte extends AbstractTest<Byte>
     /** The primitive byte 99. */
     public final static byte B_99 = 99;
 
+    /** A negative primitive byte. */
+    public final static byte B_NEGATIVE = randomNegative();
+
+    /** A positive primitive byte. */
+    public final static byte B_POSITIVE = randomPositive();
+
     /** A small primitive byte from 0-100. */
-    public final static byte B_SMALL = (byte) TestInteger.randomBetween(0, 100);
+    public final static byte B_SMALL = randomPercent();
 
     /** The instance of {@link TestByte}. */
     public static final TestByte INSTANCE = new TestByte();
@@ -629,20 +646,8 @@ public class TestByte extends AbstractTest<Byte>
     /** A random Byte. */
     public final static Byte BYTE = randomByte();
 
-    /** A negative Byte. */
-    public final static Byte BYTE_NEGATIVE = (byte) -Math.abs(randomByte());
-
-    /** A positive Byte. */
-    public final static Byte BYTE_POSITIVE = (byte) Math.abs(randomByte());
-
     /** A random Byte. */
     public final static Byte BYTE_RANDOM = randomByte();
-
-    /** A negative primitive byte. */
-    public final static byte B_NEGATIVE = (byte) -Math.abs(randomByte());
-
-    /** A positive primitive byte. */
-    public final static byte B_POSITIVE = (byte) Math.abs(randomByte());
 
     /** A random primitive byte. */
     public final static byte B_RANDOM = randomByte();
@@ -651,6 +656,22 @@ public class TestByte extends AbstractTest<Byte>
     public TestByte()
     {
         super(Byte.class);
+    }
+
+    /**
+     * Return a random short between two shorts, inclusive.
+     *
+     * @param number1 a number
+     * @param number2 another number
+     *
+     * @return the random short
+     */
+    public static byte randomBetween(final int number1, final int number2)
+    {
+        final int min = min(number1, number2);
+        final int max = max(number1, number2);
+
+        return (byte) (min + ((max - min + 1) * Math.random()));
     }
 
     /**
@@ -664,12 +685,42 @@ public class TestByte extends AbstractTest<Byte>
     }
 
     /**
+     * Return a random negative {@link Byte}.
+     *
+     * @return the big decimal
+     */
+    public static Byte randomNegative()
+    {
+        return randomBetween(Byte.MIN_VALUE, -1);
+    }
+
+    /**
+     * Get a random number between 0 and 100.
+     *
+     * @return a number between 0 and 100 inclusive
+     */
+    public static byte randomPercent()
+    {
+        return randomBetween(0, INT_100);
+    }
+
+    /**
+     * Return a random positive {@link Byte}.
+     *
+     * @return the big decimal
+     */
+    public static Byte randomPositive()
+    {
+        return randomBetween(INT_01, Byte.MAX_VALUE);
+    }
+
+    /**
      * Return a random byte.
      *
      * @return the byte
      */
     public Byte random()
     {
-        return (byte) TestInteger.randomBetween(Byte.MIN_VALUE, Byte.MAX_VALUE);
+        return randomBetween(Byte.MIN_VALUE, Byte.MAX_VALUE);
     }
 }

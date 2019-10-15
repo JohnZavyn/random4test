@@ -6,8 +6,6 @@ import lombok.Getter;
 import javax.annotation.Nonnull;
 import java.util.*;
 
-import static com.threeleaf.test.random.TestInteger.random1to10;
-
 /**
  * An abstract class to be extended to produce randomized objects of a specified type.
  * <ul>
@@ -144,7 +142,7 @@ public abstract class AbstractTest<T>
      */
     public Collection<T> randomCollection(final String... fieldsExcluded)
     {
-        return randomCollection(random1to10(), fieldsExcluded);
+        return TestCollectionUtil.randomCollectionOf(type, fieldsExcluded);
     }
 
     /**

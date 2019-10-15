@@ -16,22 +16,6 @@ import static org.junit.Assert.fail;
 public class TestArrayUtilTest
 {
 
-    /** Test {@link TestArrayUtil} constructor. */
-    @Test
-    public void constructor() throws Exception
-    {
-        Constructor<TestArrayUtil> constructor = TestArrayUtil.class.getDeclaredConstructor();
-        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-        constructor.setAccessible(true);
-        try
-        {
-            constructor.newInstance();
-        }
-        catch (Exception e)
-        {
-            assertTrue(e instanceof InvocationTargetException);
-        }
-    }
     /** Test {@link TestArrayUtil#chooseOneFrom(Object[])}. */
     @Test
     public void chooseOneFrom()
@@ -52,6 +36,23 @@ public class TestArrayUtilTest
         if (!allPossibilitiesFound)
         {
             fail("Expected all possible results, but only found " + results);
+        }
+    }
+
+    /** Test {@link TestArrayUtil} constructor. */
+    @Test
+    public void constructor() throws Exception
+    {
+        Constructor<TestArrayUtil> constructor = TestArrayUtil.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        try
+        {
+            constructor.newInstance();
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof InvocationTargetException);
         }
     }
 
