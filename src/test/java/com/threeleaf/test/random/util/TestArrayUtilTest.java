@@ -6,9 +6,9 @@ import java.lang.reflect.*;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.threeleaf.test.random.TestBooleanTest.LOOP_COUNT_MAX;
 import static com.threeleaf.test.random.TestString.*;
 import static com.threeleaf.test.random.util.TestArrayUtil.randomArrayOf;
-import static com.threeleaf.test.random.util.TestBooleanUtilTest.LOOP_COUNT_MAX;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 

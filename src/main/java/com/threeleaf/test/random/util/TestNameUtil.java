@@ -5,7 +5,7 @@ import lombok.experimental.UtilityClass;
 import java.util.Arrays;
 import java.util.List;
 
-import static com.threeleaf.test.random.util.TestBooleanUtil.randomBoolean;
+import static com.threeleaf.test.random.TestBoolean.randomBoolean;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 
 @UtilityClass

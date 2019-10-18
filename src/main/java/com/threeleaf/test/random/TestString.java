@@ -17,7 +17,7 @@ public class TestString extends AbstractTest<String>
     public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 
     /** Alphabet, lower case, in an array. */
-    public static final char[] ALPHABET_ARRAY = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    public static final String[] ALPHABET_ARRAY = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
     /** Alphabet, upper case. */
     public static final String ALPHABET_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

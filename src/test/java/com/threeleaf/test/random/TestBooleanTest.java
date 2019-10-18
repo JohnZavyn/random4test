@@ -1,17 +1,14 @@
-package com.threeleaf.test.random.util;
+package com.threeleaf.test.random;
 
 import org.junit.Test;
 
-import java.lang.reflect.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-/** Test {@link TestBooleanUtil} */
-@SuppressWarnings("WeakerAccess")
-public class TestBooleanUtilTest
+/** Test {@link TestBoolean} */
+public class TestBooleanTest
 {
 
     /**
@@ -22,34 +19,16 @@ public class TestBooleanUtilTest
      */
     public static final int LOOP_COUNT_MAX = 100;
 
-    /** Test {@link TestBooleanUtil} constructor. */
+    /** Test {@link TestBoolean#coinFlip()}. */
     @Test
-    public void constructor() throws Exception
+    public void coinFlip()
     {
-        Constructor<TestBooleanUtil> constructor = TestBooleanUtil.class.getDeclaredConstructor();
-        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-        constructor.setAccessible(true);
-        try
-        {
-            constructor.newInstance();
-        }
-        catch (Exception e)
-        {
-            assertTrue(e instanceof InvocationTargetException);
-        }
-    }
-
-    /** Test {@link TestBooleanUtil#oneOutOf(int)}. */
-    @Test
-    public void oneOutOf()
-    {
-        final int          number                = 10;
         final Set<Boolean> results               = new HashSet<>();
         boolean            allPossibilitiesFound = false;
 
         for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++)
         {
-            results.add(TestBooleanUtil.oneOutOf(number));
+            results.add(TestBoolean.coinFlip());
             if (results.size() == 2)
             {
                 allPossibilitiesFound = true;
@@ -62,7 +41,30 @@ public class TestBooleanUtilTest
         }
     }
 
-    /** Test {@link TestBooleanUtil#randomBoolean()}. */
+    /** Test {@link TestBoolean#oneOutOf(int)}. */
+    @Test
+    public void oneOutOf()
+    {
+        final int          number                = 10;
+        final Set<Boolean> results               = new HashSet<>();
+        boolean            allPossibilitiesFound = false;
+
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++)
+        {
+            results.add(TestBoolean.oneOutOf(number));
+            if (results.size() == 2)
+            {
+                allPossibilitiesFound = true;
+                break;
+            }
+        }
+        if (!allPossibilitiesFound)
+        {
+            fail("Expected all possible results, but only found " + results);
+        }
+    }
+
+    /** Test {@link TestBoolean#randomBoolean()}. */
     @Test
     public void randomBoolean()
     {
@@ -71,7 +73,7 @@ public class TestBooleanUtilTest
 
         for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++)
         {
-            results.add(TestBooleanUtil.randomBoolean());
+            results.add(TestBoolean.randomBoolean());
             if (results.size() == 2)
             {
                 allPossibilitiesFound = true;

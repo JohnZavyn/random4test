@@ -2,8 +2,7 @@ package com.threeleaf.test.random;
 
 import org.junit.Test;
 
-import static com.threeleaf.test.random.TestDouble.D_00;
-import static com.threeleaf.test.random.TestDouble.D_100;
+import static com.threeleaf.test.random.TestDouble.*;
 import static com.threeleaf.test.random.TestInteger.INT_10000;
 import static org.junit.Assert.assertTrue;
 
@@ -34,11 +33,14 @@ public class TestDoubleTest
 
             max = Math.max(max, percent);
             min = Math.min(min, percent);
-
-            assertTrue(percent >= D_00);
-            assertTrue(percent <= D_100);
         }
-        System.out.println(min);
-        System.out.println(max);
+
+        /* Because of the number of decimals, odds are very small that 0.0̅ and 100.0̅
+         * will be selected, so just verify largest and smallest values are close.
+         */
+        assertTrue(min >= D_00);
+        assertTrue(max <= D_100);
+        assertTrue(min < D_01);
+        assertTrue(max > D_99);
     }
 }

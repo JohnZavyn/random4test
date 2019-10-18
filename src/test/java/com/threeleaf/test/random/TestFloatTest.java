@@ -2,8 +2,7 @@ package com.threeleaf.test.random;
 
 import org.junit.Test;
 
-import static com.threeleaf.test.random.TestFloat.F_00;
-import static com.threeleaf.test.random.TestFloat.F_100;
+import static com.threeleaf.test.random.TestFloat.*;
 import static com.threeleaf.test.random.TestInteger.INT_10000;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
@@ -33,11 +32,14 @@ public class TestFloatTest
 
             max = Math.max(max, percent);
             min = Math.min(min, percent);
-
-            assertTrue(percent >= F_00);
-            assertTrue(percent <= F_100);
         }
-        System.out.println(min);
-        System.out.println(max);
+
+        /* Because of the number of decimals, odds are very small that 0.0̅ and 100.0̅
+         * will be selected, so just verify largest and smallest values are close.
+         */
+        assertTrue(min >= F_00);
+        assertTrue(max <= F_100);
+        assertTrue(min < F_01);
+        assertTrue(max > F_99);
     }
 }

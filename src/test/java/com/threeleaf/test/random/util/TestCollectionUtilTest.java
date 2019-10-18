@@ -5,10 +5,10 @@ import org.junit.Test;
 import java.lang.reflect.*;
 import java.util.*;
 
+import static com.threeleaf.test.random.TestBooleanTest.LOOP_COUNT_MAX;
 import static com.threeleaf.test.random.TestInteger.INT_01;
 import static com.threeleaf.test.random.TestInteger.INT_10;
 import static com.threeleaf.test.random.TestString.*;
-import static com.threeleaf.test.random.util.TestBooleanUtilTest.LOOP_COUNT_MAX;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
