@@ -206,7 +206,7 @@ public class TestCharacter extends AbstractTest<Character>
     /** The character 37 / x25 / %. */
     public static final Character CHARACTER_37 = 37;
 
-    /** The character 38 / x26 / &. */
+    /** The character 38 / x26 / &amp;. */
     public static final Character CHARACTER_38 = 38;
 
     /** The character 39 / x27 / '. */
@@ -272,13 +272,13 @@ public class TestCharacter extends AbstractTest<Character>
     /** The character 59 / x3B / ;. */
     public static final Character CHARACTER_59 = 59;
 
-    /** The character 60 / x3C / <. */
+    /** The character 60 / x3C / &lt;. */
     public static final Character CHARACTER_60 = 60;
 
     /** The character 61 / x3D / =. */
     public static final Character CHARACTER_61 = 61;
 
-    /** The character 62 / x3E / >. */
+    /** The character 62 / x3E / &gt;. */
     public static final Character CHARACTER_62 = 62;
 
     /** The character 63 / x3F / ?. */
@@ -587,7 +587,7 @@ public class TestCharacter extends AbstractTest<Character>
     /** The character 37 / x25 / %. */
     public static final Character C_37 = 37;
 
-    /** The character 38 / x26 / &. */
+    /** The character 38 / x26 / &amp;. */
     public static final Character C_38 = 38;
 
     /** The character 39 / x27 / '. */
@@ -653,13 +653,13 @@ public class TestCharacter extends AbstractTest<Character>
     /** The character 59 / x3B / ;. */
     public static final Character C_59 = 59;
 
-    /** The character 60 / x3C / <. */
+    /** The character 60 / x3C / &lt;. */
     public static final Character C_60 = 60;
 
     /** The character 61 / x3D / =. */
     public static final Character C_61 = 61;
 
-    /** The character 62 / x3E / >. */
+    /** The character 62 / x3E / &gt;. */
     public static final Character C_62 = 62;
 
     /** The character 63 / x3F / ?. */
