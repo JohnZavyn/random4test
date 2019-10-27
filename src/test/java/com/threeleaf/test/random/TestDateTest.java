@@ -2,7 +2,7 @@ package com.threeleaf.test.random;
 
 import org.junit.Test;
 
-import java.lang.reflect.*;
+import java.util.Date;
 
 import static org.junit.Assert.assertTrue;
 
@@ -10,20 +10,27 @@ import static org.junit.Assert.assertTrue;
 public class TestDateTest
 {
 
-    /** Test {@link TestDate} constructor. */
+    /** Test {@link TestDate#randomFuture()}. */
     @Test
-    public void constructor() throws Exception
+    public void randomFuture()
     {
-        Constructor<TestDate> constructor = TestDate.class.getDeclaredConstructor();
-        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-        constructor.setAccessible(true);
-        try
-        {
-            constructor.newInstance();
-        }
-        catch (Exception e)
-        {
-            assertTrue(e instanceof InvocationTargetException);
-        }
+        assertTrue(TestDate.randomFuture().getTime() > TestDate.TODAY.getTime());
+    }
+
+    /** Test {@link TestDate#randomPast()}. */
+    @Test
+    public void randomPast()
+    {
+        assertTrue(TestDate.randomPast().getTime() < TestDate.TODAY.getTime());
+    }
+
+    /** Test {@link TestDate#randomRecent()}. */
+    @Test
+    public void randomRecent()
+    {
+        final Date randomDate = TestDate.randomRecent();
+
+        assertTrue(randomDate.getTime() > TestDate.YEAR_LAST.getTime() - 1);
+        assertTrue(randomDate.getTime() < TestDate.YEAR_NEXT.getTime() + 1);
     }
 }

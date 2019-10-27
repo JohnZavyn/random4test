@@ -4,14 +4,14 @@ import org.junit.Test;
 
 import java.lang.reflect.*;
 
+import static com.threeleaf.test.random.TestInteger.random1to10;
 import static com.threeleaf.test.random.TestString.*;
-import static com.threeleaf.test.random.util.TestNumberUtil.random1to10;
 import static com.threeleaf.test.random.util.TestStringUtil.STRING_LENGTH_MAX;
 import static com.threeleaf.test.random.util.TestStringUtil.STRING_LENGTH_MIN;
 import static org.junit.Assert.*;
 
 /** Test {@link TestStringUtil} */
-public class TestStringUtilTest
+public class TestStringUtilRandomUtil
 {
 
     /** Test {@link TestStringUtil} constructor. */
@@ -35,12 +35,22 @@ public class TestStringUtilTest
     @Test
     public void extractSuffix()
     {
-        final String string = CHAR_05 + '_' + CHAR_32;
+        final String string = STRING_05 + '_' + STRING_32;
 
         final String result = TestStringUtil.extractSuffix(string);
 
-        assertEquals(CHAR_32, result);
-        assertEquals(CHAR_08, TestStringUtil.extractSuffix(CHAR_99 + '~' + CHAR_08));
+        assertEquals(STRING_32, result);
+        assertEquals(STRING_08, TestStringUtil.extractSuffix(STRING_99 + '~' + STRING_08));
+    }
+
+    /** Test {@link TestStringUtil#isBlank(CharSequence)}. */
+    @Test
+    public void isBlank()
+    {
+        assertTrue(TestStringUtil.isBlank(null));
+        assertTrue(TestStringUtil.isBlank(EMPTY));
+        assertTrue(TestStringUtil.isBlank(WHITESPACE));
+        assertFalse(TestStringUtil.isBlank(STRING_05));
     }
 
     /** Test {@link TestStringUtil#isEmpty(CharSequence)}. */
@@ -56,8 +66,7 @@ public class TestStringUtilTest
     @Test
     public void randomEmail()
     {
-        // Verify the results
-        assertTrue(TestStringUtil.randomEmail().endsWith("@example.com"));
+        assertTrue(TestStringUtil.randomEmail().endsWith("example.com"));
     }
 
     /** Test {@link TestStringUtil#randomLetter()}. */
@@ -78,7 +87,7 @@ public class TestStringUtilTest
     @Test
     public void randomNameCustom()
     {
-        assertTrue(TestStringUtil.randomName(CHAR_05).startsWith(TEST_PREFIX + CHAR_05));
+        assertTrue(TestStringUtil.randomName(STRING_05).startsWith(TEST_PREFIX + STRING_05));
     }
 
     /** Test {@link TestStringUtil#randomString()}. */
@@ -108,16 +117,16 @@ public class TestStringUtilTest
     {
         assertEquals(EMPTY, TestStringUtil.safeString(EMPTY));
         assertEquals(EMPTY, TestStringUtil.safeString(null));
-        assertEquals(CHAR_10, TestStringUtil.safeString(CHAR_10));
+        assertEquals(STRING_10, TestStringUtil.safeString(STRING_10));
     }
 
     /** Test {@link TestStringUtil#safeString(String, String)}. */
     @Test
     public void safeStringDefault()
     {
-        assertEquals(CHAR_05, TestStringUtil.safeString(EMPTY, CHAR_05));
-        assertEquals(CHAR_05, TestStringUtil.safeString(null, CHAR_05));
-        assertEquals(CHAR_10, TestStringUtil.safeString(CHAR_10, CHAR_05));
+        assertEquals(STRING_05, TestStringUtil.safeString(EMPTY, STRING_05));
+        assertEquals(STRING_05, TestStringUtil.safeString(null, STRING_05));
+        assertEquals(STRING_10, TestStringUtil.safeString(STRING_10, STRING_05));
     }
 
     /** Test {@link TestStringUtil#shuffle(String)}. */

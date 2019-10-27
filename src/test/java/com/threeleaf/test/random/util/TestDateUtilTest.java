@@ -4,8 +4,7 @@ import org.junit.Test;
 
 import java.lang.reflect.*;
 
-import static com.threeleaf.test.random.TestDate.TIMESTAMP_FORMAT;
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 /** Test {@link TestDateUtil} */
 public class TestDateUtilTest
@@ -26,18 +25,5 @@ public class TestDateUtilTest
         {
             assertTrue(e instanceof InvocationTargetException);
         }
-    }
-    /** Test {@link TestDateUtil#getDateTime()}. */
-    @Test
-    public void getDateTime()
-    {
-        assertNotNull(TestDateUtil.getDateTime());
-    }
-
-    /** Test {@link TestDateUtil#getTimestamp()}. */
-    @Test
-    public void getTimestamp()
-    {
-        assertEquals(TIMESTAMP_FORMAT.length(), TestDateUtil.getTimestamp().length());
     }
 }

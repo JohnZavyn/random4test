@@ -2,14 +2,13 @@ package com.threeleaf.test.random;
 
 import io.github.benas.randombeans.EnhancedRandomBuilder;
 import io.github.benas.randombeans.api.EnhancedRandom;
-import lombok.NonNull;
 import lombok.experimental.UtilityClass;
 
+import javax.annotation.Nonnull;
 import java.util.Random;
 
 /** Class to contain the random generator. */
 @UtilityClass
-@SuppressWarnings("WeakerAccess")
 public class TestRandom
 {
 
@@ -20,10 +19,7 @@ public class TestRandom
     public static final Random RANDOM = new Random();
 
     /** The {@link EnhancedRandom} engine. */
-    private static final EnhancedRandom enhancedRandom = new EnhancedRandomBuilder().build();
-
-    /** A random {@link Object}. */
-    public static final Object OBJECT = random(Object.class);
+    private static final EnhancedRandom ENHANCED_RANDOM = new EnhancedRandomBuilder().build();
 
     /**
      * Return an object with randomized fields.
@@ -36,8 +32,8 @@ public class TestRandom
      *
      * @return a randomized object
      */
-    public static <T> T random(@NonNull final Class<T> type, final String... fieldsExcluded)
+    public static <T> T random(@Nonnull final Class<T> type, final String... fieldsExcluded)
     {
-        return enhancedRandom.nextObject(type, fieldsExcluded);
+        return ENHANCED_RANDOM.nextObject(type, fieldsExcluded);
     }
 }

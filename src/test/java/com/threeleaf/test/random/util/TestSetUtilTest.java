@@ -4,8 +4,8 @@ import org.junit.Test;
 
 import java.lang.reflect.*;
 
-import static com.threeleaf.test.random.TestNumber.INTEGER_SMALL;
-import static com.threeleaf.test.random.TestPrimitive.INT_01;
+import static com.threeleaf.test.random.TestInteger.INTEGER_SMALL;
+import static com.threeleaf.test.random.TestInteger.INT_01;
 import static org.junit.Assert.*;
 
 /** Test {@link TestSetUtil}. */
@@ -36,11 +36,11 @@ public class TestSetUtilTest
         assertFalse(TestSetUtil.randomHashSetOf(Byte.class).isEmpty());
     }
 
-    /** Test {@link TestSetUtil#randomHashSetSingle(Class, String...)}. */
+    /** Test {@link TestSetUtil#randomHashSetSingleOf(Class, String...)}. */
     @Test
-    public void randomHashSetSingle()
+    public void randomHashSetSingleOf()
     {
-        assertEquals(INT_01, TestSetUtil.randomHashSetSingle(Byte.class).size());
+        assertEquals(INT_01, TestSetUtil.randomHashSetSingleOf(Byte.class).size());
     }
 
     /** Test {@link TestSetUtil#randomLinkedHashSetOf(Class, String...)}. */
@@ -50,11 +50,11 @@ public class TestSetUtilTest
         assertFalse(TestSetUtil.randomLinkedHashSetOf(Character.class).isEmpty());
     }
 
-    /** Test {@link TestSetUtil#randomLinkedHashSetSingle(Class, String...)}. */
+    /** Test {@link TestSetUtil#randomLinkedHashSetSingleOf(Class, String...)}. */
     @Test
-    public void randomLinkedHashSetSingle()
+    public void randomLinkedHashSetSingleOf()
     {
-        assertEquals(INT_01, TestSetUtil.randomLinkedHashSetSingle(Character.class).size());
+        assertEquals(INT_01, TestSetUtil.randomLinkedHashSetSingleOf(Character.class).size());
     }
 
     /** Test {@link TestSetUtil#randomSetOf(Class, String...)}. */
@@ -64,11 +64,11 @@ public class TestSetUtilTest
         assertFalse(TestSetUtil.randomSetOf(Boolean.class).isEmpty());
     }
 
-    /** Test {@link TestSetUtil#randomSetSingle(Class, String...)}. */
+    /** Test {@link TestSetUtil#randomSetSingleOf(Class, String...)}. */
     @Test
-    public void randomSetSingle()
+    public void randomSetSingleOf()
     {
-        assertEquals(INT_01, TestSetUtil.randomSetSingle(Boolean.class).size());
+        assertEquals(INT_01, TestSetUtil.randomSetSingleOf(Boolean.class).size());
     }
 
     /** Test {@link TestSetUtil#randomSortedSetOf(Class, String...)}. */
@@ -78,11 +78,11 @@ public class TestSetUtilTest
         assertFalse(TestSetUtil.randomSortedSetOf(Short.class).isEmpty());
     }
 
-    /** Test {@link TestSetUtil#randomSortedSetSingle(Class, String...)}. */
+    /** Test {@link TestSetUtil#randomSortedSetSingleOf(Class, String...)}. */
     @Test
-    public void randomSortedSetSingle()
+    public void randomSortedSetSingleOf()
     {
-        assertEquals(INT_01, TestSetUtil.randomSortedSetSingle(Short.class).size());
+        assertEquals(INT_01, TestSetUtil.randomSortedSetSingleOf(Short.class).size());
     }
 
     /** Test {@link TestSetUtil#randomTreeSetOf(int, Class, String...)}. */
@@ -93,10 +93,10 @@ public class TestSetUtilTest
         assertEquals((int) INTEGER_SMALL, TestSetUtil.randomTreeSetOf(INTEGER_SMALL, Object.class).size());
     }
 
-    /** Test {@link TestSetUtil#randomTreeSetSingle(Class, String...)}. */
+    /** Test {@link TestSetUtil#randomTreeSetSingleOf(Class, String...)}. */
     @Test
-    public void randomTreeSetSingle()
+    public void randomTreeSetSingleOf()
     {
-        assertEquals(INT_01, TestSetUtil.randomTreeSetSingle(Object.class).size());
+        assertEquals(INT_01, TestSetUtil.randomTreeSetSingleOf(Object.class).size());
     }
 }

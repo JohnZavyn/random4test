@@ -6,9 +6,9 @@ import java.lang.reflect.*;
 import java.util.HashSet;
 import java.util.Set;
 
+import static com.threeleaf.test.random.TestBooleanTest.LOOP_COUNT_MAX;
 import static com.threeleaf.test.random.TestString.*;
 import static com.threeleaf.test.random.util.TestArrayUtil.randomArrayOf;
-import static com.threeleaf.test.random.util.TestBooleanUtilTest.LOOP_COUNT_MAX;
 import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
@@ -16,27 +16,11 @@ import static org.junit.Assert.fail;
 public class TestArrayUtilTest
 {
 
-    /** Test {@link TestArrayUtil} constructor. */
-    @Test
-    public void constructor() throws Exception
-    {
-        Constructor<TestArrayUtil> constructor = TestArrayUtil.class.getDeclaredConstructor();
-        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-        constructor.setAccessible(true);
-        try
-        {
-            constructor.newInstance();
-        }
-        catch (Exception e)
-        {
-            assertTrue(e instanceof InvocationTargetException);
-        }
-    }
     /** Test {@link TestArrayUtil#chooseOneFrom(Object[])}. */
     @Test
     public void chooseOneFrom()
     {
-        final Object[]    array                 = new Object[]{CHAR_10, CHAR_16, CHAR_32, CHAR_99};
+        final Object[]    array                 = new Object[]{STRING_10, STRING_16, STRING_32, STRING_99};
         final Set<String> results               = new HashSet<>();
         boolean           allPossibilitiesFound = false;
 
@@ -52,6 +36,23 @@ public class TestArrayUtilTest
         if (!allPossibilitiesFound)
         {
             fail("Expected all possible results, but only found " + results);
+        }
+    }
+
+    /** Test {@link TestArrayUtil} constructor. */
+    @Test
+    public void constructor() throws Exception
+    {
+        Constructor<TestArrayUtil> constructor = TestArrayUtil.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        try
+        {
+            constructor.newInstance();
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof InvocationTargetException);
         }
     }
 

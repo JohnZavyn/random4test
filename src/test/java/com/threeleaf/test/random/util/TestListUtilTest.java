@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import java.lang.reflect.*;
 
-import static com.threeleaf.test.random.TestPrimitive.INT_01;
+import static com.threeleaf.test.random.TestInteger.INT_01;
 import static org.junit.Assert.*;
 
 /** Test {@link TestListUtil}. */
@@ -35,11 +35,11 @@ public class TestListUtilTest
         assertFalse(TestListUtil.randomArrayListOf(Byte.class).isEmpty());
     }
 
-    /** Test {@link TestListUtil#randomArrayListSingle(Class, String...)}. */
+    /** Test {@link TestListUtil#randomArrayListSingleOf(Class, String...)}. */
     @Test
-    public void randomArrayListSingle()
+    public void randomArrayListSingleOf()
     {
-        assertEquals(INT_01, TestListUtil.randomArrayListSingle(Byte.class).size());
+        assertEquals(INT_01, TestListUtil.randomArrayListSingleOf(Byte.class).size());
     }
 
     /** Test {@link TestListUtil#randomLinkedListOf(Class, String...)}. */
@@ -49,11 +49,11 @@ public class TestListUtilTest
         assertFalse(TestListUtil.randomLinkedListOf(Character.class).isEmpty());
     }
 
-    /** Test {@link TestListUtil#randomLinkedListSingle(Class, String...)}. */
+    /** Test {@link TestListUtil#randomLinkedListSingleOf(Class, String...)}. */
     @Test
-    public void randomLinkedListSingle()
+    public void randomLinkedListSingleOf()
     {
-        assertEquals(INT_01, TestListUtil.randomLinkedListSingle(Character.class).size());
+        assertEquals(INT_01, TestListUtil.randomLinkedListSingleOf(Character.class).size());
     }
 
     /** Test {@link TestListUtil#randomListOf(Class, String...)}. */
@@ -63,11 +63,11 @@ public class TestListUtilTest
         assertFalse(TestListUtil.randomListOf(Boolean.class).isEmpty());
     }
 
-    /** Test {@link TestListUtil#randomListSingle(Class, String...)}. */
+    /** Test {@link TestListUtil#randomListSingleOf(Class, String...)}. */
     @Test
-    public void randomListSingle()
+    public void randomListSingleOf()
     {
-        assertEquals(INT_01, TestListUtil.randomListSingle(Boolean.class).size());
+        assertEquals(INT_01, TestListUtil.randomListSingleOf(Boolean.class).size());
     }
 
     /** Test {@link TestListUtil#randomVectorOf(Class, String...)}. */
@@ -77,10 +77,10 @@ public class TestListUtilTest
         assertFalse(TestListUtil.randomVectorOf(Short.class).isEmpty());
     }
 
-    /** Test {@link TestListUtil#randomVectorSingle(Class, String...)}. */
+    /** Test {@link TestListUtil#randomVectorSingleOf(Class, String...)}. */
     @Test
-    public void randomVectorSingle()
+    public void randomVectorSingleOf()
     {
-        assertEquals(INT_01, TestListUtil.randomVectorSingle(Short.class).size());
+        assertEquals(INT_01, TestListUtil.randomVectorSingleOf(Short.class).size());
     }
 }

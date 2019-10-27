@@ -6,12 +6,29 @@ import java.lang.management.MemoryNotificationInfo;
 import java.lang.reflect.*;
 import java.security.KeyPair;
 
-import static com.threeleaf.test.random.TestRandom.OBJECT;
+import static com.threeleaf.test.random.TestObject.OBJECT;
 import static org.junit.Assert.*;
 
 /** Test {@link TestRandom}. */
 public class TestRandomTest
 {
+
+    /** Test {@link TestRandom} constructor. */
+    @Test
+    public void constructor() throws Exception
+    {
+        Constructor<TestRandom> constructor = TestRandom.class.getDeclaredConstructor();
+        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
+        constructor.setAccessible(true);
+        try
+        {
+            constructor.newInstance();
+        }
+        catch (Exception e)
+        {
+            assertTrue(e instanceof InvocationTargetException);
+        }
+    }
 
     /** Test {@link TestRandom#random(Class, String...)}. */
     @Test
@@ -36,27 +53,10 @@ public class TestRandomTest
         assertNull(memoryNotificationInfo.getUsage());
     }
 
-    /** Test {@link TestRandom#OBJECT}. */
+    /** Test {@link TestObject#OBJECT}. */
     @Test
     public void randomObject()
     {
         assertNotNull(OBJECT);
-    }
-
-    /** Test {@link TestRandom} constructor. */
-    @Test
-    public void constructor() throws Exception
-    {
-        Constructor<TestRandom> constructor = TestRandom.class.getDeclaredConstructor();
-        assertTrue(Modifier.isPrivate(constructor.getModifiers()));
-        constructor.setAccessible(true);
-        try
-        {
-            constructor.newInstance();
-        }
-        catch (Exception e)
-        {
-            assertTrue(e instanceof InvocationTargetException);
-        }
     }
 }

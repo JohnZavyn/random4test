@@ -5,10 +5,10 @@ import org.junit.Test;
 import java.lang.reflect.*;
 import java.util.*;
 
-import static com.threeleaf.test.random.TestPrimitive.INT_01;
-import static com.threeleaf.test.random.TestPrimitive.INT_10;
+import static com.threeleaf.test.random.TestBooleanTest.LOOP_COUNT_MAX;
+import static com.threeleaf.test.random.TestInteger.INT_01;
+import static com.threeleaf.test.random.TestInteger.INT_10;
 import static com.threeleaf.test.random.TestString.*;
-import static com.threeleaf.test.random.util.TestBooleanUtilTest.LOOP_COUNT_MAX;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
@@ -20,7 +20,7 @@ public class TestCollectionUtilTest
     @Test
     public void chooseOneFrom()
     {
-        final List<String> collection            = asList(CHAR_05, CHAR_08, CHAR_10, CHAR_16);
+        final List<String> collection            = asList(STRING_05, STRING_08, STRING_10, STRING_16);
         final Set<String>  results               = new HashSet<>();
         boolean            allPossibilitiesFound = false;
 
@@ -43,7 +43,7 @@ public class TestCollectionUtilTest
     @Test
     public void chooseOneFromArray()
     {
-        final Object[]    array                 = new Object[]{CHAR_10, CHAR_16, CHAR_32, CHAR_99};
+        final Object[]    array                 = new Object[]{STRING_10, STRING_16, STRING_32, STRING_99};
         final Set<String> results               = new HashSet<>();
         boolean           allPossibilitiesFound = false;
 
@@ -91,10 +91,10 @@ public class TestCollectionUtilTest
         }
     }
 
-    /** Test {@link TestCollectionUtil#randomCollectionSingle(Class, String...)} */
+    /** Test {@link TestCollectionUtil#randomCollectionSingleOf(Class, String...)} */
     @Test
-    public void testRandomCollectionSingle()
+    public void testRandomCollectionSingleOf()
     {
-        assertEquals(INT_01, TestCollectionUtil.randomCollectionSingle(Object.class).size());
+        assertEquals(INT_01, TestCollectionUtil.randomCollectionSingleOf(Object.class).size());
     }
 }
