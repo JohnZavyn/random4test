@@ -1,5 +1,6 @@
 package com.threeleaf.test.random.util;
 
+import org.apache.commons.validator.routines.EmailValidator;
 import org.junit.Test;
 
 import java.lang.reflect.*;
@@ -66,7 +67,7 @@ public class TestStringUtilRandomUtil
     @Test
     public void randomEmail()
     {
-        assertTrue(TestStringUtil.randomEmail().endsWith("example.com"));
+        assertTrue(EmailValidator.getInstance().isValid(TestStringUtil.randomEmail()));
     }
 
     /** Test {@link TestStringUtil#randomLetter()}. */

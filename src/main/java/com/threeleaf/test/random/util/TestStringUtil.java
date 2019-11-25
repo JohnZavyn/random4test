@@ -86,13 +86,14 @@ public class TestStringUtil
     }
 
     /**
-     * Return a random e-mail address for testing. The the username prefixed with "TEST~" for easy identification in the database, and the domain complies with RFC 2606 (Reserved Top Level DNS Names).
+     * Return a random e-mail address for testing. The the username prefixed with "TEST~" for easy identification in the database,
+     * and the domain complies with RFC 2606 (Reserved Top Level DNS Names).
      *
      * @return the string
      */
     public static String randomEmail()
     {
-        return randomNameFirst() + '.' + randomNameLast() + "@test." + randomString() + ".example.com";
+        return TEST_PREFIX + randomNameFirst() + '.' + randomNameLast() + "@test." + randomUuid() + ".example.com";
     }
 
     /**
