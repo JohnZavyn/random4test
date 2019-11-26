@@ -1,6 +1,6 @@
 package com.threeleaf.test.random.util;
 
-import org.apache.commons.validator.routines.EmailValidator;
+import org.apache.commons.validator.routines.*;
 import org.junit.Test;
 
 import java.lang.reflect.*;
@@ -12,8 +12,62 @@ import static com.threeleaf.test.random.util.TestStringUtil.STRING_LENGTH_MIN;
 import static org.junit.Assert.*;
 
 /** Test {@link TestStringUtil} */
-public class TestStringUtilRandomUtil
+public class TestStringUtilTest
 {
+
+    /** Test {@link TestStringUtil#capitalize(String)}. */
+    @Test
+    public void capitalize()
+    {
+        final String expectedResult = "String";
+
+        final String result = TestStringUtil.capitalize("string");
+
+        assertEquals(expectedResult, result);
+    }
+
+    /** Test {@link TestStringUtil#randomDomain()}. */
+    @Test
+    public void randomDomain()
+    {
+        assertTrue(DomainValidator.getInstance().isValid(TestStringUtil.randomDomain()));
+    }
+
+    /** Test {@link TestStringUtil#randomPunctuationTerminal()}. */
+    @Test
+    public void randomPunctuationTerminal()
+    {
+        final String result = TestStringUtil.randomPunctuationTerminal();
+
+        assertTrue(".".equals(result) || "?".equals(result) || "!".equals(result));
+    }
+
+    /** Test {@link TestStringUtil#randomUrl()}. */
+    @Test
+    public void randomUrl()
+    {
+        final String url = TestStringUtil.randomUrl();
+
+        assertTrue(url.startsWith(HTTP_PROTOCOL));
+        assertTrue(UrlValidator.getInstance().isValid(url));
+    }
+
+    /** Test {@link TestStringUtil#randomUrlSecure()}. */
+    @Test
+    public void randomUrlSecure()
+    {
+        final String url = TestStringUtil.randomUrlSecure();
+
+        assertTrue(url.startsWith(HTTPS_PROTOCOL));
+        assertTrue(UrlValidator.getInstance().isValid(url));
+    }
+
+    /** Test {@link TestStringUtil#randomUuid()}. */
+    @Test
+    public void randomUuid()
+    {
+        new CodeValidator("[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}", null).isValid(TestStringUtil.randomUuid());
+    }
 
     /** Test {@link TestStringUtil} constructor. */
     @Test

@@ -86,6 +86,16 @@ public class TestStringUtil
     }
 
     /**
+     * A random domain name.
+     *
+     * @return a domain name
+     */
+    public static String randomDomain()
+    {
+        return "test." + randomUuid() + ".example.com";
+    }
+
+    /**
      * Return a random e-mail address for testing. The the username prefixed with "TEST~" for easy identification in the database,
      * and the domain complies with RFC 2606 (Reserved Top Level DNS Names).
      *
@@ -93,7 +103,27 @@ public class TestStringUtil
      */
     public static String randomEmail()
     {
-        return TEST_PREFIX + randomNameFirst() + '.' + randomNameLast() + "@test." + randomUuid() + ".example.com";
+        return TEST_PREFIX + randomNameFirst() + '.' + randomNameLast() + '@' + randomDomain();
+    }
+
+    /**
+     * A URL for a home page using HTTP protocol.
+     *
+     * @return a url
+     */
+    public static String randomUrl()
+    {
+        return HTTP_PROTOCOL + "://" + randomDomain();
+    }
+
+    /**
+     * A URL for a home page using HTTP protocol.
+     *
+     * @return a secure url
+     */
+    public static String randomUrlSecure()
+    {
+        return HTTPS_PROTOCOL + "://" + randomDomain();
     }
 
     /**

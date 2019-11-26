@@ -32,7 +32,13 @@ public class TestString extends AbstractTest<String>
     public static final String NUMBERS = "0123456789";
 
     /** Punctuation characters. */
-    public static final String PUNCTUATION = "`~!@#$%^&*()_-+={[}]|\\:;\"'<,>.?/";
+    public static final String PUNCTUATION    = "`~!@#$%^&*()_-+={[}]|\\:;\"'<,>.?/";
+
+    /** The HTTPS protocol. */
+    public static final String HTTPS_PROTOCOL = "https";
+
+    /** The HTTP protocol. */
+    public static final String HTTP_PROTOCOL = "http";
 
     /**
      * RANDOM_CHARS contains characters that are not easily visually confused with each other.
@@ -392,10 +398,10 @@ public class TestString extends AbstractTest<String>
     public static final String TEST_PREFIX = "TEST~";
 
     /** A URL for a home page using HTTP protocol. */
-    public static final String URL = "http://test." + randomString() + ".example.com";
+    public static final String URL = randomUrl();
 
     /** A URL for a home page using HTTPS protocol. */
-    public static final String URL_SSL = "https://test." + randomString() + ".example.com";
+    public static final String URL_SSL = randomUrlSecure();
 
     /** A UUID string. */
     public static final String UUID = randomUuid();
