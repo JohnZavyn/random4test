@@ -20,12 +20,6 @@ import static java.util.UUID.randomUUID;
 public class TestStringUtil
 {
 
-    /** Maximum length for a name. */
-    public static final int NAME_LENGTH_MAX = 10;
-
-    /** Minimum length for a name. */
-    public static final int NAME_LENGTH_MIN = 5;
-
     /** Punctuation marks to be used at the end of sentences. */
     public static final List<String> PUNCTUATION_TERMINAL = ImmutableList.<String>builder().add(".", ".", ".", "?", "?", "!").build();
 
@@ -34,6 +28,12 @@ public class TestStringUtil
 
     /** Minimum length for a string. */
     public static final int STRING_LENGTH_MIN = 10;
+
+    /** Maximum length for a name. */
+    public static final int STRING_SHORT_LENGTH_MAX = 10;
+
+    /** Minimum length for a name. */
+    public static final int STRING_SHORT_LENGTH_MIN = 5;
 
     /**
      * Capitalize first letter of a string.
@@ -103,27 +103,7 @@ public class TestStringUtil
      */
     public static String randomEmail()
     {
-        return TEST_PREFIX + randomNameFirst() + '.' + randomNameLast() + '@' + randomDomain();
-    }
-
-    /**
-     * A URL for a home page using HTTP protocol.
-     *
-     * @return a url
-     */
-    public static String randomUrl()
-    {
-        return HTTP_PROTOCOL + "://" + randomDomain();
-    }
-
-    /**
-     * A URL for a home page using HTTP protocol.
-     *
-     * @return a secure url
-     */
-    public static String randomUrlSecure()
-    {
-        return HTTPS_PROTOCOL + "://" + randomDomain();
+        return randomNameFirst() + '.' + randomNameLast() + '@' + randomDomain();
     }
 
     /**
@@ -134,28 +114,6 @@ public class TestStringUtil
     public static String randomLetter()
     {
         return String.valueOf(ALPHABET_ARRAY[randomBetween(0, ALPHABET_ARRAY.length - 1)]);
-    }
-
-    /**
-     * Return a string of random characters with the "TEST~" prefix.
-     *
-     * @return the string
-     */
-    public static String randomName()
-    {
-        return TEST_PREFIX + randomString(randomBetween(NAME_LENGTH_MIN, NAME_LENGTH_MAX));
-    }
-
-    /**
-     * Return a string of random characters with the "TEST~[entityName]" prefix.
-     *
-     * @param entityName the entity name
-     *
-     * @return the string
-     */
-    public static String randomName(final String entityName)
-    {
-        return TEST_PREFIX + safeString(entityName).toUpperCase(Locale.US) + "_" + randomString(randomBetween(NAME_LENGTH_MIN, NAME_LENGTH_MAX));
     }
 
     public static String randomPunctuationTerminal()
@@ -192,6 +150,48 @@ public class TestStringUtil
         }
 
         return randString.toString();
+    }
+
+    /**
+     * Return a short string of random characters.
+     *
+     * @return a short string
+     */
+    public static String randomStringShort()
+    {
+        return randomString(randomBetween(STRING_SHORT_LENGTH_MIN, STRING_SHORT_LENGTH_MAX));
+    }
+
+    /**
+     * Return a string of random characters with the "TEST~[entityName]" prefix.
+     *
+     * @param entityName the entity name
+     *
+     * @return the string
+     */
+    public static String randomTest(final String entityName)
+    {
+        return isBlank(entityName) ? test(null) : test(entityName.toUpperCase(Locale.US) + "_" + randomStringShort());
+    }
+
+    /**
+     * A URL for a home page using HTTP protocol.
+     *
+     * @return a url
+     */
+    public static String randomUrl()
+    {
+        return HTTP_PROTOCOL + "://" + randomDomain();
+    }
+
+    /**
+     * A URL for a home page using HTTP protocol.
+     *
+     * @return a secure url
+     */
+    public static String randomUrlSecure()
+    {
+        return HTTPS_PROTOCOL + "://" + randomDomain();
     }
 
     /**
@@ -251,5 +251,17 @@ public class TestStringUtil
         }
 
         return shuffledString.toString();
+    }
+
+    /**
+     * Add a test prefix to the given string.
+     *
+     * @param suffix the string
+     *
+     * @return the test string
+     */
+    public static String test(final String suffix)
+    {
+        return TEST_PREFIX + (isBlank(suffix) ? randomStringShort() : suffix);
     }
 }

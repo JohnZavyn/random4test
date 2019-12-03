@@ -131,18 +131,18 @@ public class TestStringUtilTest
         assertEquals(1, TestStringUtil.randomLetter().length());
     }
 
-    /** Test {@link TestStringUtil#randomName()}. */
+    /** Test {@link TestStringUtil#test(String)}. */
     @Test
     public void randomName()
     {
-        assertTrue(TestStringUtil.randomName().startsWith(TEST_PREFIX));
+        assertTrue(TestStringUtil.test(STRING_05).startsWith(TEST_PREFIX));
     }
 
-    /** Test {@link TestStringUtil#randomName(String)}. */
+    /** Test {@link TestStringUtil#randomTest(String)}. */
     @Test
     public void randomNameCustom()
     {
-        assertTrue(TestStringUtil.randomName(STRING_05).startsWith(TEST_PREFIX + STRING_05));
+        assertTrue(TestStringUtil.randomTest(STRING_05).startsWith(TEST_PREFIX + STRING_05));
     }
 
     /** Test {@link TestStringUtil#randomString()}. */
