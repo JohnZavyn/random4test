@@ -37,16 +37,6 @@ public class TestInternetUtil
     }
 
     /**
-     * Return a host in the form of a domain name or IP address.
-     *
-     * @return a host
-     */
-    public static String randomHost()
-    {
-        return randomBoolean() ? randomDomain() : randomIpAddress();
-    }
-
-    /**
      * A URL for a home page using HTTP protocol.
      *
      * @return a url

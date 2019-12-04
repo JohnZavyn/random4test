@@ -7,7 +7,7 @@ Add to Maven projects with:
 <dependency>
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
+    <version>3.0.0</version>
 </dependency>
 ```
 For more dependency options: <https://mvnrepository.com/artifact/com.threeleaf/random4test>
@@ -76,7 +76,7 @@ and a few extras:
 
 ## Extend and make your own
 
-The library is extendable, so you can create your own randomization classes 
+The library is extendable, so you can create your own randomization classes
 with your own POJO objects by extending the `AbstractTest` or `TestGeneric` classes.
 You can see how this is done in any of the Test classes above, or use the
 following sample as a template:
@@ -89,7 +89,7 @@ public class TestObject extends AbstractTest<Object>
     public static final TestObject INSTANCE = new TestObject();
 
     /* Make any additional static constants you like... */
-    
+
     /** A random {@link Object}. */
     public static final Object OBJECT = TestRandom.random(Object.class);
 
@@ -101,7 +101,7 @@ public class TestObject extends AbstractTest<Object>
 
     /* Add any specialized methods used for creating this object
      * or any collection you desire: */
-    
+
     /**
      * Get a random {@link Object}.
      *
@@ -122,7 +122,7 @@ This will give you access to the rich set of methods available in `AbstractTest`
 # Utilities
 
 In addition to the constants and randomizers available from the Test classes above,
-there are also a number of helpful utilities available through the following: 
+there are also a number of helpful utilities available through the following:
 
 
 | Test Class             | General functional purpose                          |
