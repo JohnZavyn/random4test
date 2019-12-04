@@ -29,6 +29,9 @@ public class TestString extends AbstractTest<String>
     /** An empty string. */
     public static final String EMPTY = "";
 
+    /** The "example" string - commonly used for test domain names. */
+    public static final String EXAMPLE = "example";
+
     /** The instance of {@link TestString}. */
     public static final TestString INSTANCE = new TestString();
 

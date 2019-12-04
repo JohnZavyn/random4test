@@ -4,9 +4,13 @@ import com.threeleaf.test.random.TestByte;
 import com.threeleaf.test.random.TestShort;
 import lombok.experimental.UtilityClass;
 
+import java.util.List;
+
+import static com.google.common.collect.Lists.newArrayList;
 import static com.threeleaf.test.random.TestBoolean.randomBoolean;
 import static com.threeleaf.test.random.TestInternet.*;
 import static com.threeleaf.test.random.TestString.COLON;
+import static com.threeleaf.test.random.TestString.EXAMPLE;
 import static com.threeleaf.test.random.util.TestArrayUtil.chooseOneFrom;
 import static com.threeleaf.test.random.util.TestNameUtil.randomNameFirst;
 import static com.threeleaf.test.random.util.TestNameUtil.randomNameLast;
@@ -18,15 +22,28 @@ import static com.threeleaf.test.random.util.TestStringUtil.randomUuid;
 public class TestInternetUtil
 {
 
+    /** A list of some common top level domains. */
+    public static final List<String> TOP_LEVEL_DOMAINS = newArrayList(DOT_BIZ, DOT_COM, DOT_DESIGN, DOT_EDU, DOT_GG, DOT_GOV, DOT_INT, DOT_LIFE, DOT_MIL, DOT_NET, DOT_ORG, DOT_SHOP);
+
     /**
-     * Return a random e-mail address for testing. The the username prefixed with "TEST~" for easy identification in the database,
-     * and the domain complies with RFC 2606 (Reserved Top Level DNS Names).
+     * Return a random e-mail address for testing.
+     * The domain complies with RFC 2606 (Reserved Top Level DNS Names).
      *
-     * @return the string
+     * @return the email address
      */
     public static String randomEmail()
     {
-        return randomNameFirst() + '.' + randomNameLast() + '@' + randomDomain();
+        return randomNameFirst() + DOT + randomNameLast() + AT_SIGN + randomDomain();
+    }
+
+    /**
+     * Return a host in the form of a domain name or IP address.
+     *
+     * @return a host
+     */
+    public static String randomHost()
+    {
+        return randomBoolean() ? randomDomain() : randomIpAddress();
     }
 
     /**
@@ -36,7 +53,7 @@ public class TestInternetUtil
      */
     public static String randomUrl()
     {
-        return HTTP_PROTOCOL + "://" + randomDomain();
+        return HTTP_PROTOCOL + "://" + (randomBoolean() ? randomDomain() : randomIpV4());
     }
 
     /**
@@ -46,7 +63,17 @@ public class TestInternetUtil
      */
     public static String randomUrlSecure()
     {
-        return HTTPS_PROTOCOL + "://" + randomDomain();
+        return HTTPS_PROTOCOL + "://" + (randomBoolean() ? randomDomain() : randomIpV4());
+    }
+
+    /**
+     * Choose a random top-level domain name.
+     *
+     * @return a top-level domain name
+     */
+    public static String randomTopLevelDomain()
+    {
+        return TestCollectionUtil.chooseOneFrom(TOP_LEVEL_DOMAINS);
     }
 
     /**
@@ -56,7 +83,7 @@ public class TestInternetUtil
      */
     public static String randomDomain()
     {
-        return "test." + randomUuid() + ".example.com";
+        return randomUuid() + DOT + EXAMPLE + randomTopLevelDomain();
     }
 
     /**
