@@ -23,17 +23,11 @@ public class TestString extends AbstractTest<String>
     /** Alphabet, upper case. */
     public static final String ALPHABET_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
-    /* A bogus e-mail address. */
-    public static final String EMAIL = randomEmail();
+    /** A colon string. */
+    public static final String COLON = ":";
 
     /** An empty string. */
     public static final String EMPTY = "";
-
-    /** The HTTPS protocol. */
-    public static final String HTTPS_PROTOCOL = "https";
-
-    /** The HTTP protocol. */
-    public static final String HTTP_PROTOCOL = "http";
 
     /** The instance of {@link TestString}. */
     public static final TestString INSTANCE = new TestString();
@@ -52,9 +46,6 @@ public class TestString extends AbstractTest<String>
 
     /** A space */
     public static final String SPACE = " ";
-
-    /** A random string. */
-    public static final String STRING = test(randomString());
 
     /** Test string consisting of 1 random characters. */
     public static final String STRING_01 = randomString(INT_01);
@@ -350,6 +341,9 @@ public class TestString extends AbstractTest<String>
     /** Test string consisting of 98 random characters. */
     public static final String STRING_98 = randomString(INT_98);
 
+    /** A random string. */
+    public static final String STRING = test(randomString());
+
     /** An {@link String} array. */
     public static final String[] STRING_ARRAY = INSTANCE.randomArray();
 
@@ -397,12 +391,6 @@ public class TestString extends AbstractTest<String>
 
     /** Test string consisting of 99 random characters. */
     public static final String STRING_99 = randomString(INT_99);
-
-    /** A URL for a home page using HTTP protocol. */
-    public static final String URL = randomUrl();
-
-    /** A URL for a home page using HTTPS protocol. */
-    public static final String URL_SSL = randomUrlSecure();
 
     /** A UUID string. */
     public static final String UUID = randomUuid();

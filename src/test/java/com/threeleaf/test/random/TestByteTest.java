@@ -2,8 +2,9 @@ package com.threeleaf.test.random;
 
 import org.junit.Test;
 
-import static com.threeleaf.test.random.TestByte.B_00;
-import static com.threeleaf.test.random.TestByte.B_100;
+import static com.threeleaf.test.random.TestByte.*;
+import static com.threeleaf.test.random.TestInteger.INT_00;
+import static com.threeleaf.test.random.TestInteger.INT_16;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
@@ -38,5 +39,14 @@ public class TestByteTest
         }
         System.out.println(min);
         System.out.println(max);
+    }
+
+    /** Test {@link TestByte#randomHex()}. */
+    @Test
+    public void randomHex()
+    {
+        final int unsigned = Integer.parseInt(TestByte.randomHex(), INT_16);
+        assertTrue(unsigned <= BYTE_UNSIGNED_MAX);
+        assertTrue(unsigned >= INT_00);
     }
 }

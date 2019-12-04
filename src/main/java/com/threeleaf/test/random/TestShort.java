@@ -1,7 +1,6 @@
 package com.threeleaf.test.random;
 
-import static com.threeleaf.test.random.TestInteger.INT_01;
-import static com.threeleaf.test.random.TestInteger.INT_100;
+import static com.threeleaf.test.random.TestInteger.*;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
@@ -351,6 +350,9 @@ public class TestShort extends AbstractTest<Short>
 
     /** A small Short between 0-100. */
     public final static Short SHORT_SMALL = randomPercent();
+
+    /** The maximum value for an unsigned short. */
+    public static final int SHORT_UNSIGNED_MAX = (int) Short.MAX_VALUE - Short.MIN_VALUE;
 
     /** The primitive short 00. */
     public final static short S_00 = 0;
@@ -748,6 +750,26 @@ public class TestShort extends AbstractTest<Short>
     public static short randomShort()
     {
         return INSTANCE.random();
+    }
+
+    /**
+     * A random unsigned short.
+     *
+     * @return a number between 0 to 65535 inclusive
+     */
+    public static int randomUnsigned()
+    {
+        return TestInteger.randomBetween(INT_00, SHORT_UNSIGNED_MAX);
+    }
+
+    /**
+     * A random hexadecimal byte value;
+     *
+     * @return a  "0" to "FFFF"
+     */
+    public static String randomHex()
+    {
+        return Integer.toHexString(randomUnsigned());
     }
 
     /**

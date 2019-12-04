@@ -1,6 +1,6 @@
 package com.threeleaf.test.random.util;
 
-import org.apache.commons.validator.routines.*;
+import org.apache.commons.validator.routines.CodeValidator;
 import org.junit.Test;
 
 import java.lang.reflect.*;
@@ -26,13 +26,6 @@ public class TestStringUtilTest
         assertEquals(expectedResult, result);
     }
 
-    /** Test {@link TestStringUtil#randomDomain()}. */
-    @Test
-    public void randomDomain()
-    {
-        assertTrue(DomainValidator.getInstance().isValid(TestStringUtil.randomDomain()));
-    }
-
     /** Test {@link TestStringUtil#randomPunctuationTerminal()}. */
     @Test
     public void randomPunctuationTerminal()
@@ -40,26 +33,6 @@ public class TestStringUtilTest
         final String result = TestStringUtil.randomPunctuationTerminal();
 
         assertTrue(".".equals(result) || "?".equals(result) || "!".equals(result));
-    }
-
-    /** Test {@link TestStringUtil#randomUrl()}. */
-    @Test
-    public void randomUrl()
-    {
-        final String url = TestStringUtil.randomUrl();
-
-        assertTrue(url.startsWith(HTTP_PROTOCOL));
-        assertTrue(UrlValidator.getInstance().isValid(url));
-    }
-
-    /** Test {@link TestStringUtil#randomUrlSecure()}. */
-    @Test
-    public void randomUrlSecure()
-    {
-        final String url = TestStringUtil.randomUrlSecure();
-
-        assertTrue(url.startsWith(HTTPS_PROTOCOL));
-        assertTrue(UrlValidator.getInstance().isValid(url));
     }
 
     /** Test {@link TestStringUtil#randomUuid()}. */
@@ -117,12 +90,6 @@ public class TestStringUtilTest
         assertFalse(TestStringUtil.isEmpty(SPACE));
     }
 
-    /** Test {@link TestStringUtil#randomEmail()}. */
-    @Test
-    public void randomEmail()
-    {
-        assertTrue(EmailValidator.getInstance().isValid(TestStringUtil.randomEmail()));
-    }
 
     /** Test {@link TestStringUtil#randomLetter()}. */
     @Test

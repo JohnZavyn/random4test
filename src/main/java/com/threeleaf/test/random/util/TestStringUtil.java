@@ -9,8 +9,6 @@ import java.util.*;
 import static com.threeleaf.test.random.TestInteger.randomBetween;
 import static com.threeleaf.test.random.TestString.*;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
-import static com.threeleaf.test.random.util.TestNameUtil.randomNameFirst;
-import static com.threeleaf.test.random.util.TestNameUtil.randomNameLast;
 import static java.lang.Character.isWhitespace;
 import static java.util.UUID.randomUUID;
 
@@ -85,26 +83,7 @@ public class TestStringUtil
         return chars == null || chars.length() == 0;
     }
 
-    /**
-     * A random domain name.
-     *
-     * @return a domain name
-     */
-    public static String randomDomain()
-    {
-        return "test." + randomUuid() + ".example.com";
-    }
 
-    /**
-     * Return a random e-mail address for testing. The the username prefixed with "TEST~" for easy identification in the database,
-     * and the domain complies with RFC 2606 (Reserved Top Level DNS Names).
-     *
-     * @return the string
-     */
-    public static String randomEmail()
-    {
-        return randomNameFirst() + '.' + randomNameLast() + '@' + randomDomain();
-    }
 
     /**
      * Return a random letter.
@@ -174,25 +153,7 @@ public class TestStringUtil
         return isBlank(entityName) ? test(null) : test(entityName.toUpperCase(Locale.US) + "_" + randomStringShort());
     }
 
-    /**
-     * A URL for a home page using HTTP protocol.
-     *
-     * @return a url
-     */
-    public static String randomUrl()
-    {
-        return HTTP_PROTOCOL + "://" + randomDomain();
-    }
 
-    /**
-     * A URL for a home page using HTTP protocol.
-     *
-     * @return a secure url
-     */
-    public static String randomUrlSecure()
-    {
-        return HTTPS_PROTOCOL + "://" + randomDomain();
-    }
 
     /**
      * Generate a UUID.
