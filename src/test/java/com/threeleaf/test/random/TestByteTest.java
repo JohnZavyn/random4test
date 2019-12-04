@@ -37,8 +37,6 @@ public class TestByteTest
             assertTrue(percent >= B_00);
             assertTrue(percent <= B_100);
         }
-        System.out.println(min);
-        System.out.println(max);
     }
 
     /** Test {@link TestByte#randomHex()}. */
