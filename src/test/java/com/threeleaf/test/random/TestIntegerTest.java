@@ -87,6 +87,15 @@ public class TestIntegerTest
         assertTrue(number <= INT_09);
     }
 
+    /** Test {@link TestInteger#randomHex()}. */
+    @Test
+    public void randomHex()
+    {
+        final long unsigned = Long.parseLong(TestInteger.randomHex(), INT_16);
+        assertTrue(unsigned <= INTEGER_UNSIGNED_MAX);
+        assertTrue(unsigned >= INT_00);
+    }
+
     /** Test constant unmodifiable. */
     @Test(expected = UnsupportedOperationException.class)
     public void unmodifiable()

@@ -1,7 +1,6 @@
 package com.threeleaf.test.random;
 
-import static com.threeleaf.test.random.TestInteger.INT_01;
-import static com.threeleaf.test.random.TestInteger.INT_100;
+import static com.threeleaf.test.random.TestInteger.*;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
@@ -324,6 +323,9 @@ public class TestByte extends AbstractTest<Byte>
 
     /** A small Byte from 0-100. */
     public final static Byte BYTE_SMALL = randomPercent();
+
+    /** The maximum value for an unsigned byte. */
+    public static final int BYTE_UNSIGNED_MAX = (int) Byte.MAX_VALUE - Byte.MIN_VALUE;
 
     /** The primitive byte 00. */
     public final static byte B_00 = 0;
@@ -712,6 +714,26 @@ public class TestByte extends AbstractTest<Byte>
     public static Byte randomPositive()
     {
         return randomBetween(INT_01, Byte.MAX_VALUE);
+    }
+
+    /**
+     * A random unsigned byte.
+     *
+     * @return a number between 0 to 255 inclusive
+     */
+    public static int randomUnsigned()
+    {
+        return TestInteger.randomBetween(INT_00, BYTE_UNSIGNED_MAX);
+    }
+
+    /**
+     * A random hexadecimal byte value;
+     *
+     * @return a  "0" to "FF"
+     */
+    public static String randomHex()
+    {
+        return Integer.toHexString(randomUnsigned());
     }
 
     /**

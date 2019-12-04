@@ -9,8 +9,6 @@ import java.util.*;
 import static com.threeleaf.test.random.TestInteger.randomBetween;
 import static com.threeleaf.test.random.TestString.*;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
-import static com.threeleaf.test.random.util.TestNameUtil.randomNameFirst;
-import static com.threeleaf.test.random.util.TestNameUtil.randomNameLast;
 import static java.lang.Character.isWhitespace;
 import static java.util.UUID.randomUUID;
 
@@ -20,12 +18,6 @@ import static java.util.UUID.randomUUID;
 public class TestStringUtil
 {
 
-    /** Maximum length for a name. */
-    public static final int NAME_LENGTH_MAX = 10;
-
-    /** Minimum length for a name. */
-    public static final int NAME_LENGTH_MIN = 5;
-
     /** Punctuation marks to be used at the end of sentences. */
     public static final List<String> PUNCTUATION_TERMINAL = ImmutableList.<String>builder().add(".", ".", ".", "?", "?", "!").build();
 
@@ -34,6 +26,12 @@ public class TestStringUtil
 
     /** Minimum length for a string. */
     public static final int STRING_LENGTH_MIN = 10;
+
+    /** Maximum length for a name. */
+    public static final int STRING_SHORT_LENGTH_MAX = 10;
+
+    /** Minimum length for a name. */
+    public static final int STRING_SHORT_LENGTH_MIN = 5;
 
     /**
      * Capitalize first letter of a string.
@@ -85,15 +83,7 @@ public class TestStringUtil
         return chars == null || chars.length() == 0;
     }
 
-    /**
-     * Return a random e-mail address for testing. The the username prefixed with "TEST~" for easy identification in the database, and the domain complies with RFC 2606 (Reserved Top Level DNS Names).
-     *
-     * @return the string
-     */
-    public static String randomEmail()
-    {
-        return randomNameFirst() + '.' + randomNameLast() + "@test." + randomString() + ".example.com";
-    }
+
 
     /**
      * Return a random letter.
@@ -103,28 +93,6 @@ public class TestStringUtil
     public static String randomLetter()
     {
         return String.valueOf(ALPHABET_ARRAY[randomBetween(0, ALPHABET_ARRAY.length - 1)]);
-    }
-
-    /**
-     * Return a string of random characters with the "TEST~" prefix.
-     *
-     * @return the string
-     */
-    public static String randomName()
-    {
-        return TEST_PREFIX + randomString(randomBetween(NAME_LENGTH_MIN, NAME_LENGTH_MAX));
-    }
-
-    /**
-     * Return a string of random characters with the "TEST~[entityName]" prefix.
-     *
-     * @param entityName the entity name
-     *
-     * @return the string
-     */
-    public static String randomName(final String entityName)
-    {
-        return TEST_PREFIX + safeString(entityName).toUpperCase(Locale.US) + "_" + randomString(randomBetween(NAME_LENGTH_MIN, NAME_LENGTH_MAX));
     }
 
     public static String randomPunctuationTerminal()
@@ -162,6 +130,30 @@ public class TestStringUtil
 
         return randString.toString();
     }
+
+    /**
+     * Return a short string of random characters.
+     *
+     * @return a short string
+     */
+    public static String randomStringShort()
+    {
+        return randomString(randomBetween(STRING_SHORT_LENGTH_MIN, STRING_SHORT_LENGTH_MAX));
+    }
+
+    /**
+     * Return a string of random characters with the "TEST~[entityName]" prefix.
+     *
+     * @param entityName the entity name
+     *
+     * @return the string
+     */
+    public static String randomTest(final String entityName)
+    {
+        return isBlank(entityName) ? test(null) : test(entityName.toUpperCase(Locale.US) + "_" + randomStringShort());
+    }
+
+
 
     /**
      * Generate a UUID.
@@ -220,5 +212,17 @@ public class TestStringUtil
         }
 
         return shuffledString.toString();
+    }
+
+    /**
+     * Add a test prefix to the given string.
+     *
+     * @param suffix the string
+     *
+     * @return the test string
+     */
+    public static String test(final String suffix)
+    {
+        return TEST_PREFIX + (isBlank(suffix) ? randomStringShort() : suffix);
     }
 }

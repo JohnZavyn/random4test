@@ -1,5 +1,6 @@
 package com.threeleaf.test.random.util;
 
+import org.apache.commons.validator.routines.CodeValidator;
 import org.junit.Test;
 
 import java.lang.reflect.*;
@@ -11,8 +12,35 @@ import static com.threeleaf.test.random.util.TestStringUtil.STRING_LENGTH_MIN;
 import static org.junit.Assert.*;
 
 /** Test {@link TestStringUtil} */
-public class TestStringUtilRandomUtil
+public class TestStringUtilTest
 {
+
+    /** Test {@link TestStringUtil#capitalize(String)}. */
+    @Test
+    public void capitalize()
+    {
+        final String expectedResult = "String";
+
+        final String result = TestStringUtil.capitalize("string");
+
+        assertEquals(expectedResult, result);
+    }
+
+    /** Test {@link TestStringUtil#randomPunctuationTerminal()}. */
+    @Test
+    public void randomPunctuationTerminal()
+    {
+        final String result = TestStringUtil.randomPunctuationTerminal();
+
+        assertTrue(".".equals(result) || "?".equals(result) || "!".equals(result));
+    }
+
+    /** Test {@link TestStringUtil#randomUuid()}. */
+    @Test
+    public void randomUuid()
+    {
+        new CodeValidator("[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}", null).isValid(TestStringUtil.randomUuid());
+    }
 
     /** Test {@link TestStringUtil} constructor. */
     @Test
@@ -62,12 +90,6 @@ public class TestStringUtilRandomUtil
         assertFalse(TestStringUtil.isEmpty(SPACE));
     }
 
-    /** Test {@link TestStringUtil#randomEmail()}. */
-    @Test
-    public void randomEmail()
-    {
-        assertTrue(TestStringUtil.randomEmail().endsWith("example.com"));
-    }
 
     /** Test {@link TestStringUtil#randomLetter()}. */
     @Test
@@ -76,18 +98,18 @@ public class TestStringUtilRandomUtil
         assertEquals(1, TestStringUtil.randomLetter().length());
     }
 
-    /** Test {@link TestStringUtil#randomName()}. */
+    /** Test {@link TestStringUtil#test(String)}. */
     @Test
     public void randomName()
     {
-        assertTrue(TestStringUtil.randomName().startsWith(TEST_PREFIX));
+        assertTrue(TestStringUtil.test(STRING_05).startsWith(TEST_PREFIX));
     }
 
-    /** Test {@link TestStringUtil#randomName(String)}. */
+    /** Test {@link TestStringUtil#randomTest(String)}. */
     @Test
     public void randomNameCustom()
     {
-        assertTrue(TestStringUtil.randomName(STRING_05).startsWith(TEST_PREFIX + STRING_05));
+        assertTrue(TestStringUtil.randomTest(STRING_05).startsWith(TEST_PREFIX + STRING_05));
     }
 
     /** Test {@link TestStringUtil#randomString()}. */

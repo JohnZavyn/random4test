@@ -23,7 +23,7 @@ public class TestArrayUtil
      *
      * @return a random object
      */
-    public static <T> T chooseOneFrom(@Nonnull final T[] array)
+    public static <T> T chooseOneFrom(@Nonnull final T... array)
     {
         return TestCollectionUtil.chooseOneFrom(asList(array));
     }

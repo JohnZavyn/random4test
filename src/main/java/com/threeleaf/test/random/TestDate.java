@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.TimeZone;
 
 import static com.threeleaf.test.random.util.TestDateUtil.getTimestamp;
+import static com.threeleaf.test.random.util.TestDateUtil.toDate;
 
 /** Date constants to be used in JUnit tests. */
 @SuppressWarnings({"WeakerAccess", "unused"})
@@ -14,10 +15,10 @@ public class TestDate extends AbstractTest<Date>
     public static final TestDate INSTANCE = new TestDate();
 
     /** Date from last month. */
-    public static final Date MONTH_LAST = new Date(TestLocalDate.MONTH_LAST.toEpochDay());
+    public static final Date MONTH_LAST = toDate(TestLocalDate.MONTH_LAST);
 
     /** Date for next month. */
-    public static final Date MONTH_NEXT = new Date(TestLocalDate.MONTH_NEXT.toEpochDay());
+    public static final Date MONTH_NEXT = toDate(TestLocalDate.MONTH_NEXT);
 
     /** Timestamp */
     public static final String TIMESTAMP = getTimestamp();
@@ -26,28 +27,28 @@ public class TestDate extends AbstractTest<Date>
     public static final TimeZone TIME_ZONE = TimeZone.getDefault();
 
     /** Today's date. */
-    public static final Date TODAY = new Date(TestLocalDate.TODAY.toEpochDay());
+    public static final Date TODAY = toDate(TestLocalDate.TODAY);
 
     /** Tomorrow's date. */
-    public static final Date TOMORROW = new Date(TestLocalDate.TOMORROW.toEpochDay());
+    public static final Date TOMORROW = toDate(TestLocalDate.TOMORROW);
 
     /** Date from last week. */
-    public static final Date WEEK_LAST = new Date(TestLocalDate.WEEK_LAST.toEpochDay());
+    public static final Date WEEK_LAST = toDate(TestLocalDate.WEEK_LAST);
 
     /** Date for next week. */
-    public static final Date WEEK_NEXT = new Date(TestLocalDate.WEEK_NEXT.toEpochDay());
+    public static final Date WEEK_NEXT = toDate(TestLocalDate.WEEK_NEXT);
 
     /** The current year. */
     public static final int YEAR = TestLocalDate.YEAR;
 
     /** Date from last year. */
-    public static final Date YEAR_LAST = new Date(TestLocalDate.YEAR_LAST.toEpochDay());
+    public static final Date YEAR_LAST = toDate(TestLocalDate.YEAR_LAST);
 
     /** Date for next year. */
-    public static final Date YEAR_NEXT = new Date(TestLocalDate.YEAR_NEXT.toEpochDay());
+    public static final Date YEAR_NEXT = toDate(TestLocalDate.YEAR_NEXT);
 
     /** Yesterday's date. */
-    public static final Date YESTERDAY = new Date(TestLocalDate.YESTERDAY.toEpochDay());
+    public static final Date YESTERDAY = toDate(TestLocalDate.YESTERDAY);
 
     /** Instantiate a utility to produce randomized objects of the given type. */
     public TestDate()

@@ -2,6 +2,7 @@ package com.threeleaf.test.random;
 
 import java.util.*;
 
+import static com.threeleaf.test.random.TestLong.L_00;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
@@ -357,20 +358,23 @@ public class TestInteger extends AbstractTest<Integer>
     /** An {@link Integer} array with a single value. */
     public static final Integer[] INTEGER_ARRAY_SINGLE = INSTANCE.randomArraySingle();
 
+    /** An {@link Integer} collection. */
+    public static final Collection<Integer> INTEGER_COLLECTION = unmodifiableCollection(INSTANCE.randomCollection());
+
     /** The primitive int 00. */
     public final static int INT_00 = 0;
 
     /** The primitive int 01. */
     public final static int INT_01 = 1;
 
-    /** An {@link Integer} collection. */
-    public static final Collection<Integer> INTEGER_COLLECTION = unmodifiableCollection(INSTANCE.randomCollection());
-
     /** An {@link Integer} list. */
     public static final List<Integer> INTEGER_LIST = unmodifiableList(INSTANCE.randomList());
 
     /** An single {@link Integer} list. */
     public static final List<Integer> INTEGER_LIST_SINGLE = singletonList(randomInteger());
+
+    /** An {@link Integer} map. */
+    public static final Map<Integer, Integer> INTEGER_MAP = unmodifiableMap(INSTANCE.randomMap(Integer.class));
 
     /** The primitive int 02. */
     public final static int INT_02 = 2;
@@ -381,8 +385,8 @@ public class TestInteger extends AbstractTest<Integer>
     /** An {@link Integer} map with a single key-value pair. */
     public static final Map<Integer, Integer> INTEGER_MAP_SINGLE = unmodifiableMap(INSTANCE.randomMapSingle(Integer.class));
 
-    /** An {@link Integer} map. */
-    public static final Map<Integer, Integer> INTEGER_MAP = unmodifiableMap(INSTANCE.randomMap(Integer.class));
+    /** A negative Integer. */
+    public final static Integer INTEGER_NEGATIVE = randomNegative();
 
     /** The primitive int 04. */
     public final static int INT_04 = 4;
@@ -405,9 +409,6 @@ public class TestInteger extends AbstractTest<Integer>
     /** The primitive int 10. */
     public final static int INT_10 = 10;
 
-    /** A negative Integer. */
-    public final static Integer INTEGER_NEGATIVE = randomNegative();
-
     /** A positive Integer. */
     public final static Integer INTEGER_POSITIVE = randomPositive();
 
@@ -416,6 +417,9 @@ public class TestInteger extends AbstractTest<Integer>
 
     /** An {@link Integer} set with a single value. */
     public static final Set<Integer> INTEGER_SET_SINGLE = unmodifiableSet(INSTANCE.randomSetSingle());
+
+    /** The maximum value for an unsigned integer. */
+    public static final long INTEGER_UNSIGNED_MAX = (long) Integer.MAX_VALUE - Integer.MIN_VALUE;
 
     /** An {@link Integer} set. */
     public static final Set<Integer> INTEGER_SET = unmodifiableSet(INSTANCE.randomSet());
@@ -836,6 +840,26 @@ public class TestInteger extends AbstractTest<Integer>
     public static int randomPositive()
     {
         return randomBetween(INT_01, Integer.MAX_VALUE);
+    }
+
+    /**
+     * A random unsigned byte.
+     *
+     * @return a number between 0 to 255 inclusive
+     */
+    public static long randomUnsigned()
+    {
+        return TestLong.randomBetween(L_00, INTEGER_UNSIGNED_MAX);
+    }
+
+    /**
+     * A random hexadecimal byte value;
+     *
+     * @return a  "0" to "FF"
+     */
+    public static String randomHex()
+    {
+        return Long.toHexString(randomUnsigned());
     }
 
     /**
