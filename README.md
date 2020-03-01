@@ -15,6 +15,7 @@ Add to Maven projects with:
     <version>3.0.1-SNAPSHOT</version>
 </dependency>
 ```
+For more dependency options: <https://mvnrepository.com/artifact/com.threeleaf/random4test>
 
 ## Example usage
 ```java
