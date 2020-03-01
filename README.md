@@ -3,7 +3,7 @@ Easily provide random numbers, strings, and collections to JUnit tests.
 
 [![Build Status](https://travis-ci.org/JohnZavyn/random4test.svg)](https://travis-ci.org/JohnZavyn/random4test) &nbsp;
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.threeleaf/random4test/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.threeleaf/random4test) &nbsp;
- [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) &nbsp;
+ [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-brightgreen.svg)](https://www.gnu.org/licenses/gpl-3.0) &nbsp;
 [![JavaDoc](http://javadoc-badge.appspot.com/com.threeleaf/random4test.svg?label=javadoc)](http://www.threeleaf.com/random4test/javadoc/)
 
 ## Maven dependency

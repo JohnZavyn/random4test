@@ -1,6 +1,7 @@
 language: java
-sudo: required
 dist: trusty
+
+os: linux
 
 jdk:
   - openjdk8
@@ -8,5 +9,3 @@ jdk:
 
 notifications:
   email: true
-
-sudo: false
