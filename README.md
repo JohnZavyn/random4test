@@ -1,5 +1,10 @@
 # random4test
-Easily provide random numbers, strings, and collections to JUnit tests
+Easily provide random numbers, strings, and collections to JUnit tests.
+
+[![Build Status](https://travis-ci.org/JohnZavyn/random4test.svg)](https://travis-ci.org/JohnZavyn/random4test) &nbsp;
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.threeleaf/random4test/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.threeleaf/random4test) &nbsp;
+ [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0) &nbsp;
+[![JavaDoc](http://javadoc-badge.appspot.com/com.threeleaf/random4test.svg?label=javadoc)](http://www.threeleaf.com/random4test/javadoc/)
 
 ## Maven dependency
 Add to Maven projects with:
@@ -10,7 +15,6 @@ Add to Maven projects with:
     <version>3.0.1-SNAPSHOT</version>
 </dependency>
 ```
-For more dependency options: <https://mvnrepository.com/artifact/com.threeleaf/random4test>
 
 ## Example usage
 ```java

@@ -1,0 +1,12 @@
+language: java
+sudo: required
+dist: trusty
+
+jdk:
+  - openjdk8
+  - openjdk11
+
+notifications:
+  email: true
+
+sudo: false
