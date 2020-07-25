@@ -1,23 +1,22 @@
 package com.threeleaf.test.random.util;
 
-import com.google.common.collect.ImmutableMap;
-import lombok.experimental.UtilityClass;
-
-import java.util.Map;
-import java.util.Set;
-
 import static com.google.common.collect.Sets.newHashSet;
 import static com.threeleaf.test.random.TestString.SPACE;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 
+import java.util.Map;
+import java.util.Set;
+
+import com.google.common.collect.ImmutableMap;
+import lombok.experimental.UtilityClass;
+
 /** Utilities to generate random words. */
 @UtilityClass
 @SuppressWarnings("WeakerAccess")
-public class TestWordUtil
-{
+public class TestWordUtil {
 
     /** Common CSS color HEX values and related W3C extended color keywords. */
-    public static final Map<String, String> COLORS = ImmutableMap.<String, String>builder() // @formatter:off //
+    public final Map<String, String> COLORS = ImmutableMap.<String, String>builder() // @formatter:off //
           .put("#008080", "Teal")
           .put("#008b8b", "DarkCyan")
           .put("#00bfff", "DeepSkyBlue")
@@ -153,7 +152,7 @@ public class TestWordUtil
     .build(); // @formatter:on //
 
     /** A Set of unique adjectives. */
-    public static final Set<String> WORDS_ADJECTIVES = newHashSet(( // @formatter:off //
+    public final Set<String> WORDS_ADJECTIVES = newHashSet(( // @formatter:off //
          "abandoned able absolute adorable adventurous academic acceptable acclaimed " +
          "accomplished accurate aching acidic acrobatic active actual adept admirable " +
          "admired adolescent adored advanced afraid affectionate aged aggravating " +
@@ -297,7 +296,7 @@ public class TestWordUtil
     ).split("[\\p{Punct}\\s]+")); // @formatter:on //
 
     /** A Set of unique adverbs. */
-    public static final Set<String> WORDS_ADVERBS = newHashSet(( // @formatter:off //
+    public final Set<String> WORDS_ADVERBS = newHashSet(( // @formatter:off //
         "abnormally absentmindedly accidentally acidly actually adventurously " +
         "afterwards almost always angrily annually anxiously arrogantly awkwardly " +
         "badly bashfully beautifully bitterly bleakly blindly blissfully boastfully " +
@@ -345,7 +344,7 @@ public class TestWordUtil
     ).split("[\\p{Punct}\\s]+")); // @formatter:on //
 
     /** A Set of unique nouns. */
-    public static final Set<String> WORDS_NOUNS = newHashSet(( // @formatter:off //
+    public final Set<String> WORDS_NOUNS = newHashSet(( // @formatter:off //
          "account act adjustment advertisement agreement air amount amusement angle animal " +
          "answer ant apparatus apple approval arch argument arm army art attack attempt " +
          "attention attraction authority baby back bag balance ball band base basin basket " +
@@ -391,7 +390,7 @@ public class TestWordUtil
     ).split("[\\p{Punct}\\s]+")); // @formatter:on //
 
     /** A Set of unique verbs. */
-    public static final Set<String> WORDS_VERBS = newHashSet(( // @formatter:off //
+    public final Set<String> WORDS_VERBS = newHashSet(( // @formatter:off //
         "abide accelerate accept accomplish achieve acquire acted activate adapt add " +
         "address administer admire admit adopt advise afford agree alert alight allow " +
         "altered amuse analyze announce annoy answer anticipate apologize appear applaud " +
@@ -489,8 +488,7 @@ public class TestWordUtil
      *
      * @return an adjective
      */
-    public static String randomAdjective()
-    {
+    public String randomAdjective() {
         return chooseOneFrom(WORDS_ADJECTIVES);
     }
 
@@ -499,8 +497,7 @@ public class TestWordUtil
      *
      * @return an adverb
      */
-    public static String randomAdverb()
-    {
+    public String randomAdverb() {
         return chooseOneFrom(WORDS_ADVERBS);
     }
 
@@ -509,8 +506,7 @@ public class TestWordUtil
      *
      * @return a color
      */
-    public static String randomColor()
-    {
+    public String randomColor() {
         return chooseOneFrom(COLORS.values());
     }
 
@@ -519,8 +515,7 @@ public class TestWordUtil
      *
      * @return a color hex
      */
-    public static String randomColorHex()
-    {
+    public String randomColorHex() {
         return chooseOneFrom(COLORS.keySet());
     }
 
@@ -529,8 +524,7 @@ public class TestWordUtil
      *
      * @return a noun
      */
-    public static String randomNoun()
-    {
+    public String randomNoun() {
         return chooseOneFrom(WORDS_NOUNS);
     }
 
@@ -539,9 +533,9 @@ public class TestWordUtil
      *
      * @return a phrase
      */
-    public static String randomPhrase()
-    {
-        return randomAdjective() + SPACE + randomNoun() + SPACE + randomVerb() + SPACE + randomAdverb();
+    public String randomPhrase() {
+        return randomAdjective() + SPACE + randomNoun() + SPACE + randomVerb() + SPACE
+                + randomAdverb();
     }
 
     /**
@@ -549,8 +543,7 @@ public class TestWordUtil
      *
      * @return a verb
      */
-    public static String randomVerb()
-    {
+    public String randomVerb() {
         return chooseOneFrom(WORDS_VERBS);
     }
 }

@@ -1,15 +1,14 @@
 package com.threeleaf.test.random;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.Test;
 
-/** Test {@link TestBoolean} */
-public class TestBooleanTest
-{
+/** Test {@link TestBoolean}. */
+public class TestBooleanTest {
 
     /**
      * The maximum number of times to loop through a test call.
@@ -21,67 +20,55 @@ public class TestBooleanTest
 
     /** Test {@link TestBoolean#coinFlip()}. */
     @Test
-    public void coinFlip()
-    {
-        final Set<Boolean> results               = new HashSet<>();
-        boolean            allPossibilitiesFound = false;
+    public void coinFlip() {
+        final Set<Boolean> results = new HashSet<>();
+        boolean allPossibilitiesFound = false;
 
-        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++)
-        {
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
             results.add(TestBoolean.coinFlip());
-            if (results.size() == 2)
-            {
+            if (results.size() == 2) {
                 allPossibilitiesFound = true;
                 break;
             }
         }
-        if (!allPossibilitiesFound)
-        {
+        if (!allPossibilitiesFound) {
             fail("Expected all possible results, but only found " + results);
         }
     }
 
     /** Test {@link TestBoolean#oneOutOf(int)}. */
     @Test
-    public void oneOutOf()
-    {
-        final int          number                = 10;
-        final Set<Boolean> results               = new HashSet<>();
-        boolean            allPossibilitiesFound = false;
+    public void oneOutOf() {
+        final int number = 10;
+        final Set<Boolean> results = new HashSet<>();
+        boolean allPossibilitiesFound = false;
 
-        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++)
-        {
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
             results.add(TestBoolean.oneOutOf(number));
-            if (results.size() == 2)
-            {
+            if (results.size() == 2) {
                 allPossibilitiesFound = true;
                 break;
             }
         }
-        if (!allPossibilitiesFound)
-        {
+        if (!allPossibilitiesFound) {
             fail("Expected all possible results, but only found " + results);
         }
     }
 
     /** Test {@link TestBoolean#randomBoolean()}. */
     @Test
-    public void randomBoolean()
-    {
-        final Set<Boolean> results               = new HashSet<>();
-        boolean            allPossibilitiesFound = false;
+    public void randomBoolean() {
+        final Set<Boolean> results = new HashSet<>();
+        boolean allPossibilitiesFound = false;
 
-        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++)
-        {
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
             results.add(TestBoolean.randomBoolean());
-            if (results.size() == 2)
-            {
+            if (results.size() == 2) {
                 allPossibilitiesFound = true;
                 break;
             }
         }
-        if (!allPossibilitiesFound)
-        {
+        if (!allPossibilitiesFound) {
             fail("Expected all possible results, but only found " + results);
         }
     }

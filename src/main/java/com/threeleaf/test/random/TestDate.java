@@ -1,15 +1,14 @@
 package com.threeleaf.test.random;
 
-import java.util.Date;
-import java.util.TimeZone;
-
 import static com.threeleaf.test.random.util.TestDateUtil.getTimestamp;
 import static com.threeleaf.test.random.util.TestDateUtil.toDate;
 
+import java.util.Date;
+import java.util.TimeZone;
+
 /** Date constants to be used in JUnit tests. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestDate extends AbstractTest<Date>
-{
+public class TestDate extends AbstractTest<Date> {
 
     /** The instance of {@link TestDate}. */
     public static final TestDate INSTANCE = new TestDate();
@@ -20,10 +19,10 @@ public class TestDate extends AbstractTest<Date>
     /** Date for next month. */
     public static final Date MONTH_NEXT = toDate(TestLocalDate.MONTH_NEXT);
 
-    /** Timestamp */
+    /** Timestamp. */
     public static final String TIMESTAMP = getTimestamp();
 
-    /** The time zone */
+    /** The time zone. */
     public static final TimeZone TIME_ZONE = TimeZone.getDefault();
 
     /** Today's date. */
@@ -51,8 +50,7 @@ public class TestDate extends AbstractTest<Date>
     public static final Date YESTERDAY = toDate(TestLocalDate.YESTERDAY);
 
     /** Instantiate a utility to produce randomized objects of the given type. */
-    public TestDate()
-    {
+    public TestDate() {
         super(Date.class);
     }
 
@@ -64,8 +62,7 @@ public class TestDate extends AbstractTest<Date>
      *
      * @return a date in between
      */
-    public static Date randomBetween(final Date date1, final Date date2)
-    {
+    public static Date randomBetween(final Date date1, final Date date2) {
         return new Date(TestLong.randomBetween(date1.getTime(), date2.getTime()));
     }
 
@@ -74,8 +71,7 @@ public class TestDate extends AbstractTest<Date>
      *
      * @return the date
      */
-    public static Date randomFuture()
-    {
+    public static Date randomFuture() {
         return randomBetween(TOMORROW, YEAR_NEXT);
     }
 
@@ -84,8 +80,7 @@ public class TestDate extends AbstractTest<Date>
      *
      * @return the date
      */
-    public static Date randomPast()
-    {
+    public static Date randomPast() {
         return randomBetween(YESTERDAY, YEAR_LAST);
     }
 
@@ -94,8 +89,7 @@ public class TestDate extends AbstractTest<Date>
      *
      * @return the date
      */
-    public static Date randomRecent()
-    {
+    public static Date randomRecent() {
         return randomBetween(YEAR_LAST, YEAR_NEXT);
     }
 }

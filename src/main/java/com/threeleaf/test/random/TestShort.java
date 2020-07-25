@@ -4,10 +4,9 @@ import static com.threeleaf.test.random.TestInteger.*;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-/** Utilities for random {@link Short} creation */
+/** Utilities for random {@link Short} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestShort extends AbstractTest<Short>
-{
+public class TestShort extends AbstractTest<Short> {
 
     /** The instance of {@link TestShort}. */
     public static final TestShort INSTANCE = new TestShort();
@@ -691,8 +690,7 @@ public class TestShort extends AbstractTest<Short>
     public final static short S_SMALL = randomPercent();
 
     /** Instantiate a utility to produce randomized {@link Short} objects. */
-    public TestShort()
-    {
+    public TestShort() {
         super(Short.class);
     }
 
@@ -704,8 +702,7 @@ public class TestShort extends AbstractTest<Short>
      *
      * @return the random short
      */
-    public static short randomBetween(final int number1, final int number2)
-    {
+    public static short randomBetween(final int number1, final int number2) {
         final int min = min(number1, number2);
         final int max = max(number1, number2);
 
@@ -713,12 +710,20 @@ public class TestShort extends AbstractTest<Short>
     }
 
     /**
+     * A random hexadecimal byte value;
+     *
+     * @return a  "0" to "FFFF"
+     */
+    public static String randomHex() {
+        return Integer.toHexString(randomUnsigned());
+    }
+
+    /**
      * Return a random negative {@link Short}.
      *
      * @return the big decimal
      */
-    public static short randomNegative()
-    {
+    public static short randomNegative() {
         return randomBetween(Short.MIN_VALUE, -1);
     }
 
@@ -727,8 +732,7 @@ public class TestShort extends AbstractTest<Short>
      *
      * @return a number between 0 and 100 inclusive
      */
-    public static short randomPercent()
-    {
+    public static short randomPercent() {
         return randomBetween(0, INT_100);
     }
 
@@ -737,8 +741,7 @@ public class TestShort extends AbstractTest<Short>
      *
      * @return the big decimal
      */
-    public static short randomPositive()
-    {
+    public static short randomPositive() {
         return randomBetween(INT_01, Short.MAX_VALUE);
     }
 
@@ -747,8 +750,7 @@ public class TestShort extends AbstractTest<Short>
      *
      * @return the short
      */
-    public static short randomShort()
-    {
+    public static short randomShort() {
         return INSTANCE.random();
     }
 
@@ -757,19 +759,8 @@ public class TestShort extends AbstractTest<Short>
      *
      * @return a number between 0 to 65535 inclusive
      */
-    public static int randomUnsigned()
-    {
+    public static int randomUnsigned() {
         return TestInteger.randomBetween(INT_00, SHORT_UNSIGNED_MAX);
-    }
-
-    /**
-     * A random hexadecimal byte value;
-     *
-     * @return a  "0" to "FFFF"
-     */
-    public static String randomHex()
-    {
-        return Integer.toHexString(randomUnsigned());
     }
 
     /**
@@ -777,8 +768,7 @@ public class TestShort extends AbstractTest<Short>
      *
      * @return the short
      */
-    public Short random()
-    {
+    public Short random() {
         return randomBetween(Short.MIN_VALUE, Short.MAX_VALUE);
     }
 }

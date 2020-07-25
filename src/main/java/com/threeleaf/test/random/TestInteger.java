@@ -1,17 +1,16 @@
 package com.threeleaf.test.random;
 
-import java.util.*;
-
 import static com.threeleaf.test.random.TestLong.L_00;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static java.util.Collections.*;
 
-/** Utilities for random {@link Integer} creation */
+import java.util.*;
+
+/** Utilities for random {@link Integer} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestInteger extends AbstractTest<Integer>
-{
+public class TestInteger extends AbstractTest<Integer> {
 
     /** Maximum digit value. */
     public static final int DIGIT_MAX = 9;
@@ -359,7 +358,8 @@ public class TestInteger extends AbstractTest<Integer>
     public static final Integer[] INTEGER_ARRAY_SINGLE = INSTANCE.randomArraySingle();
 
     /** An {@link Integer} collection. */
-    public static final Collection<Integer> INTEGER_COLLECTION = unmodifiableCollection(INSTANCE.randomCollection());
+    public static final Collection<Integer> INTEGER_COLLECTION =
+            unmodifiableCollection(INSTANCE.randomCollection());
 
     /** The primitive int 00. */
     public final static int INT_00 = 0;
@@ -374,7 +374,8 @@ public class TestInteger extends AbstractTest<Integer>
     public static final List<Integer> INTEGER_LIST_SINGLE = singletonList(randomInteger());
 
     /** An {@link Integer} map. */
-    public static final Map<Integer, Integer> INTEGER_MAP = unmodifiableMap(INSTANCE.randomMap(Integer.class));
+    public static final Map<Integer, Integer> INTEGER_MAP =
+            unmodifiableMap(INSTANCE.randomMap(Integer.class));
 
     /** The primitive int 02. */
     public final static int INT_02 = 2;
@@ -383,7 +384,8 @@ public class TestInteger extends AbstractTest<Integer>
     public final static int INT_03 = 3;
 
     /** An {@link Integer} map with a single key-value pair. */
-    public static final Map<Integer, Integer> INTEGER_MAP_SINGLE = unmodifiableMap(INSTANCE.randomMapSingle(Integer.class));
+    public static final Map<Integer, Integer> INTEGER_MAP_SINGLE =
+            unmodifiableMap(INSTANCE.randomMapSingle(Integer.class));
 
     /** A negative Integer. */
     public final static Integer INTEGER_NEGATIVE = randomNegative();
@@ -416,7 +418,8 @@ public class TestInteger extends AbstractTest<Integer>
     public final static Integer INTEGER_RANDOM = randomInt();
 
     /** An {@link Integer} set with a single value. */
-    public static final Set<Integer> INTEGER_SET_SINGLE = unmodifiableSet(INSTANCE.randomSetSingle());
+    public static final Set<Integer> INTEGER_SET_SINGLE =
+            unmodifiableSet(INSTANCE.randomSetSingle());
 
     /** The maximum value for an unsigned integer. */
     public static final long INTEGER_UNSIGNED_MAX = (long) Integer.MAX_VALUE - Integer.MIN_VALUE;
@@ -731,8 +734,7 @@ public class TestInteger extends AbstractTest<Integer>
     public final static int INT_SMALL = randomPercent();
 
     /** Instantiate a utility to produce randomized Integer objects. */
-    public TestInteger()
-    {
+    public TestInteger() {
         super(Integer.class);
     }
 
@@ -741,8 +743,7 @@ public class TestInteger extends AbstractTest<Integer>
      *
      * @return a number between 0 to 10 inclusive
      */
-    public static int random0to10()
-    {
+    public static int random0to10() {
         return randomBetween(0, INT_10);
     }
 
@@ -751,8 +752,7 @@ public class TestInteger extends AbstractTest<Integer>
      *
      * @return a number between 1 to 10 inclusive
      */
-    public static int random1to10()
-    {
+    public static int random1to10() {
         return randomBetween(INT_01, INT_10);
     }
 
@@ -761,8 +761,7 @@ public class TestInteger extends AbstractTest<Integer>
      *
      * @return a number between 1 to 100 inclusive
      */
-    public static int random1to100()
-    {
+    public static int random1to100() {
         return randomBetween(INT_01, INT_100);
     }
 
@@ -774,8 +773,7 @@ public class TestInteger extends AbstractTest<Integer>
      *
      * @return the random int
      */
-    public static int randomBetween(final int number1, final int number2)
-    {
+    public static int randomBetween(final int number1, final int number2) {
         final int min = min(number1, number2);
         final int max = max(number1, number2);
 
@@ -787,9 +785,17 @@ public class TestInteger extends AbstractTest<Integer>
      *
      * @return a number between 0 to 9 inclusive
      */
-    public static int randomDigit()
-    {
+    public static int randomDigit() {
         return randomBetween(DIGIT_MIN, DIGIT_MAX);
+    }
+
+    /**
+     * A random hexadecimal byte value;
+     *
+     * @return a  "0" to "FF"
+     */
+    public static String randomHex() {
+        return Long.toHexString(randomUnsigned());
     }
 
     /**
@@ -797,8 +803,7 @@ public class TestInteger extends AbstractTest<Integer>
      *
      * @return the int
      */
-    public static int randomInt()
-    {
+    public static int randomInt() {
         return randomInteger();
     }
 
@@ -807,8 +812,7 @@ public class TestInteger extends AbstractTest<Integer>
      *
      * @return the Integer
      */
-    public static Integer randomInteger()
-    {
+    public static Integer randomInteger() {
         return INSTANCE.random();
     }
 
@@ -817,8 +821,7 @@ public class TestInteger extends AbstractTest<Integer>
      *
      * @return the big decimal
      */
-    public static int randomNegative()
-    {
+    public static int randomNegative() {
         return -randomPositive();
     }
 
@@ -827,8 +830,7 @@ public class TestInteger extends AbstractTest<Integer>
      *
      * @return a number between 0 and 100 inclusive
      */
-    public static int randomPercent()
-    {
+    public static int randomPercent() {
         return randomBetween(0, INT_100);
     }
 
@@ -837,8 +839,7 @@ public class TestInteger extends AbstractTest<Integer>
      *
      * @return the big decimal
      */
-    public static int randomPositive()
-    {
+    public static int randomPositive() {
         return randomBetween(INT_01, Integer.MAX_VALUE);
     }
 
@@ -847,19 +848,8 @@ public class TestInteger extends AbstractTest<Integer>
      *
      * @return a number between 0 to 255 inclusive
      */
-    public static long randomUnsigned()
-    {
+    public static long randomUnsigned() {
         return TestLong.randomBetween(L_00, INTEGER_UNSIGNED_MAX);
-    }
-
-    /**
-     * A random hexadecimal byte value;
-     *
-     * @return a  "0" to "FF"
-     */
-    public static String randomHex()
-    {
-        return Long.toHexString(randomUnsigned());
     }
 
     /**
@@ -867,8 +857,7 @@ public class TestInteger extends AbstractTest<Integer>
      *
      * @return the int
      */
-    public Integer random()
-    {
+    public Integer random() {
         return RANDOM.nextInt();
     }
 }

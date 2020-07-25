@@ -1,19 +1,18 @@
 package com.threeleaf.test.random.util;
 
-import lombok.experimental.UtilityClass;
-
-import javax.annotation.Nonnull;
-import java.lang.reflect.Array;
-
 import static com.threeleaf.test.random.TestInteger.*;
 import static com.threeleaf.test.random.util.TestListUtil.randomArrayListOf;
 import static java.util.Arrays.asList;
 
+import java.lang.reflect.Array;
+import javax.annotation.Nonnull;
+
+import lombok.experimental.UtilityClass;
+
 /** Utilities to generate randomly populated Array objects. */
 @UtilityClass
 @SuppressWarnings({"WeakerAccess", "unchecked"})
-public class TestArrayUtil
-{
+public class TestArrayUtil {
 
     /**
      * Choose a random item from an array.
@@ -23,8 +22,7 @@ public class TestArrayUtil
      *
      * @return a random object
      */
-    public static <T> T chooseOneFrom(@Nonnull final T... array)
-    {
+    public <T> T chooseOneFrom(@Nonnull final T... array) {
         return TestCollectionUtil.chooseOneFrom(asList(array));
     }
 
@@ -38,9 +36,10 @@ public class TestArrayUtil
      *
      * @return an Array of randomized objects
      */
-    public static <T> T[] randomArrayOf(final int size, @Nonnull final Class<T> type, final String... fieldsExcluded)
-    {
-        return randomArrayListOf(size, type, fieldsExcluded).toArray((T[]) Array.newInstance(type, INT_00));
+    public <T> T[] randomArrayOf(final int size, @Nonnull final Class<T> type,
+            final String... fieldsExcluded) {
+        return randomArrayListOf(size, type, fieldsExcluded)
+                .toArray((T[]) Array.newInstance(type, INT_00));
     }
 
     /**
@@ -52,8 +51,8 @@ public class TestArrayUtil
      *
      * @return an Array of randomized objects
      */
-    public static <T> T[] randomArrayOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
-    {
+    public <T> T[] randomArrayOf(@Nonnull final Class<T> type,
+            final String... fieldsExcluded) {
         return randomArrayOf(random1to10(), type, fieldsExcluded);
     }
 
@@ -66,8 +65,8 @@ public class TestArrayUtil
      *
      * @return an Array with a randomized object
      */
-    public static <T> T[] randomArraySingleOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
-    {
+    public <T> T[] randomArraySingleOf(@Nonnull final Class<T> type,
+            final String... fieldsExcluded) {
         return randomArrayOf(INT_01, type, fieldsExcluded);
     }
 }

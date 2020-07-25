@@ -6,10 +6,9 @@ import static com.threeleaf.test.random.TestRandom.RANDOM;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-/** Utilities for random {@link Double} creation */
+/** Utilities for random {@link Double} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestDouble extends AbstractTest<Double>
-{
+public class TestDouble extends AbstractTest<Double> {
 
     /** The Double 00. */
     public final static Double DOUBLE_00 = 0D;
@@ -693,8 +692,7 @@ public class TestDouble extends AbstractTest<Double>
     public final static double D_RANDOM = randomDouble();
 
     /** Instantiate a utility to produce randomized {@link Double} objects. */
-    public TestDouble()
-    {
+    public TestDouble() {
         super(Double.class);
     }
 
@@ -706,8 +704,7 @@ public class TestDouble extends AbstractTest<Double>
      *
      * @return the random double
      */
-    public static double randomBetween(final double number1, final double number2)
-    {
+    public static double randomBetween(final double number1, final double number2) {
         final double min = min(number1, number2);
         final double max = max(number1, number2);
 
@@ -719,8 +716,7 @@ public class TestDouble extends AbstractTest<Double>
      *
      * @return the double
      */
-    public static double randomDouble()
-    {
+    public static double randomDouble() {
         return INSTANCE.random();
     }
 
@@ -729,8 +725,7 @@ public class TestDouble extends AbstractTest<Double>
      *
      * @return the big decimal
      */
-    public static double randomNegative()
-    {
+    public static double randomNegative() {
         return -randomPositive();
     }
 
@@ -739,8 +734,7 @@ public class TestDouble extends AbstractTest<Double>
      *
      * @return a number between 0 and 100 inclusive
      */
-    public static double randomPercent()
-    {
+    public static double randomPercent() {
         return randomBetween(0, INT_100);
     }
 
@@ -749,8 +743,7 @@ public class TestDouble extends AbstractTest<Double>
      *
      * @return the big decimal
      */
-    public static double randomPositive()
-    {
+    public static double randomPositive() {
         return randomBetween(INT_01, Double.MAX_VALUE);
     }
 
@@ -759,8 +752,7 @@ public class TestDouble extends AbstractTest<Double>
      *
      * @return the double
      */
-    public Double random()
-    {
+    public Double random() {
         return RANDOM.nextDouble();
     }
 }

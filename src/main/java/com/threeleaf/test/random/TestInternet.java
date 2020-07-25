@@ -4,8 +4,7 @@ import static com.threeleaf.test.random.util.TestInternetUtil.*;
 
 /** Internet constants to be used in JUnit tests. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestInternet
-{
+public class TestInternet {
 
     /** The at sign. */
     public static final String AT_SIGN = "@";

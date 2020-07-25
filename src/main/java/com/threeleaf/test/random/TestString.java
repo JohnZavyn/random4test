@@ -1,15 +1,14 @@
 package com.threeleaf.test.random;
 
-import java.util.*;
-
 import static com.threeleaf.test.random.TestInteger.*;
 import static com.threeleaf.test.random.util.TestStringUtil.*;
 import static java.util.Collections.*;
 
+import java.util.*;
+
 /** String constants to be used in JUnit tests. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestString extends AbstractTest<String>
-{
+public class TestString extends AbstractTest<String> {
 
     /** The letters "abc". */
     public static final String ABC = "abc";
@@ -18,7 +17,9 @@ public class TestString extends AbstractTest<String>
     public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 
     /** Alphabet, lower case, in an array. */
-    public static final String[] ALPHABET_ARRAY = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
+    public static final String[] ALPHABET_ARRAY =
+            {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q",
+                    "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
     /** Alphabet, upper case. */
     public static final String ALPHABET_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -47,7 +48,7 @@ public class TestString extends AbstractTest<String>
      */
     public static final String RANDOM_CHARS = "ABCEFGHJKMNPQRSTUVWXYZ23456789";
 
-    /** A space */
+    /** A space. */
     public static final String SPACE = " ";
 
     /** Test string consisting of 1 random characters. */
@@ -353,8 +354,8 @@ public class TestString extends AbstractTest<String>
     /** An {@link String} array with a single value. */
     public static final String[] STRING_ARRAY_SINGLE = INSTANCE.randomArraySingle();
 
-    /** An {@link String} collection. */
-    public static final Collection<String> STRING_COLLECTION = unmodifiableCollection(INSTANCE.randomCollection());
+    /** Test string consisting of 99 random characters. */
+    public static final String STRING_99 = randomString(INT_99);
 
     /** An single {@link Integer} collection. */
     public static final Collection<String> STRING_COLLECTION_SINGLE = singleton(randomString());
@@ -365,23 +366,29 @@ public class TestString extends AbstractTest<String>
     /** An single {@link Integer} list. */
     public static final List<String> STRING_LIST_SINGLE = singletonList(randomString());
 
+    /** An {@link String} collection. */
+    public static final Collection<String> STRING_COLLECTION =
+            unmodifiableCollection(INSTANCE.randomCollection());
+
     /** An {@link String} map. */
-    public static final Map<String, String> STRING_MAP = unmodifiableMap(INSTANCE.randomMap(String.class));
+    public static final Map<String, String> STRING_MAP =
+            unmodifiableMap(INSTANCE.randomMap(String.class));
 
     /** An {@link Integer} key and {@link String} value map. */
-    public static final Map<Integer, String> STRING_MAP_INTEGER = unmodifiableMap(INSTANCE.randomMap(Integer.class));
+    public static final Map<Integer, String> STRING_MAP_INTEGER =
+            unmodifiableMap(INSTANCE.randomMap(Integer.class));
 
     /** An {@link Integer} key and {@link String} value map with a single key-value pair. */
-    public static final Map<Integer, String> STRING_MAP_INTEGER_SINGLE = unmodifiableMap(INSTANCE.randomMapSingle(Integer.class));
+    public static final Map<Integer, String> STRING_MAP_INTEGER_SINGLE =
+            unmodifiableMap(INSTANCE.randomMapSingle(Integer.class));
 
     /** An {@link Long} key and {@link String} value map. */
-    public static final Map<Long, String> STRING_MAP_LONG = unmodifiableMap(INSTANCE.randomMap(Long.class));
+    public static final Map<Long, String> STRING_MAP_LONG =
+            unmodifiableMap(INSTANCE.randomMap(Long.class));
 
     /** An {@link Long} key and {@link String} value map with a single key-value pair. */
-    public static final Map<Long, String> STRING_MAP_LONG_SINGLE = unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
-
-    /** An {@link String} map with a single key-value pair. */
-    public static final Map<String, String> STRING_MAP_SINGLE = unmodifiableMap(INSTANCE.randomMapSingle(String.class));
+    public static final Map<Long, String> STRING_MAP_LONG_SINGLE =
+            unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
 
     /** An {@link String} set. */
     public static final Set<String> STRING_SET = unmodifiableSet(INSTANCE.randomSet());
@@ -392,8 +399,9 @@ public class TestString extends AbstractTest<String>
     /** A prefix that can be attached to strings to indicate it is from a testing context. */
     public static final String TEST_PREFIX = "TEST~";
 
-    /** Test string consisting of 99 random characters. */
-    public static final String STRING_99 = randomString(INT_99);
+    /** An {@link String} map with a single key-value pair. */
+    public static final Map<String, String> STRING_MAP_SINGLE =
+            unmodifiableMap(INSTANCE.randomMapSingle(String.class));
 
     /** A UUID string. */
     public static final String UUID = randomUuid();
@@ -402,8 +410,7 @@ public class TestString extends AbstractTest<String>
     public static final String WHITESPACE = " \t\r\n";
 
     /** Instantiate a utility to produce randomized objects of the given type. */
-    public TestString()
-    {
+    public TestString() {
         super(String.class);
     }
 }

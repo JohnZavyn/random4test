@@ -1,17 +1,16 @@
 package com.threeleaf.test.random;
 
-import java.util.*;
-
 import static com.threeleaf.test.random.TestRandom.RANDOM;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static java.lang.Math.*;
 import static java.util.Collections.*;
 
-/** Utilities for random {@link Long} creation */
+import java.util.*;
+
+/** Utilities for random {@link Long} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestLong extends AbstractTest<Long>
-{
+public class TestLong extends AbstractTest<Long> {
 
     /** The instance of {@link TestLong}. */
     public static final TestLong INSTANCE = new TestLong();
@@ -350,7 +349,8 @@ public class TestLong extends AbstractTest<Long>
     public static final Long[] LONG_ARRAY_SINGLE = INSTANCE.randomArraySingle();
 
     /** An {@link Long} collection. */
-    public static final Collection<Long> LONG_COLLECTION = unmodifiableCollection(INSTANCE.randomCollection());
+    public static final Collection<Long> LONG_COLLECTION =
+            unmodifiableCollection(INSTANCE.randomCollection());
 
     /** An single {@link Integer} collection. */
     public static final Collection<Long> LONG_COLLECTION_SINGLE = singleton(randomLong());
@@ -365,7 +365,8 @@ public class TestLong extends AbstractTest<Long>
     public static final Map<Long, Long> LONG_MAP = unmodifiableMap(INSTANCE.randomMap(Long.class));
 
     /** An {@link Long} map with a single key-value pair. */
-    public static final Map<Long, Long> LONG_MAP_SINGLE = unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
+    public static final Map<Long, Long> LONG_MAP_SINGLE =
+            unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
 
     /** A negative Long. */
     public final static Long LONG_NEGATIVE = randomNegative();
@@ -722,8 +723,7 @@ public class TestLong extends AbstractTest<Long>
     public final static long L_SMALL = randomPercent();
 
     /** Instantiate a utility to produce randomized Long objects. */
-    public TestLong()
-    {
+    public TestLong() {
         super(Long.class);
     }
 
@@ -735,8 +735,7 @@ public class TestLong extends AbstractTest<Long>
      *
      * @return the random long
      */
-    public static long randomBetween(final long number1, final long number2)
-    {
+    public static long randomBetween(final long number1, final long number2) {
         final long min = min(number1, number2);
         final long max = max(number1, number2);
 
@@ -748,8 +747,7 @@ public class TestLong extends AbstractTest<Long>
      *
      * @return the long
      */
-    public static long randomLong()
-    {
+    public static long randomLong() {
         return INSTANCE.random();
     }
 
@@ -758,8 +756,7 @@ public class TestLong extends AbstractTest<Long>
      *
      * @return the big decimal
      */
-    public static long randomNegative()
-    {
+    public static long randomNegative() {
         return -abs(RANDOM.nextLong());
     }
 
@@ -768,8 +765,7 @@ public class TestLong extends AbstractTest<Long>
      *
      * @return a number between 0 and 100 inclusive
      */
-    public static long randomPercent()
-    {
+    public static long randomPercent() {
         return randomBetween(0, L_100);
     }
 
@@ -778,8 +774,7 @@ public class TestLong extends AbstractTest<Long>
      *
      * @return the big decimal
      */
-    public static long randomPositive()
-    {
+    public static long randomPositive() {
         return abs(RANDOM.nextLong());
     }
 
@@ -788,8 +783,7 @@ public class TestLong extends AbstractTest<Long>
      *
      * @return the long
      */
-    public Long random()
-    {
+    public Long random() {
         return RANDOM.nextLong();
     }
 }

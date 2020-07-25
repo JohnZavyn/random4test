@@ -1,16 +1,15 @@
 package com.threeleaf.test.random;
 
-import java.math.BigDecimal;
-
 import static com.threeleaf.test.random.TestInteger.INT_100;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
 import static java.math.BigDecimal.valueOf;
 import static java.math.RoundingMode.HALF_UP;
 
-/** Utilities for random {@link BigDecimal} creation */
+import java.math.BigDecimal;
+
+/** Utilities for random {@link BigDecimal} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestBigDecimal extends AbstractTest<BigDecimal>
-{
+public class TestBigDecimal extends AbstractTest<BigDecimal> {
 
     /** The instance of {@link TestBigDecimal}. */
     public static final TestBigDecimal INSTANCE = new TestBigDecimal();
@@ -28,8 +27,7 @@ public class TestBigDecimal extends AbstractTest<BigDecimal>
     public static final BigDecimal BIG_DECIMAL_SMALL = randomPercent();
 
     /** Instantiate a utility to produce randomized {link BigDecimal} objects. */
-    public TestBigDecimal()
-    {
+    public TestBigDecimal() {
         super(BigDecimal.class);
     }
 
@@ -41,8 +39,7 @@ public class TestBigDecimal extends AbstractTest<BigDecimal>
      *
      * @return the random short
      */
-    public static BigDecimal randomBetween(final double number1, final double number2)
-    {
+    public static BigDecimal randomBetween(final double number1, final double number2) {
         return valueOf(TestDouble.randomBetween(number1, number2));
     }
 
@@ -54,8 +51,7 @@ public class TestBigDecimal extends AbstractTest<BigDecimal>
      *
      * @return the random short
      */
-    public static BigDecimal randomBetween(final BigDecimal number1, final BigDecimal number2)
-    {
+    public static BigDecimal randomBetween(final BigDecimal number1, final BigDecimal number2) {
         return randomBetween(number1.doubleValue(), number2.doubleValue());
     }
 
@@ -64,8 +60,7 @@ public class TestBigDecimal extends AbstractTest<BigDecimal>
      *
      * @return the big decimal
      */
-    public static BigDecimal randomBigDecimal()
-    {
+    public static BigDecimal randomBigDecimal() {
         return INSTANCE.random();
     }
 
@@ -74,8 +69,7 @@ public class TestBigDecimal extends AbstractTest<BigDecimal>
      *
      * @return the big decimal
      */
-    public static BigDecimal randomNegative()
-    {
+    public static BigDecimal randomNegative() {
         return valueOf(TestDouble.randomNegative());
     }
 
@@ -84,8 +78,7 @@ public class TestBigDecimal extends AbstractTest<BigDecimal>
      *
      * @return a number between 0.00 and 100.00 inclusive
      */
-    public static BigDecimal randomPercent()
-    {
+    public static BigDecimal randomPercent() {
         return randomBetween(0, INT_100).setScale(TWO_DECIMALS, HALF_UP);
     }
 
@@ -94,8 +87,7 @@ public class TestBigDecimal extends AbstractTest<BigDecimal>
      *
      * @return the big decimal
      */
-    public static BigDecimal randomPositive()
-    {
+    public static BigDecimal randomPositive() {
         return valueOf(TestDouble.randomPositive());
     }
 
@@ -104,8 +96,7 @@ public class TestBigDecimal extends AbstractTest<BigDecimal>
      *
      * @return the big decimal
      */
-    public BigDecimal random()
-    {
+    public BigDecimal random() {
         return valueOf(RANDOM.nextDouble());
     }
 }

@@ -1,59 +1,49 @@
 package com.threeleaf.test.random.util;
 
-import org.junit.Test;
+import static com.threeleaf.test.random.TestBooleanTest.LOOP_COUNT_MAX;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.lang.reflect.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import static com.threeleaf.test.random.TestBooleanTest.LOOP_COUNT_MAX;
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.Test;
 
-/** Test {@link TestEnumUtil} */
-public class TestEnumUtilTest
-{
+/** Test {@link TestEnumUtil}. */
+public class TestEnumUtilTest {
 
     /** Test {@link TestEnumUtil#chooseOneFrom(Class)}. */
     @Test
-    public void chooseOneFrom()
-    {
-        final Set<TestEnum> results               = new HashSet<>();
-        boolean             allPossibilitiesFound = false;
+    public void chooseOneFrom() {
+        final Set<TestEnum> results = new HashSet<>();
+        boolean allPossibilitiesFound = false;
 
-        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++)
-        {
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
             results.add(TestEnumUtil.chooseOneFrom(TestEnum.class));
-            if (results.size() == TestEnum.values().length)
-            {
+            if (results.size() == TestEnum.values().length) {
                 allPossibilitiesFound = true;
                 break;
             }
         }
-        if (!allPossibilitiesFound)
-        {
+        if (!allPossibilitiesFound) {
             fail("Expected all possible results, but only found " + results);
         }
     }
 
     /** Test {@link TestEnumUtil} constructor. */
     @Test
-    public void constructor() throws Exception
-    {
+    public void constructor() throws Exception {
         Constructor<TestEnumUtil> constructor = TestEnumUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
-        try
-        {
+        try {
             constructor.newInstance();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }
 
     /** An enum for this test. */
-    private enum TestEnum
-    {FIRST, SECOND, THIRD}
+    private enum TestEnum {FIRST, SECOND, THIRD}
 }

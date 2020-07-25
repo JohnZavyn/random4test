@@ -1,33 +1,29 @@
 package com.threeleaf.test.random;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDateTime;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
 /** Test {@link TestLocalDateTime}. */
-public class TestLocalDateTimeTest
-{
+public class TestLocalDateTimeTest {
 
     /** Test {@link TestLocalDateTime#randomFuture()}. */
     @Test
-    public void randomFuture()
-    {
+    public void randomFuture() {
         assertTrue(TestLocalDateTime.randomFuture().isAfter(TestLocalDateTime.TODAY));
     }
 
     /** Test {@link TestLocalDateTime#randomPast()}. */
     @Test
-    public void randomPast()
-    {
+    public void randomPast() {
         assertTrue(TestLocalDateTime.randomPast().isBefore(TestLocalDateTime.TODAY));
     }
 
     /** Test {@link TestLocalDateTime#randomRecent()}. */
     @Test
-    public void randomRecent()
-    {
+    public void randomRecent() {
         final LocalDateTime randomDate = TestLocalDateTime.randomRecent();
 
         assertTrue(randomDate.isAfter(TestLocalDateTime.YEAR_LAST.minusDays(1)));

@@ -1,20 +1,19 @@
 package com.threeleaf.test.random.util;
 
-import lombok.experimental.UtilityClass;
+import static com.threeleaf.test.random.TestBoolean.randomBoolean;
+import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 
 import java.util.Arrays;
 import java.util.List;
 
-import static com.threeleaf.test.random.TestBoolean.randomBoolean;
-import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
+import lombok.experimental.UtilityClass;
 
 @UtilityClass
 @SuppressWarnings({"WeakerAccess", "SpellCheckingInspection"})
-public class TestNameUtil
-{
+public class TestNameUtil {
 
     /** Top 500 female names of 2017 according to the Social Security Administration. */
-    public static final List<String> NAMES_FIRST_FEMALE = Arrays.asList( // @formatter:off //
+    public final List<String> NAMES_FIRST_FEMALE = Arrays.asList( // @formatter:off //
         "Emma",
         "Olivia",
         "Ava",
@@ -608,7 +607,7 @@ public class TestNameUtil
     ); // @formatter:on //
 
     /** Top 500 male names of 2017 according to the Social Security Administration. */
-    public static final List<String> NAMES_FIRST_MALE = Arrays.asList( // @formatter:off //
+    public final List<String> NAMES_FIRST_MALE = Arrays.asList( // @formatter:off //
         "Liam",
         "Noah",
         "William",
@@ -1112,7 +1111,7 @@ public class TestNameUtil
     ); // @formatter:on //
 
     /** Top 100 last names, according to Wikipedia. */
-    public static final List<String> NAMES_LAST = Arrays.asList( // @formatter:off //
+    public final List<String> NAMES_LAST = Arrays.asList( // @formatter:off //
         "Smith",
         "Johnson",
         "Williams",
@@ -1220,8 +1219,7 @@ public class TestNameUtil
      *
      * @return a  name
      */
-    public static String randomName()
-    {
+    public String randomName() {
         return randomNameFirst() + ' ' + randomNameLast();
     }
 
@@ -1230,8 +1228,7 @@ public class TestNameUtil
      *
      * @return a name
      */
-    public static String randomNameFirst()
-    {
+    public String randomNameFirst() {
         return randomBoolean() ? randomNameFirstFemale() : randomNameFirstMale();
     }
 
@@ -1240,8 +1237,7 @@ public class TestNameUtil
      *
      * @return a female name
      */
-    public static String randomNameFirstFemale()
-    {
+    public String randomNameFirstFemale() {
         return chooseOneFrom(NAMES_FIRST_FEMALE);
     }
 
@@ -1250,8 +1246,7 @@ public class TestNameUtil
      *
      * @return a male name
      */
-    public static String randomNameFirstMale()
-    {
+    public String randomNameFirstMale() {
         return chooseOneFrom(NAMES_FIRST_MALE);
     }
 
@@ -1260,8 +1255,7 @@ public class TestNameUtil
      *
      * @return a male name
      */
-    public static String randomNameLast()
-    {
+    public String randomNameLast() {
         return chooseOneFrom(NAMES_LAST);
     }
 }

@@ -3,7 +3,7 @@ Easily provide random numbers, strings, and collections to JUnit tests.
 
 [![Build Status](https://travis-ci.org/JohnZavyn/random4test.svg)](https://travis-ci.org/JohnZavyn/random4test) &nbsp;
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.threeleaf/random4test/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.threeleaf/random4test) &nbsp;
- [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-brightgreen.svg)](https://www.gnu.org/licenses/gpl-3.0) &nbsp;
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-brightgreen.svg)](https://www.gnu.org/licenses/gpl-3.0) &nbsp;
 [![JavaDoc](http://javadoc-badge.appspot.com/com.threeleaf/random4test.svg?label=javadoc)](http://www.threeleaf.com/random4test/javadoc/)
 
 ## Maven dependency
@@ -66,7 +66,7 @@ and a few extras:
 
 * have static constants for with names like `TODAY`, `YESTERDAY`, `TOMORROW`, `NEXT_WEEK`, `NEXT_YEAR`, etc.
 * Have static methods for random future, past, and between last year and next year
-* Have static methods for choosing a random date between two given dates
+* Have static methods for choosing a random date between two specified dates
 
 ### Random objects
 
@@ -76,7 +76,7 @@ and a few extras:
 | TestObject             | java.lang.Object           |
 | TestString             | java.lang.String           |
 
-* Various constants based on the type of object being randomized
+* Various constants based on the type of object to be randomized
 * Strings of various lengths and formats are available
 
 ## Extend and make your own

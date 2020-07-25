@@ -1,18 +1,17 @@
 package com.threeleaf.test.random;
 
-import java.time.LocalDate;
-import java.time.temporal.WeekFields;
-import java.util.TimeZone;
-
 import static com.threeleaf.test.random.TestLong.L_01;
 import static com.threeleaf.test.random.util.TestDateUtil.toDate;
 import static com.threeleaf.test.random.util.TestDateUtil.toLocalDate;
 import static java.time.LocalDate.now;
 
-/** Utilities for random {@link LocalDate} creation */
+import java.time.LocalDate;
+import java.time.temporal.WeekFields;
+import java.util.TimeZone;
+
+/** Utilities for random {@link LocalDate} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestLocalDate extends AbstractTest<LocalDate>
-{
+public class TestLocalDate extends AbstractTest<LocalDate> {
 
     /** The day of the month. */
     public final static int DAY = now().getDayOfMonth();
@@ -29,7 +28,9 @@ public class TestLocalDate extends AbstractTest<LocalDate>
     /** Date for next month. */
     public final static LocalDate MONTH_NEXT = now().plusMonths(L_01);
 
-    /** The time zone */
+    /**
+     * The time zone
+     */
     public static final TimeZone TIME_ZONE = TimeZone.getDefault();
 
     /** Today's date. */
@@ -60,8 +61,7 @@ public class TestLocalDate extends AbstractTest<LocalDate>
     public final static LocalDate YESTERDAY = now().minusDays(L_01);
 
     /** Instantiate a utility to produce randomized Java {@link LocalDate} objects. */
-    public TestLocalDate()
-    {
+    public TestLocalDate() {
         super(LocalDate.class);
     }
 
@@ -73,8 +73,7 @@ public class TestLocalDate extends AbstractTest<LocalDate>
      *
      * @return a date in between
      */
-    public static LocalDate randomBetween(final LocalDate date1, final LocalDate date2)
-    {
+    public static LocalDate randomBetween(final LocalDate date1, final LocalDate date2) {
         return toLocalDate(TestDate.randomBetween(toDate(date1), toDate(date2)));
     }
 
@@ -83,8 +82,7 @@ public class TestLocalDate extends AbstractTest<LocalDate>
      *
      * @return the date
      */
-    public static LocalDate randomFuture()
-    {
+    public static LocalDate randomFuture() {
         return randomBetween(TOMORROW, YEAR_NEXT);
     }
 
@@ -93,8 +91,7 @@ public class TestLocalDate extends AbstractTest<LocalDate>
      *
      * @return the date
      */
-    public static LocalDate randomPast()
-    {
+    public static LocalDate randomPast() {
         return randomBetween(YESTERDAY, YEAR_LAST);
     }
 
@@ -103,8 +100,7 @@ public class TestLocalDate extends AbstractTest<LocalDate>
      *
      * @return the date
      */
-    public static LocalDate randomRecent()
-    {
+    public static LocalDate randomRecent() {
         return randomBetween(YEAR_LAST, YEAR_NEXT);
     }
 }

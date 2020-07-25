@@ -1,28 +1,25 @@
 package com.threeleaf.test.random;
 
-import org.junit.Test;
+import static com.threeleaf.test.random.TestInteger.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigInteger;
 
-import static com.threeleaf.test.random.TestInteger.*;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
 /** Test {@link TestBigInteger}. */
-public class TestBigIntegerTest
-{
+public class TestBigIntegerTest {
 
     /** Test {@link TestBigInteger#random()}. */
     @Test
-    public void random()
-    {
+    public void random() {
         assertNotNull(TestBigInteger.randomBigInteger());
     }
 
     /** Test {@link TestBigInteger#randomBetween(long, long)}. */
     @Test
-    public void randomBetween()
-    {
+    public void randomBetween() {
         final BigInteger result = TestBigInteger.randomBetween(BigInteger.ZERO, BigInteger.TEN);
 
         assertTrue(result.intValue() >= INT_00);
@@ -31,15 +28,13 @@ public class TestBigIntegerTest
 
     /** Test {@link TestBigInteger#randomNegative()}. */
     @Test
-    public void randomNegative()
-    {
+    public void randomNegative() {
         assertTrue(TestBigInteger.randomNegative().doubleValue() < 0);
     }
 
     /** Test {@link TestBigInteger#randomPercent()}. */
     @Test
-    public void randomPercent()
-    {
+    public void randomPercent() {
         final BigInteger result = TestBigInteger.randomPercent();
 
         assertTrue(result.intValue() >= INT_00);
@@ -48,8 +43,7 @@ public class TestBigIntegerTest
 
     /** Test {@link TestBigInteger#randomPositive()}. */
     @Test
-    public void randomPositive()
-    {
+    public void randomPositive() {
         assertTrue(TestBigInteger.randomPositive().doubleValue() > 0);
     }
 }

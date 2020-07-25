@@ -4,10 +4,9 @@ import static com.threeleaf.test.random.TestInteger.*;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-/** Utilities for random {@link Byte} creation */
+/** Utilities for random {@link Byte} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestByte extends AbstractTest<Byte>
-{
+public class TestByte extends AbstractTest<Byte> {
 
     /** The Byte 00. */
     public final static Byte BYTE_00 = 0;
@@ -655,8 +654,7 @@ public class TestByte extends AbstractTest<Byte>
     public final static byte B_RANDOM = randomByte();
 
     /** Instantiate a utility to produce randomized {@link Byte} objects. */
-    public TestByte()
-    {
+    public TestByte() {
         super(Byte.class);
     }
 
@@ -668,8 +666,7 @@ public class TestByte extends AbstractTest<Byte>
      *
      * @return the random short
      */
-    public static byte randomBetween(final int number1, final int number2)
-    {
+    public static byte randomBetween(final int number1, final int number2) {
         final int min = min(number1, number2);
         final int max = max(number1, number2);
 
@@ -681,9 +678,17 @@ public class TestByte extends AbstractTest<Byte>
      *
      * @return the byte
      */
-    public static byte randomByte()
-    {
+    public static byte randomByte() {
         return INSTANCE.random();
+    }
+
+    /**
+     * A random hexadecimal byte value;
+     *
+     * @return a  "0" to "FF"
+     */
+    public static String randomHex() {
+        return Integer.toHexString(randomUnsigned());
     }
 
     /**
@@ -691,8 +696,7 @@ public class TestByte extends AbstractTest<Byte>
      *
      * @return the big decimal
      */
-    public static Byte randomNegative()
-    {
+    public static Byte randomNegative() {
         return randomBetween(Byte.MIN_VALUE, -1);
     }
 
@@ -701,8 +705,7 @@ public class TestByte extends AbstractTest<Byte>
      *
      * @return a number between 0 and 100 inclusive
      */
-    public static byte randomPercent()
-    {
+    public static byte randomPercent() {
         return randomBetween(0, INT_100);
     }
 
@@ -711,8 +714,7 @@ public class TestByte extends AbstractTest<Byte>
      *
      * @return the big decimal
      */
-    public static Byte randomPositive()
-    {
+    public static Byte randomPositive() {
         return randomBetween(INT_01, Byte.MAX_VALUE);
     }
 
@@ -721,19 +723,8 @@ public class TestByte extends AbstractTest<Byte>
      *
      * @return a number between 0 to 255 inclusive
      */
-    public static int randomUnsigned()
-    {
+    public static int randomUnsigned() {
         return TestInteger.randomBetween(INT_00, BYTE_UNSIGNED_MAX);
-    }
-
-    /**
-     * A random hexadecimal byte value;
-     *
-     * @return a  "0" to "FF"
-     */
-    public static String randomHex()
-    {
-        return Integer.toHexString(randomUnsigned());
     }
 
     /**
@@ -741,8 +732,7 @@ public class TestByte extends AbstractTest<Byte>
      *
      * @return the byte
      */
-    public Byte random()
-    {
+    public Byte random() {
         return randomBetween(Byte.MIN_VALUE, Byte.MAX_VALUE);
     }
 }

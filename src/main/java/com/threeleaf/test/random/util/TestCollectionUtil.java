@@ -1,10 +1,5 @@
 package com.threeleaf.test.random.util;
 
-import lombok.experimental.UtilityClass;
-
-import javax.annotation.Nonnull;
-import java.util.Collection;
-
 import static com.threeleaf.test.random.TestBoolean.randomBoolean;
 import static com.threeleaf.test.random.TestInteger.INT_01;
 import static com.threeleaf.test.random.TestInteger.random1to10;
@@ -12,11 +7,15 @@ import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
 import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
 import static java.util.Arrays.asList;
 
+import java.util.Collection;
+import javax.annotation.Nonnull;
+
+import lombok.experimental.UtilityClass;
+
 /** Utilities to generate randomly populated Collections. */
 @UtilityClass
 @SuppressWarnings("WeakerAccess")
-public class TestCollectionUtil
-{
+public class TestCollectionUtil {
 
     /**
      * Choose a random item from an array.
@@ -30,8 +29,7 @@ public class TestCollectionUtil
      *
      * @see TestArrayUtil#chooseOneFrom(Object[])
      */
-    public static <T> T chooseOneFrom(@Nonnull final T[] array)
-    {
+    public <T> T chooseOneFrom(@Nonnull final T[] array) {
         return chooseOneFrom(asList(array));
     }
 
@@ -43,8 +41,7 @@ public class TestCollectionUtil
      *
      * @return a random object
      */
-    public static <T> T chooseOneFrom(@Nonnull final Collection<T> collection)
-    {
+    public <T> T chooseOneFrom(@Nonnull final Collection<T> collection) {
         // @formatter:off //
         return collection.stream()
             .skip((int) (collection.size() * Math.random()))
@@ -62,8 +59,8 @@ public class TestCollectionUtil
      *
      * @return a List or Set of randomized objects
      */
-    public static <T> Collection<T> randomCollectionOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
-    {
+    public <T> Collection<T> randomCollectionOf(@Nonnull final Class<T> type,
+            final String... fieldsExcluded) {
         return randomCollectionOf(random1to10(), type, fieldsExcluded);
     }
 
@@ -77,15 +74,12 @@ public class TestCollectionUtil
      *
      * @return a List or Set of randomized objects
      */
-    public static <T> Collection<T> randomCollectionOf(final int size, @Nonnull final Class<T> type, final String... fieldsExcluded)
-    {
+    public <T> Collection<T> randomCollectionOf(final int size, @Nonnull final Class<T> type,
+            final String... fieldsExcluded) {
         Collection<T> collection;
-        if (randomBoolean())
-        {
+        if (randomBoolean()) {
             collection = randomSetOf(size, type, fieldsExcluded);
-        }
-        else
-        {
+        } else {
             collection = randomListOf(size, type, fieldsExcluded);
         }
 
@@ -101,8 +95,8 @@ public class TestCollectionUtil
      *
      * @return a List or Set with a randomized object
      */
-    public static <T> Collection<T> randomCollectionSingleOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
-    {
+    public <T> Collection<T> randomCollectionSingleOf(@Nonnull final Class<T> type,
+            final String... fieldsExcluded) {
         return randomCollectionOf(INT_01, type, fieldsExcluded);
     }
 }

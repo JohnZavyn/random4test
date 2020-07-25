@@ -4,10 +4,9 @@ import static com.threeleaf.test.random.TestInteger.INT_100;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
 import static java.lang.Math.*;
 
-/** Utilities for random {@link Float} creation */
+/** Utilities for random {@link Float} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestFloat extends AbstractTest<Float>
-{
+public class TestFloat extends AbstractTest<Float> {
 
     /** The Float 00. */
     public final static Float FLOAT_00 = 0F;
@@ -688,8 +687,7 @@ public class TestFloat extends AbstractTest<Float>
     public final static float F_RANDOM = randomFloat();
 
     /** Instantiate a utility to produce randomized objects of the given type. */
-    public TestFloat()
-    {
+    public TestFloat() {
         super(Float.class);
     }
 
@@ -701,8 +699,7 @@ public class TestFloat extends AbstractTest<Float>
      *
      * @return the random float
      */
-    public static float randomBetween(final float number1, final float number2)
-    {
+    public static float randomBetween(final float number1, final float number2) {
         final float min = min(number1, number2);
         final float max = max(number1, number2);
 
@@ -714,8 +711,7 @@ public class TestFloat extends AbstractTest<Float>
      *
      * @return the float
      */
-    public static float randomFloat()
-    {
+    public static float randomFloat() {
         return INSTANCE.random();
     }
 
@@ -724,8 +720,7 @@ public class TestFloat extends AbstractTest<Float>
      *
      * @return the big decimal
      */
-    public static float randomNegative()
-    {
+    public static float randomNegative() {
         return -abs(RANDOM.nextFloat());
     }
 
@@ -734,8 +729,7 @@ public class TestFloat extends AbstractTest<Float>
      *
      * @return a number between 0 and 100 inclusive
      */
-    public static float randomPercent()
-    {
+    public static float randomPercent() {
         return randomBetween(0, INT_100);
     }
 
@@ -744,8 +738,7 @@ public class TestFloat extends AbstractTest<Float>
      *
      * @return the big decimal
      */
-    public static float randomPositive()
-    {
+    public static float randomPositive() {
         return abs(RANDOM.nextFloat());
     }
 
@@ -754,8 +747,7 @@ public class TestFloat extends AbstractTest<Float>
      *
      * @return the float
      */
-    public Float random()
-    {
+    public Float random() {
         return RANDOM.nextFloat();
     }
 }

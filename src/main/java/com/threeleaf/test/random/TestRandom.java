@@ -1,25 +1,24 @@
 package com.threeleaf.test.random;
 
+import java.util.Random;
+import javax.annotation.Nonnull;
+
 import io.github.benas.randombeans.EnhancedRandomBuilder;
 import io.github.benas.randombeans.api.EnhancedRandom;
 import lombok.experimental.UtilityClass;
 
-import javax.annotation.Nonnull;
-import java.util.Random;
-
 /** Class to contain the random generator. */
 @UtilityClass
-public class TestRandom
-{
+public class TestRandom {
 
     /**
      * The Constant RANDOM. {@link Random} object for selecting random numbers.
      * The method .nextInt(n) will return an integer between 0 (inclusive) and n (exclusive).
      */
-    public static final Random RANDOM = new Random();
+    public final Random RANDOM = new Random();
 
     /** The {@link EnhancedRandom} engine. */
-    private static final EnhancedRandom ENHANCED_RANDOM = new EnhancedRandomBuilder().build();
+    private final EnhancedRandom ENHANCED_RANDOM = new EnhancedRandomBuilder().build();
 
     /**
      * Return an object with randomized fields.
@@ -32,8 +31,7 @@ public class TestRandom
      *
      * @return a randomized object
      */
-    public static <T> T random(@Nonnull final Class<T> type, final String... fieldsExcluded)
-    {
+    public <T> T random(@Nonnull final Class<T> type, final String... fieldsExcluded) {
         return ENHANCED_RANDOM.nextObject(type, fieldsExcluded);
     }
 }

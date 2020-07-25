@@ -3,13 +3,14 @@ package com.threeleaf.test.random;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
-/** Utilities for random {@link Character} creation */
+/** Utilities for random {@link Character} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestCharacter extends AbstractTest<Character>
-{
+public class TestCharacter extends AbstractTest<Character> {
 
     /** Alphabet, lower case, in an array. */
-    public static final char[] ALPHABET_ARRAY = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+    public static final char[] ALPHABET_ARRAY =
+            {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q',
+                    'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
     /** The Character 00 / x00 / (NUL - null). */
     public final static Character CHARACTER_00 = 0;
@@ -786,8 +787,7 @@ public class TestCharacter extends AbstractTest<Character>
     public final static char C_RANDOM = randomCharacter();
 
     /** Instantiate a utility to produce randomized {@link Character} objects. */
-    public TestCharacter()
-    {
+    public TestCharacter() {
         super(Character.class);
     }
 
@@ -799,8 +799,7 @@ public class TestCharacter extends AbstractTest<Character>
      *
      * @return the random char
      */
-    public static char randomBetween(final int number1, final int number2)
-    {
+    public static char randomBetween(final int number1, final int number2) {
         final int min = min(number1, number2);
         final int max = max(number1, number2);
 
@@ -812,8 +811,7 @@ public class TestCharacter extends AbstractTest<Character>
      *
      * @return the char
      */
-    public static char randomCharacter()
-    {
+    public static char randomCharacter() {
         return INSTANCE.random();
     }
 
@@ -822,8 +820,7 @@ public class TestCharacter extends AbstractTest<Character>
      *
      * @return the char
      */
-    public Character random()
-    {
+    public Character random() {
         return randomBetween(Character.MIN_VALUE, Character.MAX_VALUE);
     }
 }
