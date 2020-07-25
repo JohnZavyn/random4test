@@ -7,24 +7,24 @@ import java.time.LocalDateTime;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestLocalDateTime}. */
-public class TestLocalDateTimeTest {
+class TestLocalDateTimeTest {
 
     /** Test {@link TestLocalDateTime#randomFuture()}. */
     @Test
-    public void randomFuture() {
+    void randomFuture() {
         assertTrue(TestLocalDateTime.randomFuture().isAfter(TestLocalDateTime.TODAY));
     }
 
     /** Test {@link TestLocalDateTime#randomPast()}. */
     @Test
-    public void randomPast() {
+    void randomPast() {
         assertTrue(TestLocalDateTime.randomPast().isBefore(TestLocalDateTime.TODAY));
     }
 
     /** Test {@link TestLocalDateTime#randomRecent()}. */
     @Test
-    public void randomRecent() {
-        final LocalDateTime randomDate = TestLocalDateTime.randomRecent();
+    void randomRecent() {
+        LocalDateTime randomDate = TestLocalDateTime.randomRecent();
 
         assertTrue(randomDate.isAfter(TestLocalDateTime.YEAR_LAST.minusDays(1)));
         assertTrue(randomDate.isBefore(TestLocalDateTime.YEAR_NEXT.plusDays(1)));

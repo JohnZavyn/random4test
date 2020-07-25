@@ -10,11 +10,11 @@ import java.lang.reflect.*;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestWordUtil}. */
-public class TestWordUtilTest {
+class TestWordUtilTest {
 
     /** Test {@link TestWordUtil} constructor. */
     @Test
-    public void constructor() throws Exception {
+    void constructor() throws Exception {
         Constructor<TestWordUtil> constructor = TestWordUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
@@ -27,45 +27,45 @@ public class TestWordUtilTest {
 
     /** Test {@link TestWordUtil#randomAdjective()}. */
     @Test
-    public void randomAdjective() {
+    void randomAdjective() {
         assertFalse(isBlank(TestWordUtil.randomAdjective()));
     }
 
     /** Test {@link TestWordUtil#randomAdverb()}. */
     @Test
-    public void randomAdverb() {
+    void randomAdverb() {
         assertFalse(isBlank(TestWordUtil.randomAdverb()));
     }
 
     /** Test {@link TestWordUtil#randomColor()}. */
     @Test
-    public void randomColor() {
-        final String color = TestWordUtil.randomColor();
+    void randomColor() {
+        String color = TestWordUtil.randomColor();
         assertFalse(isBlank(color));
         assertFalse(color.startsWith("#"));
     }
 
     /** Test {@link TestWordUtil#randomColorHex()}. */
     @Test
-    public void randomColorHex() {
+    void randomColorHex() {
         assertTrue(TestWordUtil.randomColorHex().startsWith("#"));
     }
 
     /** Test {@link TestWordUtil#randomNoun()}. */
     @Test
-    public void randomNoun() {
+    void randomNoun() {
         assertFalse(isBlank(TestWordUtil.randomNoun()));
     }
 
     /** Test {@link TestWordUtil#randomPhrase()}. */
     @Test
-    public void randomPhrase() {
+    void randomPhrase() {
         assertEquals(INT_04, TestWordUtil.randomPhrase().split(SPACE).length);
     }
 
     /** Test {@link TestWordUtil#randomVerb()}. */
     @Test
-    public void randomVerb() {
+    void randomVerb() {
         assertFalse(isBlank(TestWordUtil.randomVerb()));
     }
 }

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -14,7 +16,8 @@
     <packaging>jar</packaging>
 
     <name>Random For Test</name>
-    <description>A testing library that provides random numbers, strings, and Collections.</description>
+    <description>A testing library that provides random numbers, strings, and Collections.
+    </description>
     <url>https://github.com/JohnZavyn/random4test/</url>
 
     <organization>
@@ -45,7 +48,8 @@
 
     <scm>
         <connection>scm:git:git@github.com:JohnZavyn/random4test.git</connection>
-        <developerConnection>scm:git:ssh://github.com:JohnZavyn/random4test.git</developerConnection>
+        <developerConnection>scm:git:ssh://github.com:JohnZavyn/random4test.git
+        </developerConnection>
         <url>https://github.com/JohnZavyn/random4test.git</url>
     </scm>
 
@@ -198,6 +202,13 @@
                         <source>${java.version}</source>
                         <target>${java.version}</target>
                         <showWarnings>true</showWarnings>
+                        <annotationProcessorPaths>
+                            <path>
+                                <groupId>org.projectlombok</groupId>
+                                <artifactId>lombok</artifactId>
+                                <version>${org.projectlombok.version}</version>
+                            </path>
+                        </annotationProcessorPaths>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -212,7 +223,8 @@
                             </manifest>
                             <manifestEntries>
                                 <!-- We do not create an explicit module-info file, but we want to specify the module name for future stability. -->
-                                <Automatic-Module-Name>${project.groupId}.common.test</Automatic-Module-Name>
+                                <Automatic-Module-Name>${project.groupId}.common.test
+                                </Automatic-Module-Name>
                             </manifestEntries>
                         </archive>
                     </configuration>
@@ -342,7 +354,8 @@
                         <plugin>
                             <groupId>org.apache.maven.plugins</groupId>
                             <artifactId>maven-project-info-reports-plugin</artifactId>
-                            <version>${org.apache.maven.plugins.project.info.reports.version}</version>
+                            <version>${org.apache.maven.plugins.project.info.reports.version}
+                            </version>
                         </plugin>
                     </plugins>
                 </pluginManagement>

@@ -5,33 +5,33 @@ import static com.threeleaf.test.random.TestString.*;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static java.lang.Character.isWhitespace;
 import static java.util.UUID.randomUUID;
+import static lombok.AccessLevel.PRIVATE;
 
 import java.util.*;
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.ImmutableList;
-import lombok.experimental.UtilityClass;
+import lombok.NoArgsConstructor;
 
 /** Test string utilities. */
-@UtilityClass
-@SuppressWarnings("WeakerAccess")
+@NoArgsConstructor(access = PRIVATE)
 public class TestStringUtil {
 
     /** Punctuation marks to be used at the end of sentences. */
-    public final List<String> PUNCTUATION_TERMINAL =
+    public static final List<String> PUNCTUATION_TERMINAL =
             ImmutableList.<String>builder().add(".", ".", ".", "?", "?", "!").build();
 
     /** Maximum length for a string. */
-    public final int STRING_LENGTH_MAX = 100;
+    public static final int STRING_LENGTH_MAX = 100;
 
     /** Minimum length for a string. */
-    public final int STRING_LENGTH_MIN = 10;
+    public static final int STRING_LENGTH_MIN = 10;
 
     /** Maximum length for a name. */
-    public final int STRING_SHORT_LENGTH_MAX = 10;
+    public static final int STRING_SHORT_LENGTH_MAX = 10;
 
     /** Minimum length for a name. */
-    public final int STRING_SHORT_LENGTH_MIN = 5;
+    public static final int STRING_SHORT_LENGTH_MIN = 5;
 
     /**
      * Capitalize first letter of a string.
@@ -40,7 +40,7 @@ public class TestStringUtil {
      *
      * @return the capitalized string
      */
-    public String capitalize(String string) {
+    public static String capitalize(String string) {
         return isEmpty(string) ? string
                 : string.substring(0, 1).toUpperCase() + string.substring(1);
     }
@@ -53,13 +53,20 @@ public class TestStringUtil {
      *
      * @return the string
      */
-    public String extractSuffix(@Nonnull final String string) {
-        final String[] stringParts = string.split("[_~]");
+    public static String extractSuffix(@Nonnull String string) {
+        String[] stringParts = string.split("[_~]");
 
         return stringParts[stringParts.length - 1];
     }
 
-    public boolean isBlank(final CharSequence chars) {
+    /**
+     * Determine if a character sequence is null, empty, or contains only whitespace characters.
+     *
+     * @param chars the string
+     *
+     * @return true if blank
+     */
+    public static boolean isBlank(CharSequence chars) {
         boolean isBlank = true;
         if (!isEmpty(chars)) {
             for (int charIndex = 0; charIndex < chars.length(); charIndex++) {
@@ -73,7 +80,14 @@ public class TestStringUtil {
         return isBlank;
     }
 
-    public boolean isEmpty(final CharSequence chars) {
+    /**
+     * Determine if a character sequence is null or empty.
+     *
+     * @param chars the string
+     *
+     * @return true if empty
+     */
+    public static boolean isEmpty(CharSequence chars) {
         return chars == null || chars.length() == 0;
     }
 
@@ -82,11 +96,16 @@ public class TestStringUtil {
      *
      * @return a char between a and z
      */
-    public String randomLetter() {
-        return String.valueOf(ALPHABET_ARRAY[randomBetween(0, ALPHABET_ARRAY.length - 1)]);
+    public static String randomLetter() {
+        return chooseOneFrom(ALPHABET_LIST);
     }
 
-    public String randomPunctuationTerminal() {
+    /**
+     * Return a random terminal (end of sentence) punctuation mark.
+     *
+     * @return the punctuation mark
+     */
+    public static String randomPunctuationTerminal() {
         return chooseOneFrom(PUNCTUATION_TERMINAL);
     }
 
@@ -95,7 +114,7 @@ public class TestStringUtil {
      *
      * @return the string
      */
-    public String randomString() {
+    public static String randomString() {
         return randomString(randomBetween(STRING_LENGTH_MIN, STRING_LENGTH_MAX));
     }
 
@@ -106,11 +125,11 @@ public class TestStringUtil {
      *
      * @return the string
      */
-    public String randomString(final int length) {
-        final StringBuilder randString = new StringBuilder(length);
-        final int maxChars = RANDOM_CHARS.length();
+    public static String randomString(int length) {
+        StringBuilder randString = new StringBuilder(length);
+        int maxChars = RANDOM_CHARS.length();
 
-        final Random randomNumberGenerator = new Random();
+        Random randomNumberGenerator = new Random();
         for (int i = 0; i < length; ++i) {
             randString.append(RANDOM_CHARS.charAt(randomNumberGenerator.nextInt(maxChars)));
         }
@@ -123,7 +142,7 @@ public class TestStringUtil {
      *
      * @return a short string
      */
-    public String randomStringShort() {
+    public static String randomStringShort() {
         return randomString(randomBetween(STRING_SHORT_LENGTH_MIN, STRING_SHORT_LENGTH_MAX));
     }
 
@@ -134,7 +153,7 @@ public class TestStringUtil {
      *
      * @return the string
      */
-    public String randomTest(final String entityName) {
+    public static String randomTest(String entityName) {
         return isBlank(entityName) ? test(null)
                 : test(entityName.toUpperCase(Locale.US) + "_" + randomStringShort());
     }
@@ -144,7 +163,7 @@ public class TestStringUtil {
      *
      * @return a UUID
      */
-    public String randomUuid() {
+    public static String randomUuid() {
         return randomUUID().toString();
     }
 
@@ -155,7 +174,7 @@ public class TestStringUtil {
      *
      * @return the string
      */
-    public String safeString(final String string) {
+    public static String safeString(String string) {
         return safeString(string, EMPTY);
     }
 
@@ -168,7 +187,7 @@ public class TestStringUtil {
      *
      * @return the string
      */
-    public String safeString(final String originalString, final String defaultString) {
+    public static String safeString(String originalString, String defaultString) {
         return isEmpty(originalString) ? defaultString : originalString;
     }
 
@@ -179,14 +198,14 @@ public class TestStringUtil {
      *
      * @return the shuffled string
      */
-    public String shuffle(final String string) {
-        final List<Character> characters = new ArrayList<>();
-        for (final char letter : string.toCharArray()) {
+    public static String shuffle(String string) {
+        List<Character> characters = new ArrayList<>();
+        for (char letter : string.toCharArray()) {
             characters.add(letter);
         }
-        final StringBuilder shuffledString = new StringBuilder(string.length());
+        StringBuilder shuffledString = new StringBuilder(string.length());
         while (!characters.isEmpty()) {
-            final int randPicker = (int) (Math.random() * characters.size());
+            int randPicker = (int) (Math.random() * characters.size());
             shuffledString.append(characters.remove(randPicker));
         }
 
@@ -200,7 +219,7 @@ public class TestStringUtil {
      *
      * @return the test string
      */
-    public String test(final String suffix) {
+    public static String test(String suffix) {
         return TEST_PREFIX + (isBlank(suffix) ? randomStringShort() : suffix);
     }
 }

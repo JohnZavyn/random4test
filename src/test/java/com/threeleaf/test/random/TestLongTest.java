@@ -8,11 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestLong}. */
-public class TestLongTest {
+class TestLongTest {
 
     /** Test {@link TestLong} constants. */
     @Test
-    public void constants() {
+    void constants() {
         assertNotEquals(INT_00, LONG_ARRAY.length);
         assertEquals(INT_01, LONG_ARRAY_SINGLE.length);
         assertNotEquals(INT_00, LONG_COLLECTION.size());
@@ -29,8 +29,8 @@ public class TestLongTest {
 
     /** Test {@link TestLong#randomBetween(long, long)}. */
     @Test
-    public void randomBetweenLong() {
-        final long number = randomBetween(LONG_10, LONG_05);
+    void randomBetweenLong() {
+        long number = randomBetween(LONG_10, LONG_05);
 
         assertTrue(number >= LONG_05);
         assertTrue(number <= LONG_10);

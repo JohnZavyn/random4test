@@ -1,13 +1,14 @@
 package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestRandom.RANDOM;
+import static lombok.AccessLevel.PRIVATE;
 
 import javax.annotation.Nonnull;
 
-import lombok.experimental.UtilityClass;
+import lombok.NoArgsConstructor;
 
 /** Enum test utilities. */
-@UtilityClass
+@NoArgsConstructor(access = PRIVATE)
 @SuppressWarnings("WeakerAccess")
 public class TestEnumUtil {
 
@@ -19,8 +20,8 @@ public class TestEnumUtil {
      *
      * @return the random enum
      */
-    public <E extends Enum<E>> E chooseOneFrom(@Nonnull final Class<E> enumClass) {
-        final E[] values = enumClass.getEnumConstants();
+    public static <E extends Enum<E>> E chooseOneFrom(@Nonnull Class<E> enumClass) {
+        E[] values = enumClass.getEnumConstants();
 
         return values[RANDOM.nextInt(values.length)];
     }

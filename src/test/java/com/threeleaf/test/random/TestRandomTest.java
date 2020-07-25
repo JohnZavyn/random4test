@@ -10,11 +10,11 @@ import java.security.KeyPair;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestRandom}. */
-public class TestRandomTest {
+class TestRandomTest {
 
     /** Test {@link TestRandom} constructor. */
     @Test
-    public void constructor() throws Exception {
+    void constructor() throws Exception {
         Constructor<TestRandom> constructor = TestRandom.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
@@ -27,9 +27,9 @@ public class TestRandomTest {
 
     /** Test {@link TestRandom#random(Class, String...)}. */
     @Test
-    public void random() {
+    void random() {
         /* Excludes all fields (interface types can't be initialized). */
-        final KeyPair keyPair = TestRandom.random(KeyPair.class, "publicKey", "privateKey");
+        KeyPair keyPair = TestRandom.random(KeyPair.class, "publicKey", "privateKey");
 
         assertNull(keyPair.getPrivate());
         assertNull(keyPair.getPublic());
@@ -50,7 +50,7 @@ public class TestRandomTest {
 
     /** Test {@link TestObject#OBJECT}. */
     @Test
-    public void randomObject() {
+    void randomObject() {
         assertNotNull(OBJECT);
     }
 }

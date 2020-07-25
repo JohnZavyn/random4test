@@ -1,6 +1,6 @@
 package com.threeleaf.test.random.util;
 
-import static com.threeleaf.test.random.TestBooleanTest.LOOP_COUNT_MAX;
+import static com.threeleaf.test.random.TestInteger.INT_100;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -11,15 +11,15 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestEnumUtil}. */
-public class TestEnumUtilTest {
+class TestEnumUtilTest {
 
     /** Test {@link TestEnumUtil#chooseOneFrom(Class)}. */
     @Test
-    public void chooseOneFrom() {
-        final Set<TestEnum> results = new HashSet<>();
+    void chooseOneFrom() {
+        Set<TestEnum> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
-        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
+        for (int loopNumber = 0; loopNumber < INT_100; loopNumber++) {
             results.add(TestEnumUtil.chooseOneFrom(TestEnum.class));
             if (results.size() == TestEnum.values().length) {
                 allPossibilitiesFound = true;
@@ -33,7 +33,7 @@ public class TestEnumUtilTest {
 
     /** Test {@link TestEnumUtil} constructor. */
     @Test
-    public void constructor() throws Exception {
+    void constructor() throws Exception {
         Constructor<TestEnumUtil> constructor = TestEnumUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);

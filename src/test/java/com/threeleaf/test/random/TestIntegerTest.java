@@ -6,11 +6,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestInteger}. */
-public class TestIntegerTest {
+class TestIntegerTest {
 
     /** Test {@link TestInteger} constants. */
     @Test
-    public void constants() {
+    void constants() {
         assertNotEquals(INT_00, INTEGER_ARRAY.length);
         assertEquals(INT_01, INTEGER_ARRAY_SINGLE.length);
         assertNotEquals(INT_00, INTEGER_COLLECTION.size());
@@ -27,8 +27,8 @@ public class TestIntegerTest {
 
     /** Test {@link TestInteger#random0to10()}. */
     @Test
-    public void random0to10() {
-        final int number = TestInteger.random0to10();
+    void random0to10() {
+        int number = TestInteger.random0to10();
 
         assertTrue(number >= INT_00);
         assertTrue(number <= INT_10);
@@ -36,8 +36,8 @@ public class TestIntegerTest {
 
     /** Test {@link TestInteger#randomPercent()}}. */
     @Test
-    public void random0to100() {
-        final int number = TestInteger.randomPercent();
+    void random0to100() {
+        int number = TestInteger.randomPercent();
 
         assertTrue(number >= INT_00);
         assertTrue(number <= INT_100);
@@ -45,8 +45,8 @@ public class TestIntegerTest {
 
     /** Test {@link TestInteger#random1to10()}. */
     @Test
-    public void random1to10() {
-        final int number = TestInteger.random1to10();
+    void random1to10() {
+        int number = TestInteger.random1to10();
 
         assertTrue(number >= INT_01);
         assertTrue(number <= INT_10);
@@ -54,8 +54,8 @@ public class TestIntegerTest {
 
     /** Test {@link TestInteger#random1to100()}. */
     @Test
-    public void random1to100() {
-        final int number = TestInteger.random1to100();
+    void random1to100() {
+        int number = TestInteger.random1to100();
 
         assertTrue(number >= INT_01);
         assertTrue(number <= INT_100);
@@ -63,8 +63,8 @@ public class TestIntegerTest {
 
     /** Test {@link TestInteger#randomBetween(int, int)}. */
     @Test
-    public void randomBetween() {
-        final int number = TestInteger.randomBetween(INT_05, INT_10);
+    void randomBetween() {
+        int number = TestInteger.randomBetween(INT_05, INT_10);
 
         assertTrue(number >= INT_05);
         assertTrue(number <= INT_10);
@@ -72,8 +72,8 @@ public class TestIntegerTest {
 
     /** Test {@link TestInteger#randomDigit()}. */
     @Test
-    public void randomDigit() {
-        final int number = TestInteger.randomDigit();
+    void randomDigit() {
+        int number = TestInteger.randomDigit();
 
         assertTrue(number >= INT_00);
         assertTrue(number <= INT_09);
@@ -81,8 +81,8 @@ public class TestIntegerTest {
 
     /** Test {@link TestInteger#randomHex()}. */
     @Test
-    public void randomHex() {
-        final long unsigned = Long.parseLong(TestInteger.randomHex(), INT_16);
+    void randomHex() {
+        long unsigned = Long.parseLong(TestInteger.randomHex(), INT_16);
         assertTrue(unsigned <= INTEGER_UNSIGNED_MAX);
         assertTrue(unsigned >= INT_00);
     }
@@ -90,7 +90,7 @@ public class TestIntegerTest {
     /** Test constant unmodifiable. */
     @Test
     @SuppressWarnings("ConstantConditions" /* Intentionally testing unmodifiable set.  */)
-    public void unmodifiable() {
+    void unmodifiable() {
         assertThrows(UnsupportedOperationException.class, () -> INTEGER_SET.add(INTEGER));
     }
 }

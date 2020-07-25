@@ -5,13 +5,14 @@ import static com.threeleaf.test.random.TestInteger.*;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static com.threeleaf.test.random.util.TestStringUtil.capitalize;
 import static com.threeleaf.test.random.util.TestStringUtil.randomPunctuationTerminal;
+import static lombok.AccessLevel.PRIVATE;
 
 import java.util.Set;
 
-import lombok.experimental.UtilityClass;
+import lombok.NoArgsConstructor;
 
 /** Utilities to generate greeking text. Useful when you need longer randomized Strings. */
-@UtilityClass
+@NoArgsConstructor(access = PRIVATE)
 @SuppressWarnings("WeakerAccess")
 public class TestLoremIpsumUtil {
 
@@ -20,7 +21,7 @@ public class TestLoremIpsumUtil {
      * <em>De finibus bonorum et malorum</em>.
      * See https://en.wikipedia.org/wiki/Lorem_ipsum.
      */
-    public final Set<String> WORDS_DE_FINIBUS = newHashSet(( // @formatter:off //
+    public static final Set<String> WORDS_DE_FINIBUS = newHashSet(( // @formatter:off //
         "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium " +
         "doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore " +
         "veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim " +
@@ -51,7 +52,7 @@ public class TestLoremIpsumUtil {
      *
      * @return the chapter
      */
-    public String randomChapter() {
+    public static String randomChapter() {
         return randomChapter(randomBetween(INT_02, INT_10));
     }
 
@@ -62,8 +63,8 @@ public class TestLoremIpsumUtil {
      *
      * @return the chapter
      */
-    public String randomChapter(final int paragraphCount) {
-        final StringBuilder chapter = new StringBuilder(randomParagraph());
+    public static String randomChapter(int paragraphCount) {
+        StringBuilder chapter = new StringBuilder(randomParagraph());
         for (int count = 1; count < paragraphCount; count++) {
             chapter.append("\n").append(randomParagraph());
         }
@@ -76,7 +77,7 @@ public class TestLoremIpsumUtil {
      *
      * @return the paragraph
      */
-    public String randomParagraph() {
+    public static String randomParagraph() {
         return randomParagraph(randomBetween(INT_02, INT_10));
     }
 
@@ -87,8 +88,8 @@ public class TestLoremIpsumUtil {
      *
      * @return the paragraph
      */
-    public String randomParagraph(final int sentenceCount) {
-        final StringBuilder paragraph = new StringBuilder(randomSentence());
+    public static String randomParagraph(int sentenceCount) {
+        StringBuilder paragraph = new StringBuilder(randomSentence());
         for (int count = 1; count < sentenceCount; count++) {
             paragraph.append(' ').append(randomSentence());
         }
@@ -101,7 +102,7 @@ public class TestLoremIpsumUtil {
      *
      * @return the sentence
      */
-    public String randomSentence() {
+    public static String randomSentence() {
         return randomSentence(randomBetween(INT_05, INT_10));
     }
 
@@ -112,8 +113,8 @@ public class TestLoremIpsumUtil {
      *
      * @return the sentence
      */
-    public String randomSentence(final int wordCount) {
-        final StringBuilder sentence =
+    public static String randomSentence(int wordCount) {
+        StringBuilder sentence =
                 new StringBuilder(capitalize(chooseOneFrom(WORDS_DE_FINIBUS)));
         for (int count = 1; count < wordCount; count++) {
             sentence.append(' ').append(chooseOneFrom(WORDS_DE_FINIBUS));

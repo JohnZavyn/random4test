@@ -1,5 +1,6 @@
 package com.threeleaf.test.random;
 
+import static com.threeleaf.test.random.TestInteger.INT_100;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.HashSet;
@@ -8,7 +9,7 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestBoolean}. */
-public class TestBooleanTest {
+class TestBooleanTest {
 
     /**
      * The maximum number of times to loop through a test call.
@@ -16,12 +17,12 @@ public class TestBooleanTest {
      * boundary for failure in a loop where we are tying to collect
      * some kind of statistics.
      */
-    public static final int LOOP_COUNT_MAX = 100;
+    static final int LOOP_COUNT_MAX = INT_100;
 
     /** Test {@link TestBoolean#coinFlip()}. */
     @Test
-    public void coinFlip() {
-        final Set<Boolean> results = new HashSet<>();
+    void coinFlip() {
+        Set<Boolean> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
         for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
@@ -38,9 +39,9 @@ public class TestBooleanTest {
 
     /** Test {@link TestBoolean#oneOutOf(int)}. */
     @Test
-    public void oneOutOf() {
+    void oneOutOf() {
         final int number = 10;
-        final Set<Boolean> results = new HashSet<>();
+        Set<Boolean> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
         for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
@@ -57,8 +58,8 @@ public class TestBooleanTest {
 
     /** Test {@link TestBoolean#randomBoolean()}. */
     @Test
-    public void randomBoolean() {
-        final Set<Boolean> results = new HashSet<>();
+    void randomBoolean() {
+        Set<Boolean> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
         for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {

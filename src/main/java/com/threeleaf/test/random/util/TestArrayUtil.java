@@ -3,14 +3,15 @@ package com.threeleaf.test.random.util;
 import static com.threeleaf.test.random.TestInteger.*;
 import static com.threeleaf.test.random.util.TestListUtil.randomArrayListOf;
 import static java.util.Arrays.asList;
+import static lombok.AccessLevel.PRIVATE;
 
 import java.lang.reflect.Array;
 import javax.annotation.Nonnull;
 
-import lombok.experimental.UtilityClass;
+import lombok.NoArgsConstructor;
 
 /** Utilities to generate randomly populated Array objects. */
-@UtilityClass
+@NoArgsConstructor(access = PRIVATE)
 @SuppressWarnings({"WeakerAccess", "unchecked"})
 public class TestArrayUtil {
 
@@ -22,7 +23,7 @@ public class TestArrayUtil {
      *
      * @return a random object
      */
-    public <T> T chooseOneFrom(@Nonnull final T... array) {
+    public static <T> T chooseOneFrom(@Nonnull T... array) {
         return TestCollectionUtil.chooseOneFrom(asList(array));
     }
 
@@ -36,8 +37,8 @@ public class TestArrayUtil {
      *
      * @return an Array of randomized objects
      */
-    public <T> T[] randomArrayOf(final int size, @Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
+    public static <T> T[] randomArrayOf(int size, @Nonnull Class<T> type,
+            String... fieldsExcluded) {
         return randomArrayListOf(size, type, fieldsExcluded)
                 .toArray((T[]) Array.newInstance(type, INT_00));
     }
@@ -51,8 +52,8 @@ public class TestArrayUtil {
      *
      * @return an Array of randomized objects
      */
-    public <T> T[] randomArrayOf(@Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
+    public static <T> T[] randomArrayOf(@Nonnull Class<T> type,
+            String... fieldsExcluded) {
         return randomArrayOf(random1to10(), type, fieldsExcluded);
     }
 
@@ -65,8 +66,8 @@ public class TestArrayUtil {
      *
      * @return an Array with a randomized object
      */
-    public <T> T[] randomArraySingleOf(@Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
+    public static <T> T[] randomArraySingleOf(@Nonnull Class<T> type,
+            String... fieldsExcluded) {
         return randomArrayOf(INT_01, type, fieldsExcluded);
     }
 }

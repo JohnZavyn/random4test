@@ -6,34 +6,34 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestCharacter}. */
-public class TestCharacterTest {
+class TestCharacterTest {
 
     private TestCharacter testCharacterUnderTest;
 
     /** Test {@link TestCharacter#random()}. */
     @Test
-    public void random() {
+    void random() {
         assertNotNull(testCharacterUnderTest.random());
     }
 
     /** Test {@link TestCharacter#randomBetween(int, int)}. */
     @Test
-    public void randomBetween() {
+    void randomBetween() {
         final char expectedResult = 'a';
 
-        final char result = TestCharacter.randomBetween(97, 97);
+        char result = TestCharacter.randomBetween(97, 97);
 
         assertEquals(expectedResult, result);
     }
 
     /** Test {@link TestCharacter#randomCharacter()}. */
     @Test
-    public void randomCharacter() {
+    void randomCharacter() {
         assertTrue(TestCharacter.randomCharacter() > 0);
     }
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         testCharacterUnderTest = new TestCharacter();
     }
 }

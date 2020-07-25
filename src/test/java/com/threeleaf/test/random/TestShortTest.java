@@ -9,12 +9,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestShort}. */
-public class TestShortTest {
+class TestShortTest {
 
     /** Test {@link TestShort#randomHex()}. */
     @Test
-    public void randomHex() {
-        final int unsigned = Integer.parseInt(TestShort.randomHex(), INT_16);
+    void randomHex() {
+        int unsigned = Integer.parseInt(TestShort.randomHex(), INT_16);
         assertTrue(unsigned <= SHORT_UNSIGNED_MAX);
         assertTrue(unsigned >= INT_00);
     }
@@ -22,7 +22,7 @@ public class TestShortTest {
     /** Test {@link TestShort#randomShort()}. */
     @SuppressWarnings("ObviousNullCheck")
     @Test
-    public void randomShort() {
+    void randomShort() {
         assertNotNull(TestShort.randomShort());
     }
 }

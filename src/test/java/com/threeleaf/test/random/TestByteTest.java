@@ -9,31 +9,31 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestByte}. */
-public class TestByteTest {
+class TestByteTest {
 
     /** Test {@link TestByte#randomByte()}. */
     @SuppressWarnings("ObviousNullCheck")
     @Test
-    public void randomByte() {
+    void randomByte() {
         assertNotNull(TestByte.randomByte());
     }
 
     /** Test {@link TestByte#randomHex()}. */
     @Test
-    public void randomHex() {
-        final int unsigned = Integer.parseInt(TestByte.randomHex(), INT_16);
+    void randomHex() {
+        int unsigned = Integer.parseInt(TestByte.randomHex(), INT_16);
         assertTrue(unsigned <= BYTE_UNSIGNED_MAX);
         assertTrue(unsigned >= INT_00);
     }
 
     /** Test {@link TestByte#randomPercent()}. */
     @Test
-    public void randomPercent() {
+    void randomPercent() {
         byte max = 0;
         byte min = 100;
 
         for (int i = 1; i < 1000; i++) {
-            final byte percent = TestByte.randomPercent();
+            byte percent = TestByte.randomPercent();
 
             max = (byte) Math.max(max, percent);
             min = (byte) Math.min(min, percent);

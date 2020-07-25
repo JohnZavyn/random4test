@@ -9,11 +9,11 @@ import java.lang.reflect.*;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestNameUtil}. */
-public class TestNameUtilTest {
+class TestNameUtilTest {
 
     /** Test {@link TestNameUtil} constructor. */
     @Test
-    public void constructor() throws Exception {
+    void constructor() throws Exception {
         Constructor<TestNameUtil> constructor = TestNameUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
@@ -26,31 +26,31 @@ public class TestNameUtilTest {
 
     /** Test {@link TestNameUtil#randomName()}. */
     @Test
-    public void randomName() {
+    void randomName() {
         assertNotNull(TestNameUtil.randomName());
     }
 
     /** Test {@link TestNameUtil#randomNameFirst()}. */
     @Test
-    public void randomNameFirst() {
+    void randomNameFirst() {
         assertNotNull(TestNameUtil.randomName());
     }
 
     /** Test {@link TestNameUtil#randomNameFirstMale()}. */
     @Test
-    public void randomNameFirstMale() {
+    void randomNameFirstMale() {
         assertTrue(NAMES_FIRST_MALE.contains(TestNameUtil.randomNameFirstMale()));
     }
 
     /** Test {@link TestNameUtil#randomNameFirstFemale()}. */
     @Test
-    public void testRandomNameFirstFemale() {
+    void testRandomNameFirstFemale() {
         assertTrue(NAMES_FIRST_FEMALE.contains(TestNameUtil.randomNameFirstFemale()));
     }
 
     /** Test {@link TestNameUtil#randomNameLast()}. */
     @Test
-    public void testRandomNameLast() {
+    void testRandomNameLast() {
         assertTrue(NAMES_LAST.contains(TestNameUtil.randomNameLast()));
     }
 }

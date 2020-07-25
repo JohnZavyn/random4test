@@ -5,6 +5,7 @@ import static com.threeleaf.test.random.TestString.EMPTY;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static com.threeleaf.test.random.util.TestMapUtil.chooseOneKeyFrom;
 import static com.threeleaf.test.random.util.TestMapUtil.chooseOneValueFrom;
+import static lombok.AccessLevel.PRIVATE;
 
 import java.util.List;
 import java.util.Map;
@@ -12,11 +13,12 @@ import java.util.Map;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.threeleaf.test.random.model.Address;
-import lombok.experimental.UtilityClass;
+import lombok.NoArgsConstructor;
 
 /** Utilities for random address creation. */
-@UtilityClass
-@SuppressWarnings("WeakerAccess")
+@NoArgsConstructor(access = PRIVATE)
+@SuppressWarnings(
+        {"WeakerAccess", "squid:S1192", "checkstyle:visibilitymodifier", "checkstyle:magicnumber"})
 public class TestAddressUtil {
 
     /**
@@ -35,7 +37,7 @@ public class TestAddressUtil {
      * See http://www.aip2.com/zip2.htm
      * https://www.irs.gov/pub/irs-utl/zip%20code%20and%20state%20abbreviations.pdf
      */
-    public final Map<String, Object[]> STATE_INFORMATION = ImmutableMap.<String, Object[]>builder() // @formatter:off //
+    public static final Map<String, Object[]> STATE_INFORMATION = ImmutableMap.<String, Object[]>builder() // @formatter:off //
           .put("AL", new Object[]{"Alabama",          35004, 36925, "Montgomery",     "36101" })
           .put("AK", new Object[]{"Alaska",           99501, 99950, "Juneau",         "99801" })
           .put("AZ", new Object[]{"Arizona",          85001, 86556, "Phoenix",        "85001" })
@@ -93,7 +95,7 @@ public class TestAddressUtil {
      * A list of common street names in the US.
      * See https://fivethirtyeight.com/features/whats-the-most-common-street-name-in-america/
      */
-    public final List<String> STREET_NAMES = ImmutableList.<String>builder() // @formatter:off //
+    public static final List<String> STREET_NAMES = ImmutableList.<String>builder() // @formatter:off //
           .add("Main")
           .add("First")
           .add("Second")
@@ -171,7 +173,7 @@ public class TestAddressUtil {
      * A list of street suffixes.
      * See https://en.wikipedia.org/wiki/Street_suffix
      */
-    public final List<String> STREET_SUFFIXES = ImmutableList.<String>builder() // @formatter:off //
+    public static final List<String> STREET_SUFFIXES = ImmutableList.<String>builder() // @formatter:off //
           .add("Avenue")
           .add("Branch")
           .add("Brook")
@@ -226,7 +228,7 @@ public class TestAddressUtil {
      *
      * @return the state's capital
      */
-    public String findCapital(final String stateAbbreviation) {
+    public static String findCapital(String stateAbbreviation) {
         return (String) STATE_INFORMATION.get(stateAbbreviation)[3];
     }
 
@@ -237,7 +239,7 @@ public class TestAddressUtil {
      *
      * @return the state capital's zip code
      */
-    public String findCapitalZip(final String stateAbbreviation) {
+    public static String findCapitalZip(String stateAbbreviation) {
         return (String) STATE_INFORMATION.get(stateAbbreviation)[4];
     }
 
@@ -248,7 +250,7 @@ public class TestAddressUtil {
      *
      * @return an address
      */
-    public Address randomAddress() {
+    public static Address randomAddress() {
         Address address = new Address();
         address.setNameResident(TestNameUtil.randomName());
         address.setStreetAddress(
@@ -266,7 +268,7 @@ public class TestAddressUtil {
      *
      * @return a state abbreviation
      */
-    public String randomState() {
+    public static String randomState() {
         return chooseOneKeyFrom(STATE_INFORMATION);
     }
 
@@ -275,7 +277,7 @@ public class TestAddressUtil {
      *
      * @return a state name
      */
-    public String randomStateName() {
+    public static String randomStateName() {
         return (String) chooseOneValueFrom(STATE_INFORMATION)[0];
     }
 
@@ -284,7 +286,7 @@ public class TestAddressUtil {
      *
      * @return a street name
      */
-    public String randomStreetName() {
+    public static String randomStreetName() {
         return chooseOneFrom(STREET_NAMES);
     }
 
@@ -293,7 +295,7 @@ public class TestAddressUtil {
      *
      * @return a street suffix
      */
-    public String randomStreetSuffix() {
+    public static String randomStreetSuffix() {
         return chooseOneFrom(STREET_SUFFIXES);
     }
 
@@ -307,8 +309,8 @@ public class TestAddressUtil {
      *
      * @return a zip code
      */
-    public String randomZip(final String stateAbbreviation) {
-        final Object[] stateInfo = STATE_INFORMATION.get(stateAbbreviation);
+    public static String randomZip(String stateAbbreviation) {
+        Object[] stateInfo = STATE_INFORMATION.get(stateAbbreviation);
 
         return String.format("%05d", randomBetween((int) stateInfo[1], (int) stateInfo[2]));
     }
@@ -318,7 +320,7 @@ public class TestAddressUtil {
      *
      * @return a zip code
      */
-    public String randomZip() {
+    public static String randomZip() {
         return randomZip(randomState());
     }
 }

@@ -14,19 +14,19 @@ import java.util.TimeZone;
 public class TestLocalDate extends AbstractTest<LocalDate> {
 
     /** The day of the month. */
-    public final static int DAY = now().getDayOfMonth();
+    public static final int DAY = now().getDayOfMonth();
 
     /** The instance of {@link TestLocalDate}. */
     public static final TestLocalDate INSTANCE = new TestLocalDate();
 
     /** The current month number. */
-    public final static int MONTH = now().getMonthValue();
+    public static final int MONTH = now().getMonthValue();
 
     /** Date from last month. */
-    public final static LocalDate MONTH_LAST = now().minusMonths(L_01);
+    public static final LocalDate MONTH_LAST = now().minusMonths(L_01);
 
     /** Date for next month. */
-    public final static LocalDate MONTH_NEXT = now().plusMonths(L_01);
+    public static final LocalDate MONTH_NEXT = now().plusMonths(L_01);
 
     /**
      * The time zone
@@ -34,31 +34,31 @@ public class TestLocalDate extends AbstractTest<LocalDate> {
     public static final TimeZone TIME_ZONE = TimeZone.getDefault();
 
     /** Today's date. */
-    public final static LocalDate TODAY = now();
+    public static final LocalDate TODAY = now();
 
     /** Tomorrow's date. */
-    public final static LocalDate TOMORROW = now().plusDays(L_01);
+    public static final LocalDate TOMORROW = now().plusDays(L_01);
 
     /** The week number. */
-    public final static int WEEK = now().get(WeekFields.SUNDAY_START.weekOfWeekBasedYear());
+    public static final int WEEK = now().get(WeekFields.SUNDAY_START.weekOfWeekBasedYear());
 
     /** Date from last week. */
-    public final static LocalDate WEEK_LAST = now().minusWeeks(L_01);
+    public static final LocalDate WEEK_LAST = now().minusWeeks(L_01);
 
     /** Date for next week. */
-    public final static LocalDate WEEK_NEXT = now().plusWeeks(L_01);
+    public static final LocalDate WEEK_NEXT = now().plusWeeks(L_01);
 
     /** The current year. */
-    public final static int YEAR = now().getYear();
+    public static final int YEAR = now().getYear();
 
     /** Date from last year. */
-    public final static LocalDate YEAR_LAST = now().minusYears(L_01);
+    public static final LocalDate YEAR_LAST = now().minusYears(L_01);
 
     /** Date for next year. */
-    public final static LocalDate YEAR_NEXT = now().plusYears(L_01);
+    public static final LocalDate YEAR_NEXT = now().plusYears(L_01);
 
     /** Yesterday's date. */
-    public final static LocalDate YESTERDAY = now().minusDays(L_01);
+    public static final LocalDate YESTERDAY = now().minusDays(L_01);
 
     /** Instantiate a utility to produce randomized Java {@link LocalDate} objects. */
     public TestLocalDate() {

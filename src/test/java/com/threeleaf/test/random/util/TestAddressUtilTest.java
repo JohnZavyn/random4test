@@ -10,11 +10,11 @@ import com.threeleaf.test.random.model.Address;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestAddressUtil}. */
-public class TestAddressUtilTest {
+class TestAddressUtilTest {
 
     /** Test {@link TestAddressUtil} constructor. */
     @Test
-    public void constructor() throws Exception {
+    void constructor() throws Exception {
         Constructor<TestAddressUtil> constructor = TestAddressUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
@@ -27,21 +27,21 @@ public class TestAddressUtilTest {
 
     /** Test {@link TestAddressUtil#findCapital(String)}. */
     @Test
-    public void findCapital() {
+    void findCapital() {
         assertNotNull(TestAddressUtil.findCapital(TestAddressUtil.randomState()));
     }
 
     /** Test {@link TestAddressUtil#findCapitalZip(String)}. */
     @Test
-    public void findCapitalZip() {
+    void findCapitalZip() {
         assertEquals(INT_05,
                 TestAddressUtil.findCapitalZip(TestAddressUtil.randomState()).length());
     }
 
     /** Test {@link TestAddressUtil#randomAddress()}. */
     @Test
-    public void randomAddress() {
-        final Address address = TestAddressUtil.randomAddress();
+    void randomAddress() {
+        Address address = TestAddressUtil.randomAddress();
 
         assertNotNull(address);
         assertNotNull(address.getState());
@@ -53,37 +53,37 @@ public class TestAddressUtilTest {
 
     /** Test {@link TestAddressUtil#randomState()}. */
     @Test
-    public void randomState() {
+    void randomState() {
         assertEquals(INT_02, TestAddressUtil.randomState().length());
     }
 
     /** Test {@link TestAddressUtil#randomStateName()}. */
     @Test
-    public void randomStateName() {
+    void randomStateName() {
         assertNotNull(TestAddressUtil.randomStateName());
     }
 
     /** Test {@link TestAddressUtil#randomStreetName()}. */
     @Test
-    public void randomStreetName() {
+    void randomStreetName() {
         assertNotNull(TestAddressUtil.randomStreetName());
     }
 
     /** Test {@link TestAddressUtil#randomStreetSuffix()}. */
     @Test
-    public void randomStreetSuffix() {
+    void randomStreetSuffix() {
         assertNotNull(TestAddressUtil.randomStreetSuffix());
     }
 
     /** Test {@link TestAddressUtil#randomZip()}. */
     @Test
-    public void randomZip() {
+    void randomZip() {
         assertEquals(INT_05, TestAddressUtil.randomZip().length());
     }
 
     /** Test {@link TestAddressUtil#randomZip(String)}. */
     @Test
-    public void randomZipInState() {
+    void randomZipInState() {
         assertEquals(INT_05, TestAddressUtil.randomZip(TestAddressUtil.randomState()).length());
     }
 }

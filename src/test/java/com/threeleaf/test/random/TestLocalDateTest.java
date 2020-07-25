@@ -9,29 +9,29 @@ import java.time.LocalDate;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestLocalDate}. */
-public class TestLocalDateTest {
+class TestLocalDateTest {
 
     /** Test {@link TestLocalDate#randomBetween(LocalDate, LocalDate)}. */
     @Test
-    public void randomBetween() {
+    void randomBetween() {
         assertNotNull(TestLocalDate.randomBetween(YESTERDAY, TOMORROW));
     }
 
     /** Test {@link TestLocalDate#randomFuture()}. */
     @Test
-    public void randomFuture() {
+    void randomFuture() {
         assertNotNull(TestLocalDate.randomFuture());
     }
 
     /** Test {@link TestLocalDate#randomPast()}. */
     @Test
-    public void randomPast() {
+    void randomPast() {
         assertNotNull(TestLocalDate.randomPast());
     }
 
     /** Test {@link TestLocalDate#randomRecent()}. */
     @Test
-    public void randomRecent() {
+    void randomRecent() {
         assertNotNull(TestLocalDate.randomRecent());
     }
 }

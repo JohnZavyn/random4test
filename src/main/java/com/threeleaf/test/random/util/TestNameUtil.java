@@ -2,18 +2,19 @@ package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestBoolean.randomBoolean;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
+import static lombok.AccessLevel.PRIVATE;
 
 import java.util.Arrays;
 import java.util.List;
 
-import lombok.experimental.UtilityClass;
+import lombok.NoArgsConstructor;
 
-@UtilityClass
+@NoArgsConstructor(access = PRIVATE)
 @SuppressWarnings({"WeakerAccess", "SpellCheckingInspection"})
 public class TestNameUtil {
 
     /** Top 500 female names of 2017 according to the Social Security Administration. */
-    public final List<String> NAMES_FIRST_FEMALE = Arrays.asList( // @formatter:off //
+    public static final List<String> NAMES_FIRST_FEMALE = Arrays.asList( // @formatter:off //
         "Emma",
         "Olivia",
         "Ava",
@@ -607,7 +608,7 @@ public class TestNameUtil {
     ); // @formatter:on //
 
     /** Top 500 male names of 2017 according to the Social Security Administration. */
-    public final List<String> NAMES_FIRST_MALE = Arrays.asList( // @formatter:off //
+    public static final List<String> NAMES_FIRST_MALE = Arrays.asList( // @formatter:off //
         "Liam",
         "Noah",
         "William",
@@ -1111,7 +1112,7 @@ public class TestNameUtil {
     ); // @formatter:on //
 
     /** Top 100 last names, according to Wikipedia. */
-    public final List<String> NAMES_LAST = Arrays.asList( // @formatter:off //
+    public static final List<String> NAMES_LAST = Arrays.asList( // @formatter:off //
         "Smith",
         "Johnson",
         "Williams",
@@ -1219,7 +1220,7 @@ public class TestNameUtil {
      *
      * @return a  name
      */
-    public String randomName() {
+    public static String randomName() {
         return randomNameFirst() + ' ' + randomNameLast();
     }
 
@@ -1228,7 +1229,7 @@ public class TestNameUtil {
      *
      * @return a name
      */
-    public String randomNameFirst() {
+    public static String randomNameFirst() {
         return randomBoolean() ? randomNameFirstFemale() : randomNameFirstMale();
     }
 
@@ -1237,7 +1238,7 @@ public class TestNameUtil {
      *
      * @return a female name
      */
-    public String randomNameFirstFemale() {
+    public static String randomNameFirstFemale() {
         return chooseOneFrom(NAMES_FIRST_FEMALE);
     }
 
@@ -1246,7 +1247,7 @@ public class TestNameUtil {
      *
      * @return a male name
      */
-    public String randomNameFirstMale() {
+    public static String randomNameFirstMale() {
         return chooseOneFrom(NAMES_FIRST_MALE);
     }
 
@@ -1255,7 +1256,7 @@ public class TestNameUtil {
      *
      * @return a male name
      */
-    public String randomNameLast() {
+    public static String randomNameLast() {
         return chooseOneFrom(NAMES_LAST);
     }
 }

@@ -8,11 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestObject}. */
-public class TestObjectTest {
+class TestObjectTest {
 
     /** Test {@link TestObject} constants. */
     @Test
-    public void constants() {
+    void constants() {
         assertNotEquals(INT_00, OBJECT_ARRAY.length);
         assertEquals(INT_01, OBJECT_ARRAY_SINGLE.length);
         assertNotEquals(INT_00, OBJECT_COLLECTION.size());

@@ -11,49 +11,49 @@ import org.joda.time.LocalDateTime;
 public class TestJodaLocalDateTime extends AbstractTest<LocalDateTime> {
 
     /** The day of the month. */
-    public final static int DAY = TestLocalDate.DAY;
+    public static final int DAY = TestLocalDate.DAY;
 
     /** The instance of {@link TestJodaLocalDateTime}. */
     public static final TestJodaLocalDateTime INSTANCE = new TestJodaLocalDateTime();
 
     /** The current month number. */
-    public final static int MONTH = TestLocalDate.MONTH;
+    public static final int MONTH = TestLocalDate.MONTH;
 
     /** Date from last month. */
-    public final static LocalDateTime MONTH_LAST = now().minusMonths(INT_01);
+    public static final LocalDateTime MONTH_LAST = now().minusMonths(INT_01);
 
     /** Date for next month. */
-    public final static LocalDateTime MONTH_NEXT = now().plusMonths(INT_01);
+    public static final LocalDateTime MONTH_NEXT = now().plusMonths(INT_01);
 
     /** The time zone. */
     public static final DateTimeZone TIME_ZONE = TestJodaLocalDate.TIME_ZONE;
 
     /** Today's date. */
-    public final static LocalDateTime TODAY = now();
+    public static final LocalDateTime TODAY = now();
 
     /** Tomorrow's date. */
-    public final static LocalDateTime TOMORROW = now().plusDays(INT_01);
+    public static final LocalDateTime TOMORROW = now().plusDays(INT_01);
 
     /** The week number. */
-    public final static int WEEK = TestLocalDate.WEEK;
+    public static final int WEEK = TestLocalDate.WEEK;
 
     /** Date from last week. */
-    public final static LocalDateTime WEEK_LAST = now().minusWeeks(INT_01);
+    public static final LocalDateTime WEEK_LAST = now().minusWeeks(INT_01);
 
     /** Date for next week. */
-    public final static LocalDateTime WEEK_NEXT = now().plusWeeks(INT_01);
+    public static final LocalDateTime WEEK_NEXT = now().plusWeeks(INT_01);
 
     /** The current year. */
-    public final static int YEAR = TestLocalDate.YEAR;
+    public static final int YEAR = TestLocalDate.YEAR;
 
     /** Date from last year. */
-    public final static LocalDateTime YEAR_LAST = now().minusYears(INT_01);
+    public static final LocalDateTime YEAR_LAST = now().minusYears(INT_01);
 
     /** Date for next year. */
-    public final static LocalDateTime YEAR_NEXT = now().plusYears(INT_01);
+    public static final LocalDateTime YEAR_NEXT = now().plusYears(INT_01);
 
     /** Yesterday's date. */
-    public final static LocalDateTime YESTERDAY = now().minusDays(INT_01);
+    public static final LocalDateTime YESTERDAY = now().minusDays(INT_01);
 
     /** Instantiate a utility to produce randomized objects of the given type. */
     public TestJodaLocalDateTime() {

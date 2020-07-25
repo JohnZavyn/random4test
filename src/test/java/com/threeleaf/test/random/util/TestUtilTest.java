@@ -6,12 +6,12 @@ import com.threeleaf.test.random.TestGeneric;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestGeneric}. */
-public class TestUtilTest {
+class TestUtilTest {
 
     /** Test {@link TestGeneric#TestGeneric(Class)}. */
     @Test
-    public void constructor() {
-        final TestGeneric<String> testGeneric = new TestGeneric<>(String.class);
+    void constructor() {
+        TestGeneric<String> testGeneric = new TestGeneric<>(String.class);
 
         assertEquals(String.class, testGeneric.getType());
     }

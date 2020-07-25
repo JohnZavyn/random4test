@@ -8,23 +8,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestFloat}. */
-public class TestFloatTest {
+class TestFloatTest {
 
     /** Test {@link TestFloat#randomFloat()}. */
     @SuppressWarnings("ObviousNullCheck")
     @Test
-    public void randomFloat() {
+    void randomFloat() {
         assertNotNull(TestFloat.randomFloat());
     }
 
     /** Test {@link TestFloat#randomPercent()}. */
     @Test
-    public void randomPercent2() {
+    void randomPercent2() {
         float max = 0;
         float min = 100;
 
         for (int i = 1; i < INT_10000; i++) {
-            final float percent = TestFloat.randomPercent();
+            float percent = TestFloat.randomPercent();
 
             max = Math.max(max, percent);
             min = Math.min(min, percent);

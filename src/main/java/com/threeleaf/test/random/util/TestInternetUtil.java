@@ -9,20 +9,21 @@ import static com.threeleaf.test.random.util.TestArrayUtil.chooseOneFrom;
 import static com.threeleaf.test.random.util.TestNameUtil.randomNameFirst;
 import static com.threeleaf.test.random.util.TestNameUtil.randomNameLast;
 import static com.threeleaf.test.random.util.TestStringUtil.randomUuid;
+import static lombok.AccessLevel.PRIVATE;
 
 import java.util.List;
 
 import com.threeleaf.test.random.TestByte;
 import com.threeleaf.test.random.TestShort;
-import lombok.experimental.UtilityClass;
+import lombok.NoArgsConstructor;
 
 /** Test internet utilities. */
-@UtilityClass
+@NoArgsConstructor(access = PRIVATE)
 @SuppressWarnings("WeakerAccess")
 public class TestInternetUtil {
 
     /** A list of some common top level domains. */
-    public final List<String> TOP_LEVEL_DOMAINS =
+    public static final List<String> TOP_LEVEL_DOMAINS =
             newArrayList(DOT_BIZ, DOT_COM, DOT_DESIGN, DOT_EDU, DOT_GG, DOT_GOV, DOT_INT, DOT_LIFE,
                     DOT_MIL, DOT_NET, DOT_ORG, DOT_SHOP);
 
@@ -31,7 +32,7 @@ public class TestInternetUtil {
      *
      * @return a domain name
      */
-    public String randomDomain() {
+    public static String randomDomain() {
         return randomUuid() + DOT + EXAMPLE + randomTopLevelDomain();
     }
 
@@ -41,7 +42,7 @@ public class TestInternetUtil {
      *
      * @return the email address
      */
-    public String randomEmail() {
+    public static String randomEmail() {
         return randomNameFirst() + DOT + randomNameLast() + AT_SIGN + randomDomain();
     }
 
@@ -50,7 +51,7 @@ public class TestInternetUtil {
      *
      * @return a random IPv4 or IPv6 address
      */
-    public String randomIpAddress() {
+    public static String randomIpAddress() {
         return randomBoolean() ? randomIpV4() : randomIpV6();
     }
 
@@ -59,7 +60,7 @@ public class TestInternetUtil {
      *
      * @return a random IPv4 address
      */
-    public String randomIpV4() {
+    public static String randomIpV4() {
         return chooseOneFrom(IPV4_TEST_NET_1_PREFIX, IPV4_TEST_NET_2_PREFIX, IPV4_TEST_NET_3_PREFIX)
                 + TestByte.randomUnsigned();
     }
@@ -69,7 +70,7 @@ public class TestInternetUtil {
      *
      * @return a random IPv6 address
      */
-    public String randomIpV6() {
+    public static String randomIpV6() {
         return IPV6_TEST_PREFIX + TestShort.randomHex() + COLON + TestShort.randomHex() + COLON
                 + TestShort.randomHex() + COLON + TestShort.randomHex() + COLON + TestShort
                 .randomHex() + COLON + TestShort.randomHex();
@@ -80,7 +81,7 @@ public class TestInternetUtil {
      *
      * @return a top-level domain name
      */
-    public String randomTopLevelDomain() {
+    public static String randomTopLevelDomain() {
         return TestCollectionUtil.chooseOneFrom(TOP_LEVEL_DOMAINS);
     }
 
@@ -89,7 +90,7 @@ public class TestInternetUtil {
      *
      * @return a url
      */
-    public String randomUrl() {
+    public static String randomUrl() {
         return HTTP_PROTOCOL + "://" + (randomBoolean() ? randomDomain() : randomIpV4());
     }
 
@@ -98,7 +99,7 @@ public class TestInternetUtil {
      *
      * @return a secure url
      */
-    public String randomUrlSecure() {
+    public static String randomUrlSecure() {
         return HTTPS_PROTOCOL + "://" + (randomBoolean() ? randomDomain() : randomIpV4());
     }
 }

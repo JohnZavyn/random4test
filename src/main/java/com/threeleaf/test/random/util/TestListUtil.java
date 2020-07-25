@@ -2,15 +2,16 @@ package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestInteger.*;
 import static com.threeleaf.test.random.TestRandom.random;
+import static lombok.AccessLevel.PRIVATE;
 
 import java.util.*;
 import javax.annotation.Nonnull;
 
-import lombok.experimental.UtilityClass;
+import lombok.NoArgsConstructor;
 
 /** Utilities to generate randomly populated List objects. */
-@UtilityClass
-@SuppressWarnings("WeakerAccess")
+@NoArgsConstructor(access = PRIVATE)
+@SuppressWarnings({"WeakerAccess", "PMD.ReplaceVectorWithList", "PMD.LooseCoupling"})
 public class TestListUtil {
 
     /**
@@ -23,9 +24,9 @@ public class TestListUtil {
      *
      * @return an ArrayList of randomized objects
      */
-    public <T> ArrayList<T> randomArrayListOf(final int size, @Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
-        final ArrayList<T> randomObjects = new ArrayList<>();
+    public static <T> ArrayList<T> randomArrayListOf(int size, @Nonnull Class<T> type,
+            String... fieldsExcluded) {
+        ArrayList<T> randomObjects = new ArrayList<>();
         for (int index = 0; index < size; index++) {
             randomObjects.add(random(type, fieldsExcluded));
         }
@@ -42,8 +43,8 @@ public class TestListUtil {
      *
      * @return an ArrayList of randomized objects
      */
-    public <T> ArrayList<T> randomArrayListOf(@Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
+    public static <T> ArrayList<T> randomArrayListOf(@Nonnull Class<T> type,
+            String... fieldsExcluded) {
         return randomArrayListOf(random1to10(), type, fieldsExcluded);
     }
 
@@ -56,8 +57,8 @@ public class TestListUtil {
      *
      * @return an ArrayList with a randomized object
      */
-    public <T> ArrayList<T> randomArrayListSingleOf(@Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
+    public static <T> ArrayList<T> randomArrayListSingleOf(@Nonnull Class<T> type,
+            String... fieldsExcluded) {
         return randomArrayListOf(INT_01, type, fieldsExcluded);
     }
 
@@ -71,8 +72,8 @@ public class TestListUtil {
      *
      * @return a LinkedList of randomized objects
      */
-    public <T> LinkedList<T> randomLinkedListOf(final int size, @Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
+    public static <T> LinkedList<T> randomLinkedListOf(int size, @Nonnull Class<T> type,
+            String... fieldsExcluded) {
         return new LinkedList<>(randomArrayListOf(size, type, fieldsExcluded));
     }
 
@@ -85,8 +86,8 @@ public class TestListUtil {
      *
      * @return a LinkedList of randomized objects
      */
-    public <T> LinkedList<T> randomLinkedListOf(@Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
+    public static <T> LinkedList<T> randomLinkedListOf(@Nonnull Class<T> type,
+            String... fieldsExcluded) {
         return randomLinkedListOf(random1to10(), type, fieldsExcluded);
     }
 
@@ -99,8 +100,8 @@ public class TestListUtil {
      *
      * @return a LinkedList with a randomized object
      */
-    public <T> LinkedList<T> randomLinkedListSingleOf(@Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
+    public static <T> LinkedList<T> randomLinkedListSingleOf(@Nonnull Class<T> type,
+            String... fieldsExcluded) {
         return randomLinkedListOf(INT_01, type, fieldsExcluded);
     }
 
@@ -113,8 +114,8 @@ public class TestListUtil {
      *
      * @return a ArrayList, LinkedList, or Vector of randomized objects
      */
-    public <T> List<T> randomListOf(@Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
+    public static <T> List<T> randomListOf(@Nonnull Class<T> type,
+            String... fieldsExcluded) {
         return randomListOf(random1to10(), type, fieldsExcluded);
     }
 
@@ -128,8 +129,8 @@ public class TestListUtil {
      *
      * @return a ArrayList, LinkedList, or Vector of randomized objects
      */
-    public <T> List<T> randomListOf(final int size, @Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
+    public static <T> List<T> randomListOf(int size, @Nonnull Class<T> type,
+            String... fieldsExcluded) {
         List<T> list;
         switch (randomBetween(INT_01, INT_03)) {
             case 1:
@@ -155,8 +156,8 @@ public class TestListUtil {
      *
      * @return a ArrayList, LinkedList, or Vector with a randomized object
      */
-    public <T> List<T> randomListSingleOf(@Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
+    public static <T> List<T> randomListSingleOf(@Nonnull Class<T> type,
+            String... fieldsExcluded) {
         return randomListOf(INT_01, type, fieldsExcluded);
     }
 
@@ -169,8 +170,8 @@ public class TestListUtil {
      *
      * @return a Vector of randomized objects
      */
-    public <T> Vector<T> randomVectorOf(@Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
+    public static <T> Vector<T> randomVectorOf(@Nonnull Class<T> type,
+            String... fieldsExcluded) {
         return randomVectorOf(random1to10(), type, fieldsExcluded);
     }
 
@@ -184,8 +185,8 @@ public class TestListUtil {
      *
      * @return a Vector of randomized objects
      */
-    public <T> Vector<T> randomVectorOf(final int size, @Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
+    public static <T> Vector<T> randomVectorOf(int size, @Nonnull Class<T> type,
+            String... fieldsExcluded) {
         return new Vector<>(randomArrayListOf(size, type, fieldsExcluded));
     }
 
@@ -198,8 +199,8 @@ public class TestListUtil {
      *
      * @return a Vector with a randomized object
      */
-    public <T> Vector<T> randomVectorSingleOf(@Nonnull final Class<T> type,
-            final String... fieldsExcluded) {
+    public static <T> Vector<T> randomVectorSingleOf(@Nonnull Class<T> type,
+            String... fieldsExcluded) {
         return randomVectorOf(INT_01, type, fieldsExcluded);
     }
 }

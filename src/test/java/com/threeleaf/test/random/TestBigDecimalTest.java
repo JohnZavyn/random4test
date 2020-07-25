@@ -11,12 +11,12 @@ import java.math.BigDecimal;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestBigDecimal}. */
-public class TestBigDecimalTest {
+class TestBigDecimalTest {
 
     /** Test {@link TestBigDecimal#randomBetween(BigDecimal, BigDecimal)}. */
     @Test
-    public void randomBetween() {
-        final BigDecimal result = TestBigDecimal.randomBetween(ZERO, TEN);
+    void randomBetween() {
+        BigDecimal result = TestBigDecimal.randomBetween(ZERO, TEN);
 
         assertTrue(result.intValue() >= INT_00);
         assertTrue(result.intValue() <= INT_10);
@@ -24,20 +24,20 @@ public class TestBigDecimalTest {
 
     /** Test {@link TestBigDecimal#randomBigDecimal()}. */
     @Test
-    public void randomBigDecimal() {
+    void randomBigDecimal() {
         assertNotNull(TestBigDecimal.randomBigDecimal());
     }
 
     /** Test {@link TestBigDecimal#randomNegative()}. */
     @Test
-    public void randomNegative() {
+    void randomNegative() {
         assertTrue(TestBigDecimal.randomNegative().doubleValue() < 0);
     }
 
     /** Test {@link TestBigDecimal#randomPercent()}. */
     @Test
-    public void randomPercent() {
-        final BigDecimal result = TestBigDecimal.randomPercent();
+    void randomPercent() {
+        BigDecimal result = TestBigDecimal.randomPercent();
 
         assertTrue(result.intValue() >= INT_00);
         assertTrue(result.intValue() <= INT_100);
@@ -45,7 +45,7 @@ public class TestBigDecimalTest {
 
     /** Test {@link TestBigDecimal#randomPositive()}. */
     @Test
-    public void randomPositive() {
+    void randomPositive() {
         assertTrue(TestBigDecimal.randomPositive().doubleValue() > 0);
     }
 }

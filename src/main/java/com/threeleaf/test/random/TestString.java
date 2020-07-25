@@ -6,8 +6,9 @@ import static java.util.Collections.*;
 
 import java.util.*;
 
+import com.google.common.collect.ImmutableList;
+
 /** String constants to be used in JUnit tests. */
-@SuppressWarnings({"WeakerAccess", "unused"})
 public class TestString extends AbstractTest<String> {
 
     /** The letters "abc". */
@@ -16,13 +17,13 @@ public class TestString extends AbstractTest<String> {
     /** Alphabet, lower case. */
     public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
 
-    /** Alphabet, lower case, in an array. */
-    public static final String[] ALPHABET_ARRAY =
-            {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q",
-                    "r", "s", "t", "u", "v", "w", "x", "y", "z"};
-
     /** Alphabet, upper case. */
     public static final String ALPHABET_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    /** Alphabet, lower case, in a list. */
+    public static final List<String> ALPHABET_LIST = ImmutableList.<String>builder()
+            .add("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
+                    "q", "r", "s", "t", "u", "v", "w", "x", "y", "z").build();
 
     /** A colon string. */
     public static final String COLON = ":";
@@ -345,8 +346,8 @@ public class TestString extends AbstractTest<String> {
     /** Test string consisting of 98 random characters. */
     public static final String STRING_98 = randomString(INT_98);
 
-    /** A random string. */
-    public static final String STRING = test(randomString());
+    /** Test string consisting of 99 random characters. */
+    public static final String STRING_99 = randomString(INT_99);
 
     /** An {@link String} array. */
     public static final String[] STRING_ARRAY = INSTANCE.randomArray();
@@ -354,8 +355,9 @@ public class TestString extends AbstractTest<String> {
     /** An {@link String} array with a single value. */
     public static final String[] STRING_ARRAY_SINGLE = INSTANCE.randomArraySingle();
 
-    /** Test string consisting of 99 random characters. */
-    public static final String STRING_99 = randomString(INT_99);
+    /** An {@link String} collection. */
+    public static final Collection<String> STRING_COLLECTION =
+            unmodifiableCollection(INSTANCE.randomCollection());
 
     /** An single {@link Integer} collection. */
     public static final Collection<String> STRING_COLLECTION_SINGLE = singleton(randomString());
@@ -365,10 +367,6 @@ public class TestString extends AbstractTest<String> {
 
     /** An single {@link Integer} list. */
     public static final List<String> STRING_LIST_SINGLE = singletonList(randomString());
-
-    /** An {@link String} collection. */
-    public static final Collection<String> STRING_COLLECTION =
-            unmodifiableCollection(INSTANCE.randomCollection());
 
     /** An {@link String} map. */
     public static final Map<String, String> STRING_MAP =
@@ -390,6 +388,10 @@ public class TestString extends AbstractTest<String> {
     public static final Map<Long, String> STRING_MAP_LONG_SINGLE =
             unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
 
+    /** An {@link String} map with a single key-value pair. */
+    public static final Map<String, String> STRING_MAP_SINGLE =
+            unmodifiableMap(INSTANCE.randomMapSingle(String.class));
+
     /** An {@link String} set. */
     public static final Set<String> STRING_SET = unmodifiableSet(INSTANCE.randomSet());
 
@@ -399,9 +401,8 @@ public class TestString extends AbstractTest<String> {
     /** A prefix that can be attached to strings to indicate it is from a testing context. */
     public static final String TEST_PREFIX = "TEST~";
 
-    /** An {@link String} map with a single key-value pair. */
-    public static final Map<String, String> STRING_MAP_SINGLE =
-            unmodifiableMap(INSTANCE.randomMapSingle(String.class));
+    /** A random string. */
+    public static final String STRING = test(randomString());
 
     /** A UUID string. */
     public static final String UUID = randomUuid();
