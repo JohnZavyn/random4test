@@ -9,6 +9,7 @@ import java.util.*;
 import com.google.common.collect.ImmutableList;
 
 /** String constants to be used in JUnit tests. */
+@SuppressWarnings({"unused", "squid:S2386" /* Mutable arrays */})
 public class TestString extends AbstractTest<String> {
 
     /** The letters "abc". */
@@ -21,9 +22,10 @@ public class TestString extends AbstractTest<String> {
     public static final String ALPHABET_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     /** Alphabet, lower case, in a list. */
-    public static final List<String> ALPHABET_LIST = ImmutableList.<String>builder()
-            .add("a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p",
-                    "q", "r", "s", "t", "u", "v", "w", "x", "y", "z").build();
+    public static final List<String> ALPHABET_LIST = ImmutableList.of(
+        "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r",
+        "s", "t", "u", "v", "w", "x", "y", "z"
+    );
 
     /** A colon string. */
     public static final String COLON = ":";
@@ -357,7 +359,7 @@ public class TestString extends AbstractTest<String> {
 
     /** An {@link String} collection. */
     public static final Collection<String> STRING_COLLECTION =
-            unmodifiableCollection(INSTANCE.randomCollection());
+        unmodifiableCollection(INSTANCE.randomCollection());
 
     /** An single {@link Integer} collection. */
     public static final Collection<String> STRING_COLLECTION_SINGLE = singleton(randomString());
@@ -370,27 +372,27 @@ public class TestString extends AbstractTest<String> {
 
     /** An {@link String} map. */
     public static final Map<String, String> STRING_MAP =
-            unmodifiableMap(INSTANCE.randomMap(String.class));
+        unmodifiableMap(INSTANCE.randomMap(String.class));
 
     /** An {@link Integer} key and {@link String} value map. */
     public static final Map<Integer, String> STRING_MAP_INTEGER =
-            unmodifiableMap(INSTANCE.randomMap(Integer.class));
+        unmodifiableMap(INSTANCE.randomMap(Integer.class));
 
     /** An {@link Integer} key and {@link String} value map with a single key-value pair. */
     public static final Map<Integer, String> STRING_MAP_INTEGER_SINGLE =
-            unmodifiableMap(INSTANCE.randomMapSingle(Integer.class));
+        unmodifiableMap(INSTANCE.randomMapSingle(Integer.class));
 
     /** An {@link Long} key and {@link String} value map. */
     public static final Map<Long, String> STRING_MAP_LONG =
-            unmodifiableMap(INSTANCE.randomMap(Long.class));
+        unmodifiableMap(INSTANCE.randomMap(Long.class));
 
     /** An {@link Long} key and {@link String} value map with a single key-value pair. */
     public static final Map<Long, String> STRING_MAP_LONG_SINGLE =
-            unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
+        unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
 
     /** An {@link String} map with a single key-value pair. */
     public static final Map<String, String> STRING_MAP_SINGLE =
-            unmodifiableMap(INSTANCE.randomMapSingle(String.class));
+        unmodifiableMap(INSTANCE.randomMapSingle(String.class));
 
     /** An {@link String} set. */
     public static final Set<String> STRING_SET = unmodifiableSet(INSTANCE.randomSet());

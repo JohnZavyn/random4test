@@ -1,5 +1,6 @@
 package com.threeleaf.test.random;
 
+import static com.threeleaf.test.random.TestInteger.INT_97;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +22,7 @@ class TestCharacterTest {
     void randomBetween() {
         final char expectedResult = 'a';
 
-        char result = TestCharacter.randomBetween(97, 97);
+        char result = TestCharacter.randomBetween(INT_97, INT_97);
 
         assertEquals(expectedResult, result);
     }

@@ -4,17 +4,18 @@ import static com.threeleaf.test.random.TestBoolean.randomBoolean;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static lombok.AccessLevel.PRIVATE;
 
-import java.util.Arrays;
 import java.util.List;
 
+import com.google.common.collect.ImmutableList;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = PRIVATE)
-@SuppressWarnings({"WeakerAccess", "SpellCheckingInspection"})
-public class TestNameUtil {
+@SuppressWarnings(
+    {"WeakerAccess", "SpellCheckingInspection", "squid:S1192" /* Repeated names okay */})
+public final class TestNameUtil {
 
     /** Top 500 female names of 2017 according to the Social Security Administration. */
-    public static final List<String> NAMES_FIRST_FEMALE = Arrays.asList( // @formatter:off //
+    public static final List<String> NAMES_FIRST_FEMALE = ImmutableList.of(
         "Emma",
         "Olivia",
         "Ava",
@@ -605,10 +606,10 @@ public class TestNameUtil {
         "Elaine",
         "Lilian",
         "Kyra"
-    ); // @formatter:on //
+    );
 
     /** Top 500 male names of 2017 according to the Social Security Administration. */
-    public static final List<String> NAMES_FIRST_MALE = Arrays.asList( // @formatter:off //
+    public static final List<String> NAMES_FIRST_MALE = ImmutableList.of(
         "Liam",
         "Noah",
         "William",
@@ -1109,10 +1110,10 @@ public class TestNameUtil {
         "Aden",
         "Julio",
         "Darius"
-    ); // @formatter:on //
+    );
 
     /** Top 100 last names, according to Wikipedia. */
-    public static final List<String> NAMES_LAST = Arrays.asList( // @formatter:off //
+    public static final List<String> NAMES_LAST = ImmutableList.of(
         "Smith",
         "Johnson",
         "Williams",
@@ -1213,7 +1214,7 @@ public class TestNameUtil {
         "Butler",
         "Barnes",
         "Fisher"
-    ); // @formatter:on //
+    );
 
     /**
      * Return a first and last name.

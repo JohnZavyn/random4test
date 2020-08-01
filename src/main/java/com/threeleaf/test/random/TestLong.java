@@ -1,15 +1,15 @@
 package com.threeleaf.test.random;
 
-import static com.threeleaf.test.random.TestRandom.RANDOM;
+import static java.lang.Long.MAX_VALUE;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-import static java.lang.Math.*;
 import static java.util.Collections.*;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /** Utilities for random {@link Long} creation. */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "squid:S2386" /* Mutable arrays */})
 public class TestLong extends AbstractTest<Long> {
 
     /** The instance of {@link TestLong}. */
@@ -735,11 +735,13 @@ public class TestLong extends AbstractTest<Long> {
      *
      * @return the random long
      */
-    public static long randomBetween(final long number1, final long number2) {
-        final long min = min(number1, number2);
-        final long max = max(number1, number2);
+    public static long randomBetween(long number1, long number2) {
+        long min = min(number1, number2);
+        /* ThreadLocalRandom.nextLong(long, long) is upper bound exclusive, so the following
+         * is necessary to get an inclusive range (only MAX_VALUE will never be returned). */
+        long max = min(max(number1, number2), MAX_VALUE - 1) + 1;
 
-        return min + (long) ((max - min + 1) * Math.random());
+        return ThreadLocalRandom.current().nextLong(min, max);
     }
 
     /**
@@ -757,7 +759,7 @@ public class TestLong extends AbstractTest<Long> {
      * @return the big decimal
      */
     public static long randomNegative() {
-        return -abs(RANDOM.nextLong());
+        return -randomPositive();
     }
 
     /**
@@ -775,7 +777,7 @@ public class TestLong extends AbstractTest<Long> {
      * @return the big decimal
      */
     public static long randomPositive() {
-        return abs(RANDOM.nextLong());
+        return randomBetween(LONG_01, MAX_VALUE);
     }
 
     /**
@@ -783,7 +785,8 @@ public class TestLong extends AbstractTest<Long> {
      *
      * @return the long
      */
+    @Override
     public Long random() {
-        return RANDOM.nextLong();
+        return ThreadLocalRandom.current().nextLong();
     }
 }

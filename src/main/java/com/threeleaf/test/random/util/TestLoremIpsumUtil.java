@@ -1,27 +1,29 @@
 package com.threeleaf.test.random.util;
 
-import static com.google.common.collect.Sets.newHashSet;
 import static com.threeleaf.test.random.TestInteger.*;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static com.threeleaf.test.random.util.TestStringUtil.capitalize;
 import static com.threeleaf.test.random.util.TestStringUtil.randomPunctuationTerminal;
+import static com.threeleaf.test.random.util.TestWordUtil.REGEX_PUNCTUATION;
 import static lombok.AccessLevel.PRIVATE;
 
 import java.util.Set;
 
+import com.google.common.collect.ImmutableSet;
 import lombok.NoArgsConstructor;
 
 /** Utilities to generate greeking text. Useful when you need longer randomized Strings. */
 @NoArgsConstructor(access = PRIVATE)
 @SuppressWarnings("WeakerAccess")
-public class TestLoremIpsumUtil {
+public final class TestLoremIpsumUtil {
 
     /**
      * The unique words from Sections 1.10.32-33 of Cicero's
      * <em>De finibus bonorum et malorum</em>.
      * See https://en.wikipedia.org/wiki/Lorem_ipsum.
      */
-    public static final Set<String> WORDS_DE_FINIBUS = newHashSet(( // @formatter:off //
+    public static final Set<String> WORDS_DE_FINIBUS = ImmutableSet.copyOf((
+        // @formatter:off //
         "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium " +
         "doloremque laudantium, totam rem aperiam eaque ipsa, quae ab illo inventore " +
         "veritatis et quasi architecto beatae vitae dicta sunt, explicabo. Nemo enim " +
@@ -45,7 +47,7 @@ public class TestLoremIpsumUtil {
         "repudiandae sint et molestiae non-recusandae. Itaque earum rerum hic tenetur a " +
         "sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut " +
         "perferendis doloribus asperiores repellat"
-    ).split("[\\p{Punct}\\s]+")); // @formatter:on //
+    ).split(REGEX_PUNCTUATION)); // @formatter:on //
 
     /**
      * Generate a chapter of text with 2-10 paragraphs.
@@ -115,7 +117,7 @@ public class TestLoremIpsumUtil {
      */
     public static String randomSentence(int wordCount) {
         StringBuilder sentence =
-                new StringBuilder(capitalize(chooseOneFrom(WORDS_DE_FINIBUS)));
+            new StringBuilder(capitalize(chooseOneFrom(WORDS_DE_FINIBUS)));
         for (int count = 1; count < wordCount; count++) {
             sentence.append(' ').append(chooseOneFrom(WORDS_DE_FINIBUS));
         }

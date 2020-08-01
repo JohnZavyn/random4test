@@ -1,12 +1,27 @@
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestInteger.*;
+import static java.lang.Integer.MAX_VALUE;
+import static java.lang.Integer.MIN_VALUE;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestInteger}. */
-class TestIntegerTest {
+@SuppressWarnings("squid:S5786"/* Want LOOP_COUNT_MAX sharable */)
+public class TestIntegerTest {
+
+    /**
+     * The maximum number of times to loop through a test call.
+     * Testing randomness is difficult, so we want to have an upper
+     * boundary for failure in a loop where we are tying to collect
+     * some kind of statistics.
+     */
+    public static final int LOOP_COUNT_MAX = INT_100;
 
     /** Test {@link TestInteger} constants. */
     @Test
@@ -26,7 +41,7 @@ class TestIntegerTest {
     }
 
     /** Test {@link TestInteger#random0to10()}. */
-    @Test
+    @RepeatedTest(LOOP_COUNT_MAX)
     void random0to10() {
         int number = TestInteger.random0to10();
 
@@ -35,7 +50,7 @@ class TestIntegerTest {
     }
 
     /** Test {@link TestInteger#randomPercent()}}. */
-    @Test
+    @RepeatedTest(LOOP_COUNT_MAX)
     void random0to100() {
         int number = TestInteger.randomPercent();
 
@@ -44,7 +59,7 @@ class TestIntegerTest {
     }
 
     /** Test {@link TestInteger#random1to10()}. */
-    @Test
+    @RepeatedTest(LOOP_COUNT_MAX)
     void random1to10() {
         int number = TestInteger.random1to10();
 
@@ -53,7 +68,7 @@ class TestIntegerTest {
     }
 
     /** Test {@link TestInteger#random1to100()}. */
-    @Test
+    @RepeatedTest(LOOP_COUNT_MAX)
     void random1to100() {
         int number = TestInteger.random1to100();
 
@@ -64,14 +79,29 @@ class TestIntegerTest {
     /** Test {@link TestInteger#randomBetween(int, int)}. */
     @Test
     void randomBetween() {
-        int number = TestInteger.randomBetween(INT_05, INT_10);
+        Set<Integer> results = new HashSet<>();
+        boolean allPossibilitiesFound = false;
 
-        assertTrue(number >= INT_05);
-        assertTrue(number <= INT_10);
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
+            results.add(TestInteger.randomBetween(INT_05, INT_10));
+            if (results.size() == 6) {
+                allPossibilitiesFound = true;
+                break;
+            }
+        }
+        if (!allPossibilitiesFound) {
+            fail("Expected all possible results, but only found " + results);
+        }
+    }
+
+    /** Test {@link TestInteger#randomBetween(int, int)} with max values. */
+    @RepeatedTest(LOOP_COUNT_MAX)
+    void randomBetweenMax() {
+        assertDoesNotThrow(() -> TestInteger.randomBetween(MIN_VALUE, MAX_VALUE));
     }
 
     /** Test {@link TestInteger#randomDigit()}. */
-    @Test
+    @RepeatedTest(LOOP_COUNT_MAX)
     void randomDigit() {
         int number = TestInteger.randomDigit();
 
@@ -80,7 +110,7 @@ class TestIntegerTest {
     }
 
     /** Test {@link TestInteger#randomHex()}. */
-    @Test
+    @RepeatedTest(LOOP_COUNT_MAX)
     void randomHex() {
         long unsigned = Long.parseLong(TestInteger.randomHex(), INT_16);
         assertTrue(unsigned <= INTEGER_UNSIGNED_MAX);

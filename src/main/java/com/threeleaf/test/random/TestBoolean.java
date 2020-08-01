@@ -1,5 +1,6 @@
 package com.threeleaf.test.random;
 
+import static com.google.common.base.Preconditions.checkArgument;
 import static com.threeleaf.test.random.TestInteger.INT_01;
 import static com.threeleaf.test.random.TestInteger.randomBetween;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
@@ -34,8 +35,8 @@ public class TestBoolean extends AbstractTest<Boolean> {
      *
      * @return true if a 1 was rolled
      */
-    public static boolean oneOutOf(final int number) {
-        assert (number > 0);
+    public static boolean oneOutOf(int number) {
+        checkArgument(number > 0);
 
         return randomBetween(INT_01, number) == INT_01;
     }
@@ -54,6 +55,7 @@ public class TestBoolean extends AbstractTest<Boolean> {
      *
      * @return the big integer
      */
+    @Override
     public Boolean random() {
         return RANDOM.nextBoolean();
     }

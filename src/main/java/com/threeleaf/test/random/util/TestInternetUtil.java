@@ -1,6 +1,5 @@
 package com.threeleaf.test.random.util;
 
-import static com.google.common.collect.Lists.newArrayList;
 import static com.threeleaf.test.random.TestBoolean.randomBoolean;
 import static com.threeleaf.test.random.TestInternet.*;
 import static com.threeleaf.test.random.TestString.COLON;
@@ -13,6 +12,7 @@ import static lombok.AccessLevel.PRIVATE;
 
 import java.util.List;
 
+import com.google.common.collect.ImmutableList;
 import com.threeleaf.test.random.TestByte;
 import com.threeleaf.test.random.TestShort;
 import lombok.NoArgsConstructor;
@@ -20,12 +20,23 @@ import lombok.NoArgsConstructor;
 /** Test internet utilities. */
 @NoArgsConstructor(access = PRIVATE)
 @SuppressWarnings("WeakerAccess")
-public class TestInternetUtil {
+public final class TestInternetUtil {
 
     /** A list of some common top level domains. */
-    public static final List<String> TOP_LEVEL_DOMAINS =
-            newArrayList(DOT_BIZ, DOT_COM, DOT_DESIGN, DOT_EDU, DOT_GG, DOT_GOV, DOT_INT, DOT_LIFE,
-                    DOT_MIL, DOT_NET, DOT_ORG, DOT_SHOP);
+    public static final List<String> TOP_LEVEL_DOMAINS = ImmutableList.of(
+        DOT_BIZ,
+        DOT_COM,
+        DOT_DESIGN,
+        DOT_EDU,
+        DOT_GG,
+        DOT_GOV,
+        DOT_INT,
+        DOT_LIFE,
+        DOT_MIL,
+        DOT_NET,
+        DOT_ORG,
+        DOT_SHOP
+    );
 
     /**
      * A random domain name.
@@ -62,7 +73,7 @@ public class TestInternetUtil {
      */
     public static String randomIpV4() {
         return chooseOneFrom(IPV4_TEST_NET_1_PREFIX, IPV4_TEST_NET_2_PREFIX, IPV4_TEST_NET_3_PREFIX)
-                + TestByte.randomUnsigned();
+            + TestByte.randomUnsigned();
     }
 
     /**
@@ -72,8 +83,8 @@ public class TestInternetUtil {
      */
     public static String randomIpV6() {
         return IPV6_TEST_PREFIX + TestShort.randomHex() + COLON + TestShort.randomHex() + COLON
-                + TestShort.randomHex() + COLON + TestShort.randomHex() + COLON + TestShort
-                .randomHex() + COLON + TestShort.randomHex();
+            + TestShort.randomHex() + COLON + TestShort.randomHex() + COLON + TestShort
+            .randomHex() + COLON + TestShort.randomHex();
     }
 
     /**

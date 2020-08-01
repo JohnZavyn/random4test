@@ -3,7 +3,7 @@ package com.threeleaf.test.random;
 import static com.threeleaf.test.random.TestInteger.INT_00;
 import static com.threeleaf.test.random.TestInteger.INT_16;
 import static com.threeleaf.test.random.TestShort.SHORT_UNSIGNED_MAX;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -20,9 +20,8 @@ class TestShortTest {
     }
 
     /** Test {@link TestShort#randomShort()}. */
-    @SuppressWarnings("ObviousNullCheck")
     @Test
     void randomShort() {
-        assertNotNull(TestShort.randomShort());
+        assertDoesNotThrow(TestShort::randomShort);
     }
 }

@@ -39,7 +39,7 @@ public class TestBigDecimal extends AbstractTest<BigDecimal> {
      *
      * @return the random short
      */
-    public static BigDecimal randomBetween(final double number1, final double number2) {
+    public static BigDecimal randomBetween(double number1, double number2) {
         return valueOf(TestDouble.randomBetween(number1, number2));
     }
 
@@ -51,7 +51,7 @@ public class TestBigDecimal extends AbstractTest<BigDecimal> {
      *
      * @return the random short
      */
-    public static BigDecimal randomBetween(final BigDecimal number1, final BigDecimal number2) {
+    public static BigDecimal randomBetween(BigDecimal number1, BigDecimal number2) {
         return randomBetween(number1.doubleValue(), number2.doubleValue());
     }
 
@@ -96,6 +96,7 @@ public class TestBigDecimal extends AbstractTest<BigDecimal> {
      *
      * @return the big decimal
      */
+    @Override
     public BigDecimal random() {
         return valueOf(RANDOM.nextDouble());
     }

@@ -14,8 +14,9 @@ import lombok.NoArgsConstructor;
 
 /** Utilities to generate randomly populated Map objects. */
 @NoArgsConstructor(access = PRIVATE)
-@SuppressWarnings({"WeakerAccess", "PMD.LooseCoupling"})
-public class TestMapUtil {
+@SuppressWarnings(
+    {"WeakerAccess", "PMD.LooseCoupling", "squid:S1319" /* Using specific implementations */})
+public final class TestMapUtil {
 
     /**
      * Pick a random key from a map.
@@ -56,8 +57,8 @@ public class TestMapUtil {
      * @return a HashMap of randomized key-value pairs
      */
     public static <K, V> HashMap<K, V> randomHashMapOf(int size,
-            @Nonnull Class<K> keyType, @Nonnull Class<V> valueType,
-            String... fieldsExcluded) {
+        @Nonnull Class<K> keyType, @Nonnull Class<V> valueType,
+        String... fieldsExcluded) {
         HashMap<K, V> randomMap = new HashMap<>();
         Set<K> keySet = randomHashSetOf(size, keyType);
         for (K key : keySet) {
@@ -79,7 +80,7 @@ public class TestMapUtil {
      * @return a HashMap of randomized key-value pairs
      */
     public static <K, V> HashMap<K, V> randomHashMapOf(@Nonnull Class<K> keyType,
-            @Nonnull Class<V> valueType, String... fieldsExcluded) {
+        @Nonnull Class<V> valueType, String... fieldsExcluded) {
         return randomHashMapOf(random1to10(), keyType, valueType, fieldsExcluded);
     }
 
@@ -95,7 +96,7 @@ public class TestMapUtil {
      * @return a HashMap with a randomized key-value pair
      */
     public static <K, V> HashMap<K, V> randomHashMapSingleOf(@Nonnull Class<K> keyType,
-            @Nonnull Class<V> valueType, String... fieldsExcluded) {
+        @Nonnull Class<V> valueType, String... fieldsExcluded) {
         return randomHashMapOf(INT_01, keyType, valueType, fieldsExcluded);
     }
 
@@ -112,8 +113,8 @@ public class TestMapUtil {
      * @return a LinkedHashMap of randomized key-value pairs
      */
     public static <K, V> LinkedHashMap<K, V> randomLinkedHashMapOf(int size,
-            @Nonnull Class<K> keyType, @Nonnull Class<V> valueType,
-            String... fieldsExcluded) {
+        @Nonnull Class<K> keyType, @Nonnull Class<V> valueType,
+        String... fieldsExcluded) {
         return new LinkedHashMap<>(randomHashMapOf(size, keyType, valueType, fieldsExcluded));
     }
 
@@ -129,7 +130,7 @@ public class TestMapUtil {
      * @return a LinkedHashMap of randomized key-value pairs
      */
     public static <K, V> LinkedHashMap<K, V> randomLinkedHashMapOf(@Nonnull Class<K> keyType,
-            @Nonnull Class<V> valueType, String... fieldsExcluded) {
+        @Nonnull Class<V> valueType, String... fieldsExcluded) {
         return randomLinkedHashMapOf(random1to10(), keyType, valueType, fieldsExcluded);
     }
 
@@ -145,7 +146,7 @@ public class TestMapUtil {
      * @return a LinkedHashMap with a randomized key-value pair
      */
     public static <K, V> LinkedHashMap<K, V> randomLinkedHashMapSingleOf(@Nonnull Class<K> keyType,
-            @Nonnull Class<V> valueType, String... fieldsExcluded) {
+        @Nonnull Class<V> valueType, String... fieldsExcluded) {
         return randomLinkedHashMapOf(INT_01, keyType, valueType, fieldsExcluded);
     }
 
@@ -161,7 +162,7 @@ public class TestMapUtil {
      * @return a HashMap, LinkedHashMap, or TreeMap of randomized key-value pairs
      */
     public static <K, V> Map<K, V> randomMapOf(@Nonnull Class<K> keyType,
-            @Nonnull Class<V> valueType, String... fieldsExcluded) {
+        @Nonnull Class<V> valueType, String... fieldsExcluded) {
         return randomMapOf(random1to10(), keyType, valueType, fieldsExcluded);
     }
 
@@ -178,7 +179,7 @@ public class TestMapUtil {
      * @return a HashMap, LinkedHashMap, or TreeMap of randomized key-value pairs
      */
     public static <K, V> Map<K, V> randomMapOf(int size, @Nonnull Class<K> keyType,
-            @Nonnull Class<V> valueType, String... fieldsExcluded) {
+        @Nonnull Class<V> valueType, String... fieldsExcluded) {
         Map<K, V> map;
         switch (randomBetween(INT_01, INT_03)) {
             case 1:
@@ -207,7 +208,7 @@ public class TestMapUtil {
      * @return a HashMap, LinkedHashMap, or TreeMap with a randomized key-value pair
      */
     public static <K, V> Map<K, V> randomMapSingleOf(@Nonnull Class<K> keyType,
-            @Nonnull Class<V> valueType, String... fieldsExcluded) {
+        @Nonnull Class<V> valueType, String... fieldsExcluded) {
         return randomMapOf(INT_01, keyType, valueType, fieldsExcluded);
     }
 
@@ -226,8 +227,8 @@ public class TestMapUtil {
      * @return a TreeMap of randomized key-value pairs
      */
     public static <K, V> TreeMap<K, V> randomTreeMapOf(int size,
-            @Nonnull Class<K> keyType, @Nonnull Class<V> valueType,
-            String... fieldsExcluded) {
+        @Nonnull Class<K> keyType, @Nonnull Class<V> valueType,
+        String... fieldsExcluded) {
         Map<K, V> map = randomHashMapOf(size, keyType, valueType, fieldsExcluded);
         TreeMap<K, V> treeMap;
         /* A TreeMap must be of a Comparable type or be constructed with a Comparator. */
@@ -253,7 +254,7 @@ public class TestMapUtil {
      * @return a TreeMap of randomized key-value pairs
      */
     public static <K, V> TreeMap<K, V> randomTreeMapOf(@Nonnull Class<K> keyType,
-            @Nonnull Class<V> valueType, String... fieldsExcluded) {
+        @Nonnull Class<V> valueType, String... fieldsExcluded) {
         return randomTreeMapOf(random1to10(), keyType, valueType, fieldsExcluded);
     }
 
@@ -269,7 +270,7 @@ public class TestMapUtil {
      * @return a TreeMap with a randomized key-value pair
      */
     public static <K, V> TreeMap<K, V> randomTreeMapSingleOf(@Nonnull Class<K> keyType,
-            @Nonnull Class<V> valueType, String... fieldsExcluded) {
+        @Nonnull Class<V> valueType, String... fieldsExcluded) {
         return randomTreeMapOf(INT_01, keyType, valueType, fieldsExcluded);
     }
 }

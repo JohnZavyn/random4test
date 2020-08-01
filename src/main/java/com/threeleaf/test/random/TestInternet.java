@@ -7,7 +7,8 @@ import lombok.NoArgsConstructor;
 
 /** Internet constants to be used in JUnit tests. */
 @NoArgsConstructor(access = PRIVATE)
-@SuppressWarnings({"WeakerAccess", "unused", "PMD.FinalFieldCouldBeStatic"})
+@SuppressWarnings(
+    {"WeakerAccess", "unused", "PMD.FinalFieldCouldBeStatic", "PMD.ClassNamingConventions"})
 public class TestInternet {
 
     /** The at sign. */

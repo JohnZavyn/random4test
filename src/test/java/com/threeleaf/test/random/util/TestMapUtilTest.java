@@ -1,6 +1,8 @@
 package com.threeleaf.test.random.util;
 
-import static com.threeleaf.test.random.TestInteger.*;
+import static com.threeleaf.test.random.TestInteger.INT_01;
+import static com.threeleaf.test.random.TestInteger.INT_10;
+import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MAX;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.*;
@@ -18,7 +20,7 @@ class TestMapUtilTest {
         Set<Short> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
-        for (int loopNumber = 0; loopNumber < INT_100; loopNumber++) {
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
             results.add(TestMapUtil.chooseOneKeyFrom(map));
             if (results.size() == map.size()) {
                 allPossibilitiesFound = true;
@@ -37,7 +39,7 @@ class TestMapUtilTest {
         Set<String> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
-        for (int loopNumber = 0; loopNumber < INT_100; loopNumber++) {
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
             results.add(TestMapUtil.chooseOneValueFrom(map));
             if (results.size() == map.size()) {
                 allPossibilitiesFound = true;

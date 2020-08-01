@@ -36,7 +36,7 @@ public class TestBigInteger extends AbstractTest<BigInteger> {
      *
      * @return the random short
      */
-    public static BigInteger randomBetween(final long number1, final long number2) {
+    public static BigInteger randomBetween(long number1, long number2) {
         return valueOf(TestLong.randomBetween(number1, number2));
     }
 
@@ -48,7 +48,7 @@ public class TestBigInteger extends AbstractTest<BigInteger> {
      *
      * @return the random short
      */
-    public static BigInteger randomBetween(final BigInteger number1, final BigInteger number2) {
+    public static BigInteger randomBetween(BigInteger number1, BigInteger number2) {
         return randomBetween(number1.longValue(), number2.longValue());
     }
 
@@ -93,6 +93,7 @@ public class TestBigInteger extends AbstractTest<BigInteger> {
      *
      * @return the big integer
      */
+    @Override
     public BigInteger random() {
         return BigInteger.valueOf(RANDOM.nextLong());
     }

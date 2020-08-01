@@ -1,8 +1,7 @@
 package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestBoolean.randomBoolean;
-import static com.threeleaf.test.random.TestInteger.INT_01;
-import static com.threeleaf.test.random.TestInteger.random1to10;
+import static com.threeleaf.test.random.TestInteger.*;
 import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
 import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
 import static java.util.Arrays.asList;
@@ -16,7 +15,7 @@ import lombok.NoArgsConstructor;
 /** Utilities to generate randomly populated Collections. */
 @NoArgsConstructor(access = PRIVATE)
 @SuppressWarnings("WeakerAccess")
-public class TestCollectionUtil {
+public final class TestCollectionUtil {
 
     /**
      * Choose a random item from an array.
@@ -43,12 +42,10 @@ public class TestCollectionUtil {
      * @return a random object
      */
     public static <T> T chooseOneFrom(@Nonnull Collection<T> collection) {
-        // @formatter:off //
         return collection.stream()
-            .skip((int) (collection.size() * Math.random()))
+            .skip(randomBetween(0, collection.size() - 1))
             .findFirst()
             .orElse(null);
-        // @formatter:on //
     }
 
     /**
@@ -61,7 +58,7 @@ public class TestCollectionUtil {
      * @return a List or Set of randomized objects
      */
     public static <T> Collection<T> randomCollectionOf(@Nonnull Class<T> type,
-            String... fieldsExcluded) {
+        String... fieldsExcluded) {
         return randomCollectionOf(random1to10(), type, fieldsExcluded);
     }
 
@@ -76,7 +73,7 @@ public class TestCollectionUtil {
      * @return a List or Set of randomized objects
      */
     public static <T> Collection<T> randomCollectionOf(int size, @Nonnull Class<T> type,
-            String... fieldsExcluded) {
+        String... fieldsExcluded) {
         Collection<T> collection;
         if (randomBoolean()) {
             collection = randomSetOf(size, type, fieldsExcluded);
@@ -97,7 +94,7 @@ public class TestCollectionUtil {
      * @return a List or Set with a randomized object
      */
     public static <T> Collection<T> randomCollectionSingleOf(@Nonnull Class<T> type,
-            String... fieldsExcluded) {
+        String... fieldsExcluded) {
         return randomCollectionOf(INT_01, type, fieldsExcluded);
     }
 }

@@ -2,14 +2,16 @@ package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestLong.L_00;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
+import static java.lang.Integer.MAX_VALUE;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import static java.util.Collections.*;
 
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 /** Utilities for random {@link Integer} creation. */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "squid:S2386" /* Arrays are mutable */})
 public class TestInteger extends AbstractTest<Integer> {
 
     /** Maximum digit value. */
@@ -775,9 +777,11 @@ public class TestInteger extends AbstractTest<Integer> {
      */
     public static int randomBetween(int number1, int number2) {
         int min = min(number1, number2);
-        int max = max(number1, number2);
+        /* ThreadLocalRandom.nextLong(long, long) is upper bound exclusive, so the following
+         * is necessary to get an inclusive range (only MAX_VALUE will never be returned). */
+        int max = min(max(number1, number2), MAX_VALUE - 1) + 1;
 
-        return min + (int) ((max - min + 1) * Math.random());
+        return ThreadLocalRandom.current().nextInt(min, max);
     }
 
     /**

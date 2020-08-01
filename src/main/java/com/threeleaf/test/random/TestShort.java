@@ -702,9 +702,9 @@ public class TestShort extends AbstractTest<Short> {
      *
      * @return the random short
      */
-    public static short randomBetween(final int number1, final int number2) {
-        final int min = min(number1, number2);
-        final int max = max(number1, number2);
+    public static short randomBetween(int number1, int number2) {
+        int min = min(number1, number2);
+        int max = max(number1, number2);
 
         return (short) (min + ((max - min + 1) * Math.random()));
     }
@@ -768,6 +768,7 @@ public class TestShort extends AbstractTest<Short> {
      *
      * @return the short
      */
+    @Override
     public Short random() {
         return randomBetween(Short.MIN_VALUE, Short.MAX_VALUE);
     }

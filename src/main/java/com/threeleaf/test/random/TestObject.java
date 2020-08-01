@@ -4,7 +4,7 @@ import static java.util.Collections.*;
 
 import java.util.*;
 
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "squid:S2386" /* Mutable arrays */})
 public class TestObject extends AbstractTest<Object> {
 
     /** The instance of {@link TestObject}. */
@@ -21,11 +21,11 @@ public class TestObject extends AbstractTest<Object> {
 
     /** An {@link Object} collection. */
     public static final Collection<Object> OBJECT_COLLECTION =
-            unmodifiableCollection(INSTANCE.randomCollection());
+        unmodifiableCollection(INSTANCE.randomCollection());
 
     /** An single {@link Integer} collection. */
     public static final Collection<Object> OBJECT_COLLECTION_SINGLE =
-            singleton(INSTANCE.randomCollectionSingle());
+        singleton(INSTANCE.randomCollectionSingle());
 
     /** An {@link Object} list. */
     public static final List<Object> OBJECT_LIST = unmodifiableList(INSTANCE.randomList());
@@ -35,35 +35,35 @@ public class TestObject extends AbstractTest<Object> {
 
     /** An {@link Object} map. */
     public static final Map<Object, Object> OBJECT_MAP =
-            unmodifiableMap(INSTANCE.randomMap(Object.class));
+        unmodifiableMap(INSTANCE.randomMap(Object.class));
 
     /** An {@link Integer} key and {@link Object} value map. */
     public static final Map<Integer, Object> OBJECT_MAP_INTEGER =
-            unmodifiableMap(INSTANCE.randomMap(Integer.class));
+        unmodifiableMap(INSTANCE.randomMap(Integer.class));
 
     /** An {@link Integer} key and {@link Object} value map with a single key-value pair. */
     public static final Map<Integer, Object> OBJECT_MAP_INTEGER_SINGLE =
-            unmodifiableMap(INSTANCE.randomMapSingle(Integer.class));
+        unmodifiableMap(INSTANCE.randomMapSingle(Integer.class));
 
     /** An {@link Long} key and {@link Object} value map. */
     public static final Map<Long, Object> OBJECT_MAP_LONG =
-            unmodifiableMap(INSTANCE.randomMap(Long.class));
+        unmodifiableMap(INSTANCE.randomMap(Long.class));
 
     /** An {@link Long} key and {@link Object} value map with a single key-value pair. */
     public static final Map<Long, Object> OBJECT_MAP_LONG_SINGLE =
-            unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
+        unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
 
     /** An {@link Object} map with a single key-value pair. */
     public static final Map<Object, Object> OBJECT_MAP_SINGLE =
-            unmodifiableMap(INSTANCE.randomMapSingle(Object.class));
+        unmodifiableMap(INSTANCE.randomMapSingle(Object.class));
 
     /** An {@link String} key and {@link Object} value map. */
     public static final Map<String, Object> OBJECT_MAP_STRING =
-            unmodifiableMap(INSTANCE.randomMap(String.class));
+        unmodifiableMap(INSTANCE.randomMap(String.class));
 
     /** An {@link String} key and {@link Object} value map with a single key-value pair. */
     public static final Map<String, Object> OBJECT_MAP_STRING_SINGLE =
-            unmodifiableMap(INSTANCE.randomMapSingle(String.class));
+        unmodifiableMap(INSTANCE.randomMapSingle(String.class));
 
     /** An {@link Object} set. */
     public static final Set<Object> OBJECT_SET = unmodifiableSet(INSTANCE.randomSet());

@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 /** Class to contain the random generator. */
 @NoArgsConstructor(access = PRIVATE)
+@SuppressWarnings("PMD.ClassNamingConventions")
 public class TestRandom {
 
     /**
@@ -33,6 +34,7 @@ public class TestRandom {
      *
      * @return a randomized object
      */
+    @SuppressWarnings("squid:S1845" /* Want name to be "random" */)
     public static <T> T random(@Nonnull Class<T> type, String... fieldsExcluded) {
         return ENHANCED_RANDOM.nextObject(type, fieldsExcluded);
     }

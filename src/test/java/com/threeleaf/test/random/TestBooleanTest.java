@@ -1,23 +1,17 @@
 package com.threeleaf.test.random;
 
-import static com.threeleaf.test.random.TestInteger.INT_100;
+import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MAX;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.HashSet;
 import java.util.Set;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestBoolean}. */
 class TestBooleanTest {
-
-    /**
-     * The maximum number of times to loop through a test call.
-     * Testing randomness is difficult, so we want to have an upper
-     * boundary for failure in a loop where we are tying to collect
-     * some kind of statistics.
-     */
-    static final int LOOP_COUNT_MAX = INT_100;
 
     /** Test {@link TestBoolean#coinFlip()}. */
     @Test
@@ -54,6 +48,13 @@ class TestBooleanTest {
         if (!allPossibilitiesFound) {
             fail("Expected all possible results, but only found " + results);
         }
+    }
+
+    /** Test {@link TestBoolean#oneOutOf(int)} when an exception occurs. */
+    @RepeatedTest(LOOP_COUNT_MAX)
+    void oneOutOfException() {
+        int numberNegative = -TestInteger.random0to10();
+        assertThrows(IllegalArgumentException.class, () -> TestBoolean.oneOutOf(numberNegative));
     }
 
     /** Test {@link TestBoolean#randomBoolean()}. */

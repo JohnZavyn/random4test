@@ -1,6 +1,6 @@
 package com.threeleaf.test.random.util;
 
-import static com.threeleaf.test.random.TestInteger.INT_100;
+import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MAX;
 import static com.threeleaf.test.random.TestString.*;
 import static com.threeleaf.test.random.util.TestArrayUtil.randomArrayOf;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -22,7 +22,7 @@ class TestArrayUtilTest {
         Set<String> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
-        for (int loopNumber = 0; loopNumber < INT_100; loopNumber++) {
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
             results.add((String) TestArrayUtil.chooseOneFrom(array));
             if (results.size() == array.length) {
                 allPossibilitiesFound = true;

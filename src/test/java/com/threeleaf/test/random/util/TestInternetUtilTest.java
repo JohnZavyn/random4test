@@ -1,11 +1,13 @@
 package com.threeleaf.test.random.util;
 
+import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MAX;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.*;
 
 import com.threeleaf.test.random.TestInternet;
 import org.apache.commons.validator.routines.*;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestInternetUtil}. */
@@ -37,7 +39,7 @@ class TestInternetUtilTest {
     }
 
     /** Test {@link TestInternetUtil#randomIpAddress()}. */
-    @Test
+    @RepeatedTest(LOOP_COUNT_MAX)
     void randomIpAddress() {
         assertTrue(InetAddressValidator.getInstance().isValid(TestInternetUtil.randomIpAddress()));
     }
@@ -57,7 +59,7 @@ class TestInternetUtilTest {
     }
 
     /** Test {@link TestInternetUtil#randomUrl()}. */
-    @Test
+    @RepeatedTest(LOOP_COUNT_MAX)
     void randomUrl() {
         String url = TestInternetUtil.randomUrl();
 

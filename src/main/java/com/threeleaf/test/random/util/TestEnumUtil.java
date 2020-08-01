@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 /** Enum test utilities. */
 @NoArgsConstructor(access = PRIVATE)
 @SuppressWarnings("WeakerAccess")
-public class TestEnumUtil {
+public final class TestEnumUtil {
 
     /**
      * Returns a random enum instance from the specified enum class.

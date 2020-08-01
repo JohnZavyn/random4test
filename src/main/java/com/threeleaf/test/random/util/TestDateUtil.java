@@ -14,14 +14,14 @@ import org.joda.time.format.DateTimeFormatter;
 /** Date and time utilities. */
 @NoArgsConstructor(access = PRIVATE)
 @SuppressWarnings({"WeakerAccess", "PMD.FinalFieldCouldBeStatic"})
-public class TestDateUtil {
+public final class TestDateUtil {
 
     /** The timestamp format string. */
     public static final String TIMESTAMP_FORMAT = "yyyyMMddHHmmssSSS";
 
     /** Timestamp format including milliseconds. */
     public static final DateTimeFormatter TIMESTAMP_FORMATTER =
-            forPattern(TIMESTAMP_FORMAT).withLocale(US);
+        forPattern(TIMESTAMP_FORMAT).withLocale(US);
 
     /**
      * Get the current timestamp, including milliseconds.
@@ -74,6 +74,6 @@ public class TestDateUtil {
      */
     public static LocalDateTime toLocalDateTime(Date date) {
         return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault())
-                .toLocalDateTime();
+            .toLocalDateTime();
     }
 }

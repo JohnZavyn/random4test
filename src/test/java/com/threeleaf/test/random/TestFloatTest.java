@@ -2,7 +2,7 @@ package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestFloat.*;
 import static com.threeleaf.test.random.TestInteger.INT_10000;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -11,10 +11,9 @@ import org.junit.jupiter.api.Test;
 class TestFloatTest {
 
     /** Test {@link TestFloat#randomFloat()}. */
-    @SuppressWarnings("ObviousNullCheck")
     @Test
     void randomFloat() {
-        assertNotNull(TestFloat.randomFloat());
+        assertDoesNotThrow(TestFloat::randomFloat);
     }
 
     /** Test {@link TestFloat#randomPercent()}. */

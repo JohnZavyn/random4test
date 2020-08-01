@@ -1,6 +1,6 @@
 package com.threeleaf.test.random.util;
 
-import static com.threeleaf.test.random.TestInteger.INT_100;
+import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MAX;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
@@ -19,7 +19,7 @@ class TestEnumUtilTest {
         Set<TestEnum> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
-        for (int loopNumber = 0; loopNumber < INT_100; loopNumber++) {
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
             results.add(TestEnumUtil.chooseOneFrom(TestEnum.class));
             if (results.size() == TestEnum.values().length) {
                 allPossibilitiesFound = true;

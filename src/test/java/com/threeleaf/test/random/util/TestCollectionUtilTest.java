@@ -1,6 +1,8 @@
 package com.threeleaf.test.random.util;
 
-import static com.threeleaf.test.random.TestInteger.*;
+import static com.threeleaf.test.random.TestInteger.INT_01;
+import static com.threeleaf.test.random.TestInteger.INT_10;
+import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MAX;
 import static com.threeleaf.test.random.TestString.*;
 import static java.util.Arrays.asList;
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,7 +22,7 @@ class TestCollectionUtilTest {
         Set<String> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
-        for (int loopNumber = 0; loopNumber < INT_100; loopNumber++) {
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
             results.add(TestCollectionUtil.chooseOneFrom(collection));
             if (results.size() == collection.size()) {
                 allPossibilitiesFound = true;
@@ -39,7 +41,7 @@ class TestCollectionUtilTest {
         Set<String> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
-        for (int loopNumber = 0; loopNumber < INT_100; loopNumber++) {
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
             results.add((String) TestCollectionUtil.chooseOneFrom(array));
             if (results.size() == array.length) {
                 allPossibilitiesFound = true;

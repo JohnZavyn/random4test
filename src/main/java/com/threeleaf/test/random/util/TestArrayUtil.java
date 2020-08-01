@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 /** Utilities to generate randomly populated Array objects. */
 @NoArgsConstructor(access = PRIVATE)
 @SuppressWarnings({"WeakerAccess", "unchecked"})
-public class TestArrayUtil {
+public final class TestArrayUtil {
 
     /**
      * Choose a random item from an array.

@@ -1,13 +1,16 @@
 package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestInteger.randomBetween;
+import static com.threeleaf.test.random.TestRandom.RANDOM;
 import static com.threeleaf.test.random.TestString.*;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static java.lang.Character.isWhitespace;
 import static java.util.UUID.randomUUID;
+import static java.util.stream.Collectors.toList;
 import static lombok.AccessLevel.PRIVATE;
 
-import java.util.*;
+import java.util.List;
+import java.util.Locale;
 import javax.annotation.Nonnull;
 
 import com.google.common.collect.ImmutableList;
@@ -15,11 +18,11 @@ import lombok.NoArgsConstructor;
 
 /** Test string utilities. */
 @NoArgsConstructor(access = PRIVATE)
-public class TestStringUtil {
+public final class TestStringUtil {
 
     /** Punctuation marks to be used at the end of sentences. */
     public static final List<String> PUNCTUATION_TERMINAL =
-            ImmutableList.<String>builder().add(".", ".", ".", "?", "?", "!").build();
+        ImmutableList.of(".", ".", ".", "?", "?", "!");
 
     /** Maximum length for a string. */
     public static final int STRING_LENGTH_MAX = 100;
@@ -42,7 +45,7 @@ public class TestStringUtil {
      */
     public static String capitalize(String string) {
         return isEmpty(string) ? string
-                : string.substring(0, 1).toUpperCase() + string.substring(1);
+            : string.substring(0, 1).toUpperCase() + string.substring(1);
     }
 
     /**
@@ -129,9 +132,8 @@ public class TestStringUtil {
         StringBuilder randString = new StringBuilder(length);
         int maxChars = RANDOM_CHARS.length();
 
-        Random randomNumberGenerator = new Random();
         for (int i = 0; i < length; ++i) {
-            randString.append(RANDOM_CHARS.charAt(randomNumberGenerator.nextInt(maxChars)));
+            randString.append(RANDOM_CHARS.charAt(RANDOM.nextInt(maxChars)));
         }
 
         return randString.toString();
@@ -154,8 +156,8 @@ public class TestStringUtil {
      * @return the string
      */
     public static String randomTest(String entityName) {
-        return isBlank(entityName) ? test(null)
-                : test(entityName.toUpperCase(Locale.US) + "_" + randomStringShort());
+        return isBlank(entityName) ? test(EMPTY)
+            : test(entityName.toUpperCase(Locale.US) + "_" + randomStringShort());
     }
 
     /**
@@ -199,13 +201,10 @@ public class TestStringUtil {
      * @return the shuffled string
      */
     public static String shuffle(String string) {
-        List<Character> characters = new ArrayList<>();
-        for (char letter : string.toCharArray()) {
-            characters.add(letter);
-        }
+        List<Character> characters = string.chars().mapToObj(e -> (char) e).collect(toList());
         StringBuilder shuffledString = new StringBuilder(string.length());
         while (!characters.isEmpty()) {
-            int randPicker = (int) (Math.random() * characters.size());
+            int randPicker = RANDOM.nextInt(characters.size());
             shuffledString.append(characters.remove(randPicker));
         }
 
