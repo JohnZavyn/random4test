@@ -48,14 +48,14 @@ class TestInternetUtilTest {
     @Test
     void randomIpV4() {
         assertTrue(InetAddressValidator.getInstance()
-                .isValidInet4Address(TestInternetUtil.randomIpV4()));
+            .isValidInet4Address(TestInternetUtil.randomIpV4()));
     }
 
     /** Test {@link TestInternetUtil#randomIpV6()}. */
     @Test
     void randomIpV6() {
         assertTrue(InetAddressValidator.getInstance()
-                .isValidInet6Address(TestInternetUtil.randomIpV6()));
+            .isValidInet6Address(TestInternetUtil.randomIpV6()));
     }
 
     /** Test {@link TestInternetUtil#randomUrl()}. */

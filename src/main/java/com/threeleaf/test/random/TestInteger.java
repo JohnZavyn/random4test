@@ -385,11 +385,11 @@ public class TestInteger extends AbstractTest<Integer> {
 
     /** An {@link Integer} map with a single key-value pair. */
     public static final Map<Integer, Integer> INTEGER_MAP_SINGLE =
-            unmodifiableMap(INSTANCE.randomMapSingle(Integer.class));
+        unmodifiableMap(INSTANCE.randomMapSingle(Integer.class));
 
     /** An {@link Integer} set with a single value. */
     public static final Set<Integer> INTEGER_SET_SINGLE =
-            unmodifiableSet(INSTANCE.randomSetSingle());
+        unmodifiableSet(INSTANCE.randomSetSingle());
 
     /** The primitive int 04. */
     public static final int INT_04 = 4;
@@ -412,19 +412,19 @@ public class TestInteger extends AbstractTest<Integer> {
     /** The primitive int 10. */
     public static final int INT_10 = 10;
 
-    /** An {@link Integer} array. */
-    public static final Integer[] INTEGER_ARRAY = INSTANCE.randomArray();
-
     /** An {@link Integer} collection. */
     public static final Collection<Integer> INTEGER_COLLECTION =
-            unmodifiableCollection(INSTANCE.randomCollection());
-
-    /** An {@link Integer} list. */
-    public static final List<Integer> INTEGER_LIST = unmodifiableList(INSTANCE.randomList());
+        unmodifiableCollection(INSTANCE.randomCollection());
 
     /** An {@link Integer} map. */
     public static final Map<Integer, Integer> INTEGER_MAP =
-            unmodifiableMap(INSTANCE.randomMap(Integer.class));
+        unmodifiableMap(INSTANCE.randomMap(Integer.class));
+
+    /** An {@link Integer} array. */
+    public static final Integer[] INTEGER_ARRAY = INSTANCE.randomArray();
+
+    /** An {@link Integer} list. */
+    public static final List<Integer> INTEGER_LIST = unmodifiableList(INSTANCE.randomList());
 
     /** An {@link Integer} set. */
     public static final Set<Integer> INTEGER_SET = unmodifiableSet(INSTANCE.randomSet());

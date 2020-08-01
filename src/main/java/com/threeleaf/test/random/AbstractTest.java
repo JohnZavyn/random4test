@@ -16,8 +16,8 @@ import lombok.Getter;
  * </ul>
  */
 @SuppressWarnings(
-        {"WeakerAccess", "unused", "PMD.ReplaceVectorWithList", "PMD.VisibilityModifierCheck",
-                "PMD.LooseCoupling", "PMD.LooseCoupling", "squid:S1149", "squid:S1319"})
+    {"WeakerAccess", "unused", "PMD.ReplaceVectorWithList", "PMD.VisibilityModifierCheck",
+        "PMD.LooseCoupling", "PMD.LooseCoupling", "squid:S1149", "squid:S1319"})
 @Getter
 public abstract class AbstractTest<T> {
 
@@ -170,7 +170,7 @@ public abstract class AbstractTest<T> {
      * @return a HashMap of randomized key-value pairs
      */
     public <K> Map<K, T> randomHashMap(int size, @Nonnull Class<K> keyType,
-            String... fieldsExcluded) {
+        String... fieldsExcluded) {
         return TestMapUtil.randomHashMapOf(size, keyType, type, fieldsExcluded);
     }
 
@@ -197,7 +197,7 @@ public abstract class AbstractTest<T> {
      * @return a HashMap with a randomized key-value pair
      */
     public <K> Map<K, T> randomHashMapSingle(@Nonnull Class<K> keyType,
-            String... fieldsExcluded) {
+        String... fieldsExcluded) {
         return TestMapUtil.randomHashMapSingleOf(keyType, type, fieldsExcluded);
     }
 
@@ -246,7 +246,7 @@ public abstract class AbstractTest<T> {
      * @return a LinkedHashMap of randomized key-value pairs
      */
     public <K> Map<K, T> randomLinkedHashMap(int size, @Nonnull Class<K> keyType,
-            String... fieldsExcluded) {
+        String... fieldsExcluded) {
         return TestMapUtil.randomLinkedHashMapOf(size, keyType, type, fieldsExcluded);
     }
 
@@ -260,7 +260,7 @@ public abstract class AbstractTest<T> {
      * @return a LinkedHashMap of randomized key-value pairs
      */
     public <K> Map<K, T> randomLinkedHashMap(@Nonnull Class<K> keyType,
-            String... fieldsExcluded) {
+        String... fieldsExcluded) {
         return TestMapUtil.randomLinkedHashMapOf(keyType, type, fieldsExcluded);
     }
 
@@ -274,7 +274,7 @@ public abstract class AbstractTest<T> {
      * @return a LinkedHashMap with a randomized key-value pair
      */
     public <K> Map<K, T> randomLinkedHashMapSingle(@Nonnull Class<K> keyType,
-            String... fieldsExcluded) {
+        String... fieldsExcluded) {
         return TestMapUtil.randomLinkedHashMapSingleOf(keyType, type, fieldsExcluded);
     }
 
@@ -404,7 +404,7 @@ public abstract class AbstractTest<T> {
      * @return a HashMap, LinkedHashMap, or TreeMap of randomized key-value pairs
      */
     public <K> Map<K, T> randomMap(int size, @Nonnull Class<K> keyType,
-            String... fieldsExcluded) {
+        String... fieldsExcluded) {
         return TestMapUtil.randomMapOf(size, keyType, type, fieldsExcluded);
     }
 
@@ -418,7 +418,7 @@ public abstract class AbstractTest<T> {
      * @return a HashMap, LinkedHashMap, or TreeMap with a randomized key-value pair
      */
     public <K> Map<K, T> randomMapSingle(@Nonnull Class<K> keyType,
-            String... fieldsExcluded) {
+        String... fieldsExcluded) {
         return TestMapUtil.randomMapSingleOf(keyType, type, fieldsExcluded);
     }
 
@@ -503,7 +503,7 @@ public abstract class AbstractTest<T> {
      * @return a TreeMap of randomized key-value pairs
      */
     public <K> Map<K, T> randomTreeMap(int size, @Nonnull Class<K> keyType,
-            String... fieldsExcluded) {
+        String... fieldsExcluded) {
         return TestMapUtil.randomTreeMapOf(size, keyType, type, fieldsExcluded);
     }
 
@@ -530,7 +530,7 @@ public abstract class AbstractTest<T> {
      * @return a TreeMap with a randomized key-value pair
      */
     public <K> Map<K, T> randomTreeMapSingle(@Nonnull Class<K> keyType,
-            String... fieldsExcluded) {
+        String... fieldsExcluded) {
         return TestMapUtil.randomTreeMapSingleOf(keyType, type, fieldsExcluded);
     }
 

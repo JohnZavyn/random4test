@@ -3,6 +3,7 @@ package com.threeleaf.test.random;
 import static com.threeleaf.test.random.TestByte.*;
 import static com.threeleaf.test.random.TestInteger.INT_00;
 import static com.threeleaf.test.random.TestInteger.INT_16;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,7 @@ class TestByteTest {
     /** Test {@link TestByte#randomByte()}. */
     @Test
     void randomByte() {
-        assertTrue(TestByte.randomByte() >= 0);
+        assertDoesNotThrow(() -> TestByte.randomByte());
     }
 
     /** Test {@link TestByte#randomHex()}. */

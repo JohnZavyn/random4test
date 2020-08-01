@@ -77,7 +77,7 @@ class TestSetUtilTest {
     void randomTreeSetOf() {
         assertFalse(TestSetUtil.randomTreeSetOf(Object.class).isEmpty());
         assertEquals((int) INTEGER_SMALL,
-                TestSetUtil.randomTreeSetOf(INTEGER_SMALL, Object.class).size());
+            TestSetUtil.randomTreeSetOf(INTEGER_SMALL, Object.class).size());
     }
 
     /** Test {@link TestSetUtil#randomTreeSetSingleOf(Class, String...)}. */

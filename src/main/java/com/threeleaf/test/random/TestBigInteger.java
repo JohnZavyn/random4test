@@ -12,7 +12,7 @@ public class TestBigInteger extends AbstractTest<BigInteger> {
 
     /** A random {@link BigInteger} from 0-100. */
     public static final BigInteger BIG_INTEGER_SMALL =
-            BigInteger.valueOf(TestInteger.randomBetween(0, 100));
+        BigInteger.valueOf(TestInteger.randomBetween(0, 100));
 
     /** The instance of {@link TestBigInteger}. */
     public static final TestBigInteger INSTANCE = new TestBigInteger();

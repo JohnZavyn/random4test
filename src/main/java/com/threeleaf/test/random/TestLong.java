@@ -350,7 +350,7 @@ public class TestLong extends AbstractTest<Long> {
 
     /** An {@link Long} collection. */
     public static final Collection<Long> LONG_COLLECTION =
-            unmodifiableCollection(INSTANCE.randomCollection());
+        unmodifiableCollection(INSTANCE.randomCollection());
 
     /** An single {@link Integer} collection. */
     public static final Collection<Long> LONG_COLLECTION_SINGLE = singleton(randomLong());
@@ -366,7 +366,7 @@ public class TestLong extends AbstractTest<Long> {
 
     /** An {@link Long} map with a single key-value pair. */
     public static final Map<Long, Long> LONG_MAP_SINGLE =
-            unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
+        unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
 
     /** A negative Long. */
     public static final Long LONG_NEGATIVE = randomNegative();

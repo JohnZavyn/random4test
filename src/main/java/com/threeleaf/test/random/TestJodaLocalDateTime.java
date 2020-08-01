@@ -68,8 +68,8 @@ public class TestJodaLocalDateTime extends AbstractTest<LocalDateTime> {
      *
      * @return a date in between
      */
-    public static LocalDateTime randomBetween(final LocalDateTime date1,
-            final LocalDateTime date2) {
+    public static LocalDateTime randomBetween(LocalDateTime date1,
+        LocalDateTime date2) {
         return new LocalDateTime(TestDate.randomBetween(date1.toDate(), date2.toDate()));
     }
 

@@ -128,7 +128,7 @@ class AbstractTestTest {
     @Test
     void randomHashMapSingle() {
         Map<Integer, Address> result =
-                abstractTestUnderTest.randomHashMapSingle(Integer.class);
+            abstractTestUnderTest.randomHashMapSingle(Integer.class);
 
         assertEquals(INT_01, result.size());
     }
@@ -183,7 +183,7 @@ class AbstractTestTest {
     @Test
     void randomLinkedHashMapSingle() {
         Map<Object, Address> result =
-                abstractTestUnderTest.randomLinkedHashMapSingle(Object.class);
+            abstractTestUnderTest.randomLinkedHashMapSingle(Object.class);
 
         assertEquals(INT_01, result.size());
     }
@@ -194,7 +194,7 @@ class AbstractTestTest {
         int size = TestInteger.random1to100();
 
         Map<Object, Address> result =
-                abstractTestUnderTest.randomLinkedHashMap(size, Object.class);
+            abstractTestUnderTest.randomLinkedHashMap(size, Object.class);
 
         assertEquals(size, result.size());
     }

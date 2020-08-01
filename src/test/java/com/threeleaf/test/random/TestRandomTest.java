@@ -36,7 +36,7 @@ class TestRandomTest {
 
         /* Verify single field not initialized */
         MemoryNotificationInfo memoryNotificationInfo =
-                TestRandom.random(MemoryNotificationInfo.class, "poolName");
+            TestRandom.random(MemoryNotificationInfo.class, "poolName");
         assertNull(memoryNotificationInfo.getPoolName());
         assertNotEquals(0L, memoryNotificationInfo.getCount());
         assertNotNull(memoryNotificationInfo.getUsage());

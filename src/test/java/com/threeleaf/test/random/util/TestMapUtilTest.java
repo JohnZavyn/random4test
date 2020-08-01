@@ -86,7 +86,7 @@ class TestMapUtilTest {
     @Test
     void randomLinkedHashMapSingleOf() {
         assertEquals(INT_01,
-                TestMapUtil.randomLinkedHashMapSingleOf(Long.class, String.class).size());
+            TestMapUtil.randomLinkedHashMapSingleOf(Long.class, String.class).size());
     }
 
     /** Test {@link TestMapUtil#randomMapOf(Class, Class, String...)}. */

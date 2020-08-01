@@ -17,7 +17,7 @@ class TestLoremIpsumUtilTest {
     @Test
     void constructor() throws Exception {
         Constructor<TestLoremIpsumUtil> constructor =
-                TestLoremIpsumUtil.class.getDeclaredConstructor();
+            TestLoremIpsumUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         try {

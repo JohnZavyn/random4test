@@ -57,7 +57,7 @@ class TestCollectionUtilTest {
     @Test
     void constructor() throws Exception {
         Constructor<TestCollectionUtil> constructor =
-                TestCollectionUtil.class.getDeclaredConstructor();
+            TestCollectionUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         try {
