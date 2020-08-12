@@ -1,40 +1,45 @@
 package com.threeleaf.test.random;
 
-import static com.threeleaf.test.random.TestInteger.INT_97;
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static com.threeleaf.test.random.TestCharacter.CHARACTER_97;
+import static org.junit.jupiter.api.Assertions.*;
+
 /** Test {@link TestCharacter}. */
-class TestCharacterTest {
+class TestCharacterTest
+{
 
     private TestCharacter testCharacterUnderTest;
 
     /** Test {@link TestCharacter#random()}. */
     @Test
-    void random() {
+    void random()
+    {
         assertNotNull(testCharacterUnderTest.random());
     }
 
-    /** Test {@link TestCharacter#randomBetween(int, int)}. */
+    /** Test {@link TestCharacter#randomBetween(char, char)}. */
     @Test
-    void randomBetween() {
+    void randomBetween()
+    {
         final char expectedResult = 'a';
 
-        char result = TestCharacter.randomBetween(INT_97, INT_97);
+        char result = TestCharacter.randomBetween(CHARACTER_97, CHARACTER_97);
 
         assertEquals(expectedResult, result);
     }
 
     /** Test {@link TestCharacter#randomCharacter()}. */
     @Test
-    void randomCharacter() {
+    void randomCharacter()
+    {
         assertTrue(TestCharacter.randomCharacter() > 0);
     }
 
     @BeforeEach
-    void setUp() {
+    void setUp()
+    {
         testCharacterUnderTest = new TestCharacter();
     }
 }

@@ -1,11 +1,9 @@
 package com.threeleaf.test.random;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-
 /** Utilities for random {@link Character} creation. */
 @SuppressWarnings("unused")
-public class TestCharacter extends AbstractTest<Character> {
+public class TestCharacter extends AbstractTest<Character>
+{
 
     /** The Character 00 / x00 / (NUL - null). */
     public static final Character CHARACTER_00 = 0;
@@ -782,23 +780,22 @@ public class TestCharacter extends AbstractTest<Character> {
     public static final char C_RANDOM = randomCharacter();
 
     /** Instantiate a utility to produce randomized {@link Character} objects. */
-    public TestCharacter() {
+    public TestCharacter()
+    {
         super(Character.class);
     }
 
     /**
      * Return a random char between two chars, inclusive.
      *
-     * @param number1 a number
-     * @param number2 another number
+     * @param char1 a char
+     * @param char2 another char
      *
      * @return the random char
      */
-    public static char randomBetween(int number1, int number2) {
-        int min = min(number1, number2);
-        int max = max(number1, number2);
-
-        return (char) (min + ((max - min + 1) * Math.random()));
+    public static char randomBetween(char char1, char char2)
+    {
+        return (char) TestInteger.randomBetween(char1, char2);
     }
 
     /**
@@ -806,7 +803,8 @@ public class TestCharacter extends AbstractTest<Character> {
      *
      * @return the char
      */
-    public static char randomCharacter() {
+    public static char randomCharacter()
+    {
         return INSTANCE.random();
     }
 
@@ -816,7 +814,8 @@ public class TestCharacter extends AbstractTest<Character> {
      * @return the char
      */
     @Override
-    public Character random() {
+    public Character random()
+    {
         return randomBetween(Character.MIN_VALUE, Character.MAX_VALUE);
     }
 }
