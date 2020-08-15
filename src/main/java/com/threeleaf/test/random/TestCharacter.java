@@ -2,8 +2,7 @@ package com.threeleaf.test.random;
 
 /** Utilities for random {@link Character} creation. */
 @SuppressWarnings("unused")
-public class TestCharacter extends AbstractTest<Character>
-{
+public class TestCharacter extends AbstractTest<Character> {
 
     /** The Character 00 / x00 / (NUL - null). */
     public static final Character CHARACTER_00 = 0;
@@ -780,8 +779,7 @@ public class TestCharacter extends AbstractTest<Character>
     public static final char C_RANDOM = randomCharacter();
 
     /** Instantiate a utility to produce randomized {@link Character} objects. */
-    public TestCharacter()
-    {
+    public TestCharacter() {
         super(Character.class);
     }
 
@@ -793,8 +791,7 @@ public class TestCharacter extends AbstractTest<Character>
      *
      * @return the random char
      */
-    public static char randomBetween(char char1, char char2)
-    {
+    public static char randomBetween(char char1, char char2) {
         return (char) TestInteger.randomBetween(char1, char2);
     }
 
@@ -803,8 +800,7 @@ public class TestCharacter extends AbstractTest<Character>
      *
      * @return the char
      */
-    public static char randomCharacter()
-    {
+    public static char randomCharacter() {
         return INSTANCE.random();
     }
 
@@ -814,8 +810,7 @@ public class TestCharacter extends AbstractTest<Character>
      * @return the char
      */
     @Override
-    public Character random()
-    {
+    public Character random() {
         return randomBetween(Character.MIN_VALUE, Character.MAX_VALUE);
     }
 }

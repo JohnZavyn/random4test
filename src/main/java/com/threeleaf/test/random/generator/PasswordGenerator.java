@@ -48,7 +48,7 @@ public class PasswordGenerator {
      */
     public PasswordGenerator(@Nonnull String... theCharacterStrings) {
         super();
-        characterSources     = ImmutableList.copyOf(theCharacterStrings);
+        characterSources = ImmutableList.copyOf(theCharacterStrings);
         characterSourcesSize = characterSources.size();
     }
 
@@ -86,8 +86,8 @@ public class PasswordGenerator {
     public String randomPassword(int length, boolean groupByCharacterSource) {
         checkArgument(length >= characterSourcesSize, PASSWORD_LENGTH_ERROR, characterSourcesSize);
 
-        StringBuilder password        = new StringBuilder(length);
-        int           sourcesMaxIndex = characterSourcesSize - 1;
+        StringBuilder password = new StringBuilder(length);
+        int sourcesMaxIndex = characterSourcesSize - 1;
 
         for (int sourceIndex = 0; sourceIndex < characterSourcesSize; sourceIndex++) {
             int charactersRemaining = length - password.length();

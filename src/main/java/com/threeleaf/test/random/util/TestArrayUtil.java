@@ -37,8 +37,10 @@ public final class TestArrayUtil {
      *
      * @return an Array of randomized objects
      */
-    public static <T> T[] randomArrayOf(int size, @Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> T[] randomArrayOf(
+        int size, @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return randomArrayListOf(size, type, fieldsExcluded)
             .toArray((T[]) Array.newInstance(type, INT_00));
     }
@@ -52,8 +54,10 @@ public final class TestArrayUtil {
      *
      * @return an Array of randomized objects
      */
-    public static <T> T[] randomArrayOf(@Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> T[] randomArrayOf(
+        @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return randomArrayOf(random1to10(), type, fieldsExcluded);
     }
 
@@ -66,8 +70,10 @@ public final class TestArrayUtil {
      *
      * @return an Array with a randomized object
      */
-    public static <T> T[] randomArraySingleOf(@Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> T[] randomArraySingleOf(
+        @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return randomArrayOf(INT_01, type, fieldsExcluded);
     }
 }

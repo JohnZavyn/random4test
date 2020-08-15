@@ -34,8 +34,10 @@ class TestAddressUtilTest {
     /** Test {@link TestAddressUtil#findCapitalZip(String)}. */
     @Test
     void findCapitalZip() {
-        assertEquals(INT_05,
-            TestAddressUtil.findCapitalZip(TestAddressUtil.randomState()).length());
+        assertEquals(
+            INT_05,
+            TestAddressUtil.findCapitalZip(TestAddressUtil.randomState()).length()
+        );
     }
 
     /** Test {@link TestAddressUtil#randomAddress()}. */

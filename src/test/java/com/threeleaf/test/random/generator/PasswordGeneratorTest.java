@@ -29,7 +29,7 @@ class PasswordGeneratorTest {
     @Test
     void randomPasswordFriendly() {
         passwordGenerator = new PasswordGenerator(NUMBERS, ALPHABET);
-        int    length = randomBetween(INT_02, INT_50);
+        int length = randomBetween(INT_02, INT_50);
         String result = passwordGenerator.randomPasswordFriendly(length);
 
         assertEquals(length, result.length());

@@ -12,7 +12,8 @@ import lombok.NoArgsConstructor;
 /** Utilities to generate randomly populated List objects. */
 @NoArgsConstructor(access = PRIVATE)
 @SuppressWarnings({"WeakerAccess", "PMD.ReplaceVectorWithList", "PMD.LooseCoupling",
-    "squid:S1149" /* For Vectors */, "squid:S1319" /* Using implementation classes */})
+                      "squid:S1149" /* For Vectors */,
+                      "squid:S1319" /* Using implementation classes */})
 public final class TestListUtil {
 
     /**
@@ -25,8 +26,10 @@ public final class TestListUtil {
      *
      * @return an ArrayList of randomized objects
      */
-    public static <T> ArrayList<T> randomArrayListOf(int size, @Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> ArrayList<T> randomArrayListOf(
+        int size, @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         ArrayList<T> randomObjects = new ArrayList<>();
         for (int index = 0; index < size; index++) {
             randomObjects.add(random(type, fieldsExcluded));
@@ -44,8 +47,10 @@ public final class TestListUtil {
      *
      * @return an ArrayList of randomized objects
      */
-    public static <T> ArrayList<T> randomArrayListOf(@Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> ArrayList<T> randomArrayListOf(
+        @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return randomArrayListOf(random1to10(), type, fieldsExcluded);
     }
 
@@ -58,8 +63,10 @@ public final class TestListUtil {
      *
      * @return an ArrayList with a randomized object
      */
-    public static <T> ArrayList<T> randomArrayListSingleOf(@Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> ArrayList<T> randomArrayListSingleOf(
+        @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return randomArrayListOf(INT_01, type, fieldsExcluded);
     }
 
@@ -73,8 +80,10 @@ public final class TestListUtil {
      *
      * @return a LinkedList of randomized objects
      */
-    public static <T> LinkedList<T> randomLinkedListOf(int size, @Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> LinkedList<T> randomLinkedListOf(
+        int size, @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return new LinkedList<>(randomArrayListOf(size, type, fieldsExcluded));
     }
 
@@ -87,8 +96,10 @@ public final class TestListUtil {
      *
      * @return a LinkedList of randomized objects
      */
-    public static <T> LinkedList<T> randomLinkedListOf(@Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> LinkedList<T> randomLinkedListOf(
+        @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return randomLinkedListOf(random1to10(), type, fieldsExcluded);
     }
 
@@ -101,8 +112,10 @@ public final class TestListUtil {
      *
      * @return a LinkedList with a randomized object
      */
-    public static <T> LinkedList<T> randomLinkedListSingleOf(@Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> LinkedList<T> randomLinkedListSingleOf(
+        @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return randomLinkedListOf(INT_01, type, fieldsExcluded);
     }
 
@@ -115,8 +128,10 @@ public final class TestListUtil {
      *
      * @return a ArrayList, LinkedList, or Vector of randomized objects
      */
-    public static <T> List<T> randomListOf(@Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> List<T> randomListOf(
+        @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return randomListOf(random1to10(), type, fieldsExcluded);
     }
 
@@ -130,8 +145,10 @@ public final class TestListUtil {
      *
      * @return a ArrayList, LinkedList, or Vector of randomized objects
      */
-    public static <T> List<T> randomListOf(int size, @Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> List<T> randomListOf(
+        int size, @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         List<T> list;
         switch (randomBetween(INT_01, INT_03)) {
             case 1:
@@ -157,8 +174,10 @@ public final class TestListUtil {
      *
      * @return a ArrayList, LinkedList, or Vector with a randomized object
      */
-    public static <T> List<T> randomListSingleOf(@Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> List<T> randomListSingleOf(
+        @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return randomListOf(INT_01, type, fieldsExcluded);
     }
 
@@ -171,8 +190,10 @@ public final class TestListUtil {
      *
      * @return a Vector of randomized objects
      */
-    public static <T> Vector<T> randomVectorOf(@Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> Vector<T> randomVectorOf(
+        @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return randomVectorOf(random1to10(), type, fieldsExcluded);
     }
 
@@ -186,8 +207,10 @@ public final class TestListUtil {
      *
      * @return a Vector of randomized objects
      */
-    public static <T> Vector<T> randomVectorOf(int size, @Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> Vector<T> randomVectorOf(
+        int size, @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return new Vector<>(randomArrayListOf(size, type, fieldsExcluded));
     }
 
@@ -200,8 +223,10 @@ public final class TestListUtil {
      *
      * @return a Vector with a randomized object
      */
-    public static <T> Vector<T> randomVectorSingleOf(@Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> Vector<T> randomVectorSingleOf(
+        @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return randomVectorOf(INT_01, type, fieldsExcluded);
     }
 }

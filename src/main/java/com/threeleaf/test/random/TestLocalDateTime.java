@@ -72,8 +72,10 @@ public class TestLocalDateTime extends AbstractTest<LocalDateTime> {
      *
      * @return a date in between
      */
-    public static LocalDateTime randomBetween(LocalDateTime date1,
-        LocalDateTime date2) {
+    public static LocalDateTime randomBetween(
+        LocalDateTime date1,
+        LocalDateTime date2
+    ) {
         return toLocalDateTime(TestDate.randomBetween(toDate(date1), toDate(date2)));
     }
 

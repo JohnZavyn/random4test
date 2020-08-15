@@ -112,7 +112,8 @@ class TestStringUtilTest {
     void randomUuid() {
         assertTrue(new CodeValidator(
             "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}",
-            null).isValid(TestStringUtil.randomUuid()));
+            null
+        ).isValid(TestStringUtil.randomUuid()));
     }
 
     /** Test {@link TestStringUtil#safeString(String)}. */
