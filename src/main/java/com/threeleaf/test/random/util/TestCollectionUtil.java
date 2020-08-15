@@ -49,20 +49,6 @@ public final class TestCollectionUtil {
     }
 
     /**
-     * Return a collection of 1 to 10 randomized objects.
-     *
-     * @param type           type of Class
-     * @param fieldsExcluded (optional) fields that should not be randomized
-     * @param <T>            the generic type
-     *
-     * @return a List or Set of randomized objects
-     */
-    public static <T> Collection<T> randomCollectionOf(@Nonnull Class<T> type,
-        String... fieldsExcluded) {
-        return randomCollectionOf(random1to10(), type, fieldsExcluded);
-    }
-
-    /**
      * Return a collection of randomized objects.
      *
      * @param size           number of objects in the collection
@@ -72,8 +58,10 @@ public final class TestCollectionUtil {
      *
      * @return a List or Set of randomized objects
      */
-    public static <T> Collection<T> randomCollectionOf(int size, @Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> Collection<T> randomCollectionOf(
+        int size, @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         Collection<T> collection;
         if (randomBoolean()) {
             collection = randomSetOf(size, type, fieldsExcluded);
@@ -85,6 +73,22 @@ public final class TestCollectionUtil {
     }
 
     /**
+     * Return a collection of 1 to 10 randomized objects.
+     *
+     * @param type           type of Class
+     * @param fieldsExcluded (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return a List or Set of randomized objects
+     */
+    public static <T> Collection<T> randomCollectionOf(
+        @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
+        return randomCollectionOf(random1to10(), type, fieldsExcluded);
+    }
+
+    /**
      * Return a collection with a single randomized object.
      *
      * @param type           type of Class
@@ -93,8 +97,10 @@ public final class TestCollectionUtil {
      *
      * @return a List or Set with a randomized object
      */
-    public static <T> Collection<T> randomCollectionSingleOf(@Nonnull Class<T> type,
-        String... fieldsExcluded) {
+    public static <T> Collection<T> randomCollectionSingleOf(
+        @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return randomCollectionOf(INT_01, type, fieldsExcluded);
     }
 }

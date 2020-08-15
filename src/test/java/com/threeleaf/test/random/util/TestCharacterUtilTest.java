@@ -1,21 +1,19 @@
 package com.threeleaf.test.random.util;
 
-import com.google.common.collect.ImmutableList;
+import static com.threeleaf.test.random.TestString.STRING;
+import static com.threeleaf.test.random.util.TestStringUtil.contains;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 
-import static com.threeleaf.test.random.TestString.STRING;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /** Test {@link TestCharacterUtil}. */
-class TestCharacterUtilTest
-{
+class TestCharacterUtilTest {
 
-    /** Test {@link TestCharacterUtil#toCharacterList(String)}. */
+    /** Test {@link TestCharacterUtil#chooseOneFrom(String)}. */
     @Test
-    void toCharacterList()
-    {
-        ImmutableList<Character> result = TestCharacterUtil.toCharacterList(STRING);
+    void chooseOneFrom() {
+        char character = TestCharacterUtil.chooseOneFrom(STRING);
 
-        assertEquals(STRING.length(), result.size());
+        assertTrue(contains(STRING, character));
     }
 }

@@ -73,14 +73,6 @@ class TestStringUtilTest {
         assertEquals(1, TestStringUtil.randomLetter().length());
     }
 
-    /** Test {@link TestStringUtil#randomPunctuationTerminal()}. */
-    @Test
-    void randomPunctuationTerminal() {
-        String result = TestStringUtil.randomPunctuationTerminal();
-
-        assertTrue(".".equals(result) || "?".equals(result) || "!".equals(result));
-    }
-
     /** Test {@link TestStringUtil#randomString()}. */
     @Test
     void randomString() {

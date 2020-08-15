@@ -13,7 +13,7 @@ import org.junit.jupiter.api.Test;
 /** Test {@link AbstractTest}. */
 class AbstractTestUtilTest {
 
-    /** The test {@link AbstractTest <Address>}. */
+    /** The test {@link  AbstractTest AbstractTest&lt;Address&gt;}. */
     private AbstractTest<Address> abstractTest;
 
     /** Test {@link AbstractTest#randomArray(String[])}. */

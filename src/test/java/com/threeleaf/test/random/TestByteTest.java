@@ -14,7 +14,7 @@ class TestByteTest {
     /** Test {@link TestByte#randomByte()}. */
     @Test
     void randomByte() {
-        assertDoesNotThrow(() -> TestByte.randomByte());
+        assertDoesNotThrow(TestByte::randomByte);
     }
 
     /** Test {@link TestByte#randomHex()}. */

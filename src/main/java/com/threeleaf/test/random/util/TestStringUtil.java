@@ -1,40 +1,21 @@
 package com.threeleaf.test.random.util;
 
-import com.google.common.collect.ImmutableList;
-import lombok.NoArgsConstructor;
-
-import javax.annotation.Nonnull;
-import java.util.List;
-import java.util.Locale;
-
 import static com.threeleaf.test.random.TestInteger.randomBetween;
-import static com.threeleaf.test.random.TestRandom.RANDOM;
 import static com.threeleaf.test.random.TestString.*;
-import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static java.lang.Character.isWhitespace;
 import static java.util.UUID.randomUUID;
+import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 import static lombok.AccessLevel.PRIVATE;
 
+import java.util.*;
+import javax.annotation.Nonnull;
+
+import lombok.NoArgsConstructor;
+
 /** Test string utilities. */
 @NoArgsConstructor(access = PRIVATE)
-public final class TestStringUtil
-{
-
-    /** Alphabet, upper case letters, in a list. */
-    public static final List<String> ALPHABET_CAPS_LIST = toStringCharacterList(ALPHABET_CAPS);
-
-    /** Alphabet, lower case letters, in a list. */
-    public static final List<String> ALPHABET_LIST = toStringCharacterList(ALPHABET);
-
-    /** Number strings in a list. */
-    public static final List<String> NUMBERS_LIST = toStringCharacterList(NUMBERS);
-
-    /** Punctuation strings in a list. */
-    public static final List<String> PUNCTUATION_LIST = toStringCharacterList(PUNCTUATION);
-
-    /** Punctuation marks to be used at the end of sentences. */
-    public static final List<String> PUNCTUATION_TERMINAL_LIST = toStringCharacterList("...??!");
+public final class TestStringUtil {
 
     /** Maximum length for a string. */
     public static final int STRING_LENGTH_MAX = 100;
@@ -42,14 +23,14 @@ public final class TestStringUtil
     /** Minimum length for a string. */
     public static final int STRING_LENGTH_MIN = 10;
 
+    /** A null string. */
+    public static final String STRING_NULL = null;
+
     /** Maximum length for a name. */
     public static final int STRING_SHORT_LENGTH_MAX = 10;
 
     /** Minimum length for a name. */
     public static final int STRING_SHORT_LENGTH_MIN = 5;
-
-    /** Symbol strings in a list. */
-    public static final List<String> SYMBOL_LIST = toStringCharacterList(SYMBOLS);
 
     /**
      * Capitalize first letter of a string.
@@ -58,10 +39,26 @@ public final class TestStringUtil
      *
      * @return the capitalized string
      */
-    public static String capitalize(String string)
-    {
+    public static String capitalize(String string) {
         return isEmpty(string) ? string
-                               : string.substring(0, 1).toUpperCase() + string.substring(1);
+            : string.substring(0, 1).toUpperCase() + string.substring(1);
+    }
+
+    public static String chooseOneFrom(String string) {
+        return Character.toString(TestCharacterUtil.chooseOneFrom(string));
+    }
+
+    /**
+     * Tests if a {@link Character} is contained within the provided {@link String}. The built in
+     * {@link String#contains(CharSequence)} does not apply for single {@link Character} input.
+     *
+     * @param string    the source to check against
+     * @param character to character to look for
+     *
+     * @return true if the character is inside the string at least once.
+     */
+    public static boolean contains(String string, char character) {
+        return string.indexOf(character) >= 0;
     }
 
     /**
@@ -72,8 +69,7 @@ public final class TestStringUtil
      *
      * @return the string
      */
-    public static String extractSuffix(@Nonnull String string)
-    {
+    public static String extractSuffix(@Nonnull String string) {
         String[] stringParts = string.split("[_~]");
 
         return stringParts[stringParts.length - 1];
@@ -86,15 +82,11 @@ public final class TestStringUtil
      *
      * @return true if blank
      */
-    public static boolean isBlank(CharSequence chars)
-    {
+    public static boolean isBlank(CharSequence chars) {
         boolean isBlank = true;
-        if (!isEmpty(chars))
-        {
-            for (int charIndex = 0; charIndex < chars.length(); charIndex++)
-            {
-                if (!isWhitespace(chars.charAt(charIndex)))
-                {
+        if (!isEmpty(chars)) {
+            for (int charIndex = 0; charIndex < chars.length(); charIndex++) {
+                if (!isWhitespace(chars.charAt(charIndex))) {
                     isBlank = false;
                     break;
                 }
@@ -111,9 +103,12 @@ public final class TestStringUtil
      *
      * @return true if empty
      */
-    public static boolean isEmpty(CharSequence chars)
-    {
+    public static boolean isEmpty(CharSequence chars) {
         return chars == null || chars.length() == 0;
+    }
+
+    public static String join(List<Character> characters) {
+        return characters.stream().map(Object::toString).collect(joining());
     }
 
     /**
@@ -121,19 +116,8 @@ public final class TestStringUtil
      *
      * @return a char between a and z
      */
-    public static String randomLetter()
-    {
-        return chooseOneFrom(ALPHABET_LIST);
-    }
-
-    /**
-     * Return a random terminal (end of sentence) punctuation mark.
-     *
-     * @return the punctuation mark
-     */
-    public static String randomPunctuationTerminal()
-    {
-        return chooseOneFrom(PUNCTUATION_TERMINAL_LIST);
+    public static String randomLetter() {
+        return chooseOneFrom(ALPHABET);
     }
 
     /**
@@ -141,8 +125,7 @@ public final class TestStringUtil
      *
      * @return the string
      */
-    public static String randomString()
-    {
+    public static String randomString() {
         return randomString(randomBetween(STRING_LENGTH_MIN, STRING_LENGTH_MAX));
     }
 
@@ -153,14 +136,23 @@ public final class TestStringUtil
      *
      * @return the string
      */
-    public static String randomString(int length)
-    {
-        StringBuilder randString = new StringBuilder(length);
-        int           maxChars   = RANDOM_CHARS.length();
+    public static String randomString(int length) {
+        return randomString(length, RANDOM_CHARS);
+    }
 
-        for (int i = 0; i < length; ++i)
-        {
-            randString.append(RANDOM_CHARS.charAt(RANDOM.nextInt(maxChars)));
+    /**
+     * Generate a random string from characters in the specified string.
+     *
+     * @param length the desired length of the string
+     * @param string the source of random characters
+     *
+     * @return the string
+     */
+    public static String randomString(int length, String string) {
+        StringBuilder randString = new StringBuilder(length);
+
+        for (int i = 0; i < length; ++i) {
+            randString.append(TestCharacterUtil.chooseOneFrom(string));
         }
 
         return randString.toString();
@@ -171,8 +163,7 @@ public final class TestStringUtil
      *
      * @return a short string
      */
-    public static String randomStringShort()
-    {
+    public static String randomStringShort() {
         return randomString(randomBetween(STRING_SHORT_LENGTH_MIN, STRING_SHORT_LENGTH_MAX));
     }
 
@@ -183,10 +174,9 @@ public final class TestStringUtil
      *
      * @return the string
      */
-    public static String randomTest(String entityName)
-    {
+    public static String randomTest(String entityName) {
         return isBlank(entityName) ? test(EMPTY)
-                                   : test(entityName.toUpperCase(Locale.US) + "_" + randomStringShort());
+            : test(entityName.toUpperCase(Locale.US) + "_" + randomStringShort());
     }
 
     /**
@@ -194,8 +184,7 @@ public final class TestStringUtil
      *
      * @return a UUID
      */
-    public static String randomUuid()
-    {
+    public static String randomUuid() {
         return randomUUID().toString();
     }
 
@@ -206,8 +195,7 @@ public final class TestStringUtil
      *
      * @return the string
      */
-    public static String safeString(String string)
-    {
+    public static String safeString(String string) {
         return safeString(string, EMPTY);
     }
 
@@ -220,8 +208,7 @@ public final class TestStringUtil
      *
      * @return the string
      */
-    public static String safeString(String originalString, String defaultString)
-    {
+    public static String safeString(String originalString, String defaultString) {
         return isEmpty(originalString) ? defaultString : originalString;
     }
 
@@ -232,17 +219,11 @@ public final class TestStringUtil
      *
      * @return the shuffled string
      */
-    public static String shuffle(String string)
-    {
-        List<Character> characters     = string.chars().mapToObj(e -> (char) e).collect(toList());
-        StringBuilder   shuffledString = new StringBuilder(string.length());
-        while (!characters.isEmpty())
-        {
-            int randPicker = RANDOM.nextInt(characters.size());
-            shuffledString.append(characters.remove(randPicker));
-        }
+    public static String shuffle(String string) {
+        List<Character> characters = string.chars().mapToObj(e -> (char) e).collect(toList());
+        Collections.shuffle(characters);
 
-        return shuffledString.toString();
+        return join(characters);
     }
 
     /**
@@ -252,20 +233,7 @@ public final class TestStringUtil
      *
      * @return the test string
      */
-    public static String test(String suffix)
-    {
+    public static String test(String suffix) {
         return TEST_PREFIX + (isBlank(suffix) ? randomStringShort() : suffix);
-    }
-
-    /**
-     * Split a string into a {@link ImmutableList} of letters
-     *
-     * @param string the string to split
-     *
-     * @return the list of letters
-     */
-    private static ImmutableList<String> toStringCharacterList(String string)
-    {
-        return ImmutableList.copyOf(string.split(EMPTY));
     }
 }

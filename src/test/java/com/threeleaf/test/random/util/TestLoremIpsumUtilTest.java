@@ -27,7 +27,7 @@ class TestLoremIpsumUtilTest {
         }
     }
 
-    /** Test {@link TestLoremIpsumUtil# randomChapter()}. */
+    /** Test {@link TestLoremIpsumUtil#randomChapter()}. */
     @Test
     void randomChapter() {
         String result = TestLoremIpsumUtil.randomChapter();
@@ -35,7 +35,7 @@ class TestLoremIpsumUtilTest {
         assertTrue(result.length() > INT_10);
     }
 
-    /** Test {@link TestLoremIpsumUtil# randomChapter(int)}. */
+    /** Test {@link TestLoremIpsumUtil#randomChapter(int)}. */
     @Test
     void randomChapterParagraphs() {
         int paragraphCount = random1to10();

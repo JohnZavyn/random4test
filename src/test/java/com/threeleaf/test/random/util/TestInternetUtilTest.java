@@ -68,7 +68,7 @@ class TestInternetUtilTest {
     }
 
     /** Test {@link TestInternetUtil#randomUrlSecure()}. */
-    @Test
+    @RepeatedTest(LOOP_COUNT_MAX)
     void randomUrlSecure() {
         String url = TestInternetUtil.randomUrlSecure();
 
