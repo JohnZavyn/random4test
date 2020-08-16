@@ -23,7 +23,7 @@ import lombok.Getter;
     {"WeakerAccess", "unused", "PMD.ReplaceVectorWithList", "PMD.VisibilityModifierCheck",
         "PMD.LooseCoupling", "PMD.LooseCoupling", "squid:S1149", "squid:S1319"})
 @Getter
-public abstract class AbstractTest<T> {
+public abstract class AbstractRandom<T> {
 
     /** The type of objects to be randomized. */
     private final Class<T> type;
@@ -41,7 +41,7 @@ public abstract class AbstractTest<T> {
      *
      * @param theType the type of object to randomize
      */
-    public AbstractTest(Class<T> theType) {
+    public AbstractRandom(Class<T> theType) {
         super();
         type = theType;
     }

@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 
 /** Utilities for random {@link BigDecimal} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestBigDecimal extends AbstractTest<BigDecimal> {
+public class TestBigDecimal extends AbstractRandom<BigDecimal> {
 
     /** The instance of {@link TestBigDecimal}. */
     public static final TestBigDecimal INSTANCE = new TestBigDecimal();

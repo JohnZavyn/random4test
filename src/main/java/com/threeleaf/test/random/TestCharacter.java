@@ -2,7 +2,7 @@ package com.threeleaf.test.random;
 
 /** Utilities for random {@link Character} creation. */
 @SuppressWarnings("unused")
-public class TestCharacter extends AbstractTest<Character> {
+public class TestCharacter extends AbstractRandom<Character> {
 
     /** The Character 00 / x00 / (NUL - null). */
     public static final Character CHARACTER_00 = 0;

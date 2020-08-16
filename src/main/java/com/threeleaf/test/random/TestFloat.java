@@ -6,7 +6,7 @@ import static java.lang.Math.*;
 
 /** Utilities for random {@link Float} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestFloat extends AbstractTest<Float> {
+public class TestFloat extends AbstractRandom<Float> {
 
     /** The Float 00. */
     public static final Float FLOAT_00 = 0F;

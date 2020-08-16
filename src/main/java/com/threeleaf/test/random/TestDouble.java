@@ -8,7 +8,7 @@ import static java.lang.Math.min;
 
 /** Utilities for random {@link Double} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestDouble extends AbstractTest<Double> {
+public class TestDouble extends AbstractRandom<Double> {
 
     /** The Double 00. */
     public static final Double DOUBLE_00 = 0D;

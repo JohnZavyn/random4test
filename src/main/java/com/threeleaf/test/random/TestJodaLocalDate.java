@@ -8,7 +8,7 @@ import org.joda.time.LocalDate;
 
 /** Utilities for random {@link LocalDate} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestJodaLocalDate extends AbstractTest<LocalDate> {
+public class TestJodaLocalDate extends AbstractRandom<LocalDate> {
 
     /** The day of the month. */
     public static final int DAY = TestLocalDate.DAY;
@@ -70,7 +70,7 @@ public class TestJodaLocalDate extends AbstractTest<LocalDate> {
      *
      * @return a date in between
      */
-    public static LocalDate randomBetween(final LocalDate date1, final LocalDate date2) {
+    public static LocalDate randomBetween(LocalDate date1, LocalDate date2) {
         return new LocalDate(TestDate.randomBetween(date1.toDate(), date2.toDate()));
     }
 

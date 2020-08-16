@@ -8,7 +8,7 @@ import java.util.TimeZone;
 
 /** Date constants to be used in JUnit tests. */
 @SuppressWarnings({"WeakerAccess", "unused", "squid:S2386" /* Dates are mutable */})
-public class TestDate extends AbstractTest<Date> {
+public class TestDate extends AbstractRandom<Date> {
 
     /** The instance of {@link TestDate}. */
     public static final TestDate INSTANCE = new TestDate();

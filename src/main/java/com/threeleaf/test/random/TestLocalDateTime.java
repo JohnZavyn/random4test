@@ -10,7 +10,7 @@ import java.util.TimeZone;
 
 /** Utilities for random {@link LocalDateTime} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestLocalDateTime extends AbstractTest<LocalDateTime> {
+public class TestLocalDateTime extends AbstractRandom<LocalDateTime> {
 
     /** The day of the month. */
     public static final int DAY = TestLocalDate.DAY;

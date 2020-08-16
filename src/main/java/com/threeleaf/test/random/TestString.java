@@ -8,7 +8,7 @@ import java.util.*;
 
 /** String constants to be used in JUnit tests. */
 @SuppressWarnings({"unused", "squid:S2386" /* Mutable arrays */})
-public class TestString extends AbstractTest<String> {
+public class TestString extends AbstractRandom<String> {
 
     /** Alphabet, lower case. */
     public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";

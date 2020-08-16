@@ -12,7 +12,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /** Utilities for random {@link Integer} creation. */
 @SuppressWarnings({"WeakerAccess", "unused", "squid:S2386" /* Arrays are mutable */})
-public class TestInteger extends AbstractTest<Integer> {
+public class TestInteger extends AbstractRandom<Integer> {
 
     /** Maximum digit value. */
     public static final int DIGIT_MAX = 9;

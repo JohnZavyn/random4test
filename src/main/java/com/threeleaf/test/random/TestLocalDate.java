@@ -11,7 +11,7 @@ import java.util.TimeZone;
 
 /** Utilities for random {@link LocalDate} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestLocalDate extends AbstractTest<LocalDate> {
+public class TestLocalDate extends AbstractRandom<LocalDate> {
 
     /** The day of the month. */
     public static final int DAY = now().getDayOfMonth();
@@ -73,7 +73,7 @@ public class TestLocalDate extends AbstractTest<LocalDate> {
      *
      * @return a date in between
      */
-    public static LocalDate randomBetween(final LocalDate date1, final LocalDate date2) {
+    public static LocalDate randomBetween(LocalDate date1, LocalDate date2) {
         return toLocalDate(TestDate.randomBetween(toDate(date1), toDate(date2)));
     }
 

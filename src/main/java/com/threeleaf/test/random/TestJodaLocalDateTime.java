@@ -8,7 +8,7 @@ import org.joda.time.LocalDateTime;
 
 /** Utilities for random {@link LocalDateTime} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestJodaLocalDateTime extends AbstractTest<LocalDateTime> {
+public class TestJodaLocalDateTime extends AbstractRandom<LocalDateTime> {
 
     /** The day of the month. */
     public static final int DAY = TestLocalDate.DAY;

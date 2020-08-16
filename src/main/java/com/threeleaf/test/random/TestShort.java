@@ -6,7 +6,7 @@ import static java.lang.Math.min;
 
 /** Utilities for random {@link Short} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestShort extends AbstractTest<Short> {
+public class TestShort extends AbstractRandom<Short> {
 
     /** The instance of {@link TestShort}. */
     public static final TestShort INSTANCE = new TestShort();

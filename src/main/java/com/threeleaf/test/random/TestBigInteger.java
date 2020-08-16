@@ -8,7 +8,7 @@ import java.math.BigInteger;
 
 /** Utilities for random {@link BigInteger} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestBigInteger extends AbstractTest<BigInteger> {
+public class TestBigInteger extends AbstractRandom<BigInteger> {
 
     /** A random {@link BigInteger} from 0-100. */
     public static final BigInteger BIG_INTEGER_SMALL =

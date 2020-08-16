@@ -10,7 +10,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 /** Utilities for random {@link Long} creation. */
 @SuppressWarnings({"WeakerAccess", "unused", "squid:S2386" /* Mutable arrays */})
-public class TestLong extends AbstractTest<Long> {
+public class TestLong extends AbstractRandom<Long> {
 
     /** The instance of {@link TestLong}. */
     public static final TestLong INSTANCE = new TestLong();

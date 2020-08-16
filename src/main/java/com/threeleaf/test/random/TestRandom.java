@@ -39,9 +39,9 @@ public class TestRandom {
      *
      * @return a randomized object
      */
-    @SuppressWarnings({"squid:S1845" /* Want name to be "random" */, "unchecked"})
+    @SuppressWarnings({"squid:S1845" /* Want name to be "random" */})
     public static <T> T random(@Nonnull Class<T> type, String... fieldsExcluded) {
-        return (T) RANDOM_OBJECT_FUNCTION.apply(type, fieldsExcluded);
+        return randomType(type).apply(fieldsExcluded);
     }
 
     @SuppressWarnings("unchecked")

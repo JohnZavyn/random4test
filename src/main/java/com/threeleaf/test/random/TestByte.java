@@ -6,7 +6,7 @@ import static java.lang.Math.min;
 
 /** Utilities for random {@link Byte} creation. */
 @SuppressWarnings({"WeakerAccess", "unused"})
-public class TestByte extends AbstractTest<Byte> {
+public class TestByte extends AbstractRandom<Byte> {
 
     /** The Byte 00. */
     public static final Byte BYTE_00 = 0;

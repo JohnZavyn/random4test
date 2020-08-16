@@ -55,7 +55,11 @@ public class PasswordGenerator {
         characterSourcesSize = characterSources.size();
     }
 
-    /** Generate a password with 8-16 characters. */
+    /**
+     * Generate a password with 8-16 characters.
+     *
+     * @return password string
+     */
     public String randomPassword() {
         return randomPassword(randomBetween(INT_08, INT_16));
     }
@@ -64,6 +68,8 @@ public class PasswordGenerator {
      * Generate a random password.
      *
      * @param length the length of the password
+     *
+     * @return password string
      */
     public String randomPassword(int length) {
         return randomPassword(length, FALSE);
@@ -85,6 +91,8 @@ public class PasswordGenerator {
      *                               between lower case letters, upper case letters, numbers, and
      *                               symbols while typing a password. Grouping the characters
      *                               allows one to switch device keyboards less often.</p>
+     *
+     * @return password string
      */
     public String randomPassword(int length, boolean groupByCharacterSource) {
         checkArgument(length >= characterSourcesSize, PASSWORD_LENGTH_ERROR, characterSourcesSize);
@@ -103,7 +111,11 @@ public class PasswordGenerator {
         return groupByCharacterSource ? password.toString() : shuffle(password.toString());
     }
 
-    /** Generate a "friendly" password with 8-16 characters. */
+    /**
+     * Generate a "friendly" password with 8-16 characters.
+     *
+     * @return friendly password string
+     */
     public String randomPasswordFriendly() {
         return randomPasswordFriendly(randomBetween(INT_08, INT_16));
     }
@@ -112,6 +124,8 @@ public class PasswordGenerator {
      * Generates a "friendly" password based on the available character lists.
      *
      * @param length the length of the password
+     *
+     * @return friendly password string
      */
     public String randomPasswordFriendly(int length) {
         return randomPassword(length, TRUE);
