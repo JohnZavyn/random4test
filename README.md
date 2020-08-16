@@ -70,11 +70,12 @@ and a few extras:
 
 ### Random objects
 
-| Test Class             | Types included             |
-| ---                    | ---                        |
-| TestBoolean            | boolean, java.lang.Boolean |
-| TestObject             | java.lang.Object           |
-| TestString             | java.lang.String           |
+| Test Class   | Types included             |
+|:-------------|:---------------------------|
+| TestBoolean  | boolean, java.lang.Boolean |
+| TestObject   | java.lang.Object           |
+| TestString   | java.lang.String           |
+| TestPassword | java.lang.String           |
 
 * Various constants based on the type of object to be randomized
 * Strings of various lengths and formats are available
@@ -147,6 +148,6 @@ there are also a number of helpful utilities available through the following:
 
 
 Array, Collection, and Map utilities include
-* randomXxxOf, randomXxxSingleOf, chooseOneFrom static methods, so you
-can generate simple collections on the fly
+* randomXxxOf, randomXxxSingleOf, chooseOneFrom static methods, so you can generate simple
+  collections on the fly.
 

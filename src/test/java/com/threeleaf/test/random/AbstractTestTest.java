@@ -16,10 +16,22 @@ class AbstractTestTest {
     private final AbstractTest<Address> abstractTest = new AbstractTest<Address>(theType) {
     };
 
+    /** Test {@link AbstractTest#emptyCollection()}. */
+    @Test
+    void emptyCollection() {
+        assertEquals(INT_00, abstractTest.emptyCollection().size());
+    }
+
     /** Test {@link AbstractTest#emptyList()}. */
     @Test
     void emptyList() {
         assertEquals(INT_00, abstractTest.emptyList().size());
+    }
+
+    /** Test {@link AbstractTest#emptySet()}. */
+    @Test
+    void emptySet() {
+        assertEquals(INT_00, abstractTest.emptySet().size());
     }
 
     /** Test {@link AbstractTest#random()}. */

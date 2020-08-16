@@ -42,16 +42,35 @@ public abstract class AbstractTest<T> {
      * @param theType the type of object to randomize
      */
     public AbstractTest(Class<T> theType) {
+        super();
         type = theType;
     }
 
     /**
-     * Return an empty list.
+     * Return an empty {@link Collection}.
+     *
+     * @return an empty collection
+     */
+    public Collection<T> emptyCollection() {
+        return TestCollectionUtil.randomCollectionOf(INT_00, randomFunction, STRING_NULL);
+    }
+
+    /**
+     * Return an empty {@link List}.
      *
      * @return an empty list
      */
     public List<T> emptyList() {
         return TestListUtil.randomListOf(INT_00, randomFunction, STRING_NULL);
+    }
+
+    /**
+     * Return an empty {@link Set}.
+     *
+     * @return an empty set
+     */
+    public Set<T> emptySet() {
+        return TestSetUtil.randomSetOf(INT_00, randomFunction, STRING_NULL);
     }
 
     /**

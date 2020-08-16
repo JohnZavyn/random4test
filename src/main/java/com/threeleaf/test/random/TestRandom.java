@@ -16,16 +16,16 @@ import lombok.NoArgsConstructor;
 @SuppressWarnings("PMD.ClassNamingConventions")
 public class TestRandom {
 
-    /** The {@link EnhancedRandom} engine. */
-    public static final EnhancedRandom ENHANCED_RANDOM = new EnhancedRandomBuilder().build();
-
     /**
      * The Constant RANDOM. {@link Random} object for selecting random numbers.
      * The method .nextInt(n) will return an integer between 0 (inclusive) and n (exclusive).
      */
     public static final Random RANDOM = new Random();
 
-    public static final BiFunction<Class<?>, String[], ?> RANDOM_OBJECT_FUNCTION =
+    /** The {@link EnhancedRandom} engine. */
+    private static final EnhancedRandom ENHANCED_RANDOM = new EnhancedRandomBuilder().build();
+
+    private static final BiFunction<Class<?>, String[], ?> RANDOM_OBJECT_FUNCTION =
         ENHANCED_RANDOM::nextObject;
 
     /**
