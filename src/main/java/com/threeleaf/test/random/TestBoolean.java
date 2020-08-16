@@ -5,8 +5,6 @@ import static com.threeleaf.test.random.TestInteger.INT_01;
 import static com.threeleaf.test.random.TestInteger.randomBetween;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
 
-import java.math.BigInteger;
-
 /** Utilities for random {@link Boolean} creation. */
 @SuppressWarnings("WeakerAccess")
 public class TestBoolean extends AbstractTest<Boolean> {
@@ -51,7 +49,7 @@ public class TestBoolean extends AbstractTest<Boolean> {
     }
 
     /**
-     * Return a random {@link BigInteger}.
+     * Return a random {@link Boolean}.
      *
      * @return the big integer
      */

@@ -40,7 +40,7 @@ public final class TestLoremIpsumUtil {
             "sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut " +
             "perferendis doloribus asperiores repellat";
 
-    public static final ParagraphGenerator paragraphGenerator =
+    public static final ParagraphGenerator PARAGRAPH_GENERATOR =
         new ParagraphGenerator(WORDS_DE_FINIBUS);
 
     /**
@@ -49,7 +49,7 @@ public final class TestLoremIpsumUtil {
      * @return the chapter
      */
     public static String randomChapter() {
-        return paragraphGenerator.randomChapter();
+        return PARAGRAPH_GENERATOR.randomChapter();
     }
 
     /**
@@ -60,7 +60,7 @@ public final class TestLoremIpsumUtil {
      * @return the chapter
      */
     public static String randomChapter(int paragraphCount) {
-        return paragraphGenerator.randomChapter(paragraphCount);
+        return PARAGRAPH_GENERATOR.randomChapter(paragraphCount);
     }
 
     /**
@@ -69,7 +69,7 @@ public final class TestLoremIpsumUtil {
      * @return the paragraph
      */
     public static String randomParagraph() {
-        return paragraphGenerator.randomParagraph();
+        return PARAGRAPH_GENERATOR.randomParagraph();
     }
 
     /**
@@ -80,7 +80,7 @@ public final class TestLoremIpsumUtil {
      * @return the paragraph
      */
     public static String randomParagraph(int sentenceCount) {
-        return paragraphGenerator.randomParagraph(sentenceCount);
+        return PARAGRAPH_GENERATOR.randomParagraph(sentenceCount);
     }
 
     /**
@@ -91,7 +91,7 @@ public final class TestLoremIpsumUtil {
      * @return the sentence
      */
     public static String randomSentence(int wordCount) {
-        return paragraphGenerator.randomSentence(wordCount);
+        return PARAGRAPH_GENERATOR.randomSentence(wordCount);
     }
 
     /**
@@ -100,6 +100,6 @@ public final class TestLoremIpsumUtil {
      * @return the sentence
      */
     public static String randomSentence() {
-        return paragraphGenerator.randomSentence();
+        return PARAGRAPH_GENERATOR.randomSentence();
     }
 }

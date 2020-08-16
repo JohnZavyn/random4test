@@ -2,6 +2,7 @@ package com.threeleaf.test.random;
 
 import com.threeleaf.test.random.generator.PasswordGenerator;
 
+@SuppressWarnings("unused")
 public class TestPassword extends AbstractTest<String> {
 
     /** The instance of {@link TestPassword}. */
