@@ -1,66 +1,56 @@
 package com.threeleaf.test.random.util;
 
-import org.junit.Test;
+import static com.threeleaf.test.random.util.TestNameUtil.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.*;
 
-import static com.threeleaf.test.random.util.TestNameUtil.*;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
 /** Test {@link TestNameUtil}. */
-public class TestNameUtilTest
-{
+class TestNameUtilTest {
 
     /** Test {@link TestNameUtil} constructor. */
     @Test
-    public void constructor() throws Exception
-    {
+    void constructor() throws Exception {
         Constructor<TestNameUtil> constructor = TestNameUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
-        try
-        {
+        try {
             constructor.newInstance();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }
 
     /** Test {@link TestNameUtil#randomName()}. */
     @Test
-    public void randomName()
-    {
+    void randomName() {
         assertNotNull(TestNameUtil.randomName());
     }
 
     /** Test {@link TestNameUtil#randomNameFirst()}. */
     @Test
-    public void randomNameFirst()
-    {
+    void randomNameFirst() {
         assertNotNull(TestNameUtil.randomName());
     }
 
     /** Test {@link TestNameUtil#randomNameFirstMale()}. */
     @Test
-    public void randomNameFirstMale()
-    {
+    void randomNameFirstMale() {
         assertTrue(NAMES_FIRST_MALE.contains(TestNameUtil.randomNameFirstMale()));
     }
 
     /** Test {@link TestNameUtil#randomNameFirstFemale()}. */
     @Test
-    public void testRandomNameFirstFemale()
-    {
+    void testRandomNameFirstFemale() {
         assertTrue(NAMES_FIRST_FEMALE.contains(TestNameUtil.randomNameFirstFemale()));
     }
 
     /** Test {@link TestNameUtil#randomNameLast()}. */
     @Test
-    public void testRandomNameLast()
-    {
+    void testRandomNameLast() {
         assertTrue(NAMES_LAST.contains(TestNameUtil.randomNameLast()));
     }
 }

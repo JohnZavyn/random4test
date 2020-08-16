@@ -1,20 +1,21 @@
 package com.threeleaf.test.random.util;
 
-import lombok.experimental.UtilityClass;
-
-import java.util.Arrays;
-import java.util.List;
-
 import static com.threeleaf.test.random.TestBoolean.randomBoolean;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
+import static lombok.AccessLevel.PRIVATE;
 
-@UtilityClass
-@SuppressWarnings({"WeakerAccess", "SpellCheckingInspection"})
-public class TestNameUtil
-{
+import java.util.List;
+
+import com.google.common.collect.ImmutableList;
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor(access = PRIVATE)
+@SuppressWarnings(
+    {"WeakerAccess", "SpellCheckingInspection", "squid:S1192" /* Repeated names okay */})
+public final class TestNameUtil {
 
     /** Top 500 female names of 2017 according to the Social Security Administration. */
-    public static final List<String> NAMES_FIRST_FEMALE = Arrays.asList( // @formatter:off //
+    public static final List<String> NAMES_FIRST_FEMALE = ImmutableList.of(
         "Emma",
         "Olivia",
         "Ava",
@@ -605,10 +606,10 @@ public class TestNameUtil
         "Elaine",
         "Lilian",
         "Kyra"
-    ); // @formatter:on //
+    );
 
     /** Top 500 male names of 2017 according to the Social Security Administration. */
-    public static final List<String> NAMES_FIRST_MALE = Arrays.asList( // @formatter:off //
+    public static final List<String> NAMES_FIRST_MALE = ImmutableList.of(
         "Liam",
         "Noah",
         "William",
@@ -1109,10 +1110,10 @@ public class TestNameUtil
         "Aden",
         "Julio",
         "Darius"
-    ); // @formatter:on //
+    );
 
     /** Top 100 last names, according to Wikipedia. */
-    public static final List<String> NAMES_LAST = Arrays.asList( // @formatter:off //
+    public static final List<String> NAMES_LAST = ImmutableList.of(
         "Smith",
         "Johnson",
         "Williams",
@@ -1213,15 +1214,14 @@ public class TestNameUtil
         "Butler",
         "Barnes",
         "Fisher"
-    ); // @formatter:on //
+    );
 
     /**
      * Return a first and last name.
      *
      * @return a  name
      */
-    public static String randomName()
-    {
+    public static String randomName() {
         return randomNameFirst() + ' ' + randomNameLast();
     }
 
@@ -1230,8 +1230,7 @@ public class TestNameUtil
      *
      * @return a name
      */
-    public static String randomNameFirst()
-    {
+    public static String randomNameFirst() {
         return randomBoolean() ? randomNameFirstFemale() : randomNameFirstMale();
     }
 
@@ -1240,8 +1239,7 @@ public class TestNameUtil
      *
      * @return a female name
      */
-    public static String randomNameFirstFemale()
-    {
+    public static String randomNameFirstFemale() {
         return chooseOneFrom(NAMES_FIRST_FEMALE);
     }
 
@@ -1250,8 +1248,7 @@ public class TestNameUtil
      *
      * @return a male name
      */
-    public static String randomNameFirstMale()
-    {
+    public static String randomNameFirstMale() {
         return chooseOneFrom(NAMES_FIRST_MALE);
     }
 
@@ -1260,8 +1257,7 @@ public class TestNameUtil
      *
      * @return a male name
      */
-    public static String randomNameLast()
-    {
+    public static String randomNameLast() {
         return chooseOneFrom(NAMES_LAST);
     }
 }

@@ -1,34 +1,34 @@
 package com.threeleaf.test.random.util;
 
-import lombok.experimental.UtilityClass;
-import org.joda.time.format.DateTimeFormatter;
+import static java.util.Locale.US;
+import static lombok.AccessLevel.PRIVATE;
+import static org.joda.time.LocalDateTime.now;
+import static org.joda.time.format.DateTimeFormat.forPattern;
 
 import java.time.*;
 import java.util.Date;
 
-import static java.util.Locale.US;
-import static org.joda.time.LocalDateTime.now;
-import static org.joda.time.format.DateTimeFormat.forPattern;
+import lombok.NoArgsConstructor;
+import org.joda.time.format.DateTimeFormatter;
 
 /** Date and time utilities. */
-@UtilityClass
-@SuppressWarnings("WeakerAccess")
-public class TestDateUtil
-{
+@NoArgsConstructor(access = PRIVATE)
+@SuppressWarnings({"WeakerAccess", "PMD.FinalFieldCouldBeStatic"})
+public final class TestDateUtil {
 
     /** The timestamp format string. */
     public static final String TIMESTAMP_FORMAT = "yyyyMMddHHmmssSSS";
 
     /** Timestamp format including milliseconds. */
-    public static final DateTimeFormatter TIMESTAMP_FORMATTER = forPattern(TIMESTAMP_FORMAT).withLocale(US);
+    public static final DateTimeFormatter TIMESTAMP_FORMATTER =
+        forPattern(TIMESTAMP_FORMAT).withLocale(US);
 
     /**
      * Get the current timestamp, including milliseconds.
      *
      * @return the timestamp
      */
-    public static String getTimestamp()
-    {
+    public static String getTimestamp() {
         return now().toString(TIMESTAMP_FORMATTER);
     }
 
@@ -39,8 +39,7 @@ public class TestDateUtil
      *
      * @return the {@link Date}
      */
-    public static Date toDate(LocalDate localDate)
-    {
+    public static Date toDate(LocalDate localDate) {
         return Date.from(localDate.atStartOfDay().atZone(ZoneId.systemDefault()).toInstant());
     }
 
@@ -51,8 +50,7 @@ public class TestDateUtil
      *
      * @return the {@link Date}
      */
-    public static Date toDate(LocalDateTime localDateTime)
-    {
+    public static Date toDate(LocalDateTime localDateTime) {
         return Date.from(localDateTime.atZone(ZoneId.systemDefault()).toInstant());
     }
 
@@ -63,8 +61,7 @@ public class TestDateUtil
      *
      * @return the {@link LocalDate}
      */
-    public static LocalDate toLocalDate(Date date)
-    {
+    public static LocalDate toLocalDate(Date date) {
         return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDate();
     }
 
@@ -75,8 +72,8 @@ public class TestDateUtil
      *
      * @return the {@link LocalDateTime}
      */
-    public static LocalDateTime toLocalDateTime(Date date)
-    {
-        return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault()).toLocalDateTime();
+    public static LocalDateTime toLocalDateTime(Date date) {
+        return Instant.ofEpochMilli(date.getTime()).atZone(ZoneId.systemDefault())
+            .toLocalDateTime();
     }
 }

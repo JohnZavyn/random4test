@@ -1,24 +1,17 @@
 package com.threeleaf.test.random;
 
-import java.util.*;
-
 import static com.threeleaf.test.random.TestInteger.*;
 import static com.threeleaf.test.random.util.TestStringUtil.*;
 import static java.util.Collections.*;
 
-/** String constants to be used in JUnit tests. */
-@SuppressWarnings({"WeakerAccess", "unused"})
-public class TestString extends AbstractTest<String>
-{
+import java.util.*;
 
-    /** The letters "abc". */
-    public static final String ABC = "abc";
+/** String constants to be used in JUnit tests. */
+@SuppressWarnings({"unused", "squid:S2386" /* Mutable arrays */})
+public class TestString extends AbstractTest<String> {
 
     /** Alphabet, lower case. */
     public static final String ALPHABET = "abcdefghijklmnopqrstuvwxyz";
-
-    /** Alphabet, lower case, in an array. */
-    public static final String[] ALPHABET_ARRAY = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"};
 
     /** Alphabet, upper case. */
     public static final String ALPHABET_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -35,11 +28,18 @@ public class TestString extends AbstractTest<String>
     /** The instance of {@link TestString}. */
     public static final TestString INSTANCE = new TestString();
 
-    /** Numeric characters. */
+    /** Numeric characters. See https://en.wikipedia.org/wiki/ASCII . */
     public static final String NUMBERS = "0123456789";
 
-    /** Punctuation characters. */
-    public static final String PUNCTUATION = "`~!@#$%^&*()_-+={[}]|\\:;\"'<,>.?/";
+    /** ASCII Punctuation characters. See https://en.wikipedia.org/wiki/ASCII . */
+    public static final String PUNCTUATION = "!@#%&*()_-{[}]\\:;\"',.?/";
+
+    /** ASCII punctuation and a symbol that are not encoded in URLs. */
+    public static final String PUNCTUATION_URL_SAFE = "-._~";
+
+    /** ASCII characters that do not get URL encoded. */
+    public static final String ASCII_URL_SAFE =
+        ALPHABET + ALPHABET_CAPS + NUMBERS + PUNCTUATION_URL_SAFE;
 
     /**
      * RANDOM_CHARS contains characters that are not easily visually confused with each other.
@@ -47,7 +47,7 @@ public class TestString extends AbstractTest<String>
      */
     public static final String RANDOM_CHARS = "ABCEFGHJKMNPQRSTUVWXYZ23456789";
 
-    /** A space */
+    /** A space. */
     public static final String SPACE = " ";
 
     /** Test string consisting of 1 random characters. */
@@ -344,8 +344,8 @@ public class TestString extends AbstractTest<String>
     /** Test string consisting of 98 random characters. */
     public static final String STRING_98 = randomString(INT_98);
 
-    /** A random string. */
-    public static final String STRING = test(randomString());
+    /** Test string consisting of 99 random characters. */
+    public static final String STRING_99 = randomString(INT_99);
 
     /** An {@link String} array. */
     public static final String[] STRING_ARRAY = INSTANCE.randomArray();
@@ -354,7 +354,8 @@ public class TestString extends AbstractTest<String>
     public static final String[] STRING_ARRAY_SINGLE = INSTANCE.randomArraySingle();
 
     /** An {@link String} collection. */
-    public static final Collection<String> STRING_COLLECTION = unmodifiableCollection(INSTANCE.randomCollection());
+    public static final Collection<String> STRING_COLLECTION =
+        unmodifiableCollection(INSTANCE.randomCollection());
 
     /** An single {@link Integer} collection. */
     public static final Collection<String> STRING_COLLECTION_SINGLE = singleton(randomString());
@@ -366,22 +367,28 @@ public class TestString extends AbstractTest<String>
     public static final List<String> STRING_LIST_SINGLE = singletonList(randomString());
 
     /** An {@link String} map. */
-    public static final Map<String, String> STRING_MAP = unmodifiableMap(INSTANCE.randomMap(String.class));
+    public static final Map<String, String> STRING_MAP =
+        unmodifiableMap(INSTANCE.randomMap(String.class));
 
     /** An {@link Integer} key and {@link String} value map. */
-    public static final Map<Integer, String> STRING_MAP_INTEGER = unmodifiableMap(INSTANCE.randomMap(Integer.class));
+    public static final Map<Integer, String> STRING_MAP_INTEGER =
+        unmodifiableMap(INSTANCE.randomMap(Integer.class));
 
     /** An {@link Integer} key and {@link String} value map with a single key-value pair. */
-    public static final Map<Integer, String> STRING_MAP_INTEGER_SINGLE = unmodifiableMap(INSTANCE.randomMapSingle(Integer.class));
+    public static final Map<Integer, String> STRING_MAP_INTEGER_SINGLE =
+        unmodifiableMap(INSTANCE.randomMapSingle(Integer.class));
 
     /** An {@link Long} key and {@link String} value map. */
-    public static final Map<Long, String> STRING_MAP_LONG = unmodifiableMap(INSTANCE.randomMap(Long.class));
+    public static final Map<Long, String> STRING_MAP_LONG =
+        unmodifiableMap(INSTANCE.randomMap(Long.class));
 
     /** An {@link Long} key and {@link String} value map with a single key-value pair. */
-    public static final Map<Long, String> STRING_MAP_LONG_SINGLE = unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
+    public static final Map<Long, String> STRING_MAP_LONG_SINGLE =
+        unmodifiableMap(INSTANCE.randomMapSingle(Long.class));
 
     /** An {@link String} map with a single key-value pair. */
-    public static final Map<String, String> STRING_MAP_SINGLE = unmodifiableMap(INSTANCE.randomMapSingle(String.class));
+    public static final Map<String, String> STRING_MAP_SINGLE =
+        unmodifiableMap(INSTANCE.randomMapSingle(String.class));
 
     /** An {@link String} set. */
     public static final Set<String> STRING_SET = unmodifiableSet(INSTANCE.randomSet());
@@ -389,11 +396,17 @@ public class TestString extends AbstractTest<String>
     /** An {@link String} set with a single value. */
     public static final Set<String> STRING_SET_SINGLE = unmodifiableSet(INSTANCE.randomSetSingle());
 
+    /** ASCII Symbols. See https://en.wikipedia.org/wiki/ASCII . */
+    public static final String SYMBOLS = "$+<=>^`|~";
+
+    /** All printable ASCII characters. */
+    public static final String ASCII = ALPHABET + ALPHABET_CAPS + NUMBERS + PUNCTUATION + SYMBOLS;
+
     /** A prefix that can be attached to strings to indicate it is from a testing context. */
     public static final String TEST_PREFIX = "TEST~";
 
-    /** Test string consisting of 99 random characters. */
-    public static final String STRING_99 = randomString(INT_99);
+    /** A random string. */
+    public static final String STRING = test(randomString());
 
     /** A UUID string. */
     public static final String UUID = randomUuid();
@@ -401,9 +414,8 @@ public class TestString extends AbstractTest<String>
     /** Whitespace characters. */
     public static final String WHITESPACE = " \t\r\n";
 
-    /** Instantiate a utility to produce randomized objects of the given type. */
-    public TestString()
-    {
+    /** Instantiate a utility to produce randomized strings. */
+    public TestString() {
         super(String.class);
     }
 }

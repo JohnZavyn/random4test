@@ -1,20 +1,18 @@
 package com.threeleaf.test.random;
 
-import org.junit.Test;
-
 import static com.threeleaf.test.random.TestInteger.INT_00;
 import static com.threeleaf.test.random.TestInteger.INT_01;
 import static com.threeleaf.test.random.TestString.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.Test;
 
 /** Test {@link TestString}. */
-public class TestStringTest
-{
+class TestStringTest {
 
     /** Test {@link TestString} constants. */
     @Test
-    public void constants()
-    {
+    void constants() {
         assertNotEquals(INT_00, STRING_ARRAY.length);
         assertEquals(INT_01, STRING_ARRAY_SINGLE.length);
         assertNotEquals(INT_00, STRING_COLLECTION.size());

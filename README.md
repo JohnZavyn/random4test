@@ -1,5 +1,10 @@
 # random4test
-Easily provide random numbers, strings, and collections to JUnit tests
+Easily provide random numbers, strings, and collections to JUnit tests.
+
+[![Build Status](https://travis-ci.org/JohnZavyn/random4test.svg)](https://travis-ci.org/JohnZavyn/random4test) &nbsp;
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.threeleaf/random4test/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.threeleaf/random4test) &nbsp;
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-brightgreen.svg)](https://www.gnu.org/licenses/gpl-3.0) &nbsp;
+[![JavaDoc](http://javadoc-badge.appspot.com/com.threeleaf/random4test.svg?label=javadoc)](http://www.threeleaf.com/random4test/javadoc/)
 
 ## Maven dependency
 Add to Maven projects with:
@@ -7,7 +12,7 @@ Add to Maven projects with:
 <dependency>
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>3.0.0</version>
+    <version>3.1.0</version>
 </dependency>
 ```
 For more dependency options: <https://mvnrepository.com/artifact/com.threeleaf/random4test>
@@ -61,17 +66,18 @@ and a few extras:
 
 * have static constants for with names like `TODAY`, `YESTERDAY`, `TOMORROW`, `NEXT_WEEK`, `NEXT_YEAR`, etc.
 * Have static methods for random future, past, and between last year and next year
-* Have static methods for choosing a random date between two given dates
+* Have static methods for choosing a random date between two specified dates
 
 ### Random objects
 
-| Test Class             | Types included             |
-| ---                    | ---                        |
-| TestBoolean            | boolean, java.lang.Boolean |
-| TestObject             | java.lang.Object           |
-| TestString             | java.lang.String           |
+| Test Class   | Types included             |
+|:-------------|:---------------------------|
+| TestBoolean  | boolean, java.lang.Boolean |
+| TestObject   | java.lang.Object           |
+| TestString   | java.lang.String           |
+| TestPassword | java.lang.String           |
 
-* Various constants based on the type of object being randomized
+* Various constants based on the type of object to be randomized
 * Strings of various lengths and formats are available
 
 ## Extend and make your own
@@ -142,6 +148,6 @@ there are also a number of helpful utilities available through the following:
 
 
 Array, Collection, and Map utilities include
-* randomXxxOf, randomXxxSingleOf, chooseOneFrom static methods, so you
-can generate simple collections on the fly
+* randomXxxOf, randomXxxSingleOf, chooseOneFrom static methods, so you can generate simple
+  collections on the fly.
 

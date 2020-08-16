@@ -1,16 +1,16 @@
 package com.threeleaf.test.random.util;
 
-import lombok.experimental.UtilityClass;
+import static com.threeleaf.test.random.TestRandom.RANDOM;
+import static lombok.AccessLevel.PRIVATE;
 
 import javax.annotation.Nonnull;
 
-import static com.threeleaf.test.random.TestRandom.RANDOM;
+import lombok.NoArgsConstructor;
 
 /** Enum test utilities. */
-@UtilityClass
+@NoArgsConstructor(access = PRIVATE)
 @SuppressWarnings("WeakerAccess")
-public class TestEnumUtil
-{
+public final class TestEnumUtil {
 
     /**
      * Returns a random enum instance from the specified enum class.
@@ -20,9 +20,8 @@ public class TestEnumUtil
      *
      * @return the random enum
      */
-    public <E extends Enum<E>> E chooseOneFrom(@Nonnull final Class<E> enumClass)
-    {
-        final E[] values = enumClass.getEnumConstants();
+    public static <E extends Enum<E>> E chooseOneFrom(@Nonnull Class<E> enumClass) {
+        E[] values = enumClass.getEnumConstants();
 
         return values[RANDOM.nextInt(values.length)];
     }

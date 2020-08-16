@@ -1,17 +1,15 @@
 package com.threeleaf.test.random;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
 /** Test {@link TestInternet}. */
-public class TestInternetTest
-{
+class TestInternetTest {
 
     /** Test {@link TestInternet} instantiation. */
     @Test
-    public void urlValid()
-    {
+    void urlValid() {
         assertTrue(TestInternet.URL_SSL.startsWith(TestInternet.HTTPS_PROTOCOL));
     }
 }

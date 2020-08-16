@@ -1,22 +1,23 @@
 package com.threeleaf.test.random.util;
 
-import lombok.experimental.UtilityClass;
-
-import javax.annotation.Nonnull;
-import java.util.Collection;
-
 import static com.threeleaf.test.random.TestBoolean.randomBoolean;
-import static com.threeleaf.test.random.TestInteger.INT_01;
-import static com.threeleaf.test.random.TestInteger.random1to10;
+import static com.threeleaf.test.random.TestInteger.*;
+import static com.threeleaf.test.random.TestRandom.randomType;
 import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
 import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
 import static java.util.Arrays.asList;
+import static lombok.AccessLevel.PRIVATE;
+
+import java.util.Collection;
+import java.util.function.Function;
+import javax.annotation.Nonnull;
+
+import lombok.NoArgsConstructor;
 
 /** Utilities to generate randomly populated Collections. */
-@UtilityClass
+@NoArgsConstructor(access = PRIVATE)
 @SuppressWarnings("WeakerAccess")
-public class TestCollectionUtil
-{
+public final class TestCollectionUtil {
 
     /**
      * Choose a random item from an array.
@@ -30,8 +31,7 @@ public class TestCollectionUtil
      *
      * @see TestArrayUtil#chooseOneFrom(Object[])
      */
-    public static <T> T chooseOneFrom(@Nonnull final T[] array)
-    {
+    public static <T> T chooseOneFrom(@Nonnull T[] array) {
         return chooseOneFrom(asList(array));
     }
 
@@ -43,28 +43,51 @@ public class TestCollectionUtil
      *
      * @return a random object
      */
-    public static <T> T chooseOneFrom(@Nonnull final Collection<T> collection)
-    {
-        // @formatter:off //
+    public static <T> T chooseOneFrom(@Nonnull Collection<T> collection) {
         return collection.stream()
-            .skip((int) (collection.size() * Math.random()))
+            .skip(randomBetween(0, collection.size() - 1))
             .findFirst()
             .orElse(null);
-        // @formatter:on //
     }
 
     /**
-     * Return a collection of 1 to 10 randomized objects.
+     * Return a collection of randomized objects.
      *
-     * @param type           type of Class
+     * @param size           number of objects in the collection
+     * @param randomFunction the {@link Function} used to generate random objects
      * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
      *
      * @return a List or Set of randomized objects
      */
-    public static <T> Collection<T> randomCollectionOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
-    {
-        return randomCollectionOf(random1to10(), type, fieldsExcluded);
+    public static <T> Collection<T> randomCollectionOf(
+        int size, @Nonnull Function<String[], T> randomFunction,
+        String... fieldsExcluded
+    ) {
+        Collection<T> collection;
+        if (randomBoolean()) {
+            collection = randomSetOf(size, randomFunction, fieldsExcluded);
+        } else {
+            collection = randomListOf(size, randomFunction, fieldsExcluded);
+        }
+
+        return collection;
+    }
+
+    /**
+     * Return a collection of 1 to 10 randomized objects.
+     *
+     * @param randomFunction the {@link Function} used to generate random objects
+     * @param fieldsExcluded (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return a List or Set of randomized objects
+     */
+    public static <T> Collection<T> randomCollectionOf(
+        @Nonnull Function<String[], T> randomFunction,
+        String... fieldsExcluded
+    ) {
+        return randomCollectionOf(random1to10(), randomFunction, fieldsExcluded);
     }
 
     /**
@@ -77,19 +100,43 @@ public class TestCollectionUtil
      *
      * @return a List or Set of randomized objects
      */
-    public static <T> Collection<T> randomCollectionOf(final int size, @Nonnull final Class<T> type, final String... fieldsExcluded)
-    {
-        Collection<T> collection;
-        if (randomBoolean())
-        {
-            collection = randomSetOf(size, type, fieldsExcluded);
-        }
-        else
-        {
-            collection = randomListOf(size, type, fieldsExcluded);
-        }
+    public static <T> Collection<T> randomCollectionOf(
+        int size, @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
+        return randomCollectionOf(size, randomType(type), fieldsExcluded);
+    }
 
-        return collection;
+    /**
+     * Return a collection of 1 to 10 randomized objects.
+     *
+     * @param type           type of Class
+     * @param fieldsExcluded (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return a List or Set of randomized objects
+     */
+    public static <T> Collection<T> randomCollectionOf(
+        @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
+        return randomCollectionOf(random1to10(), type, fieldsExcluded);
+    }
+
+    /**
+     * Return a collection with a single randomized object.
+     *
+     * @param randomFunction the {@link Function} used to generate random objects
+     * @param fieldsExcluded (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return a List or Set with a randomized object
+     */
+    public static <T> Collection<T> randomCollectionSingleOf(
+        @Nonnull Function<String[], T> randomFunction,
+        String... fieldsExcluded
+    ) {
+        return randomCollectionOf(INT_01, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -101,8 +148,10 @@ public class TestCollectionUtil
      *
      * @return a List or Set with a randomized object
      */
-    public static <T> Collection<T> randomCollectionSingleOf(@Nonnull final Class<T> type, final String... fieldsExcluded)
-    {
+    public static <T> Collection<T> randomCollectionSingleOf(
+        @Nonnull Class<T> type,
+        String... fieldsExcluded
+    ) {
         return randomCollectionOf(INT_01, type, fieldsExcluded);
     }
 }

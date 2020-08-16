@@ -1,48 +1,41 @@
 package com.threeleaf.test.random;
 
-import static java.lang.Math.max;
-import static java.lang.Math.min;
-
-/** Utilities for random {@link Character} creation */
-@SuppressWarnings({"WeakerAccess", "unused"})
-public class TestCharacter extends AbstractTest<Character>
-{
-
-    /** Alphabet, lower case, in an array. */
-    public static final char[] ALPHABET_ARRAY = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
+/** Utilities for random {@link Character} creation. */
+@SuppressWarnings("unused")
+public class TestCharacter extends AbstractTest<Character> {
 
     /** The Character 00 / x00 / (NUL - null). */
-    public final static Character CHARACTER_00 = 0;
+    public static final Character CHARACTER_00 = 0;
 
     /** The Character 01 / x01 / (SOH - start of heading). */
-    public final static Character CHARACTER_01 = 1;
+    public static final Character CHARACTER_01 = 1;
 
     /** The Character 02 / x02 / (STX - start of text). */
-    public final static Character CHARACTER_02 = 2;
+    public static final Character CHARACTER_02 = 2;
 
     /** The Character 03 / x03 / (ETX - end of text). */
-    public final static Character CHARACTER_03 = 3;
+    public static final Character CHARACTER_03 = 3;
 
     /** The Character 04 / x04 / (EOT - end of transmission). */
-    public final static Character CHARACTER_04 = 4;
+    public static final Character CHARACTER_04 = 4;
 
     /** The Character 05 / x05 / (ENQ - enquiry). */
-    public final static Character CHARACTER_05 = 5;
+    public static final Character CHARACTER_05 = 5;
 
     /** The Character 06 / x06 / (ACK = acknowledge). */
-    public final static Character CHARACTER_06 = 6;
+    public static final Character CHARACTER_06 = 6;
 
     /** The Character 07 / x07 / (BEL - bell). */
-    public final static Character CHARACTER_07 = 7;
+    public static final Character CHARACTER_07 = 7;
 
     /** The Character 08 / x08 / (BS - backspace). */
-    public final static Character CHARACTER_08 = 8;
+    public static final Character CHARACTER_08 = 8;
 
     /** The Character 09 / x09 / (HT - horizontal tabulation). */
-    public final static Character CHARACTER_09 = 9;
+    public static final Character CHARACTER_09 = 9;
 
     /** The Character 10 / x0A / (LF - line feed, NL new line). */
-    public final static Character CHARACTER_10 = 10;
+    public static final Character CHARACTER_10 = 10;
 
     /** The character 100 / x64 / d. */
     public static final Character CHARACTER_100 = 100;
@@ -75,7 +68,7 @@ public class TestCharacter extends AbstractTest<Character>
     public static final Character CHARACTER_109 = 109;
 
     /** The Character 11 / x0B / (VT - vertical tab). */
-    public final static Character CHARACTER_11 = 11;
+    public static final Character CHARACTER_11 = 11;
 
     /** The character 110 / x6E / n. */
     public static final Character CHARACTER_110 = 110;
@@ -108,7 +101,7 @@ public class TestCharacter extends AbstractTest<Character>
     public static final Character CHARACTER_119 = 119;
 
     /** The Character 12 / x0C / (FF - form feed). */
-    public final static Character CHARACTER_12 = 12;
+    public static final Character CHARACTER_12 = 12;
 
     /** The character 120 / x78 / x. */
     public static final Character CHARACTER_120 = 120;
@@ -132,64 +125,64 @@ public class TestCharacter extends AbstractTest<Character>
     public static final Character CHARACTER_126 = 126;
 
     /** The Character 13 / x0D / (CR - carriage return). */
-    public final static Character CHARACTER_13 = 13;
+    public static final Character CHARACTER_13 = 13;
 
     /** The Character 14 / x0E / (SO - shift out). */
-    public final static Character CHARACTER_14 = 14;
+    public static final Character CHARACTER_14 = 14;
 
     /** The Character 15 / x0F / (SI - shift in). */
-    public final static Character CHARACTER_15 = 15;
+    public static final Character CHARACTER_15 = 15;
 
     /** The Character 16 / x10 / (DLE - data link escape). */
-    public final static Character CHARACTER_16 = 16;
+    public static final Character CHARACTER_16 = 16;
 
     /** The Character 17 / x11 / (DC1 - device control 1, XON - transmission on). */
-    public final static Character CHARACTER_17 = 17;
+    public static final Character CHARACTER_17 = 17;
 
     /** The Character 18 / x12 / (DC2 - device control 2). */
-    public final static Character CHARACTER_18 = 18;
+    public static final Character CHARACTER_18 = 18;
 
     /** The Character 19 / x13 / (DC3 - device control 3, XOFF - transmission off). */
-    public final static Character CHARACTER_19 = 19;
+    public static final Character CHARACTER_19 = 19;
 
     /** The Character 20 / x14 / (DC4 - device control 4). */
-    public final static Character CHARACTER_20 = 20;
+    public static final Character CHARACTER_20 = 20;
 
     /** The Character 21 / x15 / (NAK - negative acknowledge). */
-    public final static Character CHARACTER_21 = 21;
+    public static final Character CHARACTER_21 = 21;
 
     /** The Character 22 / x16 / (SYN - synchronous idle). */
-    public final static Character CHARACTER_22 = 22;
+    public static final Character CHARACTER_22 = 22;
 
     /** The Character 23 / x17 / (ETB - end of transmission block). */
-    public final static Character CHARACTER_23 = 23;
+    public static final Character CHARACTER_23 = 23;
 
     /** The Character 24 / x18 / (CAN - cancel). */
-    public final static Character CHARACTER_24 = 24;
+    public static final Character CHARACTER_24 = 24;
 
     /** The Character 25 / x19 / (EM - end of medium). */
-    public final static Character CHARACTER_25 = 25;
+    public static final Character CHARACTER_25 = 25;
 
     /** The Character 26 / x1A / (SUB - substitute). */
-    public final static Character CHARACTER_26 = 26;
+    public static final Character CHARACTER_26 = 26;
 
     /** The Character 27 / x1B / (ESC - escape). */
-    public final static Character CHARACTER_27 = 27;
+    public static final Character CHARACTER_27 = 27;
 
     /** The Character 28 / x1C / (FS - file separator). */
-    public final static Character CHARACTER_28 = 28;
+    public static final Character CHARACTER_28 = 28;
 
     /** The Character 29 / x1D / (GS - group separator). */
-    public final static Character CHARACTER_29 = 29;
+    public static final Character CHARACTER_29 = 29;
 
     /** The Character 30 / x1E / (RS - record separator). */
-    public final static Character CHARACTER_30 = 30;
+    public static final Character CHARACTER_30 = 30;
 
     /** The Character 31 / x1F / (US - unit separator). */
-    public final static Character CHARACTER_31 = 31;
+    public static final Character CHARACTER_31 = 31;
 
     /** The Character 32 / x20 / SPACE. */
-    public final static Character CHARACTER_32 = 32;
+    public static final Character CHARACTER_32 = 32;
 
     /** The character 33 / x21 / !. */
     public static final Character CHARACTER_33 = 33;
@@ -393,37 +386,37 @@ public class TestCharacter extends AbstractTest<Character>
     public static final Character CHARACTER_99 = 99;
 
     /** The Character 00 / x00 / (NUL - null). */
-    public final static Character C_00 = 0;
+    public static final Character C_00 = 0;
 
     /** The Character 01 / x01 / (SOH - start of heading). */
-    public final static Character C_01 = 1;
+    public static final Character C_01 = 1;
 
     /** The Character 02 / x02 / (STX - start of text). */
-    public final static Character C_02 = 2;
+    public static final Character C_02 = 2;
 
     /** The Character 03 / x03 / (ETX - end of text). */
-    public final static Character C_03 = 3;
+    public static final Character C_03 = 3;
 
     /** The Character 04 / x04 / (EOT - end of transmission). */
-    public final static Character C_04 = 4;
+    public static final Character C_04 = 4;
 
     /** The Character 05 / x05 / (ENQ - enquiry). */
-    public final static Character C_05 = 5;
+    public static final Character C_05 = 5;
 
     /** The Character 06 / x06 / (ACK = acknowledge). */
-    public final static Character C_06 = 6;
+    public static final Character C_06 = 6;
 
     /** The Character 07 / x07 / (BEL - bell). */
-    public final static Character C_07 = 7;
+    public static final Character C_07 = 7;
 
     /** The Character 08 / x08 / (BS - backspace). */
-    public final static Character C_08 = 8;
+    public static final Character C_08 = 8;
 
     /** The Character 09 / x09 / (HT - horizontal tabulation). */
-    public final static Character C_09 = 9;
+    public static final Character C_09 = 9;
 
     /** The Character 10 / x0A / (LF - line feed, NL new line). */
-    public final static Character C_10 = 10;
+    public static final Character C_10 = 10;
 
     /** The character 100 / x64 / d. */
     public static final Character C_100 = 100;
@@ -456,7 +449,7 @@ public class TestCharacter extends AbstractTest<Character>
     public static final Character C_109 = 109;
 
     /** The Character 11 / x0B / (VT - vertical tab). */
-    public final static Character C_11 = 11;
+    public static final Character C_11 = 11;
 
     /** The character 110 / x6E / n. */
     public static final Character C_110 = 110;
@@ -489,7 +482,7 @@ public class TestCharacter extends AbstractTest<Character>
     public static final Character C_119 = 119;
 
     /** The Character 12 / x0C / (FF - form feed). */
-    public final static Character C_12 = 12;
+    public static final Character C_12 = 12;
 
     /** The character 120 / x78 / x. */
     public static final Character C_120 = 120;
@@ -513,64 +506,64 @@ public class TestCharacter extends AbstractTest<Character>
     public static final Character C_126 = 126;
 
     /** The Character 13 / x0D / (CR - carriage return). */
-    public final static Character C_13 = 13;
+    public static final Character C_13 = 13;
 
     /** The Character 14 / x0E / (SO - shift out). */
-    public final static Character C_14 = 14;
+    public static final Character C_14 = 14;
 
     /** The Character 15 / x0F / (SI - shift in). */
-    public final static Character C_15 = 15;
+    public static final Character C_15 = 15;
 
     /** The Character 16 / x10 / (DLE - data link escape). */
-    public final static Character C_16 = 16;
+    public static final Character C_16 = 16;
 
     /** The Character 17 / x11 / (DC1 - device control 1, XON - transmission on). */
-    public final static Character C_17 = 17;
+    public static final Character C_17 = 17;
 
     /** The Character 18 / x12 / (DC2 - device control 2). */
-    public final static Character C_18 = 18;
+    public static final Character C_18 = 18;
 
     /** The Character 19 / x13 / (DC3 - device control 3, XOFF - transmission off). */
-    public final static Character C_19 = 19;
+    public static final Character C_19 = 19;
 
     /** The Character 20 / x14 / (DC4 - device control 4). */
-    public final static Character C_20 = 20;
+    public static final Character C_20 = 20;
 
     /** The Character 21 / x15 / (NAK - negative acknowledge). */
-    public final static Character C_21 = 21;
+    public static final Character C_21 = 21;
 
     /** The Character 22 / x16 / (SYN - synchronous idle). */
-    public final static Character C_22 = 22;
+    public static final Character C_22 = 22;
 
     /** The Character 23 / x17 / (ETB - end of transmission block). */
-    public final static Character C_23 = 23;
+    public static final Character C_23 = 23;
 
     /** The Character 24 / x18 / (CAN - cancel). */
-    public final static Character C_24 = 24;
+    public static final Character C_24 = 24;
 
     /** The Character 25 / x19 / (EM - end of medium). */
-    public final static Character C_25 = 25;
+    public static final Character C_25 = 25;
 
     /** The Character 26 / x1A / (SUB - substitute). */
-    public final static Character C_26 = 26;
+    public static final Character C_26 = 26;
 
     /** The Character 27 / x1B / (ESC - escape). */
-    public final static Character C_27 = 27;
+    public static final Character C_27 = 27;
 
     /** The Character 28 / x1C / (FS - file separator). */
-    public final static Character C_28 = 28;
+    public static final Character C_28 = 28;
 
     /** The Character 29 / x1D / (GS - group separator). */
-    public final static Character C_29 = 29;
+    public static final Character C_29 = 29;
 
     /** The Character 30 / x1E / (RS - record separator). */
-    public final static Character C_30 = 30;
+    public static final Character C_30 = 30;
 
     /** The Character 31 / x1F / (US - unit separator). */
-    public final static Character C_31 = 31;
+    public static final Character C_31 = 31;
 
     /** The Character 32 / x20 / SPACE. */
-    public final static Character C_32 = 32;
+    public static final Character C_32 = 32;
 
     /** The character 33 / x21 / !. */
     public static final Character C_33 = 33;
@@ -777,34 +770,29 @@ public class TestCharacter extends AbstractTest<Character>
     public static final TestCharacter INSTANCE = new TestCharacter();
 
     /** A random Character. */
-    public final static Character CHAR = randomCharacter();
+    public static final Character CHAR = randomCharacter();
 
     /** A random Character. */
-    public final static Character CHARACTER_RANDOM = randomCharacter();
+    public static final Character CHARACTER_RANDOM = randomCharacter();
 
     /** A random primitive char. */
-    public final static char C_RANDOM = randomCharacter();
+    public static final char C_RANDOM = randomCharacter();
 
     /** Instantiate a utility to produce randomized {@link Character} objects. */
-    public TestCharacter()
-    {
+    public TestCharacter() {
         super(Character.class);
     }
 
     /**
      * Return a random char between two chars, inclusive.
      *
-     * @param number1 a number
-     * @param number2 another number
+     * @param char1 a char
+     * @param char2 another char
      *
      * @return the random char
      */
-    public static char randomBetween(final int number1, final int number2)
-    {
-        final int min = min(number1, number2);
-        final int max = max(number1, number2);
-
-        return (char) (min + ((max - min + 1) * Math.random()));
+    public static char randomBetween(char char1, char char2) {
+        return (char) TestInteger.randomBetween(char1, char2);
     }
 
     /**
@@ -812,8 +800,7 @@ public class TestCharacter extends AbstractTest<Character>
      *
      * @return the char
      */
-    public static char randomCharacter()
-    {
+    public static char randomCharacter() {
         return INSTANCE.random();
     }
 
@@ -822,8 +809,8 @@ public class TestCharacter extends AbstractTest<Character>
      *
      * @return the char
      */
-    public Character random()
-    {
+    @Override
+    public Character random() {
         return randomBetween(Character.MIN_VALUE, Character.MAX_VALUE);
     }
 }

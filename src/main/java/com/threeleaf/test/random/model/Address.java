@@ -1,13 +1,12 @@
 package com.threeleaf.test.random.model;
 
-import lombok.Data;
-
 import java.io.Serializable;
+
+import lombok.Data;
 
 /** A mailing address. */
 @Data
-public class Address implements Serializable
-{
+public class Address implements Serializable {
 
     private String city;
 

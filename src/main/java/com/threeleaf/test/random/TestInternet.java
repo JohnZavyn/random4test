@@ -1,11 +1,15 @@
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.util.TestInternetUtil.*;
+import static lombok.AccessLevel.PRIVATE;
+
+import lombok.NoArgsConstructor;
 
 /** Internet constants to be used in JUnit tests. */
-@SuppressWarnings({"WeakerAccess", "unused"})
-public class TestInternet
-{
+@NoArgsConstructor(access = PRIVATE)
+@SuppressWarnings(
+    {"WeakerAccess", "unused", "PMD.FinalFieldCouldBeStatic", "PMD.ClassNamingConventions"})
+public class TestInternet {
 
     /** The at sign. */
     public static final String AT_SIGN = "@";

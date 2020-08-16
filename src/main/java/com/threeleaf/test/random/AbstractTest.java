@@ -1,10 +1,14 @@
 package com.threeleaf.test.random;
 
+import static com.threeleaf.test.random.TestInteger.INT_00;
+import static com.threeleaf.test.random.util.TestStringUtil.STRING_NULL;
+
+import java.util.*;
+import java.util.function.Function;
+import javax.annotation.Nonnull;
+
 import com.threeleaf.test.random.util.*;
 import lombok.Getter;
-
-import javax.annotation.Nonnull;
-import java.util.*;
 
 /**
  * An abstract class to be extended to produce randomized objects of a specified type.
@@ -15,22 +19,58 @@ import java.util.*;
  *     <li>Extension also allows for the use of class-level methods and variables as needed.</li>
  * </ul>
  */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings(
+    {"WeakerAccess", "unused", "PMD.ReplaceVectorWithList", "PMD.VisibilityModifierCheck",
+        "PMD.LooseCoupling", "PMD.LooseCoupling", "squid:S1149", "squid:S1319"})
 @Getter
-public abstract class AbstractTest<T>
-{
+public abstract class AbstractTest<T> {
 
     /** The type of objects to be randomized. */
     private final Class<T> type;
+
+    /**
+     * The instance {@link #random(String...)} method. This gets passed into other methods for
+     * generating randomized objects. Useful when inheriting class needs to override the random
+     * method, and subsequently have that customized method used when generating new  objects within
+     * the called method.
+     */
+    private final Function<String[], T> randomFunction = this::random;
 
     /**
      * Instantiate a utility to produce randomized objects of the given type.
      *
      * @param theType the type of object to randomize
      */
-    public AbstractTest(final Class<T> theType)
-    {
+    public AbstractTest(Class<T> theType) {
+        super();
         type = theType;
+    }
+
+    /**
+     * Return an empty {@link Collection}.
+     *
+     * @return an empty collection
+     */
+    public Collection<T> emptyCollection() {
+        return TestCollectionUtil.randomCollectionOf(INT_00, randomFunction, STRING_NULL);
+    }
+
+    /**
+     * Return an empty {@link List}.
+     *
+     * @return an empty list
+     */
+    public List<T> emptyList() {
+        return TestListUtil.randomListOf(INT_00, randomFunction, STRING_NULL);
+    }
+
+    /**
+     * Return an empty {@link Set}.
+     *
+     * @return an empty set
+     */
+    public Set<T> emptySet() {
+        return TestSetUtil.randomSetOf(INT_00, randomFunction, STRING_NULL);
     }
 
     /**
@@ -40,8 +80,7 @@ public abstract class AbstractTest<T>
      *
      * @return a randomized object
      */
-    public T random()
-    {
+    public T random() {
         return TestRandom.random(type);
     }
 
@@ -54,8 +93,7 @@ public abstract class AbstractTest<T>
      *
      * @return a randomized object
      */
-    public T random(final String... fieldsExcluded)
-    {
+    public T random(String... fieldsExcluded) {
         return TestRandom.random(type, fieldsExcluded);
     }
 
@@ -66,9 +104,8 @@ public abstract class AbstractTest<T>
      *
      * @return the Array of objects
      */
-    public T[] randomArray(final String... fieldsExcluded)
-    {
-        return TestArrayUtil.randomArrayOf(type, fieldsExcluded);
+    public T[] randomArray(String... fieldsExcluded) {
+        return TestArrayUtil.randomArrayOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -79,9 +116,8 @@ public abstract class AbstractTest<T>
      *
      * @return the Array of objects
      */
-    public T[] randomArray(final int size, final String... fieldsExcluded)
-    {
-        return TestArrayUtil.randomArrayOf(size, type, fieldsExcluded);
+    public T[] randomArray(int size, String... fieldsExcluded) {
+        return TestArrayUtil.randomArrayOf(size, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -91,9 +127,8 @@ public abstract class AbstractTest<T>
      *
      * @return the ArrayList of objects
      */
-    public ArrayList<T> randomArrayList(final String... fieldsExcluded)
-    {
-        return TestListUtil.randomArrayListOf(type, fieldsExcluded);
+    public ArrayList<T> randomArrayList(String... fieldsExcluded) {
+        return TestListUtil.randomArrayListOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -104,9 +139,8 @@ public abstract class AbstractTest<T>
      *
      * @return the ArrayList of objects
      */
-    public ArrayList<T> randomArrayList(final int size, final String... fieldsExcluded)
-    {
-        return TestListUtil.randomArrayListOf(size, type, fieldsExcluded);
+    public ArrayList<T> randomArrayList(int size, String... fieldsExcluded) {
+        return TestListUtil.randomArrayListOf(size, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -116,9 +150,8 @@ public abstract class AbstractTest<T>
      *
      * @return the ArrayList with a single object
      */
-    public ArrayList<T> randomArrayListSingle(final String... fieldsExcluded)
-    {
-        return TestListUtil.randomArrayListSingleOf(type, fieldsExcluded);
+    public ArrayList<T> randomArrayListSingle(String... fieldsExcluded) {
+        return TestListUtil.randomArrayListSingleOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -128,9 +161,8 @@ public abstract class AbstractTest<T>
      *
      * @return the Array with a single object
      */
-    public T[] randomArraySingle(final String... fieldsExcluded)
-    {
-        return TestArrayUtil.randomArraySingleOf(type, fieldsExcluded);
+    public T[] randomArraySingle(String... fieldsExcluded) {
+        return TestArrayUtil.randomArraySingleOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -140,9 +172,8 @@ public abstract class AbstractTest<T>
      *
      * @return the Collection of objects
      */
-    public Collection<T> randomCollection(final String... fieldsExcluded)
-    {
-        return TestCollectionUtil.randomCollectionOf(type, fieldsExcluded);
+    public Collection<T> randomCollection(String... fieldsExcluded) {
+        return TestCollectionUtil.randomCollectionOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -153,9 +184,8 @@ public abstract class AbstractTest<T>
      *
      * @return the Collection of objects
      */
-    public Collection<T> randomCollection(final int size, final String... fieldsExcluded)
-    {
-        return TestCollectionUtil.randomCollectionOf(size, type, fieldsExcluded);
+    public Collection<T> randomCollection(int size, String... fieldsExcluded) {
+        return TestCollectionUtil.randomCollectionOf(size, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -165,9 +195,8 @@ public abstract class AbstractTest<T>
      *
      * @return the Collection with a single object
      */
-    public Collection<T> randomCollectionSingle(final String... fieldsExcluded)
-    {
-        return TestCollectionUtil.randomCollectionSingleOf(type, fieldsExcluded);
+    public Collection<T> randomCollectionSingle(String... fieldsExcluded) {
+        return TestCollectionUtil.randomCollectionSingleOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -180,9 +209,11 @@ public abstract class AbstractTest<T>
      *
      * @return a HashMap of randomized key-value pairs
      */
-    public <K> Map<K, T> randomHashMap(final int size, final @Nonnull Class<K> keyType, final String... fieldsExcluded)
-    {
-        return TestMapUtil.randomHashMapOf(size, keyType, type, fieldsExcluded);
+    public <K> Map<K, T> randomHashMap(
+        int size, @Nonnull Class<K> keyType,
+        String... fieldsExcluded
+    ) {
+        return TestMapUtil.randomHashMapOf(size, keyType, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -194,9 +225,8 @@ public abstract class AbstractTest<T>
      *
      * @return a HashMap of randomized key-value pairs
      */
-    public <K> Map<K, T> randomHashMap(@Nonnull Class<K> keyType, final String... fieldsExcluded)
-    {
-        return TestMapUtil.randomHashMapOf(keyType, type, fieldsExcluded);
+    public <K> Map<K, T> randomHashMap(@Nonnull Class<K> keyType, String... fieldsExcluded) {
+        return TestMapUtil.randomHashMapOf(keyType, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -208,9 +238,11 @@ public abstract class AbstractTest<T>
      *
      * @return a HashMap with a randomized key-value pair
      */
-    public <K> Map<K, T> randomHashMapSingle(@Nonnull Class<K> keyType, final String... fieldsExcluded)
-    {
-        return TestMapUtil.randomHashMapSingleOf(keyType, type, fieldsExcluded);
+    public <K> Map<K, T> randomHashMapSingle(
+        @Nonnull Class<K> keyType,
+        String... fieldsExcluded
+    ) {
+        return TestMapUtil.randomHashMapSingleOf(keyType, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -220,9 +252,8 @@ public abstract class AbstractTest<T>
      *
      * @return the HashSet of objects
      */
-    public HashSet<T> randomHashSet(final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomHashSetOf(type, fieldsExcluded);
+    public HashSet<T> randomHashSet(String... fieldsExcluded) {
+        return TestSetUtil.randomHashSetOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -233,9 +264,8 @@ public abstract class AbstractTest<T>
      *
      * @return the HashSet of objects
      */
-    public HashSet<T> randomHashSet(final int size, final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomHashSetOf(size, type, fieldsExcluded);
+    public HashSet<T> randomHashSet(int size, String... fieldsExcluded) {
+        return TestSetUtil.randomHashSetOf(size, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -245,9 +275,8 @@ public abstract class AbstractTest<T>
      *
      * @return the HashSet with a single object
      */
-    public HashSet<T> randomHashSetSingle(final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomHashSetSingleOf(type, fieldsExcluded);
+    public HashSet<T> randomHashSetSingle(String... fieldsExcluded) {
+        return TestSetUtil.randomHashSetSingleOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -260,9 +289,11 @@ public abstract class AbstractTest<T>
      *
      * @return a LinkedHashMap of randomized key-value pairs
      */
-    public <K> Map<K, T> randomLinkedHashMap(final int size, final @Nonnull Class<K> keyType, final String... fieldsExcluded)
-    {
-        return TestMapUtil.randomLinkedHashMapOf(size, keyType, type, fieldsExcluded);
+    public <K> Map<K, T> randomLinkedHashMap(
+        int size, @Nonnull Class<K> keyType,
+        String... fieldsExcluded
+    ) {
+        return TestMapUtil.randomLinkedHashMapOf(size, keyType, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -274,9 +305,11 @@ public abstract class AbstractTest<T>
      *
      * @return a LinkedHashMap of randomized key-value pairs
      */
-    public <K> Map<K, T> randomLinkedHashMap(@Nonnull Class<K> keyType, final String... fieldsExcluded)
-    {
-        return TestMapUtil.randomLinkedHashMapOf(keyType, type, fieldsExcluded);
+    public <K> Map<K, T> randomLinkedHashMap(
+        @Nonnull Class<K> keyType,
+        String... fieldsExcluded
+    ) {
+        return TestMapUtil.randomLinkedHashMapOf(keyType, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -288,9 +321,11 @@ public abstract class AbstractTest<T>
      *
      * @return a LinkedHashMap with a randomized key-value pair
      */
-    public <K> Map<K, T> randomLinkedHashMapSingle(@Nonnull Class<K> keyType, final String... fieldsExcluded)
-    {
-        return TestMapUtil.randomLinkedHashMapSingleOf(keyType, type, fieldsExcluded);
+    public <K> Map<K, T> randomLinkedHashMapSingle(
+        @Nonnull Class<K> keyType,
+        String... fieldsExcluded
+    ) {
+        return TestMapUtil.randomLinkedHashMapSingleOf(keyType, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -300,9 +335,8 @@ public abstract class AbstractTest<T>
      *
      * @return the LinkedHashSet of objects
      */
-    public LinkedHashSet<T> randomLinkedHashSet(final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomLinkedHashSetOf(type, fieldsExcluded);
+    public LinkedHashSet<T> randomLinkedHashSet(String... fieldsExcluded) {
+        return TestSetUtil.randomLinkedHashSetOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -313,9 +347,8 @@ public abstract class AbstractTest<T>
      *
      * @return the LinkedHashSet of objects
      */
-    public LinkedHashSet<T> randomLinkedHashSet(final int size, final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomLinkedHashSetOf(size, type, fieldsExcluded);
+    public LinkedHashSet<T> randomLinkedHashSet(int size, String... fieldsExcluded) {
+        return TestSetUtil.randomLinkedHashSetOf(size, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -325,9 +358,8 @@ public abstract class AbstractTest<T>
      *
      * @return the LinkedHashSet with a single object
      */
-    public LinkedHashSet<T> randomLinkedHashSetSingle(final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomLinkedHashSetSingleOf(type, fieldsExcluded);
+    public LinkedHashSet<T> randomLinkedHashSetSingle(String... fieldsExcluded) {
+        return TestSetUtil.randomLinkedHashSetSingleOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -337,9 +369,8 @@ public abstract class AbstractTest<T>
      *
      * @return the LinkedList of objects
      */
-    public LinkedList<T> randomLinkedList(final String... fieldsExcluded)
-    {
-        return TestListUtil.randomLinkedListOf(type, fieldsExcluded);
+    public LinkedList<T> randomLinkedList(String... fieldsExcluded) {
+        return TestListUtil.randomLinkedListOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -350,9 +381,8 @@ public abstract class AbstractTest<T>
      *
      * @return the LinkedList of objects
      */
-    public LinkedList<T> randomLinkedList(final int size, final String... fieldsExcluded)
-    {
-        return TestListUtil.randomLinkedListOf(size, type, fieldsExcluded);
+    public LinkedList<T> randomLinkedList(int size, String... fieldsExcluded) {
+        return TestListUtil.randomLinkedListOf(size, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -362,9 +392,8 @@ public abstract class AbstractTest<T>
      *
      * @return the LinkedList with a single object
      */
-    public LinkedList<T> randomLinkedListSingle(final String... fieldsExcluded)
-    {
-        return TestListUtil.randomLinkedListSingleOf(type, fieldsExcluded);
+    public LinkedList<T> randomLinkedListSingle(String... fieldsExcluded) {
+        return TestListUtil.randomLinkedListSingleOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -374,9 +403,8 @@ public abstract class AbstractTest<T>
      *
      * @return the List of objects
      */
-    public List<T> randomList(final String... fieldsExcluded)
-    {
-        return TestListUtil.randomListOf(type, fieldsExcluded);
+    public List<T> randomList(String... fieldsExcluded) {
+        return TestListUtil.randomListOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -387,9 +415,8 @@ public abstract class AbstractTest<T>
      *
      * @return the List of objects
      */
-    public List<T> randomList(final int size, final String... fieldsExcluded)
-    {
-        return TestListUtil.randomListOf(size, type, fieldsExcluded);
+    public List<T> randomList(int size, String... fieldsExcluded) {
+        return TestListUtil.randomListOf(size, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -399,9 +426,8 @@ public abstract class AbstractTest<T>
      *
      * @return the List with a single object
      */
-    public List<T> randomListSingle(final String... fieldsExcluded)
-    {
-        return TestListUtil.randomListSingleOf(type, fieldsExcluded);
+    public List<T> randomListSingle(String... fieldsExcluded) {
+        return TestListUtil.randomListSingleOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -413,9 +439,8 @@ public abstract class AbstractTest<T>
      *
      * @return a HashMap, LinkedHashMap, or TreeMap of randomized key-value pairs
      */
-    public <K> Map<K, T> randomMap(@Nonnull Class<K> keyType, final String... fieldsExcluded)
-    {
-        return TestMapUtil.randomMapOf(keyType, type, fieldsExcluded);
+    public <K> Map<K, T> randomMap(@Nonnull Class<K> keyType, String... fieldsExcluded) {
+        return TestMapUtil.randomMapOf(keyType, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -428,9 +453,11 @@ public abstract class AbstractTest<T>
      *
      * @return a HashMap, LinkedHashMap, or TreeMap of randomized key-value pairs
      */
-    public <K> Map<K, T> randomMap(final int size, @Nonnull Class<K> keyType, final String... fieldsExcluded)
-    {
-        return TestMapUtil.randomMapOf(size, keyType, type, fieldsExcluded);
+    public <K> Map<K, T> randomMap(
+        int size, @Nonnull Class<K> keyType,
+        String... fieldsExcluded
+    ) {
+        return TestMapUtil.randomMapOf(size, keyType, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -442,9 +469,11 @@ public abstract class AbstractTest<T>
      *
      * @return a HashMap, LinkedHashMap, or TreeMap with a randomized key-value pair
      */
-    public <K> Map<K, T> randomMapSingle(@Nonnull Class<K> keyType, final String... fieldsExcluded)
-    {
-        return TestMapUtil.randomMapSingleOf(keyType, type, fieldsExcluded);
+    public <K> Map<K, T> randomMapSingle(
+        @Nonnull Class<K> keyType,
+        String... fieldsExcluded
+    ) {
+        return TestMapUtil.randomMapSingleOf(keyType, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -454,9 +483,8 @@ public abstract class AbstractTest<T>
      *
      * @return the Set of objects
      */
-    public Set<T> randomSet(final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomSetOf(type, fieldsExcluded);
+    public Set<T> randomSet(String... fieldsExcluded) {
+        return TestSetUtil.randomSetOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -467,9 +495,8 @@ public abstract class AbstractTest<T>
      *
      * @return the Set of objects
      */
-    public Set<T> randomSet(final int size, final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomSetOf(size, type, fieldsExcluded);
+    public Set<T> randomSet(int size, String... fieldsExcluded) {
+        return TestSetUtil.randomSetOf(size, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -479,9 +506,8 @@ public abstract class AbstractTest<T>
      *
      * @return the Set with a single object
      */
-    public Set<T> randomSetSingle(final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomSetSingleOf(type, fieldsExcluded);
+    public Set<T> randomSetSingle(String... fieldsExcluded) {
+        return TestSetUtil.randomSetSingleOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -491,9 +517,8 @@ public abstract class AbstractTest<T>
      *
      * @return the SortedSet of objects
      */
-    public SortedSet<T> randomSortedSet(final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomSortedSetOf(type, fieldsExcluded);
+    public SortedSet<T> randomSortedSet(String... fieldsExcluded) {
+        return TestSetUtil.randomSortedSetOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -504,9 +529,8 @@ public abstract class AbstractTest<T>
      *
      * @return the SortedSet of objects
      */
-    public SortedSet<T> randomSortedSet(final int size, final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomSortedSetOf(size, type, fieldsExcluded);
+    public SortedSet<T> randomSortedSet(int size, String... fieldsExcluded) {
+        return TestSetUtil.randomSortedSetOf(size, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -516,9 +540,8 @@ public abstract class AbstractTest<T>
      *
      * @return the SortedSet with a single object
      */
-    public SortedSet<T> randomSortedSetSingle(final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomSortedSetSingleOf(type, fieldsExcluded);
+    public SortedSet<T> randomSortedSetSingle(String... fieldsExcluded) {
+        return TestSetUtil.randomSortedSetSingleOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -533,9 +556,11 @@ public abstract class AbstractTest<T>
      *
      * @return a TreeMap of randomized key-value pairs
      */
-    public <K> Map<K, T> randomTreeMap(final int size, final @Nonnull Class<K> keyType, final String... fieldsExcluded)
-    {
-        return TestMapUtil.randomTreeMapOf(size, keyType, type, fieldsExcluded);
+    public <K> Map<K, T> randomTreeMap(
+        int size, @Nonnull Class<K> keyType,
+        String... fieldsExcluded
+    ) {
+        return TestMapUtil.randomTreeMapOf(size, keyType, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -547,9 +572,8 @@ public abstract class AbstractTest<T>
      *
      * @return a TreeMap of randomized key-value pairs
      */
-    public <K> Map<K, T> randomTreeMap(@Nonnull Class<K> keyType, final String... fieldsExcluded)
-    {
-        return TestMapUtil.randomTreeMapOf(keyType, type, fieldsExcluded);
+    public <K> Map<K, T> randomTreeMap(@Nonnull Class<K> keyType, String... fieldsExcluded) {
+        return TestMapUtil.randomTreeMapOf(keyType, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -561,9 +585,11 @@ public abstract class AbstractTest<T>
      *
      * @return a TreeMap with a randomized key-value pair
      */
-    public <K> Map<K, T> randomTreeMapSingle(@Nonnull Class<K> keyType, final String... fieldsExcluded)
-    {
-        return TestMapUtil.randomTreeMapSingleOf(keyType, type, fieldsExcluded);
+    public <K> Map<K, T> randomTreeMapSingle(
+        @Nonnull Class<K> keyType,
+        String... fieldsExcluded
+    ) {
+        return TestMapUtil.randomTreeMapSingleOf(keyType, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -573,9 +599,8 @@ public abstract class AbstractTest<T>
      *
      * @return the TreeSet of objects
      */
-    public TreeSet<T> randomTreeSet(final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomTreeSetOf(type, fieldsExcluded);
+    public TreeSet<T> randomTreeSet(String... fieldsExcluded) {
+        return TestSetUtil.randomTreeSetOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -586,9 +611,8 @@ public abstract class AbstractTest<T>
      *
      * @return the TreeSet of objects
      */
-    public TreeSet<T> randomTreeSet(final int size, final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomTreeSetOf(size, type, fieldsExcluded);
+    public TreeSet<T> randomTreeSet(int size, String... fieldsExcluded) {
+        return TestSetUtil.randomTreeSetOf(size, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -598,9 +622,8 @@ public abstract class AbstractTest<T>
      *
      * @return the TreeSet with a single object
      */
-    public TreeSet<T> randomTreeSetSingle(final String... fieldsExcluded)
-    {
-        return TestSetUtil.randomTreeSetSingleOf(type, fieldsExcluded);
+    public TreeSet<T> randomTreeSetSingle(String... fieldsExcluded) {
+        return TestSetUtil.randomTreeSetSingleOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -610,9 +633,8 @@ public abstract class AbstractTest<T>
      *
      * @return the Vector of objects
      */
-    public Vector<T> randomVector(final String... fieldsExcluded)
-    {
-        return TestListUtil.randomVectorOf(type, fieldsExcluded);
+    public Vector<T> randomVector(String... fieldsExcluded) {
+        return TestListUtil.randomVectorOf(randomFunction, fieldsExcluded);
     }
 
     /**
@@ -623,9 +645,8 @@ public abstract class AbstractTest<T>
      *
      * @return the Vector of objects
      */
-    public Vector<T> randomVector(final int size, final String... fieldsExcluded)
-    {
-        return TestListUtil.randomVectorOf(size, type, fieldsExcluded);
+    public Vector<T> randomVector(int size, String... fieldsExcluded) {
+        return TestListUtil.randomVectorOf(size, randomFunction, fieldsExcluded);
     }
 
     /**
@@ -635,8 +656,7 @@ public abstract class AbstractTest<T>
      *
      * @return the Vector with a single object
      */
-    public Vector<T> randomVectorSingle(final String... fieldsExcluded)
-    {
-        return TestListUtil.randomVectorSingleOf(type, fieldsExcluded);
+    public Vector<T> randomVectorSingle(String... fieldsExcluded) {
+        return TestListUtil.randomVectorSingleOf(randomFunction, fieldsExcluded);
     }
 }

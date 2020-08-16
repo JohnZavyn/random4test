@@ -1,87 +1,76 @@
 package com.threeleaf.test.random;
 
-import org.junit.Test;
+import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MAX;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.junit.Assert.fail;
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
-/** Test {@link TestBoolean} */
-public class TestBooleanTest
-{
-
-    /**
-     * The maximum number of times to loop through a test call.
-     * Testing randomness is difficult, so we want to have an upper
-     * boundary for failure in a loop where we are tying to collect
-     * some kind of statistics.
-     */
-    public static final int LOOP_COUNT_MAX = 100;
+/** Test {@link TestBoolean}. */
+class TestBooleanTest {
 
     /** Test {@link TestBoolean#coinFlip()}. */
     @Test
-    public void coinFlip()
-    {
-        final Set<Boolean> results               = new HashSet<>();
-        boolean            allPossibilitiesFound = false;
+    void coinFlip() {
+        Set<Boolean> results = new HashSet<>();
+        boolean allPossibilitiesFound = false;
 
-        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++)
-        {
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
             results.add(TestBoolean.coinFlip());
-            if (results.size() == 2)
-            {
+            if (results.size() == 2) {
                 allPossibilitiesFound = true;
                 break;
             }
         }
-        if (!allPossibilitiesFound)
-        {
+        if (!allPossibilitiesFound) {
             fail("Expected all possible results, but only found " + results);
         }
     }
 
     /** Test {@link TestBoolean#oneOutOf(int)}. */
     @Test
-    public void oneOutOf()
-    {
-        final int          number                = 10;
-        final Set<Boolean> results               = new HashSet<>();
-        boolean            allPossibilitiesFound = false;
+    void oneOutOf() {
+        final int number = 10;
+        Set<Boolean> results = new HashSet<>();
+        boolean allPossibilitiesFound = false;
 
-        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++)
-        {
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
             results.add(TestBoolean.oneOutOf(number));
-            if (results.size() == 2)
-            {
+            if (results.size() == 2) {
                 allPossibilitiesFound = true;
                 break;
             }
         }
-        if (!allPossibilitiesFound)
-        {
+        if (!allPossibilitiesFound) {
             fail("Expected all possible results, but only found " + results);
         }
     }
 
+    /** Test {@link TestBoolean#oneOutOf(int)} when an exception occurs. */
+    @RepeatedTest(LOOP_COUNT_MAX)
+    void oneOutOfException() {
+        int numberNegative = -TestInteger.random0to10();
+        assertThrows(IllegalArgumentException.class, () -> TestBoolean.oneOutOf(numberNegative));
+    }
+
     /** Test {@link TestBoolean#randomBoolean()}. */
     @Test
-    public void randomBoolean()
-    {
-        final Set<Boolean> results               = new HashSet<>();
-        boolean            allPossibilitiesFound = false;
+    void randomBoolean() {
+        Set<Boolean> results = new HashSet<>();
+        boolean allPossibilitiesFound = false;
 
-        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++)
-        {
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
             results.add(TestBoolean.randomBoolean());
-            if (results.size() == 2)
-            {
+            if (results.size() == 2) {
                 allPossibilitiesFound = true;
                 break;
             }
         }
-        if (!allPossibilitiesFound)
-        {
+        if (!allPossibilitiesFound) {
             fail("Expected all possible results, but only found " + results);
         }
     }

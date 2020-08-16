@@ -1,28 +1,23 @@
 package com.threeleaf.test.random.util;
 
-import org.junit.Test;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.*;
 
-import static org.junit.Assert.assertTrue;
+import org.junit.jupiter.api.Test;
 
-/** Test {@link TestDateUtil} */
-public class TestDateUtilTest
-{
+/** Test {@link TestDateUtil}. */
+class TestDateUtilTest {
 
     /** Test {@link TestDateUtil} constructor. */
     @Test
-    public void constructor() throws Exception
-    {
+    void constructor() throws Exception {
         Constructor<TestDateUtil> constructor = TestDateUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
-        try
-        {
+        try {
             constructor.newInstance();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }

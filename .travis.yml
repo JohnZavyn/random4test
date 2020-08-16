@@ -1,0 +1,11 @@
+language: java
+dist: trusty
+
+os: linux
+
+jdk:
+  - openjdk8
+  - openjdk11
+
+notifications:
+  email: true

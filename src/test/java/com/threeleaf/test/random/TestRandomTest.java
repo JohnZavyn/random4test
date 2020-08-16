@@ -1,47 +1,42 @@
 package com.threeleaf.test.random;
 
-import org.junit.Test;
+import static com.threeleaf.test.random.TestObject.OBJECT;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.management.MemoryNotificationInfo;
 import java.lang.reflect.*;
 import java.security.KeyPair;
 
-import static com.threeleaf.test.random.TestObject.OBJECT;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
 
 /** Test {@link TestRandom}. */
-public class TestRandomTest
-{
+class TestRandomTest {
 
     /** Test {@link TestRandom} constructor. */
     @Test
-    public void constructor() throws Exception
-    {
+    void constructor() throws Exception {
         Constructor<TestRandom> constructor = TestRandom.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
-        try
-        {
+        try {
             constructor.newInstance();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }
 
     /** Test {@link TestRandom#random(Class, String...)}. */
     @Test
-    public void random()
-    {
+    void random() {
         /* Excludes all fields (interface types can't be initialized). */
-        final KeyPair keyPair = TestRandom.random(KeyPair.class, "publicKey", "privateKey");
+        KeyPair keyPair = TestRandom.random(KeyPair.class, "publicKey", "privateKey");
 
         assertNull(keyPair.getPrivate());
         assertNull(keyPair.getPublic());
 
         /* Verify single field not initialized */
-        MemoryNotificationInfo memoryNotificationInfo = TestRandom.random(MemoryNotificationInfo.class, "poolName");
+        MemoryNotificationInfo memoryNotificationInfo =
+            TestRandom.random(MemoryNotificationInfo.class, "poolName");
         assertNull(memoryNotificationInfo.getPoolName());
         assertNotEquals(0L, memoryNotificationInfo.getCount());
         assertNotNull(memoryNotificationInfo.getUsage());
@@ -55,8 +50,7 @@ public class TestRandomTest
 
     /** Test {@link TestObject#OBJECT}. */
     @Test
-    public void randomObject()
-    {
+    void randomObject() {
         assertNotNull(OBJECT);
     }
 }

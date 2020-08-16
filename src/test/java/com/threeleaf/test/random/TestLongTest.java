@@ -1,20 +1,25 @@
 package com.threeleaf.test.random;
 
-import org.junit.Test;
-
 import static com.threeleaf.test.random.TestInteger.INT_00;
 import static com.threeleaf.test.random.TestInteger.INT_01;
+import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MAX;
 import static com.threeleaf.test.random.TestLong.*;
-import static org.junit.Assert.*;
+import static java.lang.Integer.MAX_VALUE;
+import static java.lang.Integer.MIN_VALUE;
+import static org.junit.jupiter.api.Assertions.*;
+
+import java.util.HashSet;
+import java.util.Set;
+
+import org.junit.jupiter.api.RepeatedTest;
+import org.junit.jupiter.api.Test;
 
 /** Test {@link TestLong}. */
-public class TestLongTest
-{
+class TestLongTest {
 
     /** Test {@link TestLong} constants. */
     @Test
-    public void constants()
-    {
+    void constants() {
         assertNotEquals(INT_00, LONG_ARRAY.length);
         assertEquals(INT_01, LONG_ARRAY_SINGLE.length);
         assertNotEquals(INT_00, LONG_COLLECTION.size());
@@ -31,11 +36,25 @@ public class TestLongTest
 
     /** Test {@link TestLong#randomBetween(long, long)}. */
     @Test
-    public void randomBetweenLong()
-    {
-        final long number = randomBetween(LONG_10, LONG_05);
+    void randomBetweenLong() {
+        Set<Long> results = new HashSet<>();
+        boolean allPossibilitiesFound = false;
 
-        assertTrue(number >= LONG_05);
-        assertTrue(number <= LONG_10);
+        for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
+            results.add(randomBetween(L_05, L_10));
+            if (results.size() == 6) {
+                allPossibilitiesFound = true;
+                break;
+            }
+        }
+        if (!allPossibilitiesFound) {
+            fail("Expected all possible results, but only found " + results);
+        }
+    }
+
+    /** Test {@link TestLong#randomBetween(long, long)}. */
+    @RepeatedTest(LOOP_COUNT_MAX)
+    void randomBetweenMax() {
+        assertDoesNotThrow(() -> TestLong.randomBetween(MIN_VALUE, MAX_VALUE));
     }
 }

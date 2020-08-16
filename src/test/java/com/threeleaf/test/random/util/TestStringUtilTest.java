@@ -1,71 +1,58 @@
 package com.threeleaf.test.random.util;
 
-import org.apache.commons.validator.routines.CodeValidator;
-import org.junit.Test;
+import static com.threeleaf.test.random.TestCharacter.CHARACTER_126;
+import static com.threeleaf.test.random.TestCharacter.CHARACTER_13;
+import static com.threeleaf.test.random.TestInteger.random1to10;
+import static com.threeleaf.test.random.TestString.*;
+import static com.threeleaf.test.random.util.TestStringUtil.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.*;
 
-import static com.threeleaf.test.random.TestInteger.random1to10;
-import static com.threeleaf.test.random.TestString.*;
-import static com.threeleaf.test.random.util.TestStringUtil.STRING_LENGTH_MAX;
-import static com.threeleaf.test.random.util.TestStringUtil.STRING_LENGTH_MIN;
-import static org.junit.Assert.*;
+import org.apache.commons.validator.routines.CodeValidator;
+import org.junit.jupiter.api.Test;
 
-/** Test {@link TestStringUtil} */
-public class TestStringUtilTest
-{
+/** Test {@link TestStringUtil}. */
+class TestStringUtilTest {
 
     /** Test {@link TestStringUtil#capitalize(String)}. */
     @Test
-    public void capitalize()
-    {
+    void capitalize() {
         final String expectedResult = "String";
 
-        final String result = TestStringUtil.capitalize("string");
+        String result = TestStringUtil.capitalize("string");
 
         assertEquals(expectedResult, result);
-    }
-
-    /** Test {@link TestStringUtil#randomPunctuationTerminal()}. */
-    @Test
-    public void randomPunctuationTerminal()
-    {
-        final String result = TestStringUtil.randomPunctuationTerminal();
-
-        assertTrue(".".equals(result) || "?".equals(result) || "!".equals(result));
-    }
-
-    /** Test {@link TestStringUtil#randomUuid()}. */
-    @Test
-    public void randomUuid()
-    {
-        new CodeValidator("[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}", null).isValid(TestStringUtil.randomUuid());
+        assertNull(TestStringUtil.capitalize(STRING_NULL));
+        assertEquals(WHITESPACE, TestStringUtil.capitalize(WHITESPACE));
     }
 
     /** Test {@link TestStringUtil} constructor. */
     @Test
-    public void constructor() throws Exception
-    {
+    void constructor() throws Exception {
         Constructor<TestStringUtil> constructor = TestStringUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
-        try
-        {
+        try {
             constructor.newInstance();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }
 
+    /** Test {@link TestStringUtil#contains(String, char)}. */
+    @Test
+    void contains() {
+        assertTrue(TestStringUtil.contains(TEST_PREFIX, CHARACTER_126));
+        assertFalse(TestStringUtil.contains(TEST_PREFIX, CHARACTER_13));
+    }
+
     /** Test {@link TestStringUtil#extractSuffix(String)}. */
     @Test
-    public void extractSuffix()
-    {
-        final String string = STRING_05 + '_' + STRING_32;
+    void extractSuffix() {
+        String string = STRING_05 + '_' + STRING_32;
 
-        final String result = TestStringUtil.extractSuffix(string);
+        String result = TestStringUtil.extractSuffix(string);
 
         assertEquals(STRING_32, result);
         assertEquals(STRING_08, TestStringUtil.extractSuffix(STRING_99 + '~' + STRING_08));
@@ -73,9 +60,8 @@ public class TestStringUtilTest
 
     /** Test {@link TestStringUtil#isBlank(CharSequence)}. */
     @Test
-    public void isBlank()
-    {
-        assertTrue(TestStringUtil.isBlank(null));
+    void isBlank() {
+        assertTrue(TestStringUtil.isBlank(STRING_NULL));
         assertTrue(TestStringUtil.isBlank(EMPTY));
         assertTrue(TestStringUtil.isBlank(WHITESPACE));
         assertFalse(TestStringUtil.isBlank(STRING_05));
@@ -83,40 +69,22 @@ public class TestStringUtilTest
 
     /** Test {@link TestStringUtil#isEmpty(CharSequence)}. */
     @Test
-    public void isEmpty()
-    {
-        assertTrue(TestStringUtil.isEmpty(null));
+    void isEmpty() {
+        assertTrue(TestStringUtil.isEmpty(STRING_NULL));
         assertTrue(TestStringUtil.isEmpty(EMPTY));
         assertFalse(TestStringUtil.isEmpty(SPACE));
     }
 
-
     /** Test {@link TestStringUtil#randomLetter()}. */
     @Test
-    public void randomLetter()
-    {
+    void randomLetter() {
         assertEquals(1, TestStringUtil.randomLetter().length());
-    }
-
-    /** Test {@link TestStringUtil#test(String)}. */
-    @Test
-    public void randomName()
-    {
-        assertTrue(TestStringUtil.test(STRING_05).startsWith(TEST_PREFIX));
-    }
-
-    /** Test {@link TestStringUtil#randomTest(String)}. */
-    @Test
-    public void randomNameCustom()
-    {
-        assertTrue(TestStringUtil.randomTest(STRING_05).startsWith(TEST_PREFIX + STRING_05));
     }
 
     /** Test {@link TestStringUtil#randomString()}. */
     @Test
-    public void randomString()
-    {
-        final String result = TestStringUtil.randomString();
+    void randomString() {
+        String result = TestStringUtil.randomString();
 
         assertTrue(result.length() >= STRING_LENGTH_MIN);
         assertTrue(result.length() <= STRING_LENGTH_MAX);
@@ -124,28 +92,49 @@ public class TestStringUtilTest
 
     /** Test {@link TestStringUtil#randomString(int)}. */
     @Test
-    public void randomStringLength()
-    {
-        final int length = random1to10();
+    void randomStringLength() {
+        int length = random1to10();
 
-        final String result = TestStringUtil.randomString(length);
+        String result = TestStringUtil.randomString(length);
 
         assertEquals(length, result.length());
     }
 
+    /** Test {@link TestStringUtil#randomTest(String)}. */
+    @Test
+    void randomTest() {
+        assertTrue(TestStringUtil.randomTest(STRING_05).startsWith(TEST_PREFIX + STRING_05));
+    }
+
+    /** Test {@link TestStringUtil#randomTest(String)}. */
+    @Test
+    void randomTestBlank() {
+        String testEntity = TestStringUtil.randomTest(WHITESPACE);
+
+        assertTrue(testEntity.startsWith(TEST_PREFIX));
+        assertFalse(testEntity.contains(WHITESPACE));
+    }
+
+    /** Test {@link TestStringUtil#randomUuid()}. */
+    @Test
+    void randomUuid() {
+        assertTrue(new CodeValidator(
+            "[0-9a-fA-F]{8}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{4}\\-[0-9a-fA-F]{12}",
+            null
+        ).isValid(TestStringUtil.randomUuid()));
+    }
+
     /** Test {@link TestStringUtil#safeString(String)}. */
     @Test
-    public void safeString()
-    {
+    void safeString() {
         assertEquals(EMPTY, TestStringUtil.safeString(EMPTY));
-        assertEquals(EMPTY, TestStringUtil.safeString(null));
+        assertEquals(EMPTY, TestStringUtil.safeString(STRING_NULL));
         assertEquals(STRING_10, TestStringUtil.safeString(STRING_10));
     }
 
     /** Test {@link TestStringUtil#safeString(String, String)}. */
     @Test
-    public void safeStringDefault()
-    {
+    void safeStringDefault() {
         assertEquals(STRING_05, TestStringUtil.safeString(EMPTY, STRING_05));
         assertEquals(STRING_05, TestStringUtil.safeString(null, STRING_05));
         assertEquals(STRING_10, TestStringUtil.safeString(STRING_10, STRING_05));
@@ -153,8 +142,24 @@ public class TestStringUtilTest
 
     /** Test {@link TestStringUtil#shuffle(String)}. */
     @Test
-    public void shuffle()
-    {
+    void shuffle() {
         assertNotEquals(ALPHABET, TestStringUtil.shuffle(ALPHABET));
+    }
+
+    /** Test {@link TestStringUtil#test(String)}. */
+    @Test
+    void test() {
+        String testName = TestStringUtil.test(STRING_05);
+        assertTrue(testName.startsWith(TEST_PREFIX));
+        assertTrue(testName.endsWith(STRING_05));
+    }
+
+    /** Test {@link TestStringUtil#test(String)}. */
+    @Test
+    void testBlank() {
+        String testName = TestStringUtil.test(WHITESPACE);
+
+        assertTrue(testName.startsWith(TEST_PREFIX));
+        assertFalse(testName.contains(WHITESPACE));
     }
 }
