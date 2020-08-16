@@ -1,14 +1,13 @@
 package com.threeleaf.test.random.util;
 
+import static com.threeleaf.test.random.TestInteger.INT_00;
+import static com.threeleaf.test.random.TestInteger.INT_01;
 import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MAX;
 import static com.threeleaf.test.random.TestString.*;
-import static com.threeleaf.test.random.util.TestArrayUtil.randomArrayOf;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import org.junit.jupiter.api.Test;
 
@@ -49,14 +48,36 @@ class TestArrayUtilTest {
 
     /** Test {@link TestArrayUtil#randomArrayOf(Class, String...)}. */
     @Test
-    void testRandomArrayOf() {
-        String[] strings = randomArrayOf(String.class);
-        Long[] longs = randomArrayOf(Long.class);
-        Integer[] integers = randomArrayOf(Integer.class);
-        Object[] objects = randomArrayOf(Object.class);
+    void randomArrayOf() {
+        String[] strings = TestArrayUtil.randomArrayOf(String.class);
+        Long[] longs = TestArrayUtil.randomArrayOf(Long.class);
+        Integer[] integers = TestArrayUtil.randomArrayOf(Integer.class);
+        Object[] objects = TestArrayUtil.randomArrayOf(Object.class);
         assertTrue(strings.length > 0);
         assertTrue(longs.length > 0);
         assertTrue(integers.length > 0);
         assertTrue(objects.length > 0);
+    }
+
+    /** Test {@link TestArrayUtil#randomArraySingleOf(Class, String...)}. */
+    @Test
+    void randomArraySingleOf() {
+        Double[] doubles = TestArrayUtil.randomArraySingleOf(Double.class);
+
+        assertEquals(INT_01, doubles.length);
+    }
+
+    @Test
+    void toArray() {
+        String[] result = TestArrayUtil.toArray(STRING_LIST);
+
+        assertEquals(STRING_LIST.size(), result.length);
+    }
+
+    @Test
+    void toArrayEmpty() {
+        Object[] result = TestArrayUtil.toArray(new ArrayList<>());
+
+        assertEquals(INT_00, result.length);
     }
 }

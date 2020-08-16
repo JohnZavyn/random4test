@@ -402,9 +402,6 @@ public class TestString extends AbstractTest<String> {
     /** All printable ASCII characters. */
     public static final String ASCII = ALPHABET + ALPHABET_CAPS + NUMBERS + PUNCTUATION + SYMBOLS;
 
-    /** Symbols for use in passwords. */
-    public static final String SYMBOLS_PASSWORD = PUNCTUATION_URL_SAFE + "!@#*?";
-
     /** A prefix that can be attached to strings to indicate it is from a testing context. */
     public static final String TEST_PREFIX = "TEST~";
 

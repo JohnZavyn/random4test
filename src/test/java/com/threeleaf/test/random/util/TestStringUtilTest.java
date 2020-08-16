@@ -1,9 +1,10 @@
 package com.threeleaf.test.random.util;
 
+import static com.threeleaf.test.random.TestCharacter.CHARACTER_126;
+import static com.threeleaf.test.random.TestCharacter.CHARACTER_13;
 import static com.threeleaf.test.random.TestInteger.random1to10;
 import static com.threeleaf.test.random.TestString.*;
-import static com.threeleaf.test.random.util.TestStringUtil.STRING_LENGTH_MAX;
-import static com.threeleaf.test.random.util.TestStringUtil.STRING_LENGTH_MIN;
+import static com.threeleaf.test.random.util.TestStringUtil.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.lang.reflect.*;
@@ -22,7 +23,7 @@ class TestStringUtilTest {
         String result = TestStringUtil.capitalize("string");
 
         assertEquals(expectedResult, result);
-        assertNull(TestStringUtil.capitalize(null));
+        assertNull(TestStringUtil.capitalize(STRING_NULL));
         assertEquals(WHITESPACE, TestStringUtil.capitalize(WHITESPACE));
     }
 
@@ -39,6 +40,13 @@ class TestStringUtilTest {
         }
     }
 
+    /** Test {@link TestStringUtil#contains(String, char)}. */
+    @Test
+    void contains() {
+        assertTrue(TestStringUtil.contains(TEST_PREFIX, CHARACTER_126));
+        assertFalse(TestStringUtil.contains(TEST_PREFIX, CHARACTER_13));
+    }
+
     /** Test {@link TestStringUtil#extractSuffix(String)}. */
     @Test
     void extractSuffix() {
@@ -53,7 +61,7 @@ class TestStringUtilTest {
     /** Test {@link TestStringUtil#isBlank(CharSequence)}. */
     @Test
     void isBlank() {
-        assertTrue(TestStringUtil.isBlank(null));
+        assertTrue(TestStringUtil.isBlank(STRING_NULL));
         assertTrue(TestStringUtil.isBlank(EMPTY));
         assertTrue(TestStringUtil.isBlank(WHITESPACE));
         assertFalse(TestStringUtil.isBlank(STRING_05));
@@ -62,7 +70,7 @@ class TestStringUtilTest {
     /** Test {@link TestStringUtil#isEmpty(CharSequence)}. */
     @Test
     void isEmpty() {
-        assertTrue(TestStringUtil.isEmpty(null));
+        assertTrue(TestStringUtil.isEmpty(STRING_NULL));
         assertTrue(TestStringUtil.isEmpty(EMPTY));
         assertFalse(TestStringUtil.isEmpty(SPACE));
     }
@@ -120,7 +128,7 @@ class TestStringUtilTest {
     @Test
     void safeString() {
         assertEquals(EMPTY, TestStringUtil.safeString(EMPTY));
-        assertEquals(EMPTY, TestStringUtil.safeString(null));
+        assertEquals(EMPTY, TestStringUtil.safeString(STRING_NULL));
         assertEquals(STRING_10, TestStringUtil.safeString(STRING_10));
     }
 

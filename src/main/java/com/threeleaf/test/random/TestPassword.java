@@ -42,6 +42,7 @@ public class TestPassword extends AbstractTest<String> {
      */
     @Override
     public String random(String... fieldsExcluded) {
+        /* Since this is a String type, there are no fields to exclude. */
         return PASSWORD_GENERATOR.randomPasswordFriendly();
     }
 }

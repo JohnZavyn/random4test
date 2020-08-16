@@ -2,12 +2,14 @@ package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestBoolean.randomBoolean;
 import static com.threeleaf.test.random.TestInteger.*;
+import static com.threeleaf.test.random.TestRandom.randomType;
 import static com.threeleaf.test.random.util.TestListUtil.randomListOf;
 import static com.threeleaf.test.random.util.TestSetUtil.randomSetOf;
 import static java.util.Arrays.asList;
 import static lombok.AccessLevel.PRIVATE;
 
 import java.util.Collection;
+import java.util.function.Function;
 import javax.annotation.Nonnull;
 
 import lombok.NoArgsConstructor;
@@ -52,6 +54,46 @@ public final class TestCollectionUtil {
      * Return a collection of randomized objects.
      *
      * @param size           number of objects in the collection
+     * @param randomFunction the {@link Function} used to generate random objects
+     * @param fieldsExcluded (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return a List or Set of randomized objects
+     */
+    public static <T> Collection<T> randomCollectionOf(
+        int size, @Nonnull Function<String[], T> randomFunction,
+        String... fieldsExcluded
+    ) {
+        Collection<T> collection;
+        if (randomBoolean()) {
+            collection = randomSetOf(size, randomFunction, fieldsExcluded);
+        } else {
+            collection = randomListOf(size, randomFunction, fieldsExcluded);
+        }
+
+        return collection;
+    }
+
+    /**
+     * Return a collection of 1 to 10 randomized objects.
+     *
+     * @param randomFunction the {@link Function} used to generate random objects
+     * @param fieldsExcluded (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return a List or Set of randomized objects
+     */
+    public static <T> Collection<T> randomCollectionOf(
+        @Nonnull Function<String[], T> randomFunction,
+        String... fieldsExcluded
+    ) {
+        return randomCollectionOf(random1to10(), randomFunction, fieldsExcluded);
+    }
+
+    /**
+     * Return a collection of randomized objects.
+     *
+     * @param size           number of objects in the collection
      * @param type           type of Class
      * @param fieldsExcluded (optional) fields that should not be randomized
      * @param <T>            the generic type
@@ -62,14 +104,7 @@ public final class TestCollectionUtil {
         int size, @Nonnull Class<T> type,
         String... fieldsExcluded
     ) {
-        Collection<T> collection;
-        if (randomBoolean()) {
-            collection = randomSetOf(size, type, fieldsExcluded);
-        } else {
-            collection = randomListOf(size, type, fieldsExcluded);
-        }
-
-        return collection;
+        return randomCollectionOf(size, randomType(type), fieldsExcluded);
     }
 
     /**
@@ -86,6 +121,22 @@ public final class TestCollectionUtil {
         String... fieldsExcluded
     ) {
         return randomCollectionOf(random1to10(), type, fieldsExcluded);
+    }
+
+    /**
+     * Return a collection with a single randomized object.
+     *
+     * @param randomFunction the {@link Function} used to generate random objects
+     * @param fieldsExcluded (optional) fields that should not be randomized
+     * @param <T>            the generic type
+     *
+     * @return a List or Set with a randomized object
+     */
+    public static <T> Collection<T> randomCollectionSingleOf(
+        @Nonnull Function<String[], T> randomFunction,
+        String... fieldsExcluded
+    ) {
+        return randomCollectionOf(INT_01, randomFunction, fieldsExcluded);
     }
 
     /**

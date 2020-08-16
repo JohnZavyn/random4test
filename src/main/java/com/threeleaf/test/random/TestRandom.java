@@ -3,6 +3,8 @@ package com.threeleaf.test.random;
 import static lombok.AccessLevel.PRIVATE;
 
 import java.util.Random;
+import java.util.function.BiFunction;
+import java.util.function.Function;
 import javax.annotation.Nonnull;
 
 import io.github.benas.randombeans.EnhancedRandomBuilder;
@@ -14,14 +16,17 @@ import lombok.NoArgsConstructor;
 @SuppressWarnings("PMD.ClassNamingConventions")
 public class TestRandom {
 
+    /** The {@link EnhancedRandom} engine. */
+    public static final EnhancedRandom ENHANCED_RANDOM = new EnhancedRandomBuilder().build();
+
     /**
      * The Constant RANDOM. {@link Random} object for selecting random numbers.
      * The method .nextInt(n) will return an integer between 0 (inclusive) and n (exclusive).
      */
     public static final Random RANDOM = new Random();
 
-    /** The {@link EnhancedRandom} engine. */
-    private static final EnhancedRandom ENHANCED_RANDOM = new EnhancedRandomBuilder().build();
+    public static final BiFunction<Class<?>, String[], ?> RANDOM_OBJECT_FUNCTION =
+        ENHANCED_RANDOM::nextObject;
 
     /**
      * Return an object with randomized fields.
@@ -34,8 +39,13 @@ public class TestRandom {
      *
      * @return a randomized object
      */
-    @SuppressWarnings("squid:S1845" /* Want name to be "random" */)
+    @SuppressWarnings({"squid:S1845" /* Want name to be "random" */, "unchecked"})
     public static <T> T random(@Nonnull Class<T> type, String... fieldsExcluded) {
-        return ENHANCED_RANDOM.nextObject(type, fieldsExcluded);
+        return (T) RANDOM_OBJECT_FUNCTION.apply(type, fieldsExcluded);
+    }
+
+    @SuppressWarnings("unchecked")
+    public static <T> Function<String[], T> randomType(Class<T> type) {
+        return fieldsExcluded -> (T) RANDOM_OBJECT_FUNCTION.apply(type, fieldsExcluded);
     }
 }

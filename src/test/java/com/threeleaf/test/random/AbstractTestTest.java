@@ -13,19 +13,25 @@ class AbstractTestTest {
 
     private final Class<Address> theType = Address.class;
 
-    private final AbstractTest<Address> abstractTestUnderTest = new AbstractTest<Address>(theType) {
+    private final AbstractTest<Address> abstractTest = new AbstractTest<Address>(theType) {
     };
+
+    /** Test {@link AbstractTest#emptyList()}. */
+    @Test
+    void emptyList() {
+        assertEquals(INT_00, abstractTest.emptyList().size());
+    }
 
     /** Test {@link AbstractTest#random()}. */
     @Test
     void random() {
-        assertNotNull(abstractTestUnderTest.random());
+        assertNotNull(abstractTest.random());
     }
 
     /** Test {@link AbstractTest#randomArray(String...)}. */
     @Test
     void randomArray() {
-        Address[] result = abstractTestUnderTest.randomArray();
+        Address[] result = abstractTest.randomArray();
 
         assertTrue(result.length > INT_00);
         assertTrue(result.length < INT_11);
@@ -34,7 +40,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomArrayList(String...)}. */
     @Test
     void randomArrayList() {
-        ArrayList<Address> result = abstractTestUnderTest.randomArrayList();
+        ArrayList<Address> result = abstractTest.randomArrayList();
 
         assertTrue(result.size() > INT_00);
         assertTrue(result.size() < INT_11);
@@ -43,7 +49,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomArrayListSingle(String...)}. */
     @Test
     void randomArrayListSingle() {
-        ArrayList<Address> result = abstractTestUnderTest.randomArrayListSingle();
+        ArrayList<Address> result = abstractTest.randomArrayListSingle();
 
         assertEquals(INT_01, result.size());
     }
@@ -53,7 +59,7 @@ class AbstractTestTest {
     void randomArrayListSized() {
         int size = TestInteger.random1to100();
 
-        ArrayList<Address> result = abstractTestUnderTest.randomArrayList(size);
+        ArrayList<Address> result = abstractTest.randomArrayList(size);
 
         assertEquals(size, result.size());
     }
@@ -61,7 +67,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomArraySingle(String...)}. */
     @Test
     void randomArraySingle() {
-        Address[] result = abstractTestUnderTest.randomArraySingle();
+        Address[] result = abstractTest.randomArraySingle();
 
         assertEquals(INT_01, result.length);
     }
@@ -71,7 +77,7 @@ class AbstractTestTest {
     void randomArraySized() {
         int size = TestInteger.random1to100();
 
-        Address[] result = abstractTestUnderTest.randomArray(size);
+        Address[] result = abstractTest.randomArray(size);
 
         assertEquals(size, result.length);
     }
@@ -79,7 +85,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomCollection(String...)}. */
     @Test
     void randomCollection() {
-        Collection<Address> result = abstractTestUnderTest.randomCollection();
+        Collection<Address> result = abstractTest.randomCollection();
 
         assertTrue(result.size() > INT_00);
         assertTrue(result.size() < INT_11);
@@ -88,7 +94,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomCollectionSingle(String...)}. */
     @Test
     void randomCollectionSingle() {
-        Collection<Address> result = abstractTestUnderTest.randomCollectionSingle();
+        Collection<Address> result = abstractTest.randomCollectionSingle();
 
         assertEquals(INT_01, result.size());
     }
@@ -98,7 +104,7 @@ class AbstractTestTest {
     void randomCollectionSized() {
         int size = TestInteger.random1to100();
 
-        Collection<Address> result = abstractTestUnderTest.randomCollection(size);
+        Collection<Address> result = abstractTest.randomCollection(size);
 
         assertEquals(size, result.size());
     }
@@ -106,7 +112,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#random(String...)}. */
     @Test
     void randomFieldsExcluded() {
-        Address result = abstractTestUnderTest.random("city", "state");
+        Address result = abstractTest.random("city", "state");
 
         assertNull((result.getCity()));
         assertNull((result.getState()));
@@ -118,7 +124,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomHashMap(Class, String...)}. */
     @Test
     void randomHashMap() {
-        Map<Object, Address> result = abstractTestUnderTest.randomHashMap(Object.class);
+        Map<Object, Address> result = abstractTest.randomHashMap(Object.class);
 
         assertTrue(result.size() > INT_00);
         assertTrue(result.size() < INT_11);
@@ -128,7 +134,7 @@ class AbstractTestTest {
     @Test
     void randomHashMapSingle() {
         Map<Integer, Address> result =
-            abstractTestUnderTest.randomHashMapSingle(Integer.class);
+            abstractTest.randomHashMapSingle(Integer.class);
 
         assertEquals(INT_01, result.size());
     }
@@ -138,7 +144,7 @@ class AbstractTestTest {
     void randomHashMapSized() {
         int size = TestInteger.random1to100();
 
-        Map<Object, Address> result = abstractTestUnderTest.randomHashMap(size, Object.class);
+        Map<Object, Address> result = abstractTest.randomHashMap(size, Object.class);
 
         assertEquals(size, result.size());
     }
@@ -146,7 +152,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomHashSet(String...)}. */
     @Test
     void randomHashSet() {
-        HashSet<Address> result = abstractTestUnderTest.randomHashSet();
+        HashSet<Address> result = abstractTest.randomHashSet();
 
         assertTrue(result.size() > INT_00);
         assertTrue(result.size() < INT_11);
@@ -155,7 +161,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomHashSetSingle(String...)}. */
     @Test
     void randomHashSetSingle() {
-        HashSet<Address> result = abstractTestUnderTest.randomHashSetSingle();
+        HashSet<Address> result = abstractTest.randomHashSetSingle();
 
         assertEquals(INT_01, result.size());
     }
@@ -165,7 +171,7 @@ class AbstractTestTest {
     void randomHashSetSized() {
         int size = TestInteger.random1to100();
 
-        HashSet<Address> result = abstractTestUnderTest.randomHashSet(size);
+        HashSet<Address> result = abstractTest.randomHashSet(size);
 
         assertEquals(size, result.size());
     }
@@ -173,7 +179,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomLinkedHashMap(Class, String...)}. */
     @Test
     void randomLinkedHashMap() {
-        Map<Object, Address> result = abstractTestUnderTest.randomLinkedHashMap(Object.class);
+        Map<Object, Address> result = abstractTest.randomLinkedHashMap(Object.class);
 
         assertTrue(result.size() > INT_00);
         assertTrue(result.size() < INT_11);
@@ -183,7 +189,7 @@ class AbstractTestTest {
     @Test
     void randomLinkedHashMapSingle() {
         Map<Object, Address> result =
-            abstractTestUnderTest.randomLinkedHashMapSingle(Object.class);
+            abstractTest.randomLinkedHashMapSingle(Object.class);
 
         assertEquals(INT_01, result.size());
     }
@@ -194,7 +200,7 @@ class AbstractTestTest {
         int size = TestInteger.random1to100();
 
         Map<Object, Address> result =
-            abstractTestUnderTest.randomLinkedHashMap(size, Object.class);
+            abstractTest.randomLinkedHashMap(size, Object.class);
 
         assertEquals(size, result.size());
     }
@@ -202,7 +208,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomLinkedHashSet(String...)}. */
     @Test
     void randomLinkedHashSet() {
-        LinkedHashSet<Address> result = abstractTestUnderTest.randomLinkedHashSet();
+        LinkedHashSet<Address> result = abstractTest.randomLinkedHashSet();
 
         assertTrue(result.size() > INT_00);
         assertTrue(result.size() < INT_11);
@@ -211,7 +217,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomLinkedHashSetSingle(String...)}. */
     @Test
     void randomLinkedHashSetSingle() {
-        LinkedHashSet<Address> result = abstractTestUnderTest.randomLinkedHashSetSingle();
+        LinkedHashSet<Address> result = abstractTest.randomLinkedHashSetSingle();
 
         assertEquals(INT_01, result.size());
     }
@@ -221,7 +227,7 @@ class AbstractTestTest {
     void randomLinkedHashSetSized() {
         int size = TestInteger.random1to100();
 
-        LinkedHashSet<Address> result = abstractTestUnderTest.randomLinkedHashSet(size);
+        LinkedHashSet<Address> result = abstractTest.randomLinkedHashSet(size);
 
         assertEquals(size, result.size());
     }
@@ -229,7 +235,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomLinkedList(String...)}. */
     @Test
     void randomLinkedList() {
-        LinkedList<Address> result = abstractTestUnderTest.randomLinkedList();
+        LinkedList<Address> result = abstractTest.randomLinkedList();
 
         assertTrue(result.size() > INT_00);
         assertTrue(result.size() < INT_11);
@@ -238,7 +244,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomLinkedListSingle(String...)}. */
     @Test
     void randomLinkedListSingle() {
-        LinkedList<Address> result = abstractTestUnderTest.randomLinkedListSingle();
+        LinkedList<Address> result = abstractTest.randomLinkedListSingle();
 
         assertEquals(INT_01, result.size());
     }
@@ -248,7 +254,7 @@ class AbstractTestTest {
     void randomLinkedListSized() {
         int size = TestInteger.random1to100();
 
-        LinkedList<Address> result = abstractTestUnderTest.randomLinkedList(size);
+        LinkedList<Address> result = abstractTest.randomLinkedList(size);
 
         assertEquals(size, result.size());
     }
@@ -256,7 +262,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomList(String...)}. */
     @Test
     void randomList() {
-        List<Address> result = abstractTestUnderTest.randomList();
+        List<Address> result = abstractTest.randomList();
 
         assertTrue(result.size() > INT_00);
         assertTrue(result.size() < INT_11);
@@ -265,7 +271,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomListSingle(String...)}. */
     @Test
     void randomListSingle() {
-        List<Address> result = abstractTestUnderTest.randomListSingle();
+        List<Address> result = abstractTest.randomListSingle();
 
         assertEquals(INT_01, result.size());
     }
@@ -275,7 +281,7 @@ class AbstractTestTest {
     void randomListSized() {
         int size = TestInteger.random1to100();
 
-        List<Address> result = abstractTestUnderTest.randomList(size);
+        List<Address> result = abstractTest.randomList(size);
 
         assertEquals(size, result.size());
     }
@@ -283,7 +289,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomMap(Class, String...)}. */
     @Test
     void randomMap() {
-        Map<Object, Address> result = abstractTestUnderTest.randomMap(Object.class);
+        Map<Object, Address> result = abstractTest.randomMap(Object.class);
 
         assertTrue(result.size() > INT_00);
         assertTrue(result.size() < INT_11);
@@ -292,7 +298,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomMapSingle(Class, String...)}. */
     @Test
     void randomMapSingle() {
-        Map<Object, Address> result = abstractTestUnderTest.randomMapSingle(Object.class);
+        Map<Object, Address> result = abstractTest.randomMapSingle(Object.class);
 
         assertEquals(INT_01, result.size());
     }
@@ -302,7 +308,7 @@ class AbstractTestTest {
     void randomMapSized() {
         int size = TestInteger.random1to100();
 
-        Map<Object, Address> result = abstractTestUnderTest.randomMap(size, Object.class);
+        Map<Object, Address> result = abstractTest.randomMap(size, Object.class);
 
         assertEquals(size, result.size());
     }
@@ -310,7 +316,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomSet(String...)}. */
     @Test
     void randomSet() {
-        Set<Address> result = abstractTestUnderTest.randomSet();
+        Set<Address> result = abstractTest.randomSet();
 
         assertTrue(result.size() > INT_00);
         assertTrue(result.size() < INT_11);
@@ -319,7 +325,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomSetSingle(String...)}. */
     @Test
     void randomSetSingle() {
-        Set<Address> result = abstractTestUnderTest.randomSetSingle();
+        Set<Address> result = abstractTest.randomSetSingle();
 
         assertEquals(INT_01, result.size());
     }
@@ -329,7 +335,7 @@ class AbstractTestTest {
     void randomSetSized() {
         int size = TestInteger.random1to100();
 
-        Set<Address> result = abstractTestUnderTest.randomSet(size);
+        Set<Address> result = abstractTest.randomSet(size);
 
         assertEquals(size, result.size());
     }
@@ -337,7 +343,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomSortedSet(String...)}. */
     @Test
     void randomSortedSet() {
-        SortedSet<Address> result = abstractTestUnderTest.randomSortedSet();
+        SortedSet<Address> result = abstractTest.randomSortedSet();
 
         assertTrue(result.size() > INT_00);
         assertTrue(result.size() < INT_11);
@@ -346,7 +352,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomSortedSetSingle(String...)}. */
     @Test
     void randomSortedSetSingle() {
-        SortedSet<Address> result = abstractTestUnderTest.randomSortedSetSingle();
+        SortedSet<Address> result = abstractTest.randomSortedSetSingle();
 
         assertEquals(INT_01, result.size());
     }
@@ -356,7 +362,7 @@ class AbstractTestTest {
     void randomSortedSetSized() {
         int size = TestInteger.random1to100();
 
-        SortedSet<Address> result = abstractTestUnderTest.randomSortedSet(size);
+        SortedSet<Address> result = abstractTest.randomSortedSet(size);
 
         assertEquals(size, result.size());
     }
@@ -364,7 +370,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomTreeMap(Class, String...)}. */
     @Test
     void randomTreeMap() {
-        Map<Object, Address> result = abstractTestUnderTest.randomTreeMap(Object.class);
+        Map<Object, Address> result = abstractTest.randomTreeMap(Object.class);
 
         assertTrue(result.size() > INT_00);
         assertTrue(result.size() < INT_11);
@@ -373,7 +379,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomTreeMapSingle(Class, String...)}. */
     @Test
     void randomTreeMapSingle() {
-        Map<Object, Address> result = abstractTestUnderTest.randomTreeMapSingle(Object.class);
+        Map<Object, Address> result = abstractTest.randomTreeMapSingle(Object.class);
 
         assertEquals(INT_01, result.size());
     }
@@ -383,7 +389,7 @@ class AbstractTestTest {
     void randomTreeMapSized() {
         int size = TestInteger.random1to100();
 
-        Map<Object, Address> result = abstractTestUnderTest.randomTreeMap(size, Object.class);
+        Map<Object, Address> result = abstractTest.randomTreeMap(size, Object.class);
 
         assertEquals(size, result.size());
     }
@@ -391,7 +397,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomTreeSet(String...)}. */
     @Test
     void randomTreeSet() {
-        TreeSet<Address> result = abstractTestUnderTest.randomTreeSet();
+        TreeSet<Address> result = abstractTest.randomTreeSet();
 
         assertTrue(result.size() > INT_00);
         assertTrue(result.size() < INT_11);
@@ -400,7 +406,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomTreeSetSingle(String...)}. */
     @Test
     void randomTreeSetSingle() {
-        TreeSet<Address> result = abstractTestUnderTest.randomTreeSetSingle();
+        TreeSet<Address> result = abstractTest.randomTreeSetSingle();
 
         assertEquals(INT_01, result.size());
     }
@@ -410,7 +416,7 @@ class AbstractTestTest {
     void randomTreeSetSized() {
         int size = TestInteger.random1to100();
 
-        TreeSet<Address> result = abstractTestUnderTest.randomTreeSet(size);
+        TreeSet<Address> result = abstractTest.randomTreeSet(size);
 
         assertEquals(size, result.size());
     }
@@ -418,7 +424,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomVector(String...)}. */
     @Test
     void randomVector() {
-        Vector<Address> result = abstractTestUnderTest.randomVector();
+        Vector<Address> result = abstractTest.randomVector();
 
         assertTrue(result.size() > INT_00);
         assertTrue(result.size() < INT_11);
@@ -427,7 +433,7 @@ class AbstractTestTest {
     /** Test {@link AbstractTest#randomVectorSingle(String...)}. */
     @Test
     void randomVectorSingle() {
-        Vector<Address> result = abstractTestUnderTest.randomVectorSingle();
+        Vector<Address> result = abstractTest.randomVectorSingle();
 
         assertEquals(INT_01, result.size());
     }
@@ -437,7 +443,7 @@ class AbstractTestTest {
     void randomVectorSized() {
         int size = TestInteger.random1to100();
 
-        Vector<Address> result = abstractTestUnderTest.randomVector(size);
+        Vector<Address> result = abstractTest.randomVector(size);
 
         assertEquals(size, result.size());
     }

@@ -22,6 +22,9 @@ public class PasswordGenerator {
     public static final String PASSWORD_LENGTH_ERROR =
         "Password length must be at least %s to include one character from each set.";
 
+    /** Symbols for use in passwords. */
+    public static final String SYMBOLS_PASSWORD = PUNCTUATION_URL_SAFE + "!@#*?";
+
     /** The list of character strings. */
     private final List<String> characterSources;
 
