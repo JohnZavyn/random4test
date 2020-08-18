@@ -25,7 +25,9 @@ public final class DomainGenerator {
         DOT_MIL,
         DOT_NET,
         DOT_ORG,
-        DOT_SHOP
+        DOT_SHOP,
+        DOT_SITE,
+        DOT_WINE
     );
 
     /**
