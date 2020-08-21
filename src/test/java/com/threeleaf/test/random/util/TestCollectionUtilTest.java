@@ -79,7 +79,7 @@ class TestCollectionUtilTest {
 
     /** Test {@link TestCollectionUtil#randomCollectionSingleOf(Class, String...)}. */
     @Test
-    void testRandomCollectionSingleOf() {
+    void randomCollectionSingleOf() {
         assertEquals(INT_01, TestCollectionUtil.randomCollectionSingleOf(Object.class).size());
     }
 }

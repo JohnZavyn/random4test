@@ -30,11 +30,10 @@ public final class TestAddressUtil {
      * <li>State capital</li>
      * <li>State capital primary zip code</li>
      * </ul>
-     * Note that the min and max zip codes have been simplified to have a single range for each
-     * state. Some states have two or three ranges.
-     * <p>
-     * See http://www.aip2.com/zip2.htm
-     * https://www.irs.gov/pub/irs-utl/zip%20code%20and%20state%20abbreviations.pdf
+     * <p>Note that the min and max zip codes have been simplified to have a single range for each
+     * state. Some states have two or three ranges.</p>
+     * <p>See http://www.aip2.com/zip2.htm
+     * https://www.irs.gov/pub/irs-utl/zip%20code%20and%20state%20abbreviations.pdf</p>
      */
     public static final Map<String, Object[]> STATE_INFORMATION = ImmutableMap.<String, Object[]>builder() // @formatter:off //
           .put("AL", new Object[]{"Alabama",          35004, 36925, "Montgomery",     "36101" })

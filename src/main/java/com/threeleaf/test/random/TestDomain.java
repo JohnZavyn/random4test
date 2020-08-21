@@ -64,7 +64,11 @@ public class TestDomain extends AbstractRandom<String> {
         super(String.class);
     }
 
-    /** Generate a random domain. */
+    /**
+     * Generate a random domain. *
+     *
+     * @return a random domain name
+     */
     public static String randomDomain() {
         return INSTANCE.random();
     }

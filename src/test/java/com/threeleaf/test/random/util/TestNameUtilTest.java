@@ -36,21 +36,21 @@ class TestNameUtilTest {
         assertNotNull(TestNameUtil.randomName());
     }
 
+    /** Test {@link TestNameUtil#randomNameFirstFemale()}. */
+    @Test
+    void randomNameFirstFemale() {
+        assertTrue(NAMES_FIRST_FEMALE.contains(TestNameUtil.randomNameFirstFemale()));
+    }
+
     /** Test {@link TestNameUtil#randomNameFirstMale()}. */
     @Test
     void randomNameFirstMale() {
         assertTrue(NAMES_FIRST_MALE.contains(TestNameUtil.randomNameFirstMale()));
     }
 
-    /** Test {@link TestNameUtil#randomNameFirstFemale()}. */
-    @Test
-    void testRandomNameFirstFemale() {
-        assertTrue(NAMES_FIRST_FEMALE.contains(TestNameUtil.randomNameFirstFemale()));
-    }
-
     /** Test {@link TestNameUtil#randomNameLast()}. */
     @Test
-    void testRandomNameLast() {
+    void randomNameLast() {
         assertTrue(NAMES_LAST.contains(TestNameUtil.randomNameLast()));
     }
 }

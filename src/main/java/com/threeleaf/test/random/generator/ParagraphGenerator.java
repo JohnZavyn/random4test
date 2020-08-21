@@ -3,11 +3,10 @@ package com.threeleaf.test.random.generator;
 import static com.threeleaf.test.random.TestInteger.*;
 import static com.threeleaf.test.random.util.TestCollectionUtil.chooseOneFrom;
 import static com.threeleaf.test.random.util.TestStringUtil.capitalize;
-import static com.threeleaf.test.random.util.TestWordUtil.REGEX_PUNCTUATION;
+import static com.threeleaf.test.random.util.TestWordUtil.parseWords;
 
 import java.util.Set;
 
-import com.google.common.collect.ImmutableSet;
 import com.threeleaf.test.random.util.TestStringUtil;
 import lombok.Getter;
 
@@ -24,9 +23,14 @@ public class ParagraphGenerator {
 
     private final Set<String> wordSet;
 
+    /**
+     * Instantiate a paragraph generator with the provided words.
+     *
+     * @param wordString words separated by spaces or punctuation
+     */
     public ParagraphGenerator(String wordString) {
         super();
-        wordSet = ImmutableSet.copyOf((wordString).split(REGEX_PUNCTUATION));
+        wordSet = parseWords(wordString);
     }
 
     /**
