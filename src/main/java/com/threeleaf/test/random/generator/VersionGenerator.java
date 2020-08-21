@@ -12,10 +12,15 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 
-/** Class used to generate randomized semantic version numbers (See https://semver.org/). */
+/**
+ * <p>Class used to generate randomized semantic version numbers in the format of</p>
+ * <p>{@code <major>.<minor>.<patch>-<pre-release-identifier>+<build-identifier>}</p>
+ * <p>(See https://semver.org/).</p>
+ */
 public final class VersionGenerator {
 
-    private static final List<String> preReleaseIdentifiers = ImmutableList.of(
+    /** Pre-release identifiers. */
+    private static final List<String> PRE_RELEASE_IDENTIFIERS = ImmutableList.of(
         "alpha",
         "beta",
         "RC",
@@ -33,7 +38,7 @@ public final class VersionGenerator {
      */
     public String randomVersion() {
         return EMPTY + random0to10() + DOT + random0to10() + DOT + random0to10()
-            + (oneOutOf(INT_10) ? "-" + chooseOneFrom(preReleaseIdentifiers) : EMPTY)
+            + (oneOutOf(INT_10) ? "-" + chooseOneFrom(PRE_RELEASE_IDENTIFIERS) : EMPTY)
             + (oneOutOf(INT_10) ? "+" + randomString() : EMPTY)
             ;
     }
