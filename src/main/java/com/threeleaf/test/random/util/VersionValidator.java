@@ -30,7 +30,7 @@ public class VersionValidator implements Serializable {
     /** Singleton instance of this class. */
     private static final VersionValidator VALIDATOR = new VersionValidator();
 
-    private static final long serialVersionUID = -4111408868821263765L;
+    private static final long serialVersionUID = -7993917438980742972L;
 
     /** The semantic version  {@link RegexValidator}. */
     private final RegexValidator
@@ -56,7 +56,7 @@ public class VersionValidator implements Serializable {
      *
      * @return true if the string validates as a version number
      */
-    public boolean isValid(String version) {
+    public boolean isValid(final String version) {
         return isValidSemanticVersion(version) || isValidSpringVersion(version);
     }
 
@@ -67,7 +67,7 @@ public class VersionValidator implements Serializable {
      *
      * @return true if the string validates as a version number
      */
-    public boolean isValidSemanticVersion(String version) {
+    public boolean isValidSemanticVersion(final String version) {
         return semanticVersionValidator.match(version) != null;
     }
 
@@ -78,7 +78,7 @@ public class VersionValidator implements Serializable {
      *
      * @return true if the string validates as a version number
      */
-    public boolean isValidSpringVersion(String version) {
+    public boolean isValidSpringVersion(final String version) {
         return springVersionValidator.match(version) != null;
     }
 }

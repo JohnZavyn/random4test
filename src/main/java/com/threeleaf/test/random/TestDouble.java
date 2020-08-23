@@ -7,7 +7,7 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 /** Utilities for random {@link Double} creation. */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "RedundantSuppression"})
 public class TestDouble extends AbstractRandom<Double> {
 
     /** The Double 00. */
@@ -704,9 +704,9 @@ public class TestDouble extends AbstractRandom<Double> {
      *
      * @return the random double
      */
-    public static double randomBetween(double number1, double number2) {
-        double min = min(number1, number2);
-        double max = max(number1, number2);
+    public static double randomBetween(final double number1, final double number2) {
+        final double min = min(number1, number2);
+        final double max = max(number1, number2);
 
         return min + ((max - min) * Math.random());
     }

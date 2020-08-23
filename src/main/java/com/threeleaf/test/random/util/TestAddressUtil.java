@@ -21,7 +21,8 @@ import lombok.NoArgsConstructor;
 public final class TestAddressUtil {
 
     /**
-     * A Map of state information including:
+     * A Map of state information.
+     * Includes:
      * <ul>
      * <li>State abbreviation (key)</li>
      * <li>State name</li>
@@ -35,7 +36,8 @@ public final class TestAddressUtil {
      * <p>See http://www.aip2.com/zip2.htm
      * https://www.irs.gov/pub/irs-utl/zip%20code%20and%20state%20abbreviations.pdf</p>
      */
-    public static final Map<String, Object[]> STATE_INFORMATION = ImmutableMap.<String, Object[]>builder() // @formatter:off //
+    public static final Map<String, Object[]> STATE_INFORMATION =
+        ImmutableMap.<String, Object[]>builder() // @formatter:off //
           .put("AL", new Object[]{"Alabama",          35004, 36925, "Montgomery",     "36101" })
           .put("AK", new Object[]{"Alaska",           99501, 99950, "Juneau",         "99801" })
           .put("AZ", new Object[]{"Arizona",          85001, 86556, "Phoenix",        "85001" })
@@ -220,24 +222,24 @@ public final class TestAddressUtil {
     );
 
     /**
-     * Find the capital of the given state
+     * Find the capital of the given state.
      *
      * @param stateAbbreviation the state abbreviation
      *
      * @return the state's capital
      */
-    public static String findCapital(String stateAbbreviation) {
+    public static String findCapital(final String stateAbbreviation) {
         return (String) STATE_INFORMATION.get(stateAbbreviation)[3];
     }
 
     /**
-     * Find the capital city zip code of the given state
+     * Find the capital city zip code of the given state.
      *
      * @param stateAbbreviation the state abbreviation
      *
      * @return the state capital's zip code
      */
-    public static String findCapitalZip(String stateAbbreviation) {
+    public static String findCapitalZip(final String stateAbbreviation) {
         return (String) STATE_INFORMATION.get(stateAbbreviation)[4];
     }
 
@@ -249,7 +251,7 @@ public final class TestAddressUtil {
      * @return an address
      */
     public static Address randomAddress() {
-        Address address = new Address();
+        final Address address = new Address();
         address.setNameResident(TestNameUtil.randomName());
         address.setStreetAddress(
             EMPTY + randomBetween(INT_01, INT_10000) + ' '
@@ -281,7 +283,7 @@ public final class TestAddressUtil {
     }
 
     /**
-     * Return a random street name
+     * Return a random street name.
      *
      * @return a street name
      */
@@ -290,7 +292,7 @@ public final class TestAddressUtil {
     }
 
     /**
-     * Return a random street suffix
+     * Return a random street suffix.
      *
      * @return a street suffix
      */
@@ -308,8 +310,8 @@ public final class TestAddressUtil {
      *
      * @return a zip code
      */
-    public static String randomZip(String stateAbbreviation) {
-        Object[] stateInfo = STATE_INFORMATION.get(stateAbbreviation);
+    public static String randomZip(final String stateAbbreviation) {
+        final Object[] stateInfo = STATE_INFORMATION.get(stateAbbreviation);
 
         return String.format("%05d", randomBetween((int) stateInfo[1], (int) stateInfo[2]));
     }

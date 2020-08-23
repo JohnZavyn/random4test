@@ -1,11 +1,13 @@
 package com.threeleaf.test.random.util;
 
+import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MAX;
 import static com.threeleaf.test.random.util.TestNameUtil.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.*;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestNameUtil}. */
@@ -14,12 +16,12 @@ class TestNameUtilTest {
     /** Test {@link TestNameUtil} constructor. */
     @Test
     void constructor() throws Exception {
-        Constructor<TestNameUtil> constructor = TestNameUtil.class.getDeclaredConstructor();
+        final Constructor<TestNameUtil> constructor = TestNameUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         try {
             constructor.newInstance();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }
@@ -31,7 +33,7 @@ class TestNameUtilTest {
     }
 
     /** Test {@link TestNameUtil#randomNameFirst()}. */
-    @Test
+    @RepeatedTest(LOOP_COUNT_MAX)
     void randomNameFirst() {
         assertNotNull(TestNameUtil.randomName());
     }

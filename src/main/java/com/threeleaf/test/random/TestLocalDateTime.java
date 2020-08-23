@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.TimeZone;
 
 /** Utilities for random {@link LocalDateTime} creation. */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "RedundantSuppression"})
 public class TestLocalDateTime extends AbstractRandom<LocalDateTime> {
 
     /** The day of the month. */
@@ -28,7 +28,7 @@ public class TestLocalDateTime extends AbstractRandom<LocalDateTime> {
     public static final LocalDateTime MONTH_NEXT = now().plusMonths(L_01);
 
     /**
-     * The time zone
+     * The time zone.
      */
     public static final TimeZone TIME_ZONE = TestLocalDate.TIME_ZONE;
 
@@ -73,8 +73,8 @@ public class TestLocalDateTime extends AbstractRandom<LocalDateTime> {
      * @return a date in between
      */
     public static LocalDateTime randomBetween(
-        LocalDateTime date1,
-        LocalDateTime date2
+        final LocalDateTime date1,
+        final LocalDateTime date2
     ) {
         return toLocalDateTime(TestDate.randomBetween(toDate(date1), toDate(date2)));
     }

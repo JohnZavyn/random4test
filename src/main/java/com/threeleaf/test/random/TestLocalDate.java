@@ -10,7 +10,7 @@ import java.time.temporal.WeekFields;
 import java.util.TimeZone;
 
 /** Utilities for random {@link LocalDate} creation. */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "RedundantSuppression"})
 public class TestLocalDate extends AbstractRandom<LocalDate> {
 
     /** The day of the month. */
@@ -29,7 +29,7 @@ public class TestLocalDate extends AbstractRandom<LocalDate> {
     public static final LocalDate MONTH_NEXT = now().plusMonths(L_01);
 
     /**
-     * The time zone
+     * The time zone.
      */
     public static final TimeZone TIME_ZONE = TimeZone.getDefault();
 
@@ -73,7 +73,7 @@ public class TestLocalDate extends AbstractRandom<LocalDate> {
      *
      * @return a date in between
      */
-    public static LocalDate randomBetween(LocalDate date1, LocalDate date2) {
+    public static LocalDate randomBetween(final LocalDate date1, final LocalDate date2) {
         return toLocalDate(TestDate.randomBetween(toDate(date1), toDate(date2)));
     }
 

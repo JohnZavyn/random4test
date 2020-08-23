@@ -5,7 +5,7 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 /** Utilities for random {@link Short} creation. */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "RedundantSuppression"})
 public class TestShort extends AbstractRandom<Short> {
 
     /** The instance of {@link TestShort}. */
@@ -702,15 +702,15 @@ public class TestShort extends AbstractRandom<Short> {
      *
      * @return the random short
      */
-    public static short randomBetween(int number1, int number2) {
-        int min = min(number1, number2);
-        int max = max(number1, number2);
+    public static short randomBetween(final int number1, final int number2) {
+        final int min = min(number1, number2);
+        final int max = max(number1, number2);
 
         return (short) (min + ((max - min + 1) * Math.random()));
     }
 
     /**
-     * A random hexadecimal byte value;
+     * A random hexadecimal byte value.
      *
      * @return a  "0" to "FFFF"
      */

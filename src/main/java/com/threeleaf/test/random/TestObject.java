@@ -4,7 +4,8 @@ import static java.util.Collections.*;
 
 import java.util.*;
 
-@SuppressWarnings({"WeakerAccess", "unused", "squid:S2386" /* Mutable arrays */})
+@SuppressWarnings(
+    {"WeakerAccess", "unused", "squid:S2386" /* Mutable arrays */, "RedundantSuppression"})
 public class TestObject extends AbstractRandom<Object> {
 
     /** The instance of {@link TestObject}. */

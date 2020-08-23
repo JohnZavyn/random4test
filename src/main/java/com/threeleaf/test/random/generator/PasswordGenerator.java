@@ -49,7 +49,7 @@ public class PasswordGenerator {
      *
      * @param theCharacterStrings the characters to use in passwords
      */
-    public PasswordGenerator(@Nonnull String... theCharacterStrings) {
+    public PasswordGenerator(@Nonnull final String... theCharacterStrings) {
         super();
         characterSources = ImmutableList.copyOf(theCharacterStrings);
         characterSourcesSize = characterSources.size();
@@ -71,7 +71,7 @@ public class PasswordGenerator {
      *
      * @return password string
      */
-    public String randomPassword(int length) {
+    public String randomPassword(final int length) {
         return randomPassword(length, FALSE);
     }
 
@@ -82,7 +82,8 @@ public class PasswordGenerator {
      * @param length                 the length of the password
      * @param groupByCharacterSource when true, group randomized characters based on the character
      *                               sources they are drawn from. For example, {@code new
-     *                               PasswordGenerator(NUMBERS, ALPHABET, PUNCTUATION).randomPassword(3,
+     *                               PasswordGenerator(NUMBERS, ALPHABET, PUNCTUATION)
+     *                               .randomPassword(3,
      *                               TRUE)}
      *                               will always return a password containing, in order, a number +
      *                               a lower case character + a punctuation mark.<p>The specific
@@ -94,17 +95,18 @@ public class PasswordGenerator {
      *
      * @return password string
      */
-    public String randomPassword(int length, boolean groupByCharacterSource) {
+    public String randomPassword(final int length, final boolean groupByCharacterSource) {
         checkArgument(length >= characterSourcesSize, PASSWORD_LENGTH_ERROR, characterSourcesSize);
 
-        StringBuilder password = new StringBuilder(length);
-        int sourcesMaxIndex = characterSourcesSize - 1;
+        final StringBuilder password = new StringBuilder(length);
+        final int sourcesMaxIndex = characterSourcesSize - 1;
 
         for (int sourceIndex = 0; sourceIndex < characterSourcesSize; sourceIndex++) {
-            int charactersRemaining = length - password.length();
-            int charLength = sourceIndex == sourcesMaxIndex ?
-                charactersRemaining :
-                randomBetween(INT_01, charactersRemaining - sourcesMaxIndex + sourceIndex);
+            final int charactersRemaining = length - password.length();
+            final int charLength =
+                sourceIndex == sourcesMaxIndex
+                    ? charactersRemaining
+                    : randomBetween(INT_01, charactersRemaining - sourcesMaxIndex + sourceIndex);
             password.append(randomString(charLength, characterSources.get(sourceIndex)));
         }
 
@@ -127,7 +129,7 @@ public class PasswordGenerator {
      *
      * @return friendly password string
      */
-    public String randomPasswordFriendly(int length) {
+    public String randomPasswordFriendly(final int length) {
         return randomPassword(length, TRUE);
     }
 }

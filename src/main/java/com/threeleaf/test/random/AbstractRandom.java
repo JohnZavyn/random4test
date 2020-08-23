@@ -13,14 +13,16 @@ import lombok.Getter;
 /**
  * An abstract class to be extended to produce randomized objects of a specified type.
  * <ul>
- *     <li>Provides many helper methods that will produce single instances and collections of objects.</li>
- *     <li>The default method for randomizing objects is provided, and can be overridden to customize
+ *     <li>Provides many helper methods that will produce single instances and collections of
+ *     objects.</li>
+ *     <li>The default method for randomizing objects is provided, and can be overridden to
+ *     customize
  *  how the objects are randomized to suit specific needs of the tests.</li>
  *     <li>Extension also allows for the use of class-level methods and variables as needed.</li>
  * </ul>
  */
 @SuppressWarnings(
-    {"WeakerAccess", "unused", "PMD.ReplaceVectorWithList", "PMD.VisibilityModifierCheck",
+    {"WeakerAccess", "PMD.ReplaceVectorWithList", "PMD.VisibilityModifierCheck",
         "PMD.LooseCoupling", "PMD.LooseCoupling", "squid:S1149", "squid:S1319"})
 @Getter
 public abstract class AbstractRandom<T> {

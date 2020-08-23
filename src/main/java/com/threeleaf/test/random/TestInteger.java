@@ -11,7 +11,8 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 /** Utilities for random {@link Integer} creation. */
-@SuppressWarnings({"WeakerAccess", "unused", "squid:S2386" /* Arrays are mutable */})
+@SuppressWarnings(
+    {"WeakerAccess", "unused", "squid:S2386" /* Arrays are mutable */, "RedundantSuppression"})
 public class TestInteger extends AbstractRandom<Integer> {
 
     /** Maximum digit value. */
@@ -775,11 +776,11 @@ public class TestInteger extends AbstractRandom<Integer> {
      *
      * @return the random int
      */
-    public static int randomBetween(int number1, int number2) {
-        int min = min(number1, number2);
+    public static int randomBetween(final int number1, final int number2) {
+        final int min = min(number1, number2);
         /* ThreadLocalRandom.nextInt(long, long) is upper bound exclusive, so the following
          * is necessary to get an inclusive range (only MAX_VALUE will never be returned). */
-        int max = min(max(number1, number2), MAX_VALUE - 1) + 1;
+        final int max = min(max(number1, number2), MAX_VALUE - 1) + 1;
 
         return ThreadLocalRandom.current().nextInt(min, max);
     }
@@ -794,7 +795,7 @@ public class TestInteger extends AbstractRandom<Integer> {
     }
 
     /**
-     * A random hexadecimal byte value;
+     * A random hexadecimal byte value.
      *
      * @return a  "0" to "FF"
      */

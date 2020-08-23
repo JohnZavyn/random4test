@@ -7,7 +7,7 @@ import static java.util.Collections.*;
 import java.util.*;
 
 /** String constants to be used in JUnit tests. */
-@SuppressWarnings({"unused", "squid:S2386" /* Mutable arrays */})
+@SuppressWarnings({"unused", "squid:S2386" /* Mutable arrays */, "RedundantSuppression"})
 public class TestString extends AbstractRandom<String> {
 
     /** Alphabet, lower case. */

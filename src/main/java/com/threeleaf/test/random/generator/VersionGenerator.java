@@ -42,8 +42,13 @@ public final class VersionGenerator {
     );
 
     /**
-     * <p>Generate randomized semantic version numbers in the format of</p>
-     * <p>{@code <major>.<minor>.<patch>-<pre-release-identifier>+<build-identifier>}.</p>
+     * <p>Generate randomized semantic version numbers.</p>
+     * <p>Semantic version number format:
+     * <br>{@code <major>.<minor>.<patch>-<pre-release-identifier>+<build-identifier>}
+     * <br>{@code -<pre-release-identifier>}
+     * and {@code +<build-identifier>}
+     * are optional
+     * </p>
      *
      * @return a semantic version number
      *
@@ -57,8 +62,10 @@ public final class VersionGenerator {
     }
 
     /**
-     * <p>Generate randomized Spring version numbers in the format of</p>
-     * <p>{@code <major>.<minor>.<patch>.<release-type>}.</p>
+     * <p>Generate randomized Spring version numbers.</p>
+     * <p>Spring version number format:
+     * <br>{@code <major>.<minor>.<patch>.<release-type>}
+     * </p>
      *
      * @return a Spring version number
      *

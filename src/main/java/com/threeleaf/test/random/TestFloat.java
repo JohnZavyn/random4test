@@ -5,7 +5,7 @@ import static com.threeleaf.test.random.TestRandom.RANDOM;
 import static java.lang.Math.*;
 
 /** Utilities for random {@link Float} creation. */
-@SuppressWarnings({"WeakerAccess", "unused"})
+@SuppressWarnings({"WeakerAccess", "unused", "RedundantSuppression"})
 public class TestFloat extends AbstractRandom<Float> {
 
     /** The Float 00. */
@@ -699,9 +699,9 @@ public class TestFloat extends AbstractRandom<Float> {
      *
      * @return the random float
      */
-    public static float randomBetween(float number1, float number2) {
-        float min = min(number1, number2);
-        float max = max(number1, number2);
+    public static float randomBetween(final float number1, final float number2) {
+        final float min = min(number1, number2);
+        final float max = max(number1, number2);
 
         return min + (float) ((max - min) * Math.random());
     }
