@@ -1,5 +1,6 @@
 package com.threeleaf.test.random.generator;
 
+import static com.threeleaf.test.random.TestBoolean.coinFlip;
 import static com.threeleaf.test.random.TestBoolean.oneOutOf;
 import static com.threeleaf.test.random.TestDomain.DOT;
 import static com.threeleaf.test.random.TestInteger.*;
@@ -12,24 +13,64 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 
-/**
- * <p>Class used to generate randomized semantic version numbers in the format of</p>
- * <p>{@code <major>.<minor>.<patch>-<pre-release-identifier>+<build-identifier>}</p>
- * <p>(See https://semver.org/).</p>
- */
+/** Generate randomized version numbers for applications. */
 public final class VersionGenerator {
 
-    /** Pre-release identifiers. */
+    /**
+     * Semantic pre-release identifiers. These can be anything, but I have included a few common
+     * identifiers.
+     */
     private static final List<String> PRE_RELEASE_IDENTIFIERS = ImmutableList.of(
         "alpha",
         "beta",
-        "RC",
-        "RC-" + random1to10(),
+        "pre",
+        "GA", /* General Availability */
+        "RC", /* Release Candidate */
+        "RC-" + random1to10(), /* Milestone */
         "M-" + random1to10(),
         "SNAPSHOT",
         randomString(),
         UUID
     );
+
+    /** Spring release types. */
+    private static final List<String> SPRING_RELEASE_TYPE = ImmutableList.of(
+        "BUILD-SNAPSHOT", /* Spring Snapshot */
+        "M" + random1to10(), /* Milestone */
+        "RELEASE", /* Spring Release */
+        "RC" + random1to10() /* Release Candidate */
+    );
+
+    /**
+     * <p>Generate randomized semantic version numbers in the format of</p>
+     * <p>{@code <major>.<minor>.<patch>-<pre-release-identifier>+<build-identifier>}.</p>
+     *
+     * @return a semantic version number
+     *
+     * @see <a href="https://semver.org/">Semantic Versioning</a>
+     */
+    public String randomSemanticVersion() {
+        return EMPTY + random0to10() + DOT + random0to10() + DOT + random0to10()
+            + (oneOutOf(INT_10) ? "-" + chooseOneFrom(PRE_RELEASE_IDENTIFIERS) : EMPTY)
+            + (oneOutOf(INT_10) ? "+" + randomString() : EMPTY)
+            ;
+    }
+
+    /**
+     * <p>Generate randomized Spring version numbers in the format of</p>
+     * <p>{@code <major>.<minor>.<patch>.<release-type>}.</p>
+     *
+     * @return a Spring version number
+     *
+     * @see
+     * <a href="https://github.com/spring-projects/spring-build-gradle/wiki/Spring-project-versioning">Spring
+     *     project versioning</a>
+     */
+    public String randomSpringVersion() {
+        return EMPTY + random0to10() + DOT + random0to10() + DOT + random0to10() + DOT
+            + chooseOneFrom(SPRING_RELEASE_TYPE)
+            ;
+    }
 
     /**
      * A random version number.
@@ -37,9 +78,6 @@ public final class VersionGenerator {
      * @return a version number
      */
     public String randomVersion() {
-        return EMPTY + random0to10() + DOT + random0to10() + DOT + random0to10()
-            + (oneOutOf(INT_10) ? "-" + chooseOneFrom(PRE_RELEASE_IDENTIFIERS) : EMPTY)
-            + (oneOutOf(INT_10) ? "+" + randomString() : EMPTY)
-            ;
+        return coinFlip() ? randomSemanticVersion() : randomSpringVersion();
     }
 }
