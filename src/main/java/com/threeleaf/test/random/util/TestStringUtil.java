@@ -39,13 +39,42 @@ public final class TestStringUtil {
      *
      * @return the capitalized string
      */
-    public static String capitalize(String string) {
+    public static String capitalize(final String string) {
         return isEmpty(string) ? string
             : string.substring(0, 1).toUpperCase() + string.substring(1);
     }
 
-    public static String chooseOneFrom(String string) {
+    public static String chooseOneFrom(final String string) {
         return Character.toString(TestCharacterUtil.chooseOneFrom(string));
+    }
+
+    /**
+     * Compare two strings.
+     *
+     * @param string1 string 1
+     * @param string2 string 2
+     *
+     * @return 1 if string 1 &gt; string 2; 0 if equal or both null; -1 if string 1 &lt; string 2
+     */
+    public static int compare(final String string1, final String string2) {
+        final int comparison;
+        if (string1 == null || string2 == null) {
+            if (string1 == null && string2 == null) {
+                /* Both null, therefore equal */
+                comparison = 0;
+            } else if (string1 == null) {
+                /* string 2 must != null, therefore string 1 < string 2 */
+                comparison = -1;
+            } else {
+                /* string 1 must != null, therefore string 1 > string 2 */
+                comparison = 1;
+            }
+        } else {
+            /* Compare two strings normally */
+            comparison = string1.compareTo(string2);
+        }
+
+        return comparison;
     }
 
     /**
@@ -57,7 +86,7 @@ public final class TestStringUtil {
      *
      * @return true if the character is inside the string at least once.
      */
-    public static boolean contains(String string, char character) {
+    public static boolean contains(final String string, final char character) {
         return string.indexOf(character) >= 0;
     }
 
@@ -69,8 +98,8 @@ public final class TestStringUtil {
      *
      * @return the string
      */
-    public static String extractSuffix(@Nonnull String string) {
-        String[] stringParts = string.split("[_~]");
+    public static String extractSuffix(@Nonnull final String string) {
+        final String[] stringParts = string.split("[_~]");
 
         return stringParts[stringParts.length - 1];
     }
@@ -82,7 +111,7 @@ public final class TestStringUtil {
      *
      * @return true if blank
      */
-    public static boolean isBlank(CharSequence chars) {
+    public static boolean isBlank(final CharSequence chars) {
         boolean isBlank = true;
         if (!isEmpty(chars)) {
             for (int charIndex = 0; charIndex < chars.length(); charIndex++) {
@@ -103,11 +132,11 @@ public final class TestStringUtil {
      *
      * @return true if empty
      */
-    public static boolean isEmpty(CharSequence chars) {
+    public static boolean isEmpty(final CharSequence chars) {
         return chars == null || chars.length() == 0;
     }
 
-    public static String join(List<Character> characters) {
+    public static String join(final List<Character> characters) {
         return characters.stream().map(Object::toString).collect(joining());
     }
 
@@ -136,7 +165,7 @@ public final class TestStringUtil {
      *
      * @return the string
      */
-    public static String randomString(int length) {
+    public static String randomString(final int length) {
         return randomString(length, RANDOM_CHARS);
     }
 
@@ -148,8 +177,8 @@ public final class TestStringUtil {
      *
      * @return the string
      */
-    public static String randomString(int length, String string) {
-        StringBuilder randString = new StringBuilder(length);
+    public static String randomString(final int length, final String string) {
+        final StringBuilder randString = new StringBuilder(length);
 
         for (int i = 0; i < length; ++i) {
             randString.append(TestCharacterUtil.chooseOneFrom(string));
@@ -174,7 +203,7 @@ public final class TestStringUtil {
      *
      * @return the string
      */
-    public static String randomTest(String entityName) {
+    public static String randomTest(final String entityName) {
         return isBlank(entityName) ? test(EMPTY)
             : test(entityName.toUpperCase(Locale.US) + "_" + randomStringShort());
     }
@@ -195,7 +224,7 @@ public final class TestStringUtil {
      *
      * @return the string
      */
-    public static String safeString(String string) {
+    public static String safeString(final String string) {
         return safeString(string, EMPTY);
     }
 
@@ -208,7 +237,7 @@ public final class TestStringUtil {
      *
      * @return the string
      */
-    public static String safeString(String originalString, String defaultString) {
+    public static String safeString(final String originalString, final String defaultString) {
         return isEmpty(originalString) ? defaultString : originalString;
     }
 
@@ -219,8 +248,8 @@ public final class TestStringUtil {
      *
      * @return the shuffled string
      */
-    public static String shuffle(String string) {
-        List<Character> characters = string.chars().mapToObj(e -> (char) e).collect(toList());
+    public static String shuffle(final String string) {
+        final List<Character> characters = string.chars().mapToObj(e -> (char) e).collect(toList());
         Collections.shuffle(characters);
 
         return join(characters);
@@ -233,7 +262,7 @@ public final class TestStringUtil {
      *
      * @return the test string
      */
-    public static String test(String suffix) {
+    public static String test(final String suffix) {
         return TEST_PREFIX + (isBlank(suffix) ? randomStringShort() : suffix);
     }
 }

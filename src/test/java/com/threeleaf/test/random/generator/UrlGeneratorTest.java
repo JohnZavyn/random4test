@@ -1,6 +1,6 @@
 package com.threeleaf.test.random.generator;
 
-import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MAX;
+import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MIN;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.threeleaf.test.random.TestUrl;
@@ -15,18 +15,18 @@ class UrlGeneratorTest {
     private UrlGenerator urlGenerator;
 
     /** Test {@link UrlGenerator#randomUrl()}. */
-    @RepeatedTest(LOOP_COUNT_MAX)
+    @RepeatedTest(LOOP_COUNT_MIN)
     void randomUrl() {
-        String url = urlGenerator.randomUrl();
+        final String url = urlGenerator.randomUrl();
 
         assertTrue(url.startsWith(TestUrl.HTTP_PROTOCOL));
         assertTrue(UrlValidator.getInstance().isValid(url));
     }
 
     /** Test {@link UrlGenerator#randomUrlSecure()}. */
-    @RepeatedTest(LOOP_COUNT_MAX)
+    @RepeatedTest(LOOP_COUNT_MIN)
     void randomUrlSecure() {
-        String url = urlGenerator.randomUrlSecure();
+        final String url = urlGenerator.randomUrlSecure();
 
         assertTrue(url.startsWith(TestUrl.HTTPS_PROTOCOL));
         assertTrue(UrlValidator.getInstance().isValid(url));

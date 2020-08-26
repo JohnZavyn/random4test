@@ -71,13 +71,13 @@ public class VersionValidator implements Serializable {
         for (int i = 0; i < version1Parts.length; i++) {
             final String version1part = version1Parts[i];
             final String version2part = version2Parts[i];
-            final long version1num = parseLong(version1part);
-            final long version2num = parseLong(version2part);
+            final Long version1num = parseLong(version1part);
+            final Long version2num = parseLong(version2part);
 
-            if (version1num > -1 && version2num > -1) {
-                comparison = Long.compare(version1num, version2num);
+            if (version1num == null || version2num == null) {
+                comparison = TestStringUtil.compare(version1part, version2part);
             } else {
-                comparison = version1part == null ? -1 : version1part.compareTo(version2part);
+                comparison = Long.compare(version1num, version2num);
             }
 
             if (comparison != 0) {
@@ -126,18 +126,18 @@ public class VersionValidator implements Serializable {
     }
 
     /**
-     * Parse a positive long value from a string.
+     * Parse a long value from a string.
      *
      * @param string the numeric string
      *
-     * @return -1 if not a positive long
+     * @return the number or null if not a long value
      */
-    private long parseLong(final String string) {
-        long value = -1;
+    private Long parseLong(final String string) {
+        Long value;
         try {
             value = Long.parseLong(string);
         } catch (final NumberFormatException e) {
-            /* ignore. */
+            value = null;
         }
 
         return value;

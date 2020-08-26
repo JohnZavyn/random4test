@@ -1,6 +1,6 @@
 package com.threeleaf.test.random.util;
 
-import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MAX;
+import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MIN;
 import static com.threeleaf.test.random.util.TestNameUtil.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -33,7 +33,7 @@ class TestNameUtilTest {
     }
 
     /** Test {@link TestNameUtil#randomNameFirst()}. */
-    @RepeatedTest(LOOP_COUNT_MAX)
+    @RepeatedTest(LOOP_COUNT_MIN)
     void randomNameFirst() {
         assertNotNull(TestNameUtil.randomName());
     }

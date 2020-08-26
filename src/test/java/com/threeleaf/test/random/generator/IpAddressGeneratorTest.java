@@ -1,10 +1,10 @@
 package com.threeleaf.test.random.generator;
 
+import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MIN;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.apache.commons.validator.routines.InetAddressValidator;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 
 /** Test {@link IpAddressGenerator}. */
 class IpAddressGeneratorTest {
@@ -13,7 +13,7 @@ class IpAddressGeneratorTest {
     private IpAddressGenerator ipAddressGenerator;
 
     /** Test {@link IpAddressGenerator#randomIpAddress()}. */
-    @Test
+    @RepeatedTest(LOOP_COUNT_MIN)
     void randomIpAddress() {
         assertTrue(
             InetAddressValidator.getInstance().isValid(ipAddressGenerator.randomIpAddress()));

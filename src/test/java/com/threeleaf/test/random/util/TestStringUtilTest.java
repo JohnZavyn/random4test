@@ -2,7 +2,7 @@ package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestCharacter.CHARACTER_126;
 import static com.threeleaf.test.random.TestCharacter.CHARACTER_13;
-import static com.threeleaf.test.random.TestInteger.random1to10;
+import static com.threeleaf.test.random.TestInteger.*;
 import static com.threeleaf.test.random.TestString.*;
 import static com.threeleaf.test.random.util.TestStringUtil.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -20,22 +20,32 @@ class TestStringUtilTest {
     void capitalize() {
         final String expectedResult = "String";
 
-        String result = TestStringUtil.capitalize("string");
+        final String result = TestStringUtil.capitalize("string");
 
         assertEquals(expectedResult, result);
         assertNull(TestStringUtil.capitalize(STRING_NULL));
         assertEquals(WHITESPACE, TestStringUtil.capitalize(WHITESPACE));
     }
 
+    /** Test {@link TestStringUtil#compare(String, String)}. */
+    @Test
+    void compare() {
+        assertEquals(INT_00, TestStringUtil.compare(STRING_NULL, STRING_NULL));
+        assertEquals(INT_01, TestStringUtil.compare(STRING, STRING_NULL));
+        assertEquals(-1, TestStringUtil.compare(STRING_NULL, STRING));
+        assertNotEquals(INT_00, TestStringUtil.compare(STRING_01, STRING_02));
+    }
+
     /** Test {@link TestStringUtil} constructor. */
     @Test
     void constructor() throws Exception {
-        Constructor<TestStringUtil> constructor = TestStringUtil.class.getDeclaredConstructor();
+        final Constructor<TestStringUtil> constructor =
+            TestStringUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         try {
             constructor.newInstance();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }
@@ -50,9 +60,9 @@ class TestStringUtilTest {
     /** Test {@link TestStringUtil#extractSuffix(String)}. */
     @Test
     void extractSuffix() {
-        String string = STRING_05 + '_' + STRING_32;
+        final String string = STRING_05 + '_' + STRING_32;
 
-        String result = TestStringUtil.extractSuffix(string);
+        final String result = TestStringUtil.extractSuffix(string);
 
         assertEquals(STRING_32, result);
         assertEquals(STRING_08, TestStringUtil.extractSuffix(STRING_99 + '~' + STRING_08));
@@ -84,7 +94,7 @@ class TestStringUtilTest {
     /** Test {@link TestStringUtil#randomString()}. */
     @Test
     void randomString() {
-        String result = TestStringUtil.randomString();
+        final String result = TestStringUtil.randomString();
 
         assertTrue(result.length() >= STRING_LENGTH_MIN);
         assertTrue(result.length() <= STRING_LENGTH_MAX);
@@ -93,9 +103,9 @@ class TestStringUtilTest {
     /** Test {@link TestStringUtil#randomString(int)}. */
     @Test
     void randomStringLength() {
-        int length = random1to10();
+        final int length = random1to10();
 
-        String result = TestStringUtil.randomString(length);
+        final String result = TestStringUtil.randomString(length);
 
         assertEquals(length, result.length());
     }
@@ -109,7 +119,7 @@ class TestStringUtilTest {
     /** Test {@link TestStringUtil#randomTest(String)}. */
     @Test
     void randomTestBlank() {
-        String testEntity = TestStringUtil.randomTest(WHITESPACE);
+        final String testEntity = TestStringUtil.randomTest(WHITESPACE);
 
         assertTrue(testEntity.startsWith(TEST_PREFIX));
         assertFalse(testEntity.contains(WHITESPACE));
@@ -149,7 +159,7 @@ class TestStringUtilTest {
     /** Test {@link TestStringUtil#test(String)}. */
     @Test
     void test() {
-        String testName = TestStringUtil.test(STRING_05);
+        final String testName = TestStringUtil.test(STRING_05);
         assertTrue(testName.startsWith(TEST_PREFIX));
         assertTrue(testName.endsWith(STRING_05));
     }
@@ -157,7 +167,7 @@ class TestStringUtilTest {
     /** Test {@link TestStringUtil#test(String)}. */
     @Test
     void testBlank() {
-        String testName = TestStringUtil.test(WHITESPACE);
+        final String testName = TestStringUtil.test(WHITESPACE);
 
         assertTrue(testName.startsWith(TEST_PREFIX));
         assertFalse(testName.contains(WHITESPACE));

@@ -1,6 +1,6 @@
 package com.threeleaf.test.random.generator;
 
-import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MAX;
+import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MIN;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import com.threeleaf.test.random.util.VersionValidator;
@@ -28,7 +28,7 @@ class VersionGeneratorTest {
     }
 
     /** Test {@link VersionGenerator#randomVersion()}. */
-    @RepeatedTest(LOOP_COUNT_MAX)
+    @RepeatedTest(LOOP_COUNT_MIN)
     void randomVersion() {
         assertTrue(versionValidator.isValid(versionGenerator.randomVersion()));
     }
