@@ -49,35 +49,6 @@ public final class TestStringUtil {
     }
 
     /**
-     * Compare two strings.
-     *
-     * @param string1 string 1
-     * @param string2 string 2
-     *
-     * @return 1 if string 1 &gt; string 2; 0 if equal or both null; -1 if string 1 &lt; string 2
-     */
-    public static int compare(final String string1, final String string2) {
-        final int comparison;
-        if (string1 == null || string2 == null) {
-            if (string1 == null && string2 == null) {
-                /* Both null, therefore equal */
-                comparison = 0;
-            } else if (string1 == null) {
-                /* string 2 must != null, therefore string 1 < string 2 */
-                comparison = -1;
-            } else {
-                /* string 1 must != null, therefore string 1 > string 2 */
-                comparison = 1;
-            }
-        } else {
-            /* Compare two strings normally */
-            comparison = string1.compareTo(string2);
-        }
-
-        return comparison;
-    }
-
-    /**
      * Tests if a {@link Character} is contained within the provided {@link String}. The built in
      * {@link String#contains(CharSequence)} does not apply for single {@link Character} input.
      *

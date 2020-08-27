@@ -2,7 +2,7 @@ package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestCharacter.CHARACTER_126;
 import static com.threeleaf.test.random.TestCharacter.CHARACTER_13;
-import static com.threeleaf.test.random.TestInteger.*;
+import static com.threeleaf.test.random.TestInteger.random1to10;
 import static com.threeleaf.test.random.TestString.*;
 import static com.threeleaf.test.random.util.TestStringUtil.*;
 import static org.junit.jupiter.api.Assertions.*;
@@ -25,15 +25,6 @@ class TestStringUtilTest {
         assertEquals(expectedResult, result);
         assertNull(TestStringUtil.capitalize(STRING_NULL));
         assertEquals(WHITESPACE, TestStringUtil.capitalize(WHITESPACE));
-    }
-
-    /** Test {@link TestStringUtil#compare(String, String)}. */
-    @Test
-    void compare() {
-        assertEquals(INT_00, TestStringUtil.compare(STRING_NULL, STRING_NULL));
-        assertEquals(INT_01, TestStringUtil.compare(STRING, STRING_NULL));
-        assertEquals(-1, TestStringUtil.compare(STRING_NULL, STRING));
-        assertNotEquals(INT_00, TestStringUtil.compare(STRING_01, STRING_02));
     }
 
     /** Test {@link TestStringUtil} constructor. */
