@@ -1,9 +1,15 @@
 package com.threeleaf.test.random.util;
 
-import java.io.Serializable;
-import javax.annotation.Nonnull;
+import static com.threeleaf.test.random.TestString.EMPTY;
+import static com.threeleaf.test.random.util.TestStringUtil.isNotBlank;
+import static java.util.Optional.ofNullable;
 
-import org.apache.commons.validator.routines.RegexValidator;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import javax.annotation.Nonnull;
 
 /**
  * <p><b>Version</b> validation.</p>
@@ -31,9 +37,9 @@ public class VersionValidator implements Serializable {
      * @see <a href="https://www.mojohaus.org/versions-maven-plugin/version-rules.html">Maven
      *     Version Number Rules</a>
      */
-    private static final String MAVEN_VERSION_REGEX =
+    private static final Pattern MAVEN_VERSION_REGEX = Pattern.compile(
         "^(?<MAJOR>0|[1-9]\\d*)(?:\\.(?<MINOR>0|[1-9]\\d*))?(?:\\.(?<INCREMENTAL>0|[1-9]\\d*))?"
-            + "(?:-(?<BUILD>[0-9]+))?(?:-(?<QUALIFIER>[0-9a-zA-Z].*))?$";
+            + "(?:-(?<BUILD>[0-9]+))?(?:-(?<QUALIFIER>[0-9a-zA-Z].*))?$");
 
     /**
      * The regular expression to validate the format of a semantic version number.
@@ -49,11 +55,11 @@ public class VersionValidator implements Serializable {
      *
      * @see <a href="https://semver.org/">Semantic Versioning 2.0.0</a>.
      */
-    private static final String SEMANTIC_VERSION_REGEX =
+    private static final Pattern SEMANTIC_VERSION_REGEX = Pattern.compile(
         "^(?<MAJOR>0|[1-9]\\d*)\\.(?<MINOR>0|[1-9]\\d*)\\.(?<INCREMENTAL>0|[1-9]\\d*)"
             + "(?:-(?<QUALIFIER>(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)"
             + "(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?"
-            + "(?:\\+(?<BUILD>[0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$";
+            + "(?:\\+(?<BUILD>[0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$");
 
     /**
      * The regular expression to validate the format of a Spring version number.
@@ -70,26 +76,15 @@ public class VersionValidator implements Serializable {
      * <a href="https://github.com/spring-projects/spring-build-gradle/wiki/Spring-project-versioning">Spring
      *     Project Versioning</a>.
      */
-    private static final String SPRING_VERSION_REGEX =
+    @SuppressWarnings("Annotator" /* BUILD group intentionally empty */)
+    private static final Pattern SPRING_VERSION_REGEX = Pattern.compile(
         "^(?<MAJOR>0|[1-9]\\d*)\\.(?<MINOR>0|[1-9]\\d*)\\.(?<INCREMENTAL>0|[1-9]\\d*)"
-            + "\\.(?<QUALIFIER>BUILD-SNAPSHOT|M[0-9]+|RC[0-9]+|RELEASE)$";
+            + "\\.(?<QUALIFIER>BUILD-SNAPSHOT|M[0-9]+|RC[0-9]+|RELEASE)(?<BUILD>)$");
 
     /** Singleton instance of this class. */
     private static final VersionValidator VALIDATOR = new VersionValidator();
 
     private static final long serialVersionUID = -7993917438980742972L;
-
-    /** The semantic version  {@link RegexValidator}. */
-    private final RegexValidator
-        mavenVersionValidator = new RegexValidator(MAVEN_VERSION_REGEX);
-
-    /** The semantic version  {@link RegexValidator}. */
-    private final RegexValidator
-        semanticVersionValidator = new RegexValidator(SEMANTIC_VERSION_REGEX);
-
-    /** The Spring version  {@link RegexValidator}. */
-    private final RegexValidator
-        springVersionValidator = new RegexValidator(SPRING_VERSION_REGEX);
 
     /**
      * Returns the singleton instance of this validator.
@@ -111,7 +106,6 @@ public class VersionValidator implements Serializable {
      *      Maven
      *      <ul>
      *          <li>Maven uses
-     *
      *          <a href="https://github.com/apache/maven/blob/maven-3.3.9/maven-artifact/src/main/java/org/apache/maven/artifact/versioning/1.java">DefaultArtifactVersion</a></li>
      *          <li>Which does not recognize Spring versions (for example, it will say
      *          {@code 10.0.0.RELEASE} < {@code 2.0.0.RELEASE)}</li>
@@ -120,8 +114,7 @@ public class VersionValidator implements Serializable {
      *      </ul></li>
      *      <li>Note that like Maven, qualifiers, pre-release text, and types are sorted
      *      alphabetically (for example, {@code SNAPSHOT} > {@code RELEASE} alphabetically, even
-     *      though our
-     *      understanding is that {@code SNAPSHOT} should be < {@code RELEASE})</li>
+     *      though our understanding is that {@code SNAPSHOT} should be < {@code RELEASE})</li>
      * </ul>
      *
      * @param version1 the first version
@@ -136,12 +129,12 @@ public class VersionValidator implements Serializable {
         }
 
         int comparison = 0;
-        final String[] version1Parts = parseVersion(version1);
-        final String[] version2Parts = parseVersion(version2);
+        final List<String> version1Parts = parseVersion(version1);
+        final List<String> version2Parts = parseVersion(version2);
 
-        for (int i = 0; i < version1Parts.length; i++) {
-            final String version1part = version1Parts[i];
-            final String version2part = version2Parts[i];
+        for (int i = 0; i < version1Parts.size(); i++) {
+            final String version1part = version1Parts.get(i);
+            final String version2part = version2Parts.get(i);
             final Long version1num = parseLong(version1part);
             final Long version2num = parseLong(version2part);
 
@@ -154,10 +147,6 @@ public class VersionValidator implements Serializable {
             if (comparison != 0) {
                 break;
             }
-        }
-
-        if (comparison == 0) {
-            comparison = Integer.compare(version1Parts.length, version2Parts.length);
         }
 
         return Integer.compare(comparison, 0);
@@ -213,7 +202,8 @@ public class VersionValidator implements Serializable {
      * @return {@code TRUE} if the string validates as a version number
      */
     public boolean isValid(final String version) {
-        return isValidMavenVersion(version) || isValidSemanticVersion(version)
+        return isValidMavenVersion(version)
+            || isValidSemanticVersion(version)
             || isValidSpringVersion(version);
     }
 
@@ -225,7 +215,7 @@ public class VersionValidator implements Serializable {
      * @return {@code TRUE} if the string validates as a version number
      */
     public boolean isValidMavenVersion(final String version) {
-        return parseVersion(version, mavenVersionValidator) != null;
+        return isNotBlank(version) && MAVEN_VERSION_REGEX.matcher(version).matches();
     }
 
     /**
@@ -236,7 +226,7 @@ public class VersionValidator implements Serializable {
      * @return {@code TRUE} if the string validates as a version number
      */
     public boolean isValidSemanticVersion(final String version) {
-        return parseVersion(version, semanticVersionValidator) != null;
+        return isNotBlank(version) && SEMANTIC_VERSION_REGEX.matcher(version).matches();
     }
 
     /**
@@ -247,7 +237,7 @@ public class VersionValidator implements Serializable {
      * @return {@code TRUE} if the string validates as a version number
      */
     public boolean isValidSpringVersion(final String version) {
-        return parseVersion(version, springVersionValidator) != null;
+        return isNotBlank(version) && SPRING_VERSION_REGEX.matcher(version).matches();
     }
 
     /**
@@ -297,16 +287,24 @@ public class VersionValidator implements Serializable {
     /**
      * Parse version number parts from a string using the provided validator.
      *
-     * @param version          the version string
-     * @param versionValidator the version validator
+     * @param version the version string
+     * @param pattern the version regex pattern
      *
      * @return the version parts
      */
-    private String[] parseVersion(
-        final String version, final RegexValidator versionValidator
-    ) {
+    private List<String> parseVersion(final String version, final Pattern pattern) {
+        final List<String> parsedVersion = new ArrayList<>();
+        final Matcher matcher = pattern.matcher(version.trim());
+        if (matcher.find()) {
+            /* Essentially, cast all version styles to a Maven style equivalent. */
+            parsedVersion.add(ofNullable(matcher.group("MAJOR")).orElse(EMPTY));
+            parsedVersion.add(ofNullable(matcher.group("MINOR")).orElse(EMPTY));
+            parsedVersion.add(ofNullable(matcher.group("INCREMENTAL")).orElse(EMPTY));
+            parsedVersion.add(ofNullable(matcher.group("QUALIFIER")).orElse(EMPTY));
+            parsedVersion.add(ofNullable(matcher.group("BUILD")).orElse(EMPTY));
+        }
 
-        return version == null ? null : versionValidator.match(version.trim());
+        return parsedVersion;
     }
 
     /**
@@ -322,11 +320,11 @@ public class VersionValidator implements Serializable {
      *
      * @return the version parts
      */
-    private String[] parseVersion(final String version) {
-        String[] versionParts = parseVersion(version, mavenVersionValidator);
+    private List<String> parseVersion(final String version) {
+        List<String> versionParts = parseVersion(version, MAVEN_VERSION_REGEX);
         versionParts =
-            versionParts == null ? parseVersion(version, semanticVersionValidator) : versionParts;
+            versionParts.isEmpty() ? parseVersion(version, SEMANTIC_VERSION_REGEX) : versionParts;
 
-        return versionParts == null ? parseVersion(version, springVersionValidator) : versionParts;
+        return versionParts.isEmpty() ? parseVersion(version, SPRING_VERSION_REGEX) : versionParts;
     }
 }

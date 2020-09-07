@@ -30,7 +30,7 @@ class VersionValidatorTest {
         "5.4.3-2+2     |5.4.3-c+2            |-1",
         "1.2.3.RELEASE |1.2.3.BUILD-SNAPSHOT |1",
         "1.2.3         |1.2.3                |0",
-        // TODO "1.2.3.RELEASE |1.2.3-RELEASE        |0",
+        "1.2.3.RELEASE |1.2.3-RELEASE        |0",
         "5.4.3-a+2     |5.4.3-b+2            |-1"
     }, delimiter = '|')
     void compare(final String version1, final String version2, final int comparisonResult) {
@@ -115,6 +115,7 @@ class VersionValidatorTest {
 
     /** Test {@link VersionValidator#isValidMavenVersion(String)} for invalid Maven versions. */
     @ParameterizedTest
+    @NullAndEmptySource
     @ValueSource(
         strings = {
             "1.2.3.4",
@@ -207,6 +208,7 @@ class VersionValidatorTest {
 
     /** Test {@link VersionValidator#isValidSpringVersion(String)} for invalid Spring versions. */
     @ParameterizedTest
+    @NullAndEmptySource
     @ValueSource(
         strings = {
             "1.0.1",
@@ -232,7 +234,7 @@ class VersionValidatorTest {
         "1.2.3.RELEASE |1.2.3.BUILD-SNAPSHOT |false",
         "1.2.3         |1.2.3                |true",
         "1.2.3+0       |1.2.3                |false",
-        // TODO "1.2.3.RELEASE |1.2.3-RELEASE        |true",
+        "1.2.3.RELEASE |1.2.3-RELEASE        |true",
         "5.4.3-a+2     |5.4.3-b+2            |true"
     }, delimiter = '|')
     void maxValue(final String version, final String max, final boolean isVersionLteMax) {

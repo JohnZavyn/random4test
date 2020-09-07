@@ -107,6 +107,17 @@ public final class TestStringUtil {
         return chars == null || chars.length() == 0;
     }
 
+    /**
+     * Determine if a character sequence contains non-whitespace characters.
+     *
+     * @param chars the string
+     *
+     * @return true if blank
+     */
+    public static boolean isNotBlank(final CharSequence chars) {
+        return !isBlank(chars);
+    }
+
     public static String join(final List<Character> characters) {
         return characters.stream().map(Object::toString).collect(joining());
     }
