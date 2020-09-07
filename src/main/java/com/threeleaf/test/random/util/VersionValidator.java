@@ -1,7 +1,9 @@
 package com.threeleaf.test.random.util;
 
-import static com.threeleaf.test.random.TestString.EMPTY;
+import static com.threeleaf.test.random.TestString.SPACE;
+import static com.threeleaf.test.random.util.TestStringUtil.isBlank;
 import static com.threeleaf.test.random.util.TestStringUtil.isNotBlank;
+import static java.util.Locale.US;
 import static java.util.Optional.ofNullable;
 
 import java.io.Serializable;
@@ -21,6 +23,16 @@ import javax.annotation.Nonnull;
  * method.</p>
  */
 public class VersionValidator implements Serializable {
+
+    /**
+     * Character used as a placeholder when a version part is empty. In version comparisons, an
+     * empty slot has higher value than a non-empty slot, so a higher-ascii character is assigned to
+     * assure proper sorting.
+     */
+    public static final String EMPTY_VERSION_PLACEHOLDER = "~";
+
+    /** Special version indicating a work in progress version. */
+    public static final String SNAPSHOT_VERSION = "SNAPSHOT";
 
     /**
      * The regular expression to validate the format of a maven version number.
@@ -111,10 +123,10 @@ public class VersionValidator implements Serializable {
      *          {@code 10.0.0.RELEASE} < {@code 2.0.0.RELEASE)}</li>
      *          <li>Will not accurately handle semantic versions with build numbers (for
      *          example, it will say {@code 1.0.0-A+10} < {@code 1.0.0-A+2)}</li>
+     *          <li>Apache's standard of using the SNAPSHOT qualifier to indicate a work in
+     *          progress does not sort well alphabetically. </li>
      *      </ul></li>
-     *      <li>Note that like Maven, qualifiers, pre-release text, and types are sorted
-     *      alphabetically (for example, {@code SNAPSHOT} > {@code RELEASE} alphabetically, even
-     *      though our understanding is that {@code SNAPSHOT} should be < {@code RELEASE})</li>
+     *      <li>Text parts of a version are compared in a case-insensitive manner.</li>
      * </ul>
      *
      * @param version1 the first version
@@ -139,7 +151,7 @@ public class VersionValidator implements Serializable {
             final Long version2num = parseLong(version2part);
 
             if (version1num == null || version2num == null) {
-                comparison = compareNullableStrings(version1part, version2part);
+                comparison = version1part.compareTo(version2part);
             } else {
                 comparison = Long.compare(version1num, version2num);
             }
@@ -150,35 +162,6 @@ public class VersionValidator implements Serializable {
         }
 
         return Integer.compare(comparison, 0);
-    }
-
-    /**
-     * Compare two strings.
-     *
-     * @param string1 string 1
-     * @param string2 string 2
-     *
-     * @return 1 if string 1 &gt; string 2; 0 if equal or both null; -1 if string 1 &lt; string 2
-     */
-    public int compareNullableStrings(final String string1, final String string2) {
-        final int comparison;
-        if (string1 == null || string2 == null) {
-            if (string1 == null && string2 == null) {
-                /* Both null, therefore equal */
-                comparison = 0;
-            } else if (string1 == null) {
-                /* string 2 must != null, therefore string 1 < string 2 */
-                comparison = -1;
-            } else {
-                /* string 1 must != null, therefore string 1 > string 2 */
-                comparison = 1;
-            }
-        } else {
-            /* Compare two strings normally */
-            comparison = string1.compareTo(string2);
-        }
-
-        return comparison;
     }
 
     /**
@@ -267,6 +250,18 @@ public class VersionValidator implements Serializable {
     }
 
     /**
+     * Convert the build string to upper  for case-insensitive comparisons.
+     * <p>If blank, convert to "~" to rank higher.</p>
+     *
+     * @param build the build string
+     *
+     * @return the parsed build number
+     */
+    private String parseBuild(final String build) {
+        return isBlank(build) ? EMPTY_VERSION_PLACEHOLDER : build.toUpperCase(US);
+    }
+
+    /**
      * Parse a long value from a string.
      *
      * @param string the numeric string
@@ -285,6 +280,20 @@ public class VersionValidator implements Serializable {
     }
 
     /**
+     * Convert the qualifier to upper case for case-insensitive comparisons.
+     * <p>If blank, convert to "~" to rank higher.</p>
+     * <p>Replace "SNAPSHOT" string with a space for low ranking.</p>
+     *
+     * @param qualifier the qualifier string
+     *
+     * @return the parsed qualifier
+     */
+    private String parseQualifier(final String qualifier) {
+        return isBlank(qualifier) ? EMPTY_VERSION_PLACEHOLDER
+            : qualifier.toUpperCase(US).replace(SNAPSHOT_VERSION, SPACE);
+    }
+
+    /**
      * Parse version number parts from a string using the provided validator.
      *
      * @param version the version string
@@ -297,11 +306,12 @@ public class VersionValidator implements Serializable {
         final Matcher matcher = pattern.matcher(version.trim());
         if (matcher.find()) {
             /* Essentially, cast all version styles to a Maven style equivalent. */
-            parsedVersion.add(ofNullable(matcher.group("MAJOR")).orElse(EMPTY));
-            parsedVersion.add(ofNullable(matcher.group("MINOR")).orElse(EMPTY));
-            parsedVersion.add(ofNullable(matcher.group("INCREMENTAL")).orElse(EMPTY));
-            parsedVersion.add(ofNullable(matcher.group("QUALIFIER")).orElse(EMPTY));
-            parsedVersion.add(ofNullable(matcher.group("BUILD")).orElse(EMPTY));
+            parsedVersion.add(matcher.group("MAJOR"));
+            parsedVersion.add(ofNullable(matcher.group("MINOR")).orElse(EMPTY_VERSION_PLACEHOLDER));
+            parsedVersion.add(ofNullable(matcher.group("INCREMENTAL")).orElse(
+                EMPTY_VERSION_PLACEHOLDER));
+            parsedVersion.add(parseQualifier(matcher.group("QUALIFIER")));
+            parsedVersion.add(parseBuild(matcher.group("BUILD")));
         }
 
         return parsedVersion;

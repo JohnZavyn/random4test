@@ -1,8 +1,7 @@
 package com.threeleaf.test.random.util;
 
-import static com.threeleaf.test.random.TestInteger.INT_00;
-import static com.threeleaf.test.random.TestInteger.INT_01;
-import static com.threeleaf.test.random.TestString.*;
+import static com.threeleaf.test.random.TestString.SPACE;
+import static com.threeleaf.test.random.TestString.WHITESPACE;
 import static com.threeleaf.test.random.TestVersion.VERSION;
 import static com.threeleaf.test.random.util.TestStringUtil.STRING_NULL;
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,16 +21,18 @@ class VersionValidatorTest {
     @ParameterizedTest
     @CsvSource(value = {
         "1.0.0         |2.0.0                |-1",
-        "1.0.0         |1.0.0-1              |-1",
+        "1.0.0         |1.0.0-1              |1",
         "2.0.0         |1.0.0                |1",
-        "1.0.0-a       |1.0.0                |1",
+        "1.0.0-a       |1.0.0                |-1",
         "5.4.3-1+2     |5.4.3-1+1            |1",
         "5.4.3-a+2     |5.4.3-1+2            |1",
         "5.4.3-2+2     |5.4.3-c+2            |-1",
         "1.2.3.RELEASE |1.2.3.BUILD-SNAPSHOT |1",
         "1.2.3         |1.2.3                |0",
         "1.2.3.RELEASE |1.2.3-RELEASE        |0",
-        "5.4.3-a+2     |5.4.3-b+2            |-1"
+        "5.4.3-a+2     |5.4.3-b+2            |-1",
+        "5.4.3-M1      |5.4.3-SNAPSHOT       |1",
+        "5.4.3         |5.4.3-SNAPSHOT       |1"
     }, delimiter = '|')
     void compare(final String version1, final String version2, final int comparisonResult) {
         assertEquals(comparisonResult, versionValidator.compare(version1, version2));
@@ -55,21 +56,12 @@ class VersionValidatorTest {
         ));
     }
 
-    /** Test {@link VersionValidator#compareNullableStrings(String, String)}. */
-    @Test
-    void compareNullableStrings() {
-        assertEquals(INT_00, versionValidator.compareNullableStrings(STRING_NULL, STRING_NULL));
-        assertEquals(INT_01, versionValidator.compareNullableStrings(STRING, STRING_NULL));
-        assertEquals(-1, versionValidator.compareNullableStrings(STRING_NULL, STRING));
-        assertNotEquals(INT_00, versionValidator.compareNullableStrings(STRING_01, STRING_02));
-    }
-
     /** Test {@link VersionValidator#isInRange(String, String, String)}. */
     @ParameterizedTest
     @CsvSource(value = {
         "0.9.9     |1.0.0                |2.0.0     |false", /* < range */
         "4.0.0     |4.0.0                |5.0.0     |true", /* lower bound */
-        "1.0.0-0   |1.0.0                |1.0.0-1   |true", /* in range */
+        "1.0.0-1   |1.0.0-0              |1.0.0     |true", /* in range */
         "1.0.0-7+2 |1.0.0-7+1            |1.0.0-7+3 |true", /* in range */
         "1.0.0.M1  |1.0.0.BUILD-SNAPSHOT |1.0.0.RC1 |true", /* in range, Spring version */
         "5.0.0     |4.0.0                |5.0.0     |true", /* upper bound */
@@ -225,15 +217,15 @@ class VersionValidatorTest {
     @ParameterizedTest
     @CsvSource(value = {
         "1.0.0         |2.0.0                |true",
-        "1.0.0         |1.0.0-1              |true",
+        "1.0.0         |1.0.0-1              |false",
         "2.0.0         |1.0.0                |false",
-        "1.0.0-a       |1.0.0                |false",
+        "1.0.0-a       |1.0.0                |true",
         "5.4.3-1+2     |5.4.3-1+1            |false",
         "5.4.3-a+2     |5.4.3-1+2            |false",
         "5.4.3-2+2     |5.4.3-c+2            |true",
         "1.2.3.RELEASE |1.2.3.BUILD-SNAPSHOT |false",
         "1.2.3         |1.2.3                |true",
-        "1.2.3+0       |1.2.3                |false",
+        "1.2.3+0       |1.2.3                |true",
         "1.2.3.RELEASE |1.2.3-RELEASE        |true",
         "5.4.3-a+2     |5.4.3-b+2            |true"
     }, delimiter = '|')
@@ -245,15 +237,15 @@ class VersionValidatorTest {
     @ParameterizedTest
     @CsvSource(value = {
         "1.0.0         |2.0.0                |false",
-        "1.0.0         |1.0.0-1              |false",
+        "1.0.0         |1.0.0-1              |true",
         "2.0.0         |1.0.0                |true",
-        "1.0.0-a       |1.0.0                |true",
+        "1.0.0-a       |1.0.0                |false",
         "5.4.3-1+2     |5.4.3-1+1            |true",
         "5.4.3-a+2     |5.4.3-1+2            |true",
         "5.4.3-2+2     |5.4.3-c+2            |false",
         "1.2.3.RELEASE |1.2.3.BUILD-SNAPSHOT |true",
         "1.2.3         |1.2.3                |true",
-        "1.2.3+0       |1.2.3                |true",
+        "1.2.3+0       |1.2.3                |false",
         "1.2.3.RELEASE |1.2.3-RELEASE        |true",
         "5.4.3-a+2     |5.4.3-b+2            |false"
     }, delimiter = '|')
