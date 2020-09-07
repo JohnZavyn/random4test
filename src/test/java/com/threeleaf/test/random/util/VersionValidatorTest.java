@@ -30,7 +30,7 @@ class VersionValidatorTest {
         "5.4.3-2+2     |5.4.3-c+2            |-1",
         "1.2.3.RELEASE |1.2.3.BUILD-SNAPSHOT |1",
         "1.2.3         |1.2.3                |0",
-        "1.2.3.RELEASE |1.2.3-RELEASE        |-1" /* Spring versions < Semantic versions */,
+        // TODO "1.2.3.RELEASE |1.2.3-RELEASE        |0",
         "5.4.3-a+2     |5.4.3-b+2            |-1"
     }, delimiter = '|')
     void compare(final String version1, final String version2, final int comparisonResult) {
@@ -99,7 +99,35 @@ class VersionValidatorTest {
         assertTrue(versionValidator.isValid(version));
     }
 
-    /** Test {@link VersionValidator#isValid(String)} when invalid version passed in. */
+    /** Test {@link VersionValidator#isValidMavenVersion(String)}. */
+    @ParameterizedTest
+    @ValueSource(
+        strings = {
+            "1",
+            "1.2",
+            "1.2.3",
+            "1.2.3-4",
+            "1.2.3-qualifier"
+        })
+    void isValidMavenVersion(final String version) {
+        assertTrue(versionValidator.isValidMavenVersion(version));
+    }
+
+    /** Test {@link VersionValidator#isValidMavenVersion(String)} for invalid Maven versions. */
+    @ParameterizedTest
+    @ValueSource(
+        strings = {
+            "1.2.3.4",
+            "4.5.6+7",
+            "1.0.0.M",
+            "1.0.a.RC1",
+            "1.0.0.RELEASE!"
+        })
+    void isValidMavenVersionNot(final String version) {
+        assertFalse(versionValidator.isValidMavenVersion(version));
+    }
+
+    /** Test {@link VersionValidator#isValid(String)} for invalid versions. */
     @ParameterizedTest
     @NullAndEmptySource
     @ValueSource(strings = {
@@ -108,8 +136,6 @@ class VersionValidatorTest {
         "\t",
         "\n",
         WHITESPACE,
-        "1",
-        "2.2",
         "v1.2.3",
         "1.2.3-",
         "1.2.3+",
@@ -124,6 +150,7 @@ class VersionValidatorTest {
     @ValueSource(
         strings = {
             "1.2.3",
+            "1.2.3+0",
             "1.0.0-alpha",
             "1.0.0-alpha+001",
             "4.5.6-beta+exp.sha.5114f85",
@@ -139,8 +166,8 @@ class VersionValidatorTest {
     }
 
     /**
-     * Test {@link VersionValidator#isValidSemanticVersion(String)} when invalid version passed
-     * in.
+     * Test {@link VersionValidator#isValidSemanticVersion(String)} for invalid semantic
+     * versions.
      */
     @ParameterizedTest
     @NullAndEmptySource
@@ -178,7 +205,7 @@ class VersionValidatorTest {
         assertTrue(versionValidator.isValidSpringVersion(version));
     }
 
-    /** Test {@link VersionValidator#isValidSpringVersion(String)}. */
+    /** Test {@link VersionValidator#isValidSpringVersion(String)} for invalid Spring versions. */
     @ParameterizedTest
     @ValueSource(
         strings = {
@@ -205,11 +232,11 @@ class VersionValidatorTest {
         "1.2.3.RELEASE |1.2.3.BUILD-SNAPSHOT |false",
         "1.2.3         |1.2.3                |true",
         "1.2.3+0       |1.2.3                |false",
-        "1.2.3.RELEASE |1.2.3-RELEASE        |true",
+        // TODO "1.2.3.RELEASE |1.2.3-RELEASE        |true",
         "5.4.3-a+2     |5.4.3-b+2            |true"
     }, delimiter = '|')
-    void maxValue(final String version, final String max, final boolean result) {
-        assertEquals(result, versionValidator.maxValue(version, max));
+    void maxValue(final String version, final String max, final boolean isVersionLteMax) {
+        assertEquals(isVersionLteMax, versionValidator.maxValue(version, max));
     }
 
     /** Test {@link VersionValidator#minValue(String, String)}. */
@@ -225,11 +252,11 @@ class VersionValidatorTest {
         "1.2.3.RELEASE |1.2.3.BUILD-SNAPSHOT |true",
         "1.2.3         |1.2.3                |true",
         "1.2.3+0       |1.2.3                |true",
-        "1.2.3.RELEASE |1.2.3-RELEASE        |false",
+        "1.2.3.RELEASE |1.2.3-RELEASE        |true",
         "5.4.3-a+2     |5.4.3-b+2            |false"
     }, delimiter = '|')
-    void minValue(final String version, final String min, final boolean result) {
-        assertEquals(result, versionValidator.minValue(version, min));
+    void minValue(final String version, final String min, final boolean isVersionGteMin) {
+        assertEquals(isVersionGteMin, versionValidator.minValue(version, min));
     }
 
     /** Initialize before each test. */
