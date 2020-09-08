@@ -99,7 +99,11 @@ class VersionValidatorTest {
             "1.2",
             "1.2.3",
             "1.2.3-4",
-            "1.2.3-qualifier"
+            "1.2.3-qualifier",
+            "1.2.3-alpha-1",
+            "1.2-alpha-1",
+            "1.2-alpha-1-20050205.060708-1",
+            "2.0-1"
         })
     void isValidMavenVersion(final String version) {
         assertTrue(versionValidator.isValidMavenVersion(version));

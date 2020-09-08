@@ -51,7 +51,7 @@ public class VersionValidator implements Serializable {
      */
     private static final Pattern MAVEN_VERSION_REGEX = Pattern.compile(
         "^(?<MAJOR>0|[1-9]\\d*)(?:\\.(?<MINOR>0|[1-9]\\d*))?(?:\\.(?<INCREMENTAL>0|[1-9]\\d*))?"
-            + "(?:-(?<BUILD>[0-9]+))?(?:-(?<QUALIFIER>[0-9a-zA-Z].*))?$");
+            + "(?:-(?<BUILD>[0-9]+))?(?:-(?<QUALIFIER>[0-9a-zA-Z-.]+))?$");
 
     /**
      * The regular expression to validate the format of a semantic version number.
@@ -88,15 +88,16 @@ public class VersionValidator implements Serializable {
      * <a href="https://github.com/spring-projects/spring-build-gradle/wiki/Spring-project-versioning">Spring
      *     Project Versioning</a>.
      */
-    @SuppressWarnings("Annotator" /* BUILD group intentionally empty */)
     private static final Pattern SPRING_VERSION_REGEX = Pattern.compile(
         "^(?<MAJOR>0|[1-9]\\d*)\\.(?<MINOR>0|[1-9]\\d*)\\.(?<INCREMENTAL>0|[1-9]\\d*)"
-            + "\\.(?<QUALIFIER>BUILD-SNAPSHOT|M[0-9]+|RC[0-9]+|RELEASE)(?<BUILD>)$");
+            + "\\.(?<QUALIFIER>BUILD-SNAPSHOT|M[0-9]+|RC[0-9]+|RELEASE)(?<BUILD>\\x00{0})$"
+        /* There is no BUILD equivalent in Spring version, so use dummy search */
+    );
 
     /** Singleton instance of this class. */
     private static final VersionValidator VALIDATOR = new VersionValidator();
 
-    private static final long serialVersionUID = -7993917438980742972L;
+    private static final long serialVersionUID = 4167769278655824601L;
 
     /**
      * Returns the singleton instance of this validator.
