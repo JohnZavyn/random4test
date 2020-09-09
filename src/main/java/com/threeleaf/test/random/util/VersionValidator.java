@@ -51,7 +51,8 @@ public class VersionValidator implements Serializable {
      */
     private static final Pattern MAVEN_VERSION_REGEX = Pattern.compile(
         "^(?<MAJOR>0|[1-9]\\d*)(?:\\.(?<MINOR>0|[1-9]\\d*))?(?:\\.(?<INCREMENTAL>0|[1-9]\\d*))?"
-            + "(?:-(?<BUILD>[0-9]+))?(?:-(?<QUALIFIER>[0-9a-zA-Z-.]+))?$");
+            + "(?:-(?<BUILD>[0-9]+))?(?:-(?<QUALIFIER>[0-9a-zA-Z-.]+))?$"
+    );
 
     /**
      * The regular expression to validate the format of a semantic version number.
@@ -71,7 +72,8 @@ public class VersionValidator implements Serializable {
         "^(?<MAJOR>0|[1-9]\\d*)\\.(?<MINOR>0|[1-9]\\d*)\\.(?<INCREMENTAL>0|[1-9]\\d*)"
             + "(?:-(?<QUALIFIER>(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*)"
             + "(?:\\.(?:0|[1-9]\\d*|\\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?"
-            + "(?:\\+(?<BUILD>[0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$");
+            + "(?:\\+(?<BUILD>[0-9a-zA-Z-]+(?:\\.[0-9a-zA-Z-]+)*))?$"
+    );
 
     /**
      * The regular expression to validate the format of a Spring version number.
@@ -333,9 +335,19 @@ public class VersionValidator implements Serializable {
      */
     private List<String> parseVersion(final String version) {
         List<String> versionParts = parseVersion(version, MAVEN_VERSION_REGEX);
-        versionParts =
-            versionParts.isEmpty() ? parseVersion(version, SEMANTIC_VERSION_REGEX) : versionParts;
+        if (versionParts.isEmpty()) {
+            versionParts = parseVersion(version, SEMANTIC_VERSION_REGEX);
+            if (versionParts.isEmpty()) {
+                versionParts = parseVersion(version, SPRING_VERSION_REGEX);
+                if (versionParts.isEmpty()) {
+                    /* This is the Maven fallback condition. If a version cannot be parsed from
+                    the known patterns, then treat the whole string as a qualifier UNLESS it
+                    contains illegal characters. */
+                    versionParts = parseVersion("0.0.0-" + version, MAVEN_VERSION_REGEX);
+                }
+            }
+        }
 
-        return versionParts.isEmpty() ? parseVersion(version, SPRING_VERSION_REGEX) : versionParts;
+        return versionParts;
     }
 }

@@ -20,19 +20,35 @@ class VersionValidatorTest {
     /** Test {@link VersionValidator#compare(String, String)}. */
     @ParameterizedTest
     @CsvSource(value = {
-        "1.0.0         |2.0.0                |-1",
-        "1.0.0         |1.0.0-1              |1",
+        /* Maven-only versions */
+        "1             |1.0                  |1", /* Empty placeholder has higher value */
+        "1.0           |1.0.0                |1",
+        "0             |A                    |1", /* Version # > Qualifier only */
+        "0.0.0         |A                    |1",
+        "0.0.0-A       |A                    |1",
+        /* Maven & semantic versions */
         "2.0.0         |1.0.0                |1",
+        "1.0.0         |1.0.0-1              |1",
+        "1.0.0-1       |1.0.0-A              |1",
+        "1.0.0-A       |1.0.0-a              |0", /* Case insensitive */
         "1.0.0-a       |1.0.0                |-1",
+        "1.2.3         |1.2.3                |0",
+        "5.4.3-M1      |5.4.3-SNAPSHOT       |1", /* Snapshots have lower value */
+        "5.4.3         |5.4.3-SNAPSHOT       |1",
+        /* Semantic-only versions */
+        "5.4.3-a+2     |5.4.3-b+2            |-1",
         "5.4.3-1+2     |5.4.3-1+1            |1",
         "5.4.3-a+2     |5.4.3-1+2            |1",
         "5.4.3-2+2     |5.4.3-c+2            |-1",
-        "1.2.3.RELEASE |1.2.3.BUILD-SNAPSHOT |1",
-        "1.2.3         |1.2.3                |0",
+        /* Spring-only versions */
+        "1.2.3.M1      |1.2.3.BUILD-SNAPSHOT |1",
+        "1.2.3.M2      |1.2.3.M1             |1",
+        "1.2.3.RC1     |1.2.3.M2             |1",
+        "1.2.3.RC2     |1.2.3.RC1            |1",
+        "1.2.3.RELEASE |1.2.3.RC2            |1",
+        /* Compare mixed versions (even though this shouldn't happen in the real world) */
         "1.2.3.RELEASE |1.2.3-RELEASE        |0",
-        "5.4.3-a+2     |5.4.3-b+2            |-1",
-        "5.4.3-M1      |5.4.3-SNAPSHOT       |1",
-        "5.4.3         |5.4.3-SNAPSHOT       |1"
+        "1.0.0-a       |1.0.0-a+0            |1"
     }, delimiter = '|')
     void compare(final String version1, final String version2, final int comparisonResult) {
         assertEquals(comparisonResult, versionValidator.compare(version1, version2));
