@@ -25,7 +25,7 @@ class VersionValidatorTest {
         "1.0           |1.0.0                |1",
         "0             |A                    |1", /* Version # > Qualifier only */
         "0.0.0         |A                    |1",
-        "0.0.0-A       |A                    |1",
+        "0.0.0-A       |A                    |0",
         /* Maven & semantic versions */
         "2.0.0         |1.0.0                |1",
         "1.0.0         |1.0.0-1              |1",
@@ -33,6 +33,7 @@ class VersionValidatorTest {
         "1.0.0-A       |1.0.0-a              |0", /* Case insensitive */
         "1.0.0-a       |1.0.0                |-1",
         "1.2.3         |1.2.3                |0",
+        "0.0.0-A       |A                    |0",
         "5.4.3-M1      |5.4.3-SNAPSHOT       |1", /* Snapshots have lower value */
         "5.4.3         |5.4.3-SNAPSHOT       |1",
         /* Semantic-only versions */
