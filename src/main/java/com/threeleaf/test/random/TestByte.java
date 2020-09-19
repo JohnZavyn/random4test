@@ -5,8 +5,8 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 /** Utilities for random {@link Byte} creation. */
-@SuppressWarnings({"WeakerAccess", "unused"})
-public class TestByte extends AbstractTest<Byte> {
+@SuppressWarnings({"WeakerAccess", "unused", "RedundantSuppression"})
+public class TestByte extends AbstractRandom<Byte> {
 
     /** The Byte 00. */
     public static final Byte BYTE_00 = 0;
@@ -666,9 +666,9 @@ public class TestByte extends AbstractTest<Byte> {
      *
      * @return the random short
      */
-    public static byte randomBetween(int number1, int number2) {
-        int min = min(number1, number2);
-        int max = max(number1, number2);
+    public static byte randomBetween(final int number1, final int number2) {
+        final int min = min(number1, number2);
+        final int max = max(number1, number2);
 
         return (byte) (min + ((max - min + 1) * Math.random()));
     }
@@ -683,7 +683,7 @@ public class TestByte extends AbstractTest<Byte> {
     }
 
     /**
-     * A random hexadecimal byte value;
+     * A random hexadecimal byte value.
      *
      * @return a  "0" to "FF"
      */

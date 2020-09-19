@@ -10,8 +10,8 @@ import java.time.temporal.WeekFields;
 import java.util.TimeZone;
 
 /** Utilities for random {@link LocalDate} creation. */
-@SuppressWarnings({"WeakerAccess", "unused"})
-public class TestLocalDate extends AbstractTest<LocalDate> {
+@SuppressWarnings({"WeakerAccess", "unused", "RedundantSuppression"})
+public class TestLocalDate extends AbstractRandom<LocalDate> {
 
     /** The day of the month. */
     public static final int DAY = now().getDayOfMonth();
@@ -29,7 +29,7 @@ public class TestLocalDate extends AbstractTest<LocalDate> {
     public static final LocalDate MONTH_NEXT = now().plusMonths(L_01);
 
     /**
-     * The time zone
+     * The time zone.
      */
     public static final TimeZone TIME_ZONE = TimeZone.getDefault();
 

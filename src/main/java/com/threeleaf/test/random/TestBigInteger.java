@@ -1,5 +1,6 @@
 package com.threeleaf.test.random;
 
+import static com.threeleaf.test.random.TestInteger.INT_00;
 import static com.threeleaf.test.random.TestInteger.INT_100;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
 import static java.math.BigInteger.valueOf;
@@ -7,12 +8,11 @@ import static java.math.BigInteger.valueOf;
 import java.math.BigInteger;
 
 /** Utilities for random {@link BigInteger} creation. */
-@SuppressWarnings({"WeakerAccess", "unused"})
-public class TestBigInteger extends AbstractTest<BigInteger> {
+@SuppressWarnings({"WeakerAccess"})
+public class TestBigInteger extends AbstractRandom<BigInteger> {
 
     /** A random {@link BigInteger} from 0-100. */
-    public static final BigInteger BIG_INTEGER_SMALL =
-        BigInteger.valueOf(TestInteger.randomBetween(0, 100));
+    public static final BigInteger BIG_INTEGER_SMALL = randomPercent();
 
     /** The instance of {@link TestBigInteger}. */
     public static final TestBigInteger INSTANCE = new TestBigInteger();
@@ -36,7 +36,7 @@ public class TestBigInteger extends AbstractTest<BigInteger> {
      *
      * @return the random short
      */
-    public static BigInteger randomBetween(long number1, long number2) {
+    public static BigInteger randomBetween(final long number1, final long number2) {
         return valueOf(TestLong.randomBetween(number1, number2));
     }
 
@@ -48,7 +48,7 @@ public class TestBigInteger extends AbstractTest<BigInteger> {
      *
      * @return the random short
      */
-    public static BigInteger randomBetween(BigInteger number1, BigInteger number2) {
+    public static BigInteger randomBetween(final BigInteger number1, final BigInteger number2) {
         return randomBetween(number1.longValue(), number2.longValue());
     }
 
@@ -76,7 +76,7 @@ public class TestBigInteger extends AbstractTest<BigInteger> {
      * @return a number between 0 and 100 inclusive
      */
     public static BigInteger randomPercent() {
-        return randomBetween(0, INT_100);
+        return randomBetween(INT_00, INT_100);
     }
 
     /**

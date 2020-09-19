@@ -9,8 +9,9 @@ import java.util.*;
 import java.util.concurrent.ThreadLocalRandom;
 
 /** Utilities for random {@link Long} creation. */
-@SuppressWarnings({"WeakerAccess", "unused", "squid:S2386" /* Mutable arrays */})
-public class TestLong extends AbstractTest<Long> {
+@SuppressWarnings(
+    {"WeakerAccess", "unused", "squid:S2386" /* Mutable arrays */, "RedundantSuppression"})
+public class TestLong extends AbstractRandom<Long> {
 
     /** The instance of {@link TestLong}. */
     public static final TestLong INSTANCE = new TestLong();
@@ -735,11 +736,11 @@ public class TestLong extends AbstractTest<Long> {
      *
      * @return the random long
      */
-    public static long randomBetween(long number1, long number2) {
-        long min = min(number1, number2);
+    public static long randomBetween(final long number1, final long number2) {
+        final long min = min(number1, number2);
         /* ThreadLocalRandom.nextLong(long, long) is upper bound exclusive, so the following
          * is necessary to get an inclusive range (only MAX_VALUE will never be returned). */
-        long max = min(max(number1, number2), MAX_VALUE - 1) + 1;
+        final long max = min(max(number1, number2), MAX_VALUE - 1) + 1;
 
         return ThreadLocalRandom.current().nextLong(min, max);
     }

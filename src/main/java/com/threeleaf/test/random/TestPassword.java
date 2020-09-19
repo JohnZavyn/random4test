@@ -2,8 +2,8 @@ package com.threeleaf.test.random;
 
 import com.threeleaf.test.random.generator.PasswordGenerator;
 
-@SuppressWarnings("unused")
-public class TestPassword extends AbstractTest<String> {
+/** Test passwords for use in JUnit tests. */
+public class TestPassword extends AbstractRandom<String> {
 
     /** The instance of {@link TestPassword}. */
     public static final TestPassword INSTANCE = new TestPassword();
@@ -22,12 +22,13 @@ public class TestPassword extends AbstractTest<String> {
         super(String.class);
     }
 
+    /** Generate a random password. */
     public static String randomPassword() {
         return INSTANCE.random();
     }
 
     /**
-     * Get a random {@link String}.
+     * Get a random password.
      *
      * @return a password
      */
@@ -37,12 +38,12 @@ public class TestPassword extends AbstractTest<String> {
     }
 
     /**
-     * Get a random {@link String}.
+     * Get a random password.
      *
-     * @return a password
+     * @return a friendly password
      */
     @Override
-    public String random(String... fieldsExcluded) {
+    public String random(final String... fieldsExcluded) {
         /* Since this is a String type, there are no fields to exclude. */
         return PASSWORD_GENERATOR.randomPasswordFriendly();
     }

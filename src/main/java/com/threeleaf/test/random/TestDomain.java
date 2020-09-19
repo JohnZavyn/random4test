@@ -1,18 +1,12 @@
 package com.threeleaf.test.random;
 
-import static com.threeleaf.test.random.util.TestInternetUtil.*;
-import static lombok.AccessLevel.PRIVATE;
+import com.threeleaf.test.random.generator.DomainGenerator;
 
-import lombok.NoArgsConstructor;
+/** Test domains for use in JUnit tests. */
+public class TestDomain extends AbstractRandom<String> {
 
-/** Internet constants to be used in JUnit tests. */
-@NoArgsConstructor(access = PRIVATE)
-@SuppressWarnings(
-    {"WeakerAccess", "unused", "PMD.FinalFieldCouldBeStatic", "PMD.ClassNamingConventions"})
-public class TestInternet {
-
-    /** The at sign. */
-    public static final String AT_SIGN = "@";
+    /** A standard domain generator. */
+    public static final DomainGenerator DOMAIN_GENERATOR = new DomainGenerator();
 
     /** The dot separator. */
     public static final String DOT = ".";
@@ -59,30 +53,44 @@ public class TestInternet {
     /** The top-level domain name ".wine". */
     public static final String DOT_WINE = ".wine";
 
-    /* A bogus e-mail address. */
-    public static final String EMAIL = randomEmail();
+    /** The instance of {@link TestDomain}. */
+    public static final TestDomain INSTANCE = new TestDomain();
 
-    /** The HTTPS protocol. */
-    public static final String HTTPS_PROTOCOL = "https";
+    /** A random domain. */
+    public static final String DOMAIN = randomDomain();
 
-    /** The HTTP protocol. */
-    public static final String HTTP_PROTOCOL = "http";
+    /** Instantiate a test domain generator. */
+    public TestDomain() {
+        super(String.class);
+    }
 
-    /** The first three octets of an example IPv4 address, test range 1. */
-    public static final String IPV4_TEST_NET_1_PREFIX = "192.0.2.";
+    /**
+     * Generate a random domain. *
+     *
+     * @return a random domain name
+     */
+    public static String randomDomain() {
+        return INSTANCE.random();
+    }
 
-    /** The first three octets of an example IPv4 address, test range 2. */
-    public static final String IPV4_TEST_NET_2_PREFIX = "198.51.100.";
+    /**
+     * Get a random domain.
+     *
+     * @return a domain
+     */
+    @Override
+    public String random() {
+        return DOMAIN_GENERATOR.randomDomain();
+    }
 
-    /** The first three octets of an example IPv4 address, test range 3. */
-    public static final String IPV4_TEST_NET_3_PREFIX = "203.0.113.";
-
-    /** The first two hextets of an example IP64 address. */
-    public static final String IPV6_TEST_PREFIX = "2001:db8:";
-
-    /** A URL for a home page using HTTP protocol. */
-    public static final String URL = randomUrl();
-
-    /** A URL for a home page using HTTPS protocol. */
-    public static final String URL_SSL = randomUrlSecure();
+    /**
+     * Get a random domain.
+     *
+     * @return a friendly domain
+     */
+    @Override
+    public String random(String... fieldsExcluded) {
+        /* Since this is a String type, there are no fields to exclude. */
+        return DOMAIN_GENERATOR.randomDomain();
+    }
 }

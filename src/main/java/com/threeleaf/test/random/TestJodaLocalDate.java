@@ -7,8 +7,8 @@ import org.joda.time.DateTimeZone;
 import org.joda.time.LocalDate;
 
 /** Utilities for random {@link LocalDate} creation. */
-@SuppressWarnings({"WeakerAccess", "unused"})
-public class TestJodaLocalDate extends AbstractTest<LocalDate> {
+@SuppressWarnings({"WeakerAccess", "unused", "RedundantSuppression"})
+public class TestJodaLocalDate extends AbstractRandom<LocalDate> {
 
     /** The day of the month. */
     public static final int DAY = TestLocalDate.DAY;
@@ -26,7 +26,7 @@ public class TestJodaLocalDate extends AbstractTest<LocalDate> {
     public static final LocalDate MONTH_NEXT = now().plusMonths(INT_01);
 
     /**
-     * The time zone
+     * The time zone.
      */
     public static final DateTimeZone TIME_ZONE = DateTimeZone.getDefault();
 

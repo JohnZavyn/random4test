@@ -1,15 +1,23 @@
 package com.threeleaf.test.random;
 
+import static com.threeleaf.test.random.TestBigInteger.*;
+import static com.threeleaf.test.random.TestDouble.D_00;
 import static com.threeleaf.test.random.TestInteger.*;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static java.math.BigInteger.TEN;
+import static java.math.BigInteger.ZERO;
+import static org.apache.commons.validator.routines.BigIntegerValidator.getInstance;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.math.BigInteger;
 
+import org.apache.commons.validator.routines.BigIntegerValidator;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestBigInteger}. */
 class TestBigIntegerTest {
+
+    /** The {@link BigIntegerValidator}. */
+    final BigIntegerValidator bigIntegerValidator = getInstance();
 
     /** Test {@link TestBigInteger#random()}. */
     @Test
@@ -20,30 +28,36 @@ class TestBigIntegerTest {
     /** Test {@link TestBigInteger#randomBetween(long, long)}. */
     @Test
     void randomBetween() {
-        BigInteger result = TestBigInteger.randomBetween(BigInteger.ZERO, BigInteger.TEN);
+        final BigInteger result = TestBigInteger.randomBetween(ZERO, TEN);
 
-        assertTrue(result.intValue() >= INT_00);
-        assertTrue(result.intValue() <= INT_10);
+        assertTrue(bigIntegerValidator.isInRange(result, INT_00, INT_10));
+    }
+
+    /** Test {@link TestBigInteger#randomBigInteger()}. */
+    @Test
+    void randomBigInteger() {
+        assertNotNull(TestBigInteger.randomBigInteger());
+        assertNotEquals(BIG_INTEGER, BIG_INTEGER_RANDOM);
     }
 
     /** Test {@link TestBigInteger#randomNegative()}. */
     @Test
     void randomNegative() {
-        assertTrue(TestBigInteger.randomNegative().doubleValue() < 0);
+        assertTrue(bigIntegerValidator.maxValue(TestBigInteger.randomNegative(), D_00));
     }
 
     /** Test {@link TestBigInteger#randomPercent()}. */
     @Test
     void randomPercent() {
-        BigInteger result = TestBigInteger.randomPercent();
+        final BigInteger result = TestBigInteger.randomPercent();
 
-        assertTrue(result.intValue() >= INT_00);
-        assertTrue(result.intValue() <= INT_100);
+        assertTrue(bigIntegerValidator.isInRange(result, INT_00, INT_100));
+        assertTrue(bigIntegerValidator.isInRange(BIG_INTEGER_SMALL, INT_00, INT_100));
     }
 
     /** Test {@link TestBigInteger#randomPositive()}. */
     @Test
     void randomPositive() {
-        assertTrue(TestBigInteger.randomPositive().doubleValue() > 0);
+        assertTrue(bigIntegerValidator.minValue(TestBigInteger.randomPositive(), INT_00));
     }
 }

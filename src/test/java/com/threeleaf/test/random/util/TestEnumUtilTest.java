@@ -16,7 +16,7 @@ class TestEnumUtilTest {
     /** Test {@link TestEnumUtil#chooseOneFrom(Class)}. */
     @Test
     void chooseOneFrom() {
-        Set<TestEnum> results = new HashSet<>();
+        final Set<TestEnum> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
         for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
@@ -34,16 +34,18 @@ class TestEnumUtilTest {
     /** Test {@link TestEnumUtil} constructor. */
     @Test
     void constructor() throws Exception {
-        Constructor<TestEnumUtil> constructor = TestEnumUtil.class.getDeclaredConstructor();
+        final Constructor<TestEnumUtil> constructor = TestEnumUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         try {
             constructor.newInstance();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }
 
     /** An enum for this test. */
-    private enum TestEnum {FIRST, SECOND, THIRD}
+    private enum TestEnum {
+        FIRST, SECOND, THIRD
+    }
 }

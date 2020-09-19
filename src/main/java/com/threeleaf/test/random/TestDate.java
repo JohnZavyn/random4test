@@ -7,8 +7,8 @@ import java.util.Date;
 import java.util.TimeZone;
 
 /** Date constants to be used in JUnit tests. */
-@SuppressWarnings({"WeakerAccess", "unused", "squid:S2386" /* Dates are mutable */})
-public class TestDate extends AbstractTest<Date> {
+@SuppressWarnings({"WeakerAccess", "squid:S2386" /* Dates are mutable */})
+public class TestDate extends AbstractRandom<Date> {
 
     /** The instance of {@link TestDate}. */
     public static final TestDate INSTANCE = new TestDate();
@@ -62,7 +62,7 @@ public class TestDate extends AbstractTest<Date> {
      *
      * @return a date in between
      */
-    public static Date randomBetween(Date date1, Date date2) {
+    public static Date randomBetween(final Date date1, final Date date2) {
         return new Date(TestLong.randomBetween(date1.getTime(), date2.getTime()));
     }
 

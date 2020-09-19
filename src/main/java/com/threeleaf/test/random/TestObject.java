@@ -4,8 +4,9 @@ import static java.util.Collections.*;
 
 import java.util.*;
 
-@SuppressWarnings({"WeakerAccess", "unused", "squid:S2386" /* Mutable arrays */})
-public class TestObject extends AbstractTest<Object> {
+@SuppressWarnings(
+    {"WeakerAccess", "unused", "squid:S2386" /* Mutable arrays */, "RedundantSuppression"})
+public class TestObject extends AbstractRandom<Object> {
 
     /** The instance of {@link TestObject}. */
     public static final TestObject INSTANCE = new TestObject();

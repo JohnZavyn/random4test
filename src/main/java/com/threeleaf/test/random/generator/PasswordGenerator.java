@@ -49,13 +49,17 @@ public class PasswordGenerator {
      *
      * @param theCharacterStrings the characters to use in passwords
      */
-    public PasswordGenerator(@Nonnull String... theCharacterStrings) {
+    public PasswordGenerator(@Nonnull final String... theCharacterStrings) {
         super();
         characterSources = ImmutableList.copyOf(theCharacterStrings);
         characterSourcesSize = characterSources.size();
     }
 
-    /** Generate a password with 8-16 characters. */
+    /**
+     * Generate a password with 8-16 characters.
+     *
+     * @return password string
+     */
     public String randomPassword() {
         return randomPassword(randomBetween(INT_08, INT_16));
     }
@@ -64,8 +68,10 @@ public class PasswordGenerator {
      * Generate a random password.
      *
      * @param length the length of the password
+     *
+     * @return password string
      */
-    public String randomPassword(int length) {
+    public String randomPassword(final int length) {
         return randomPassword(length, FALSE);
     }
 
@@ -76,7 +82,8 @@ public class PasswordGenerator {
      * @param length                 the length of the password
      * @param groupByCharacterSource when true, group randomized characters based on the character
      *                               sources they are drawn from. For example, {@code new
-     *                               PasswordGenerator(NUMBERS, ALPHABET, PUNCTUATION).randomPassword(3,
+     *                               PasswordGenerator(NUMBERS, ALPHABET, PUNCTUATION)
+     *                               .randomPassword(3,
      *                               TRUE)}
      *                               will always return a password containing, in order, a number +
      *                               a lower case character + a punctuation mark.<p>The specific
@@ -85,25 +92,32 @@ public class PasswordGenerator {
      *                               between lower case letters, upper case letters, numbers, and
      *                               symbols while typing a password. Grouping the characters
      *                               allows one to switch device keyboards less often.</p>
+     *
+     * @return password string
      */
-    public String randomPassword(int length, boolean groupByCharacterSource) {
+    public String randomPassword(final int length, final boolean groupByCharacterSource) {
         checkArgument(length >= characterSourcesSize, PASSWORD_LENGTH_ERROR, characterSourcesSize);
 
-        StringBuilder password = new StringBuilder(length);
-        int sourcesMaxIndex = characterSourcesSize - 1;
+        final StringBuilder password = new StringBuilder(length);
+        final int sourcesMaxIndex = characterSourcesSize - 1;
 
         for (int sourceIndex = 0; sourceIndex < characterSourcesSize; sourceIndex++) {
-            int charactersRemaining = length - password.length();
-            int charLength = sourceIndex == sourcesMaxIndex ?
-                charactersRemaining :
-                randomBetween(INT_01, charactersRemaining - sourcesMaxIndex + sourceIndex);
+            final int charactersRemaining = length - password.length();
+            final int charLength =
+                sourceIndex == sourcesMaxIndex
+                    ? charactersRemaining
+                    : randomBetween(INT_01, charactersRemaining - sourcesMaxIndex + sourceIndex);
             password.append(randomString(charLength, characterSources.get(sourceIndex)));
         }
 
         return groupByCharacterSource ? password.toString() : shuffle(password.toString());
     }
 
-    /** Generate a "friendly" password with 8-16 characters. */
+    /**
+     * Generate a "friendly" password with 8-16 characters.
+     *
+     * @return friendly password string
+     */
     public String randomPasswordFriendly() {
         return randomPasswordFriendly(randomBetween(INT_08, INT_16));
     }
@@ -112,8 +126,10 @@ public class PasswordGenerator {
      * Generates a "friendly" password based on the available character lists.
      *
      * @param length the length of the password
+     *
+     * @return friendly password string
      */
-    public String randomPasswordFriendly(int length) {
+    public String randomPasswordFriendly(final int length) {
         return randomPassword(length, TRUE);
     }
 }

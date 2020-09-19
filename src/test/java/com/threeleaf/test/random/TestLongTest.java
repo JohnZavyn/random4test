@@ -11,7 +11,6 @@ import static org.junit.jupiter.api.Assertions.*;
 import java.util.HashSet;
 import java.util.Set;
 
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestLong}. */
@@ -37,7 +36,7 @@ class TestLongTest {
     /** Test {@link TestLong#randomBetween(long, long)}. */
     @Test
     void randomBetweenLong() {
-        Set<Long> results = new HashSet<>();
+        final Set<Long> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
         for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
@@ -53,7 +52,7 @@ class TestLongTest {
     }
 
     /** Test {@link TestLong#randomBetween(long, long)}. */
-    @RepeatedTest(LOOP_COUNT_MAX)
+    @Test
     void randomBetweenMax() {
         assertDoesNotThrow(() -> TestLong.randomBetween(MIN_VALUE, MAX_VALUE));
     }

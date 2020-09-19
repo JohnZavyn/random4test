@@ -12,7 +12,7 @@ Add to Maven projects with:
 <dependency>
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>3.1.0</version>
+    <version>4.0.0</version>
 </dependency>
 ```
 For more dependency options: <https://mvnrepository.com/artifact/com.threeleaf/random4test>
@@ -73,9 +73,13 @@ and a few extras:
 | Test Class   | Types included             |
 |:-------------|:---------------------------|
 | TestBoolean  | boolean, java.lang.Boolean |
+| TestDomin    | java.lang.String           |
+| TestEmail    | java.lang.String           |
+| TestIp       | java.lang.String           |
 | TestObject   | java.lang.Object           |
-| TestString   | java.lang.String           |
 | TestPassword | java.lang.String           |
+| TestString   | java.lang.String           |
+| TestUrl      | java.lang.String           |
 
 * Various constants based on the type of object to be randomized
 * Strings of various lengths and formats are available
@@ -131,20 +135,22 @@ In addition to the constants and randomizers available from the Test classes abo
 there are also a number of helpful utilities available through the following:
 
 
-| Test Class             | General functional purpose                          |
-| ---                    | ---                                                 |
-| TestAddressUtil        | random US states, cities, zips, and mock addresses  |
-| TestArrayUtil          | random arrays (see below)                           |
-| TestCollectionUtil     | random collections (see below)                      |
-| TestDateUtil           | conversions between Java Date and LocalDate         |
-| TestEnumUtil           | chooseOneFrom                                       |
-| TestListUtil           | random Lists of various types (see below)           |
-| TestLoremIpsumUtil     | random greeking sentence and paragraph generator    |
-| TestMapUtil            | random Maps of various types (see below)            |
-| TestNameUtil           | random English/US male and female names             |
-| TestSetUtil            | random sets of various types (see below)            |
-| TestStringUtil         | several string methods                              |
-| TestWordUtil           | random words (nouns, verbs, adjectives, and colors) |
+| Test Class         | General functional purpose                          |
+|:-------------------|:----------------------------------------------------|
+| TestAddressUtil    | random US states, cities, zips, and mock addresses  |
+| TestArrayUtil      | random arrays (see below)                           |
+| TestCharacterUtil  | character helper methods                            |
+| TestCollectionUtil | random collections (see below)                      |
+| TestDateUtil       | conversions between Java Date and LocalDate         |
+| TestEnumUtil       | chooseOneFrom                                       |
+| TestInternetUtil   | random e-mail, URL, and IP addresses                |
+| TestListUtil       | random Lists of various types (see below)           |
+| TestLoremIpsumUtil | random greeking sentence and paragraph generator    |
+| TestMapUtil        | random Maps of various types (see below)            |
+| TestNameUtil       | random English/US male and female names             |
+| TestSetUtil        | random sets of various types (see below)            |
+| TestStringUtil     | several string methods                              |
+| TestWordUtil       | random words (nouns, verbs, adjectives, and colors) |
 
 
 Array, Collection, and Map utilities include

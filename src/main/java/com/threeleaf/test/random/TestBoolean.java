@@ -7,7 +7,7 @@ import static com.threeleaf.test.random.TestRandom.RANDOM;
 
 /** Utilities for random {@link Boolean} creation. */
 @SuppressWarnings("WeakerAccess")
-public class TestBoolean extends AbstractTest<Boolean> {
+public class TestBoolean extends AbstractRandom<Boolean> {
 
     /** The instance of {@link TestBoolean}. */
     public static final TestBoolean INSTANCE = new TestBoolean();

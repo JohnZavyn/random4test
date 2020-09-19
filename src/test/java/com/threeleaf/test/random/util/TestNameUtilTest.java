@@ -1,11 +1,13 @@
 package com.threeleaf.test.random.util;
 
+import static com.threeleaf.test.random.TestIntegerTest.LOOP_COUNT_MIN;
 import static com.threeleaf.test.random.util.TestNameUtil.*;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.lang.reflect.*;
 
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 /** Test {@link TestNameUtil}. */
@@ -14,12 +16,12 @@ class TestNameUtilTest {
     /** Test {@link TestNameUtil} constructor. */
     @Test
     void constructor() throws Exception {
-        Constructor<TestNameUtil> constructor = TestNameUtil.class.getDeclaredConstructor();
+        final Constructor<TestNameUtil> constructor = TestNameUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         try {
             constructor.newInstance();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }
@@ -31,9 +33,15 @@ class TestNameUtilTest {
     }
 
     /** Test {@link TestNameUtil#randomNameFirst()}. */
-    @Test
+    @RepeatedTest(LOOP_COUNT_MIN)
     void randomNameFirst() {
         assertNotNull(TestNameUtil.randomName());
+    }
+
+    /** Test {@link TestNameUtil#randomNameFirstFemale()}. */
+    @Test
+    void randomNameFirstFemale() {
+        assertTrue(NAMES_FIRST_FEMALE.contains(TestNameUtil.randomNameFirstFemale()));
     }
 
     /** Test {@link TestNameUtil#randomNameFirstMale()}. */
@@ -42,15 +50,9 @@ class TestNameUtilTest {
         assertTrue(NAMES_FIRST_MALE.contains(TestNameUtil.randomNameFirstMale()));
     }
 
-    /** Test {@link TestNameUtil#randomNameFirstFemale()}. */
-    @Test
-    void testRandomNameFirstFemale() {
-        assertTrue(NAMES_FIRST_FEMALE.contains(TestNameUtil.randomNameFirstFemale()));
-    }
-
     /** Test {@link TestNameUtil#randomNameLast()}. */
     @Test
-    void testRandomNameLast() {
+    void randomNameLast() {
         assertTrue(NAMES_LAST.contains(TestNameUtil.randomNameLast()));
     }
 }
