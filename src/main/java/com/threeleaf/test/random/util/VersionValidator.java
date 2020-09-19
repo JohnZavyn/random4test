@@ -66,7 +66,7 @@ public class VersionValidator implements Serializable {
      *     <li>BUILD = optional string (see reference)</li>
      * </ul>
      *
-     * @see <a href="https://semver.org/">Semantic Versioning 2.0.0</a>.
+     * @see <a href="https://semver.org/">Semantic Versioning 2.0.0</a>
      */
     private static final Pattern SEMANTIC_VERSION_REGEX = Pattern.compile(
         "^(?<MAJOR>0|[1-9]\\d*)\\.(?<MINOR>0|[1-9]\\d*)\\.(?<INCREMENTAL>0|[1-9]\\d*)"
@@ -88,7 +88,7 @@ public class VersionValidator implements Serializable {
      *
      * @see
      * <a href="https://github.com/spring-projects/spring-build-gradle/wiki/Spring-project-versioning">Spring
-     *     Project Versioning</a>.
+     *     Project Versioning</a>
      */
     private static final Pattern SPRING_VERSION_REGEX = Pattern.compile(
         "^(?<MAJOR>0|[1-9]\\d*)\\.(?<MINOR>0|[1-9]\\d*)\\.(?<INCREMENTAL>0|[1-9]\\d*)"

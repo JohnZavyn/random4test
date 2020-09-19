@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 indeed immutable */})
 public final class TestWordUtil {
 
-    /** NATO phonetic Alphabet */
+    /** NATO phonetic Alphabet. */
     public static final Map<String, String> ALPHABET_NATO = ImmutableMap.<String, String>builder()
         .put("A", "Alpha")
         .put("B", "Bravo")
