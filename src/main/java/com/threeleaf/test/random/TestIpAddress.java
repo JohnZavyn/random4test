@@ -19,17 +19,29 @@ public class TestIpAddress extends AbstractRandom<String> {
         super(String.class);
     }
 
-    /** Generate a random IP address. */
+    /**
+     * Generate a random IP address.
+     *
+     * @return an IP address
+     */
     public static String randomIpAddress() {
         return INSTANCE.random();
     }
 
-    /** Generate a random IPv4 address. */
+    /**
+     * Generate a random IPv4 address.
+     *
+     * @return a version 4 IP address
+     */
     public static String randomIpV4Address() {
         return IP_GENERATOR.randomIpV4Address();
     }
 
-    /** Generate a random IPv4 address. */
+    /**
+     * Generate a random IPv6 address.
+     *
+     * @return a version 6 IP address
+     */
     public static String randomIpV6Address() {
         return IP_GENERATOR.randomIpV6Address();
     }
@@ -37,7 +49,7 @@ public class TestIpAddress extends AbstractRandom<String> {
     /**
      * Get a random IP address.
      *
-     * @return a IP address
+     * @return an IP address
      */
     @Override
     public String random() {
@@ -50,7 +62,7 @@ public class TestIpAddress extends AbstractRandom<String> {
      * @return a friendly IP address
      */
     @Override
-    public String random(String... fieldsExcluded) {
+    public String random(final String... fieldsExcluded) {
         /* Since this is a String type, there are no fields to exclude. */
         return IP_GENERATOR.randomIpV4Address();
     }

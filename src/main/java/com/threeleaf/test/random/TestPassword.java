@@ -22,7 +22,11 @@ public class TestPassword extends AbstractRandom<String> {
         super(String.class);
     }
 
-    /** Generate a random password. */
+    /**
+     * Generate a random password.
+     *
+     * @return a password
+     */
     public static String randomPassword() {
         return INSTANCE.random();
     }

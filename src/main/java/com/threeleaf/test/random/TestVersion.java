@@ -19,7 +19,11 @@ public class TestVersion extends AbstractRandom<String> {
         super(String.class);
     }
 
-    /** Generate a random version. */
+    /**
+     * Generate a random version.
+     *
+     * @return a version
+     */
     public static String randomVersion() {
         return INSTANCE.random();
     }
@@ -40,7 +44,7 @@ public class TestVersion extends AbstractRandom<String> {
      * @return a version
      */
     @Override
-    public String random(String... fieldsExcluded) {
+    public String random(final String... fieldsExcluded) {
         /* Since this is a String type, there are no fields to exclude. */
         return VERSION_GENERATOR.randomVersion();
     }

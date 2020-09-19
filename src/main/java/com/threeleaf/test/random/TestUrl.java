@@ -28,12 +28,20 @@ public class TestUrl extends AbstractRandom<String> {
         super(String.class);
     }
 
-    /** Generate a random URL. */
+    /**
+     * Generate a random URL.
+     *
+     * @return a URL
+     */
     public static String randomUrl() {
         return INSTANCE.random();
     }
 
-    /** Generate a random secure URL. */
+    /**
+     * Generate a random secure URL.
+     *
+     * @return a secure URL
+     */
     public static String randomUrlSecure() {
         return URL_GENERATOR.randomUrlSecure();
     }
@@ -54,7 +62,7 @@ public class TestUrl extends AbstractRandom<String> {
      * @return a secure URL
      */
     @Override
-    public String random(String... fieldsExcluded) {
+    public String random(final String... fieldsExcluded) {
         /* Since this is a String type, there are no fields to exclude. */
         return URL_GENERATOR.randomUrlSecure();
     }

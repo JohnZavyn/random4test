@@ -123,9 +123,9 @@ public class VersionValidator implements Serializable {
      *          <li>Maven uses
      *          <a href="https://github.com/apache/maven/blob/maven-3.3.9/maven-artifact/src/main/java/org/apache/maven/artifact/versioning/1.java">DefaultArtifactVersion</a></li>
      *          <li>Which does not recognize Spring versions (for example, it will say
-     *          {@code 10.0.0.RELEASE} < {@code 2.0.0.RELEASE)}</li>
+     *          {@code 10.0.0.RELEASE} &lt; {@code 2.0.0.RELEASE)}</li>
      *          <li>Will not accurately handle semantic versions with build numbers (for
-     *          example, it will say {@code 1.0.0-A+10} < {@code 1.0.0-A+2)}</li>
+     *          example, it will say {@code 1.0.0-A+10} &lt; {@code 1.0.0-A+2)}</li>
      *          <li>Apache's standard of using the SNAPSHOT qualifier to indicate a work in
      *          progress does not sort well alphabetically. </li>
      *      </ul></li>

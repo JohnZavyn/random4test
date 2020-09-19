@@ -22,7 +22,11 @@ public class TestEmail extends AbstractRandom<String> {
         super(String.class);
     }
 
-    /** Generate a random email. */
+    /**
+     * Generate a random email.
+     *
+     * @return an email
+     */
     public static String randomEmail() {
         return INSTANCE.random();
     }
@@ -30,7 +34,7 @@ public class TestEmail extends AbstractRandom<String> {
     /**
      * Get a random email.
      *
-     * @return a email
+     * @return an email
      */
     @Override
     public String random() {
@@ -43,7 +47,7 @@ public class TestEmail extends AbstractRandom<String> {
      * @return a friendly email
      */
     @Override
-    public String random(String... fieldsExcluded) {
+    public String random(final String... fieldsExcluded) {
         /* Since this is a String type, there are no fields to exclude. */
         return EMAIL_GENERATOR.randomEmail();
     }
