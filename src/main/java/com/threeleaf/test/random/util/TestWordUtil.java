@@ -16,6 +16,36 @@ import lombok.NoArgsConstructor;
 indeed immutable */})
 public final class TestWordUtil {
 
+    /** NATO phonetic Alphabet */
+    public static final Map<String, String> ALPHABET_NATO = ImmutableMap.<String, String>builder()
+        .put("A", "Alpha")
+        .put("B", "Bravo")
+        .put("C", "Charlie")
+        .put("D", "Delta")
+        .put("E", "Echo")
+        .put("F", "Foxtrot")
+        .put("G", "Golf")
+        .put("H", "Hotel")
+        .put("I", "India")
+        .put("J", "Juliet")
+        .put("K", "Kilo")
+        .put("L", "Lima")
+        .put("M", "Mike")
+        .put("N", "November")
+        .put("O", "Oscar")
+        .put("P", "Papa")
+        .put("Q", "Quebec")
+        .put("R", "Romeo")
+        .put("S", "Sierra")
+        .put("T", "Tango")
+        .put("U", "Uniform")
+        .put("V", "Victor")
+        .put("W", "Whiskey")
+        .put("X", "X-ray")
+        .put("Y", "Yankee")
+        .put("Z", "Zulu")
+        .build();
+
     /** Common CSS color HEX values and related W3C extended color keywords. */
     public static final Map<String, String> COLORS = ImmutableMap.<String, String>builder()
         .put("#008080", "Teal")
@@ -484,8 +514,8 @@ public final class TestWordUtil {
      *
      * @return the set of unique words parsed from the string
      */
-    public static Set<String> parseWords(String string) {
-        String[] words = string.split(REGEX_PUNCTUATION);
+    public static Set<String> parseWords(final String string) {
+        final String[] words = string.split(REGEX_PUNCTUATION);
         Arrays.sort(words);
 
         return ImmutableSet.copyOf(words);
@@ -534,6 +564,15 @@ public final class TestWordUtil {
      */
     public static String randomNoun() {
         return chooseOneFrom(WORDS_NOUNS);
+    }
+
+    /**
+     * Get a random NATO phonetic alphabet word.
+     *
+     * @return a phonetic word
+     */
+    public static String randomPhoneticNato() {
+        return chooseOneFrom(ALPHABET_NATO.values());
     }
 
     /**

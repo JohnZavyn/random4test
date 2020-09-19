@@ -17,12 +17,12 @@ class TestWordUtilTest {
     /** Test {@link TestWordUtil} constructor. */
     @Test
     void constructor() throws Exception {
-        Constructor<TestWordUtil> constructor = TestWordUtil.class.getDeclaredConstructor();
+        final Constructor<TestWordUtil> constructor = TestWordUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         try {
             constructor.newInstance();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }
@@ -30,7 +30,7 @@ class TestWordUtilTest {
     /** Test {@link TestWordUtil#parseWords(String)}. */
     @Test
     void getAllWords() {
-        List<String> testWords = newArrayList(STRING_01, STRING_10, STRING_05);
+        final List<String> testWords = newArrayList(STRING_01, STRING_10, STRING_05);
 
         assertTrue(testWords.containsAll(
             TestWordUtil.parseWords(String.join(PUNCTUATION, testWords)))
@@ -56,7 +56,7 @@ class TestWordUtilTest {
     /** Test {@link TestWordUtil#randomColor()}. */
     @Test
     void randomColor() {
-        String color = TestWordUtil.randomColor();
+        final String color = TestWordUtil.randomColor();
         assertFalse(isBlank(color));
         assertFalse(color.startsWith("#"));
     }
@@ -71,6 +71,12 @@ class TestWordUtilTest {
     @Test
     void randomNoun() {
         assertFalse(isBlank(TestWordUtil.randomNoun()));
+    }
+
+    /** Test {@link TestWordUtil#randomPhoneticNato()}. */
+    @Test
+    void randomPhoneticNato() {
+        assertFalse(isBlank(TestWordUtil.randomPhoneticNato()));
     }
 
     /** Test {@link TestWordUtil#randomPhrase()}. */
