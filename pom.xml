@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
@@ -12,12 +10,11 @@
 
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>4.0.0</version>
+    <version>4.0.1</version>
     <packaging>jar</packaging>
 
     <name>Random For Test</name>
-    <description>A testing library that provides random numbers, strings, and Collections.
-    </description>
+    <description>A testing library that provides random numbers, strings, and Collections.</description>
     <url>https://github.com/JohnZavyn/random4test/</url>
 
     <organization>
@@ -48,8 +45,7 @@
 
     <scm>
         <connection>scm:git:git@github.com:JohnZavyn/random4test.git</connection>
-        <developerConnection>scm:git:ssh://github.com:JohnZavyn/random4test.git
-        </developerConnection>
+        <developerConnection>scm:git:ssh://github.com:JohnZavyn/random4test.git</developerConnection>
         <url>https://github.com/JohnZavyn/random4test.git</url>
     </scm>
 
@@ -68,27 +64,27 @@
         <!-- Dependency versions -->
         <commons-validator.version>1.7</commons-validator.version>
         <findbugs.version>3.0.0</findbugs.version>
-        <guava.version>29.0-jre</guava.version>
-        <joda-time.version>2.10.6</joda-time.version>
-        <junit.version>5.7.1</junit.version>
-        <lombok.version>1.18.12</lombok.version>
+        <guava.version>31.0.1-jre</guava.version>
+        <joda-time.version>2.10.13</joda-time.version>
+        <junit.version>5.8.2</junit.version>
+        <lombok.version>1.18.22</lombok.version>
         <random-beans.version>3.9.0</random-beans.version>
 
         <!-- Plugin versions -->
         <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
-        <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
-        <maven-deploy-plugin.version>3.0.0-M1</maven-deploy-plugin.version>
-        <maven-enforcer-plugin.version>3.0.0-M3</maven-enforcer-plugin.version>
-        <maven-gpg-plugin.version>1.6</maven-gpg-plugin.version>
+        <maven-compiler-plugin.version>3.10.0</maven-compiler-plugin.version>
+        <maven-deploy-plugin.version>3.0.0-M2</maven-deploy-plugin.version>
+        <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
+        <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
         <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
-        <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
-        <maven-javadoc-plugin.version>3.2.0</maven-javadoc-plugin.version>
-        <maven-project-info-reports-plugin.version>3.1.1</maven-project-info-reports-plugin.version>
+        <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
+        <maven-javadoc-plugin.version>3.3.2</maven-javadoc-plugin.version>
+        <maven-project-info-reports-plugin.version>3.2.2</maven-project-info-reports-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
-        <maven-site-plugin.version>3.9.1</maven-site-plugin.version>
+        <maven-site-plugin.version>3.11.0</maven-site-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <nexus-staging-maven-plugin.version>1.6.8</nexus-staging-maven-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.12</nexus-staging-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
@@ -258,8 +254,7 @@
                             </manifest>
                             <manifestEntries>
                                 <!-- We do not create an explicit module-info file, but we want to specify the module name for future stability. -->
-                                <Automatic-Module-Name>${project.groupId}.common.test
-                                </Automatic-Module-Name>
+                                <Automatic-Module-Name>${project.groupId}.common.test</Automatic-Module-Name>
                             </manifestEntries>
                         </archive>
                     </configuration>

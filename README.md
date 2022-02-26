@@ -12,7 +12,7 @@ Add to Maven projects with:
 <dependency>
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>4.0.0</version>
+    <version>4.0.1</version>
 </dependency>
 ```
 For more dependency options: <https://mvnrepository.com/artifact/com.threeleaf/random4test>
