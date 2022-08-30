@@ -10,7 +10,7 @@
 
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>4.0.1</version>
+    <version>4.0.2</version>
     <packaging>jar</packaging>
 
     <name>Random For Test</name>
@@ -25,7 +25,7 @@
     <licenses>
         <license>
             <name>MIT License</name>
-            <url>http://www.opensource.org/licenses/mit-license.php</url>
+            <url>https://www.opensource.org/licenses/mit-license.php</url>
         </license>
     </licenses>
 
@@ -33,9 +33,9 @@
         <developer>
             <id>zavyn</id>
             <name>John A. Marsh</name>
-            <email>developer@threeleaf.com</email>
+            <email>random4test@marshmail.us</email>
             <organization>ThreeLeaf.com</organization>
-            <organizationUrl>http://www.threeleaf.com/</organizationUrl>
+            <organizationUrl>https://www.threeleaf.com/</organizationUrl>
             <roles>
                 <role>Project Owner</role>
             </roles>
@@ -64,27 +64,27 @@
         <!-- Dependency versions -->
         <commons-validator.version>1.7</commons-validator.version>
         <findbugs.version>3.0.0</findbugs.version>
-        <guava.version>31.0.1-jre</guava.version>
-        <joda-time.version>2.10.13</joda-time.version>
-        <junit.version>5.8.2</junit.version>
-        <lombok.version>1.18.22</lombok.version>
+        <guava.version>31.1-jre</guava.version>
+        <joda-time.version>2.11.1</joda-time.version>
+        <junit.version>5.9.0</junit.version>
+        <lombok.version>1.18.24</lombok.version>
         <random-beans.version>3.9.0</random-beans.version>
 
         <!-- Plugin versions -->
-        <maven-clean-plugin.version>3.1.0</maven-clean-plugin.version>
-        <maven-compiler-plugin.version>3.10.0</maven-compiler-plugin.version>
-        <maven-deploy-plugin.version>3.0.0-M2</maven-deploy-plugin.version>
-        <maven-enforcer-plugin.version>3.0.0</maven-enforcer-plugin.version>
+        <maven-clean-plugin.version>3.2.0</maven-clean-plugin.version>
+        <maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
+        <maven-deploy-plugin.version>3.0.0</maven-deploy-plugin.version>
+        <maven-enforcer-plugin.version>3.1.0</maven-enforcer-plugin.version>
         <maven-gpg-plugin.version>3.0.1</maven-gpg-plugin.version>
-        <maven-install-plugin.version>3.0.0-M1</maven-install-plugin.version>
+        <maven-install-plugin.version>3.0.1</maven-install-plugin.version>
         <maven-jar-plugin.version>3.2.2</maven-jar-plugin.version>
-        <maven-javadoc-plugin.version>3.3.2</maven-javadoc-plugin.version>
-        <maven-project-info-reports-plugin.version>3.2.2</maven-project-info-reports-plugin.version>
-        <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
-        <maven-site-plugin.version>3.11.0</maven-site-plugin.version>
+        <maven-javadoc-plugin.version>3.4.1</maven-javadoc-plugin.version>
+        <maven-project-info-reports-plugin.version>3.4.1</maven-project-info-reports-plugin.version>
+        <maven-resources-plugin.version>3.3.0</maven-resources-plugin.version>
+        <maven-site-plugin.version>4.0.0-M3</maven-site-plugin.version>
         <maven-source-plugin.version>3.2.1</maven-source-plugin.version>
-        <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
-        <nexus-staging-maven-plugin.version>1.6.12</nexus-staging-maven-plugin.version>
+        <maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
     </properties>
 
     <dependencyManagement>
