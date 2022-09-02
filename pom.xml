@@ -10,7 +10,7 @@
 
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>4.0.3</version>
+    <version>4.0.4</version>
     <packaging>jar</packaging>
 
     <name>Random For Test</name>
@@ -156,6 +156,12 @@
         <dependency>
             <groupId>io.github.benas</groupId>
             <artifactId>random-beans</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>io.github.classgraph</groupId>
+                    <artifactId>classgraph</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>joda-time</groupId>
