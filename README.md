@@ -1,23 +1,31 @@
 # random4test
+
 Easily provide random numbers, strings, and collections to JUnit tests.
 
-[![Build Status](https://travis-ci.org/JohnZavyn/random4test.svg)](https://travis-ci.org/JohnZavyn/random4test) &nbsp;
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.threeleaf/random4test/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.threeleaf/random4test) &nbsp;
-[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-brightgreen.svg)](https://www.gnu.org/licenses/gpl-3.0) &nbsp;
+[![Build Status](https://travis-ci.org/JohnZavyn/random4test.svg)](https://travis-ci.org/JohnZavyn/random4test)
+&nbsp;
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.threeleaf/random4test/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.threeleaf/random4test)
+&nbsp;
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-brightgreen.svg)](https://www.gnu.org/licenses/gpl-3.0)
+&nbsp;
 [![JavaDoc](http://javadoc-badge.appspot.com/com.threeleaf/random4test.svg?label=javadoc)](http://www.threeleaf.com/random4test/javadoc/)
 
 ## Maven dependency
+
 Add to Maven projects with:
+
 ```xml
 <dependency>
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>4.0.1</version>
+    <version>4.0.3</version>
 </dependency>
 ```
+
 For more dependency options: <https://mvnrepository.com/artifact/com.threeleaf/random4test>
 
 ## Example usage
+
 ```java
 /** Test {@link MyResource#update(int, int, String, String, TreeSet)}. */
 @Test
@@ -33,7 +41,9 @@ public void update()
 ```
 
 ## Object types available in this library for randomization
-Randomization classes and libraries are available out of the box for all the Java primitives, many basic Java Object types,
+
+Randomization classes and libraries are available out of the box for all the Java primitives, many
+basic Java Object types,
 and a few extras:
 
 ### Random numbers
@@ -64,7 +74,8 @@ and a few extras:
 | TestLocalDate          | java.time.LocalDate         |
 | TestLocalDateTime      | java.time.LocalDateTime     |
 
-* have static constants for with names like `TODAY`, `YESTERDAY`, `TOMORROW`, `NEXT_WEEK`, `NEXT_YEAR`, etc.
+* have static constants for with names like `TODAY`, `YESTERDAY`, `TOMORROW`, `NEXT_WEEK`
+  , `NEXT_YEAR`, etc.
 * Have static methods for random future, past, and between last year and next year
 * Have static methods for choosing a random date between two specified dates
 
@@ -134,7 +145,6 @@ This will give you access to the rich set of methods available in `AbstractTest`
 In addition to the constants and randomizers available from the Test classes above,
 there are also a number of helpful utilities available through the following:
 
-
 | Test Class         | General functional purpose                          |
 |:-------------------|:----------------------------------------------------|
 | TestAddressUtil    | random US states, cities, zips, and mock addresses  |
@@ -152,8 +162,8 @@ there are also a number of helpful utilities available through the following:
 | TestStringUtil     | several string methods                              |
 | TestWordUtil       | random words (nouns, verbs, adjectives, and colors) |
 
-
 Array, Collection, and Map utilities include
+
 * randomXxxOf, randomXxxSingleOf, chooseOneFrom static methods, so you can generate simple
   collections on the fly.
 
