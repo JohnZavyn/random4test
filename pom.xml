@@ -68,7 +68,7 @@
         <guava.version>31.1-jre</guava.version>
         <jackson-databind.version>2.13.3</jackson-databind.version>
         <joda-time.version>2.11.1</joda-time.version>
-        <junit.version>5.9.0</junit.version>
+        <junit.version>5.9.1</junit.version>
         <lombok.version>1.18.24</lombok.version>
         <random-beans.version>3.9.0</random-beans.version>
 
