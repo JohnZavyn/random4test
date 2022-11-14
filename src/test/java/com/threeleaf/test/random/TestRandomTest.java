@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestObject.OBJECT;
@@ -15,12 +19,12 @@ class TestRandomTest {
     /** Test {@link TestRandom} constructor. */
     @Test
     void constructor() throws Exception {
-        Constructor<TestRandom> constructor = TestRandom.class.getDeclaredConstructor();
+        final Constructor<TestRandom> constructor = TestRandom.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         try {
             constructor.newInstance();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }
@@ -29,7 +33,7 @@ class TestRandomTest {
     @Test
     void random() {
         /* Excludes all fields (interface types can't be initialized). */
-        KeyPair keyPair = TestRandom.random(KeyPair.class, "publicKey", "privateKey");
+        final KeyPair keyPair = TestRandom.random(KeyPair.class, "publicKey", "privateKey");
 
         assertNull(keyPair.getPrivate());
         assertNull(keyPair.getPublic());

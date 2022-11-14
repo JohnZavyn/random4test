@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestRandom.RANDOM;
@@ -20,8 +24,8 @@ public final class TestEnumUtil {
      *
      * @return the random enum
      */
-    public static <E extends Enum<E>> E chooseOneFrom(@Nonnull Class<E> enumClass) {
-        E[] values = enumClass.getEnumConstants();
+    public static <E extends Enum<E>> E chooseOneFrom(@Nonnull final Class<E> enumClass) {
+        final E[] values = enumClass.getEnumConstants();
 
         return values[RANDOM.nextInt(values.length)];
     }

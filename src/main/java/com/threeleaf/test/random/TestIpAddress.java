@@ -1,8 +1,12 @@
+/*
+ * Copyright 2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import com.threeleaf.test.random.generator.IpAddressGenerator;
 
-/** Test IP addresses for use in JUnit tests. */
+/** Test IP addresses for use in unit tests. */
 public class TestIpAddress extends AbstractRandom<String> {
 
     /** The instance of {@link TestIpAddress}. */

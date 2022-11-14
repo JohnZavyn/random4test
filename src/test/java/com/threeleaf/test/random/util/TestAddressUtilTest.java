@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestInteger.INT_02;
@@ -15,12 +19,12 @@ class TestAddressUtilTest {
     /** Test {@link TestAddressUtil} constructor. */
     @Test
     void constructor() throws Exception {
-        Constructor<TestAddressUtil> constructor = TestAddressUtil.class.getDeclaredConstructor();
+        final Constructor<TestAddressUtil> constructor = TestAddressUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         try {
             constructor.newInstance();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }
@@ -43,7 +47,7 @@ class TestAddressUtilTest {
     /** Test {@link TestAddressUtil#randomAddress()}. */
     @Test
     void randomAddress() {
-        Address address = TestAddressUtil.randomAddress();
+        final Address address = TestAddressUtil.randomAddress();
 
         assertNotNull(address);
         assertNotNull(address.getState());

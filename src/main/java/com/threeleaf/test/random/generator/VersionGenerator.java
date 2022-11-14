@@ -1,3 +1,7 @@
+/*
+ * Copyright 2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.generator;
 
 import static com.threeleaf.test.random.TestBoolean.coinFlip;
@@ -69,8 +73,7 @@ public final class VersionGenerator {
      *
      * @return a Spring version number
      *
-     * @see
-     * <a href="https://github.com/spring-projects/spring-build-gradle/wiki/Spring-project-versioning">Spring
+     * @see <a href="https://github.com/spring-projects/spring-build-gradle/wiki/Spring-project-versioning">Spring
      *     project versioning</a>
      */
     public String randomSpringVersion() {

@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestFloat.*;
@@ -23,7 +27,7 @@ class TestFloatTest {
         float min = 100;
 
         for (int i = 1; i < INT_10000; i++) {
-            float percent = TestFloat.randomPercent();
+            final float percent = TestFloat.randomPercent();
 
             max = Math.max(max, percent);
             min = Math.min(min, percent);

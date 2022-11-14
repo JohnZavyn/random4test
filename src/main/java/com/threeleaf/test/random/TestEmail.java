@@ -1,8 +1,12 @@
+/*
+ * Copyright 2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import com.threeleaf.test.random.generator.EmailGenerator;
 
-/** Test emails for use in JUnit tests. */
+/** Test emails for use in unit tests. */
 public class TestEmail extends AbstractRandom<String> {
 
     /** The at sign. */

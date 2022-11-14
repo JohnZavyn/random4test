@@ -1,3 +1,7 @@
+/*
+ * Copyright 2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.generator;
 
 import static com.threeleaf.test.random.TestDomain.DOT;

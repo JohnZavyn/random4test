@@ -1,10 +1,14 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.util;
 
+import static com.google.common.collect.Sets.newHashSet;
 import static com.threeleaf.test.random.TestInteger.*;
 import static com.threeleaf.test.random.TestRandom.randomType;
 import static com.threeleaf.test.random.util.TestListUtil.randomArrayListOf;
 import static java.lang.reflect.Array.newInstance;
-import static java.util.Arrays.asList;
 import static lombok.AccessLevel.PRIVATE;
 
 import java.lang.reflect.Array;
@@ -27,8 +31,8 @@ public final class TestArrayUtil {
      *
      * @return a random object
      */
-    public static <T> T chooseOneFrom(@Nonnull T... array) {
-        return TestCollectionUtil.chooseOneFrom(asList(array));
+    public static <T> T chooseOneFrom(@Nonnull final T... array) {
+        return TestCollectionUtil.chooseOneFrom(newHashSet(array));
     }
 
     /**
@@ -42,9 +46,9 @@ public final class TestArrayUtil {
      * @return an Array of randomized objects
      */
     public static <T> T[] randomArrayOf(
-        int size,
-        @Nonnull Function<String[], T> randomFunction,
-        String... fieldsExcluded
+        final int size,
+        @Nonnull final Function<String[], T> randomFunction,
+        final String... fieldsExcluded
     ) {
         return toArray(randomArrayListOf(size, randomFunction, fieldsExcluded));
     }
@@ -60,8 +64,8 @@ public final class TestArrayUtil {
      * @return an Array of randomized objects
      */
     public static <T> T[] randomArrayOf(
-        int size, @Nonnull Class<T> type,
-        String... fieldsExcluded
+        final int size, @Nonnull final Class<T> type,
+        final String... fieldsExcluded
     ) {
         return randomArrayListOf(size, randomType(type), fieldsExcluded)
             .toArray((T[]) Array.newInstance(type, INT_00));
@@ -77,8 +81,8 @@ public final class TestArrayUtil {
      * @return an Array of randomized objects
      */
     public static <T> T[] randomArrayOf(
-        @Nonnull Function<String[], T> randomFunction,
-        String... fieldsExcluded
+        @Nonnull final Function<String[], T> randomFunction,
+        final String... fieldsExcluded
     ) {
         return randomArrayOf(random1to10(), randomFunction, fieldsExcluded);
     }
@@ -93,8 +97,8 @@ public final class TestArrayUtil {
      * @return an Array of randomized objects
      */
     public static <T> T[] randomArrayOf(
-        @Nonnull Class<T> type,
-        String... fieldsExcluded
+        @Nonnull final Class<T> type,
+        final String... fieldsExcluded
     ) {
         return randomArrayOf(random1to10(), type, fieldsExcluded);
     }
@@ -109,8 +113,8 @@ public final class TestArrayUtil {
      * @return an Array with a randomized object
      */
     public static <T> T[] randomArraySingleOf(
-        @Nonnull Class<T> type,
-        String... fieldsExcluded
+        @Nonnull final Class<T> type,
+        final String... fieldsExcluded
     ) {
         return randomArrayOf(INT_01, type, fieldsExcluded);
     }
@@ -125,8 +129,8 @@ public final class TestArrayUtil {
      * @return an Array with a randomized object
      */
     public static <T> T[] randomArraySingleOf(
-        @Nonnull Function<String[], T> randomFunction,
-        String... fieldsExcluded
+        @Nonnull final Function<String[], T> randomFunction,
+        final String... fieldsExcluded
     ) {
         return randomArrayOf(INT_01, randomFunction, fieldsExcluded);
     }
@@ -139,8 +143,8 @@ public final class TestArrayUtil {
      *
      * @return the array
      */
-    public static <T> T[] toArray(List<T> list) {
-        Class<?> aClass = list.isEmpty() ? Object.class : list.get(0).getClass();
+    public static <T> T[] toArray(final List<T> list) {
+        final Class<?> aClass = list.isEmpty() ? Object.class : list.get(0).getClass();
 
         return (T[]) newInstance(aClass, list.size());
     }

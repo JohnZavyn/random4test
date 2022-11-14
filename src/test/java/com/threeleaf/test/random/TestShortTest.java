@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestInteger.INT_00;
@@ -14,7 +18,7 @@ class TestShortTest {
     /** Test {@link TestShort#randomHex()}. */
     @Test
     void randomHex() {
-        int unsigned = Integer.parseInt(TestShort.randomHex(), INT_16);
+        final int unsigned = Integer.parseInt(TestShort.randomHex(), INT_16);
         assertTrue(unsigned <= SHORT_UNSIGNED_MAX);
         assertTrue(unsigned >= INT_00);
     }

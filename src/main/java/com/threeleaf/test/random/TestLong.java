@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2022, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static java.lang.Long.MAX_VALUE;
@@ -353,13 +357,13 @@ public class TestLong extends AbstractRandom<Long> {
     public static final Collection<Long> LONG_COLLECTION =
         unmodifiableCollection(INSTANCE.randomCollection());
 
-    /** An single {@link Integer} collection. */
+    /** A single {@link Integer} collection. */
     public static final Collection<Long> LONG_COLLECTION_SINGLE = singleton(randomLong());
 
     /** An {@link Long} list. */
     public static final List<Long> LONG_LIST = unmodifiableList(INSTANCE.randomList());
 
-    /** An single {@link Integer} list. */
+    /** A single {@link Integer} list. */
     public static final List<Long> LONG_LIST_SINGLE = singletonList(randomLong());
 
     /** An {@link Long} map. */

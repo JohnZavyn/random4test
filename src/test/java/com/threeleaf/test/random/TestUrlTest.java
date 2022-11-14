@@ -1,3 +1,7 @@
+/*
+ * Copyright 2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestString.STRING_ARRAY;
@@ -28,7 +32,7 @@ class TestUrlTest {
     /** Test {@link TestUrl#randomUrl()}. */
     @Test
     void randomUrl() {
-        String url = testUrl.random(STRING_ARRAY);
+        final String url = testUrl.random(STRING_ARRAY);
 
         assertTrue(UrlValidator.getInstance().isValid(url));
 
@@ -38,7 +42,7 @@ class TestUrlTest {
     /** Test {@link TestUrl#randomUrlSecure()}. */
     @Test
     void randomUrlSecure() {
-        String url = TestUrl.randomUrlSecure();
+        final String url = TestUrl.randomUrlSecure();
         assertTrue(UrlValidator.getInstance().isValid(url));
 
         assertTrue(url.startsWith(TestUrl.HTTPS_PROTOCOL));

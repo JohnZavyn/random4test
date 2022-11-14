@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2022, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestInteger.INTEGER_SMALL;
@@ -14,12 +18,12 @@ class TestSetUtilTest {
     /** Test {@link TestSetUtil} constructor. */
     @Test
     void constructor() throws Exception {
-        Constructor<TestSetUtil> constructor = TestSetUtil.class.getDeclaredConstructor();
+        final Constructor<TestSetUtil> constructor = TestSetUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         try {
             constructor.newInstance();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }

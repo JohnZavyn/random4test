@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2022, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestInteger.*;
@@ -351,7 +355,7 @@ public class TestShort extends AbstractRandom<Short> {
     public static final Short SHORT_SMALL = randomPercent();
 
     /** The maximum value for an unsigned short. */
-    public static final int SHORT_UNSIGNED_MAX = (int) Short.MAX_VALUE - Short.MIN_VALUE;
+    public static final int SHORT_UNSIGNED_MAX = Short.MAX_VALUE - Short.MIN_VALUE;
 
     /** The primitive short 00. */
     public static final short S_00 = 0;
@@ -757,7 +761,7 @@ public class TestShort extends AbstractRandom<Short> {
     /**
      * A random unsigned short.
      *
-     * @return a number between 0 to 65535 inclusive
+     * @return a number between 0 and 65535 inclusive
      */
     public static int randomUnsigned() {
         return TestInteger.randomBetween(INT_00, SHORT_UNSIGNED_MAX);

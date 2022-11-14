@@ -1,3 +1,7 @@
+/*
+ * Copyright 2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.generator;
 
 import static com.threeleaf.test.random.TestInteger.*;
@@ -18,9 +22,9 @@ class PasswordGeneratorTest {
     @Test
     void randomPassword() {
         passwordGenerator = new PasswordGenerator(EXAMPLE, PUNCTUATION);
-        int length = randomBetween(INT_02, INT_50);
+        final int length = randomBetween(INT_02, INT_50);
 
-        String result = passwordGenerator.randomPassword(length);
+        final String result = passwordGenerator.randomPassword(length);
 
         assertEquals(length, result.length());
     }
@@ -29,8 +33,8 @@ class PasswordGeneratorTest {
     @Test
     void randomPasswordFriendly() {
         passwordGenerator = new PasswordGenerator(NUMBERS, ALPHABET);
-        int length = randomBetween(INT_02, INT_50);
-        String result = passwordGenerator.randomPasswordFriendly(length);
+        final int length = randomBetween(INT_02, INT_50);
+        final String result = passwordGenerator.randomPasswordFriendly(length);
 
         assertEquals(length, result.length());
     }
@@ -50,7 +54,7 @@ class PasswordGeneratorTest {
     void randomPasswordNoShuffle2() {
         passwordGenerator = new PasswordGenerator(NUMBERS, ALPHABET, PUNCTUATION);
 
-        String result = passwordGenerator.randomPassword(INT_03, TRUE);
+        final String result = passwordGenerator.randomPassword(INT_03, TRUE);
 
         assertEquals(INT_03, result.length());
         assertTrue(contains(NUMBERS, result.charAt(INT_00)));

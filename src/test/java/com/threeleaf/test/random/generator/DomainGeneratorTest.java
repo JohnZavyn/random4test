@@ -1,3 +1,7 @@
+/*
+ * Copyright 2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.generator;
 
 import static com.threeleaf.test.random.generator.DomainGenerator.TOP_LEVEL_DOMAINS;
@@ -16,7 +20,7 @@ class DomainGeneratorTest {
     /** Test {@link DomainGenerator#randomDomain()}. */
     @Test
     void randomDomain() {
-        String result = domainGeneratorUnderTest.randomDomain();
+        final String result = domainGeneratorUnderTest.randomDomain();
 
         assertTrue(DomainValidator.getInstance().isValid(result));
     }
@@ -24,7 +28,7 @@ class DomainGeneratorTest {
     /** Test {@link DomainGenerator#randomTopLevelDomain()}. */
     @Test
     void randomTopLevelDomain() {
-        String result = domainGeneratorUnderTest.randomTopLevelDomain();
+        final String result = domainGeneratorUnderTest.randomTopLevelDomain();
 
         assertTrue(TOP_LEVEL_DOMAINS.contains(result));
     }

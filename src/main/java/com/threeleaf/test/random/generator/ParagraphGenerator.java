@@ -1,3 +1,7 @@
+/*
+ * Copyright 2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.generator;
 
 import static com.threeleaf.test.random.TestInteger.*;
@@ -28,7 +32,7 @@ public class ParagraphGenerator {
      *
      * @param wordString words separated by spaces or punctuation
      */
-    public ParagraphGenerator(String wordString) {
+    public ParagraphGenerator(final String wordString) {
         super();
         wordSet = parseWords(wordString);
     }
@@ -49,8 +53,8 @@ public class ParagraphGenerator {
      *
      * @return the chapter
      */
-    public String randomChapter(int paragraphCount) {
-        StringBuilder chapter = new StringBuilder(randomParagraph());
+    public String randomChapter(final int paragraphCount) {
+        final StringBuilder chapter = new StringBuilder(randomParagraph());
         for (int count = 1; count < paragraphCount; count++) {
             chapter.append("\n").append(randomParagraph());
         }
@@ -65,8 +69,8 @@ public class ParagraphGenerator {
      *
      * @return the paragraph
      */
-    public String randomParagraph(int sentenceCount) {
-        StringBuilder paragraph = new StringBuilder(randomSentence());
+    public String randomParagraph(final int sentenceCount) {
+        final StringBuilder paragraph = new StringBuilder(randomSentence());
         for (int count = 1; count < sentenceCount; count++) {
             paragraph.append(' ').append(randomSentence());
         }
@@ -99,8 +103,8 @@ public class ParagraphGenerator {
      *
      * @return the sentence
      */
-    public String randomSentence(int wordCount) {
-        StringBuilder sentence =
+    public String randomSentence(final int wordCount) {
+        final StringBuilder sentence =
             new StringBuilder(capitalize(chooseOneFrom(wordSet)));
         for (int count = 1; count < wordCount; count++) {
             sentence.append(' ').append(chooseOneFrom(wordSet));

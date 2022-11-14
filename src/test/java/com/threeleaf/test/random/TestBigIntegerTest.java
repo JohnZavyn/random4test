@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestBigInteger.*;
@@ -17,7 +21,7 @@ import org.junit.jupiter.api.Test;
 class TestBigIntegerTest {
 
     /** The {@link BigIntegerValidator}. */
-    final BigIntegerValidator bigIntegerValidator = getInstance();
+    private final BigIntegerValidator bigIntegerValidator = getInstance();
 
     /** Test {@link TestBigInteger#random()}. */
     @Test

@@ -1,8 +1,12 @@
+/*
+ * Copyright 2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import com.threeleaf.test.random.generator.PasswordGenerator;
 
-/** Test passwords for use in JUnit tests. */
+/** Test passwords for use in unit tests. */
 public class TestPassword extends AbstractRandom<String> {
 
     /** The instance of {@link TestPassword}. */

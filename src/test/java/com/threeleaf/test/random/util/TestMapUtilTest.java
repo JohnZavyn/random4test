@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestInteger.INT_01;
@@ -16,8 +20,8 @@ class TestMapUtilTest {
     /** Test {@link TestMapUtil#chooseOneKeyFrom(Map)}. */
     @Test
     void chooseOneKeyFrom() {
-        Map<Short, Long> map = TestMapUtil.randomMapOf(Short.class, Long.class);
-        Set<Short> results = new HashSet<>();
+        final Map<Short, Long> map = TestMapUtil.randomMapOf(Short.class, Long.class);
+        final Set<Short> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
         for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
@@ -35,8 +39,8 @@ class TestMapUtilTest {
     /** Test {@link TestMapUtil#chooseOneValueFrom(Map)}. */
     @Test
     void chooseOneValueFrom() {
-        Map<Integer, String> map = TestMapUtil.randomMapOf(Integer.class, String.class);
-        Set<String> results = new HashSet<>();
+        final Map<Integer, String> map = TestMapUtil.randomMapOf(Integer.class, String.class);
+        final Set<String> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
         for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
@@ -54,12 +58,12 @@ class TestMapUtilTest {
     /** Test {@link TestMapUtil} constructor. */
     @Test
     void constructor() throws Exception {
-        Constructor<TestMapUtil> constructor = TestMapUtil.class.getDeclaredConstructor();
+        final Constructor<TestMapUtil> constructor = TestMapUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         try {
             constructor.newInstance();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }

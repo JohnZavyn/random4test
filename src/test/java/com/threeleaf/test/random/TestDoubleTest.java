@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestDouble.*;
@@ -12,7 +16,7 @@ class TestDoubleTest {
     /** Test {@link TestDouble#randomPercent()}. */
     @Test
     void randomPercent() {
-        double percent = TestDouble.randomPercent();
+        final double percent = TestDouble.randomPercent();
 
         assertTrue(percent >= D_00);
         assertTrue(percent <= D_100);
@@ -25,7 +29,7 @@ class TestDoubleTest {
         double min = 100;
 
         for (int i = 1; i < INT_10000; i++) {
-            double percent = TestDouble.randomPercent();
+            final double percent = TestDouble.randomPercent();
 
             max = Math.max(max, percent);
             min = Math.min(min, percent);

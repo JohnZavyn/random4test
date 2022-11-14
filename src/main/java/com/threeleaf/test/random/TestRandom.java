@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2022, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -25,13 +29,11 @@ public class TestRandom {
     /** The {@link EnhancedRandom} engine. */
     private static final EnhancedRandom ENHANCED_RANDOM = new EnhancedRandomBuilder().build();
 
-    private static final BiFunction<Class<?>, String[], ?> RANDOM_OBJECT_FUNCTION =
-        ENHANCED_RANDOM::nextObject;
+    private static final BiFunction<Class<?>, String[], ?> RANDOM_OBJECT_FUNCTION = ENHANCED_RANDOM::nextObject;
 
     /**
      * Return an object with randomized fields.
-     * This is a helper/wrapper method around
-     * {@link EnhancedRandom#nextObject(Class, String...)}.
+     * This is a helper/wrapper method around {@link EnhancedRandom#nextObject(Class, String...)}.
      *
      * @param type           the class of object to create
      * @param fieldsExcluded (optional) fields that should not be randomized
@@ -40,12 +42,20 @@ public class TestRandom {
      * @return a randomized object
      */
     @SuppressWarnings({"squid:S1845" /* Want name to be "random" */})
-    public static <T> T random(@Nonnull Class<T> type, String... fieldsExcluded) {
+    public static <T> T random(@Nonnull final Class<T> type, final String... fieldsExcluded) {
         return randomType(type).apply(fieldsExcluded);
     }
 
+    /**
+     * Returns a function used to generate randomized objects of a given type.
+     *
+     * @param type the class of object to create
+     * @param <T>  the generic type
+     *
+     * @return a randomizing function
+     */
     @SuppressWarnings("unchecked")
-    public static <T> Function<String[], T> randomType(Class<T> type) {
+    public static <T> Function<String[], T> randomType(final Class<T> type) {
         return fieldsExcluded -> (T) RANDOM_OBJECT_FUNCTION.apply(type, fieldsExcluded);
     }
 }

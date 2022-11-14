@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static com.google.common.base.Preconditions.checkArgument;
@@ -33,7 +37,7 @@ public class TestBoolean extends AbstractRandom<Boolean> {
      *
      * @return true if a 1 was rolled
      */
-    public static boolean oneOutOf(int number) {
+    public static boolean oneOutOf(final int number) {
         checkArgument(number > 0);
 
         return randomBetween(INT_01, number) == INT_01;

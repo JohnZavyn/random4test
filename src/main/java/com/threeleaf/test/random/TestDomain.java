@@ -1,8 +1,12 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import com.threeleaf.test.random.generator.DomainGenerator;
 
-/** Test domains for use in JUnit tests. */
+/** Test domains for use in unit tests. */
 public class TestDomain extends AbstractRandom<String> {
 
     /** A standard domain generator. */
@@ -89,7 +93,7 @@ public class TestDomain extends AbstractRandom<String> {
      * @return a friendly domain
      */
     @Override
-    public String random(String... fieldsExcluded) {
+    public String random(final String... fieldsExcluded) {
         /* Since this is a String type, there are no fields to exclude. */
         return DOMAIN_GENERATOR.randomDomain();
     }

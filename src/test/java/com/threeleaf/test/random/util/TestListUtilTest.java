@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestInteger.INT_01;
@@ -13,12 +17,12 @@ class TestListUtilTest {
     /** Test {@link TestListUtil} constructor. */
     @Test
     void constructor() throws Exception {
-        Constructor<TestListUtil> constructor = TestListUtil.class.getDeclaredConstructor();
+        final Constructor<TestListUtil> constructor = TestListUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         try {
             constructor.newInstance();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }

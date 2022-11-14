@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2022, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.util;
 
 import static lombok.AccessLevel.PRIVATE;
@@ -13,7 +17,7 @@ public final class TestLoremIpsumUtil {
     /**
      * The unique words from Sections 1.10.32-33 of Cicero's
      * <em>De finibus bonorum et malorum</em>.
-     * See https://en.wikipedia.org/wiki/Lorem_ipsum.
+     * See <a href="https://en.wikipedia.org/wiki/Lorem_ipsum">Wikipedia: Lorem Ipsum</a>.
      */
     public static final String WORDS_DE_FINIBUS =
         "Sed ut perspiciatis, unde omnis iste natus error sit voluptatem accusantium doloremque "
@@ -58,7 +62,7 @@ public final class TestLoremIpsumUtil {
      *
      * @return the chapter
      */
-    public static String randomChapter(int paragraphCount) {
+    public static String randomChapter(final int paragraphCount) {
         return PARAGRAPH_GENERATOR.randomChapter(paragraphCount);
     }
 
@@ -78,7 +82,7 @@ public final class TestLoremIpsumUtil {
      *
      * @return the paragraph
      */
-    public static String randomParagraph(int sentenceCount) {
+    public static String randomParagraph(final int sentenceCount) {
         return PARAGRAPH_GENERATOR.randomParagraph(sentenceCount);
     }
 
@@ -89,7 +93,7 @@ public final class TestLoremIpsumUtil {
      *
      * @return the sentence
      */
-    public static String randomSentence(int wordCount) {
+    public static String randomSentence(final int wordCount) {
         return PARAGRAPH_GENERATOR.randomSentence(wordCount);
     }
 

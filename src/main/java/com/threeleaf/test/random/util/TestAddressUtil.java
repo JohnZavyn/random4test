@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2022, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestInteger.*;
@@ -17,7 +21,7 @@ import lombok.NoArgsConstructor;
 
 /** Utilities for random address creation. */
 @NoArgsConstructor(access = PRIVATE)
-@SuppressWarnings({"squid:S1192", "checkstyle:visibilitymodifier", "checkstyle:magicnumber"})
+@SuppressWarnings({"squid:S1192", "visibilitymodifier", "magicnumber"})
 public final class TestAddressUtil {
 
     /**
@@ -33,8 +37,6 @@ public final class TestAddressUtil {
      * </ul>
      * <p>Note that the min and max zip codes have been simplified to have a single range for each
      * state. Some states have two or three ranges.</p>
-     * <p>See http://www.aip2.com/zip2.htm
-     * https://www.irs.gov/pub/irs-utl/zip%20code%20and%20state%20abbreviations.pdf</p>
      */
     public static final Map<String, Object[]> STATE_INFORMATION =
         ImmutableMap.<String, Object[]>builder() // @formatter:off //
@@ -93,85 +95,116 @@ public final class TestAddressUtil {
 
     /**
      * A list of common street names in the US.
-     * See https://fivethirtyeight.com/features/whats-the-most-common-street-name-in-america/
+     * See <a href="https://fivethirtyeight.com/features/whats-the-most-common-street-name-in-america/">Most common street name in America</a>
      */
     public static final List<String> STREET_NAMES = ImmutableList.of(
-        "Main",
-        "First",
-        "Second",
-        "Third",
-        "Fourth",
-        "Fifth",
-        "Sixth",
-        "Seventh",
-        "Eighth",
-        "Ninth",
-        "Tenth",
-        "Park",
-        "Oak",
-        "Pine",
-        "Maple",
-        "Cedar",
-        "Elm",
-        "View",
-        "Washington",
-        "Lake",
-        "Hill",
-        "Walnut",
-        "Spring",
-        "North",
-        "Ridge",
-        "Lincoln",
-        "Church",
-        "Willow",
-        "Mill",
-        "Sunset",
-        "Railroad",
-        "Jackson",
-        "Cherry",
-        "West",
-        "South",
-        "Center",
-        "Highland",
-        "Johnson",
-        "Forest",
-        "Jefferson",
-        "Hickory",
-        "Wilson",
-        "River",
-        "Meadow",
-        "Valley",
-        "Smith",
-        "East",
-        "Chestnut",
-        "Franklin",
         "Adams",
-        "Spruce",
-        "Laural",
-        "Davis",
-        "Birch",
-        "Williams",
-        "Lee",
-        "Dogwood",
-        "Green",
-        "Poplar",
-        "Locust",
-        "Woodland",
-        "Taylor",
         "Ash",
-        "Madison",
-        "Hillcrest",
-        "Sycamore",
+        "Birch",
         "Broadway",
-        "Miller",
-        "Lakeview",
+        "Cedar",
+        "Center",
+        "Central",
+        "Cherry",
+        "Chestnut",
+        "Church",
         "College",
-        "Central"
+        "Davis",
+        "Dogwood",
+        "Eighth",
+        "Elm",
+        "Fifth",
+        "First",
+        "Forest",
+        "Fourth",
+        "Franklin",
+        "Green",
+        "Hickory",
+        "Highland",
+        "Hill",
+        "Hillcrest",
+        "Jackson",
+        "Jefferson",
+        "Johnson",
+        "Lake",
+        "Lakeview",
+        "Laural",
+        "Lee",
+        "Lincoln",
+        "Locust",
+        "Madison",
+        "Main",
+        "Maple",
+        "Meadow",
+        "Mill",
+        "Miller",
+        "Ninth",
+        "Oak",
+        "Park",
+        "Pine",
+        "Poplar",
+        "Railroad",
+        "Ridge",
+        "River",
+        "Second",
+        "Seventh",
+        "Sixth",
+        "Smith",
+        "Spring",
+        "Spruce",
+        "Sunset",
+        "Sycamore",
+        "Taylor",
+        "Tenth",
+        "Third",
+        "Valley",
+        "View",
+        "Walnut",
+        "Washington",
+        "Williams",
+        "Willow",
+        "Wilson",
+        "Woodland"
     );
 
     /**
      * A list of street suffixes.
-     * See https://en.wikipedia.org/wiki/Street_suffix
+     * See <a href="https://en.wikipedia.org/wiki/Street_suffix">Wikipedia: Street Suffix</a>
+     */
+    public static final List<String> STREET_SHORT_SUFFIXES = ImmutableList.of(
+        "Aly",
+        "Anx",
+        "Arc",
+        "Ave",
+        "Byu",
+        "Bch",
+        "Bnd",
+        "Blf",
+        "Btm",
+        "Blvd",
+        "Br",
+        "Brg",
+        "Brk",
+        "Bg",
+        "Cyn",
+        "Cpe",
+        "Cswy",
+        "Ln",
+        "Loop",
+        "Mnr",
+        "Mdw",
+        "Mews",
+        "Oval",
+        "Pass",
+        "Perch",
+        "Pl",
+        "Pt",
+        "Rd"
+    );
+
+    /**
+     * A list of street suffixes.
+     * See <a href="https://en.wikipedia.org/wiki/Street_suffix">Wikipedia: Street Suffix</a>
      */
     public static final List<String> STREET_SUFFIXES = ImmutableList.of(
         "Avenue",
@@ -244,6 +277,17 @@ public final class TestAddressUtil {
     }
 
     /**
+     * Find the state name of the given state.
+     *
+     * @param stateAbbreviation the state abbreviation
+     *
+     * @return the state's name
+     */
+    public static String findStateName(final String stateAbbreviation) {
+        return (String) STATE_INFORMATION.get(stateAbbreviation)[0];
+    }
+
+    /**
      * Generate a random US mailing {@link Address}.
      * Obviously, these are not intended to be real addresses,
      * but should be good approximation for many testing purposes.
@@ -257,6 +301,27 @@ public final class TestAddressUtil {
             EMPTY + randomBetween(INT_01, INT_10000) + ' '
                 + randomStreetName() + ' '
                 + randomStreetSuffix());
+        address.setState(randomState());
+        address.setCity(findCapital(address.getState()));
+        address.setZipCode(findCapitalZip(address.getState()));
+
+        return address;
+    }
+
+    /**
+     * Generate a random US mailing {@link Address}.
+     * Obviously, these are not intended to be real addresses,
+     * but should be good approximation for many testing purposes.
+     *
+     * @return an address
+     */
+    public static Address randomShortAddress() {
+        final Address address = new Address();
+        address.setNameResident(TestNameUtil.randomName());
+        address.setStreetAddress(
+            EMPTY + randomBetween(INT_01, INT_10000) + ' '
+                + randomStreetName() + ' '
+                + randomStreetShortSuffix());
         address.setState(randomState());
         address.setCity(findCapital(address.getState()));
         address.setZipCode(findCapitalZip(address.getState()));
@@ -289,6 +354,15 @@ public final class TestAddressUtil {
      */
     public static String randomStreetName() {
         return chooseOneFrom(STREET_NAMES);
+    }
+
+    /**
+     * Return a random street suffix.
+     *
+     * @return a street suffix
+     */
+    public static String randomStreetShortSuffix() {
+        return chooseOneFrom(STREET_SHORT_SUFFIXES);
     }
 
     /**

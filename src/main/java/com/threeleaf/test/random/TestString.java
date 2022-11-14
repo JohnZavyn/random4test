@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2022, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestInteger.*;
@@ -5,6 +9,7 @@ import static com.threeleaf.test.random.util.TestStringUtil.*;
 import static java.util.Collections.*;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 /** String constants to be used in JUnit tests. */
 @SuppressWarnings({"unused", "squid:S2386" /* Mutable arrays */, "RedundantSuppression"})
@@ -15,6 +20,22 @@ public class TestString extends AbstractRandom<String> {
 
     /** Alphabet, upper case. */
     public static final String ALPHABET_CAPS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    /** All 7-bit ASCII characters. */
+    public static final String ASCII = IntStream.rangeClosed(0, 127)
+        .collect(
+            StringBuilder::new,
+            StringBuilder::appendCodePoint,
+            StringBuilder::append
+        ).toString();
+
+    /** All 7-bit ASCII control characters. */
+    public static final String ASCII_CONTROL = IntStream.rangeClosed(0, 31)
+        .collect(
+            StringBuilder::new,
+            StringBuilder::appendCodePoint,
+            StringBuilder::append
+        ).toString() + "\u007F";
 
     /** A colon string. */
     public static final String COLON = ":";
@@ -28,11 +49,23 @@ public class TestString extends AbstractRandom<String> {
     /** The instance of {@link TestString}. */
     public static final TestString INSTANCE = new TestString();
 
-    /** Numeric characters. See https://en.wikipedia.org/wiki/ASCII . */
+    /** A UNIX line feed. */
+    public static final String LINE_FEED = "\n";
+
+    /** A Windows line feed + carriage return separator. */
+    public static final String LINE_FEED_CARRIAGE_RETURN = "\n\r";
+
+    /** Numeric characters. See <a href="https://en.wikipedia.org/wiki/ASCII">Wikipedia: ASCII</a> . */
     public static final String NUMBERS = "0123456789";
 
-    /** ASCII Punctuation characters. See https://en.wikipedia.org/wiki/ASCII . */
-    public static final String PUNCTUATION = "!@#%&*()_-{[}]\\:;\"',.?/";
+    /** Alphanumeric characters. */
+    public static final String ALPHANUMERIC = ALPHABET + ALPHABET_CAPS + NUMBERS;
+
+    /** Hexadecimal numeric characters. */
+    public static final String NUMBERS_HEX = "0123456789ABCDEF";
+
+    /** ASCII Punctuation characters. */
+    public static final String PUNCTUATION = "!\"#$%&'()*+,_./:;<=>?@[\\]^_`{|}~";
 
     /** ASCII punctuation and a symbol that are not encoded in URLs. */
     public static final String PUNCTUATION_URL_SAFE = "-._~";
@@ -42,7 +75,9 @@ public class TestString extends AbstractRandom<String> {
         ALPHABET + ALPHABET_CAPS + NUMBERS + PUNCTUATION_URL_SAFE;
 
     /**
-     * RANDOM_CHARS contains characters that are not easily visually confused with each other.
+     * RANDOM_CHARS contains characters that
+     * are not easily visually confused with
+     * each other.
      * For example, {O, 0}, {I, 1}, {D, O}, etc.
      */
     public static final String RANDOM_CHARS = "ABCEFGHJKMNPQRSTUVWXYZ23456789";
@@ -357,13 +392,13 @@ public class TestString extends AbstractRandom<String> {
     public static final Collection<String> STRING_COLLECTION =
         unmodifiableCollection(INSTANCE.randomCollection());
 
-    /** An single {@link Integer} collection. */
+    /** A single {@link Integer} collection. */
     public static final Collection<String> STRING_COLLECTION_SINGLE = singleton(randomString());
 
     /** An {@link String} list. */
     public static final List<String> STRING_LIST = unmodifiableList(INSTANCE.randomList());
 
-    /** An single {@link Integer} list. */
+    /** A single {@link Integer} list. */
     public static final List<String> STRING_LIST_SINGLE = singletonList(randomString());
 
     /** An {@link String} map. */
@@ -396,11 +431,12 @@ public class TestString extends AbstractRandom<String> {
     /** An {@link String} set with a single value. */
     public static final Set<String> STRING_SET_SINGLE = unmodifiableSet(INSTANCE.randomSetSingle());
 
-    /** ASCII Symbols. See https://en.wikipedia.org/wiki/ASCII . */
+    /** ASCII Symbols. See <a href="https://en.wikipedia.org/wiki/ASCII">Wikipedia: ASCII</a> . */
     public static final String SYMBOLS = "$+<=>^`|~";
 
     /** All printable ASCII characters. */
-    public static final String ASCII = ALPHABET + ALPHABET_CAPS + NUMBERS + PUNCTUATION + SYMBOLS;
+    public static final String ASCII_PRINTABLE =
+        ALPHABET + ALPHABET_CAPS + NUMBERS + PUNCTUATION + SYMBOLS;
 
     /** A prefix that can be attached to strings to indicate it is from a testing context. */
     public static final String TEST_PREFIX = "TEST~";
@@ -408,11 +444,17 @@ public class TestString extends AbstractRandom<String> {
     /** A random string. */
     public static final String STRING = test(randomString());
 
+    /** An underscore */
+    public static final String UNDERSCORE = "_";
+
     /** A UUID string. */
     public static final String UUID = randomUuid();
 
     /** Whitespace characters. */
-    public static final String WHITESPACE = " \t\r\n";
+    public static final String WHITESPACE = " \t\n\u000B\f\r";
+
+    /** Blank characters. */
+    public static final String WHITESPACE_BLANK = " \t";
 
     /** Instantiate a utility to produce randomized strings. */
     public TestString() {

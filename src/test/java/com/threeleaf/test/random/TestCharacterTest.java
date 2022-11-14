@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestCharacter.CHARACTER_97;
@@ -22,7 +26,7 @@ class TestCharacterTest {
     void randomBetween() {
         final char expectedResult = 'a';
 
-        char result = TestCharacter.randomBetween(CHARACTER_97, CHARACTER_97);
+        final char result = TestCharacter.randomBetween(CHARACTER_97, CHARACTER_97);
 
         assertEquals(expectedResult, result);
     }

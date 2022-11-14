@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 /**
@@ -12,7 +16,7 @@ public class TestGeneric<T> extends AbstractRandom<T> {
      *
      * @param theType the type of object to randomize
      */
-    public TestGeneric(Class<T> theType) {
+    public TestGeneric(final Class<T> theType) {
         super(theType);
     }
 }

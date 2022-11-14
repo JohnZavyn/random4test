@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.util;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -11,7 +15,7 @@ class TestUtilTest {
     /** Test {@link TestGeneric#TestGeneric(Class)}. */
     @Test
     void constructor() {
-        TestGeneric<String> testGeneric = new TestGeneric<>(String.class);
+        final TestGeneric<String> testGeneric = new TestGeneric<>(String.class);
 
         assertEquals(String.class, testGeneric.getType());
     }

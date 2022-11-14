@@ -1,8 +1,12 @@
+/*
+ * Copyright 2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import com.threeleaf.test.random.generator.VersionGenerator;
 
-/** Test versions for use in JUnit tests. */
+/** Test versions for use in unit tests. */
 public class TestVersion extends AbstractRandom<String> {
 
     /** The instance of {@link TestVersion}. */

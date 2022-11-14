@@ -1,8 +1,12 @@
+/*
+ * Copyright 2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import com.threeleaf.test.random.generator.UrlGenerator;
 
-/** Test URLs for use in JUnit tests. */
+/** Generates URLs for use in unit tests. */
 public class TestUrl extends AbstractRandom<String> {
 
     /** The HTTPS protocol. */

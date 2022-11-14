@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestInteger.INT_10;
@@ -16,13 +20,13 @@ class TestLoremIpsumUtilTest {
     /** Test {@link TestLoremIpsumUtil} constructor. */
     @Test
     void constructor() throws Exception {
-        Constructor<TestLoremIpsumUtil> constructor =
+        final Constructor<TestLoremIpsumUtil> constructor =
             TestLoremIpsumUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         try {
             constructor.newInstance();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }
@@ -30,7 +34,7 @@ class TestLoremIpsumUtilTest {
     /** Test {@link TestLoremIpsumUtil#randomChapter()}. */
     @Test
     void randomChapter() {
-        String result = TestLoremIpsumUtil.randomChapter();
+        final String result = TestLoremIpsumUtil.randomChapter();
 
         assertTrue(result.length() > INT_10);
     }
@@ -38,9 +42,9 @@ class TestLoremIpsumUtilTest {
     /** Test {@link TestLoremIpsumUtil#randomChapter(int)}. */
     @Test
     void randomChapterParagraphs() {
-        int paragraphCount = random1to10();
+        final int paragraphCount = random1to10();
 
-        String result = TestLoremIpsumUtil.randomChapter(paragraphCount);
+        final String result = TestLoremIpsumUtil.randomChapter(paragraphCount);
 
         assertEquals(paragraphCount, result.split("\n").length);
     }
@@ -54,9 +58,9 @@ class TestLoremIpsumUtilTest {
     /** Test {@link TestLoremIpsumUtil}. */
     @Test
     void randomParagraphSentences() {
-        int sentenceCount = random1to10();
+        final int sentenceCount = random1to10();
 
-        String result = TestLoremIpsumUtil.randomParagraph(sentenceCount);
+        final String result = TestLoremIpsumUtil.randomParagraph(sentenceCount);
 
         assertEquals(sentenceCount, result.split("[.?!]").length);
     }
@@ -70,9 +74,9 @@ class TestLoremIpsumUtilTest {
     /** Test {@link TestLoremIpsumUtil}. */
     @Test
     void randomSentenceWords() {
-        int wordCount = random1to10();
+        final int wordCount = random1to10();
 
-        String result = TestLoremIpsumUtil.randomSentence(wordCount);
+        final String result = TestLoremIpsumUtil.randomSentence(wordCount);
 
         assertEquals(wordCount, result.split(SPACE).length);
     }

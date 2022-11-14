@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2022, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestLong.L_00;
@@ -351,10 +355,10 @@ public class TestInteger extends AbstractRandom<Integer> {
     /** The Integer 9999. */
     public static final Integer INTEGER_9999 = 9999;
 
-    /** An single {@link Integer} collection. */
+    /** A single {@link Integer} collection. */
     public static final Collection<Integer> INTEGER_COLLECTION_SINGLE = singleton(randomInteger());
 
-    /** An single {@link Integer} list. */
+    /** A single {@link Integer} list. */
     public static final List<Integer> INTEGER_LIST_SINGLE = singletonList(randomInteger());
 
     /** A random Integer. */
@@ -457,6 +461,12 @@ public class TestInteger extends AbstractRandom<Integer> {
     /** The primitive int 12. */
     public static final int INT_12 = 12;
 
+    /** The primitive int 127. */
+    public static final int INT_127 = 127;
+
+    /** The primitive int 128. */
+    public static final int INT_128 = 128;
+
     /** The primitive int 13. */
     public static final int INT_13 = 13;
 
@@ -495,6 +505,9 @@ public class TestInteger extends AbstractRandom<Integer> {
 
     /** The primitive int 25. */
     public static final int INT_25 = 25;
+
+    /** The primitive int 255. */
+    public static final int INT_255 = 255;
 
     /** The primitive int 26. */
     public static final int INT_26 = 26;
@@ -744,7 +757,7 @@ public class TestInteger extends AbstractRandom<Integer> {
     /**
      * Get a random digit between 0 and 10.
      *
-     * @return a number between 0 to 10 inclusive
+     * @return a number between 0 and 10 inclusive
      */
     public static int random0to10() {
         return randomBetween(0, INT_10);
@@ -753,7 +766,7 @@ public class TestInteger extends AbstractRandom<Integer> {
     /**
      * Get a random digit between 1 and 10.
      *
-     * @return a number between 1 to 10 inclusive
+     * @return a number between 1 and 10 inclusive
      */
     public static int random1to10() {
         return randomBetween(INT_01, INT_10);
@@ -762,7 +775,7 @@ public class TestInteger extends AbstractRandom<Integer> {
     /**
      * Get a random number between 1 and 100.
      *
-     * @return a number between 1 to 100 inclusive
+     * @return a number between 1 and 100 inclusive
      */
     public static int random1to100() {
         return randomBetween(INT_01, INT_100);
@@ -788,7 +801,7 @@ public class TestInteger extends AbstractRandom<Integer> {
     /**
      * Get a random digit.
      *
-     * @return a number between 0 to 9 inclusive
+     * @return a number between 0 and 9 inclusive
      */
     public static int randomDigit() {
         return randomBetween(DIGIT_MIN, DIGIT_MAX);
@@ -851,7 +864,7 @@ public class TestInteger extends AbstractRandom<Integer> {
     /**
      * A random unsigned byte.
      *
-     * @return a number between 0 to 255 inclusive
+     * @return a number between 0 and 255 inclusive
      */
     public static long randomUnsigned() {
         return TestLong.randomBetween(L_00, INTEGER_UNSIGNED_MAX);

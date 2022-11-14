@@ -1,3 +1,7 @@
+/*
+ * Copyright 2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestString.STRING;
@@ -12,7 +16,7 @@ class TestCharacterUtilTest {
     /** Test {@link TestCharacterUtil#chooseOneFrom(String)}. */
     @Test
     void chooseOneFrom() {
-        char character = TestCharacterUtil.chooseOneFrom(STRING);
+        final char character = TestCharacterUtil.chooseOneFrom(STRING);
 
         assertTrue(contains(STRING, character));
     }

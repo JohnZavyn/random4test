@@ -15,10 +15,11 @@ Easily provide random numbers, strings, and collections to JUnit tests.
 Add to Maven projects with:
 
 ```xml
+
 <dependency>
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>4.0.5</version>
+    <version>5.0.0</version>
 </dependency>
 ```
 
@@ -26,19 +27,24 @@ For more dependency options: <https://mvnrepository.com/artifact/com.threeleaf/r
 
 ## Example usage
 
+[//]: # (@formatter:off)
 ```java
 /** Test {@link MyResource#update(int, int, String, String, TreeSet)}. */
 @Test
 public void update()
 {
-    final MyUploadResponse myUploadResponse = mock(MyUploadResponse.class);
-    final TreeSet<String> params = randomTreeSetOf(String.class);
-    when(myService.update(INTEGER, INT_SMALL, STRING_05, STRING_08, params)).thenReturn(myUploadResponse);
-    final ResponseEntity<MyUploadResponse> response = myResource.update(INTEGER, INT_SMALL, STRING_05, STRING_08, params);
-    assertEquals(OK, response.getStatusCode());
-    assertEquals(myUploadResponse, response.getBody());
+    final MyUploadResponse myUploadResponse=mock(MyUploadResponse.class);
+    final TreeSet<String> params=randomTreeSetOf(String.class);
+    
+    when(myService.update(INTEGER,INT_SMALL,STRING_05,STRING_08,params)).thenReturn(myUploadResponse);
+    
+    final ResponseEntity<MyUploadResponse> response=myResource.update(INTEGER,INT_SMALL,STRING_05,STRING_08,params);
+    
+    assertEquals(OK,response.getStatusCode());
+    assertEquals(myUploadResponse,response.getBody());
 }
 ```
+[//]: # (@formatter:on)
 
 ## Object types available in this library for randomization
 
@@ -84,7 +90,7 @@ and a few extras:
 | Test Class   | Types included             |
 |:-------------|:---------------------------|
 | TestBoolean  | boolean, java.lang.Boolean |
-| TestDomin    | java.lang.String           |
+| TestDomain   | java.lang.String           |
 | TestEmail    | java.lang.String           |
 | TestIp       | java.lang.String           |
 | TestObject   | java.lang.Object           |
@@ -95,6 +101,33 @@ and a few extras:
 * Various constants based on the type of object to be randomized
 * Strings of various lengths and formats are available
 
+### Random Regular Expressions
+
+TestRegEx gives you the ability to pass in regular expressions to use as a template for
+generating random strings.
+
+For example, if you need to generate random strings that match password complexity requirements:
+
+[//]: # (@formatter:off)
+```java
+/** Test {@link RegExGenerator#random()} for complex expressions. */
+@Test
+void password(){
+    /* If you have developed a password complexity regular expression like the following,
+     * it might be tedious to generate one or many of them for your tests. */
+    final String passwordRegEx="(?=(.*[0-9]))(?=.*[\\!@#$%^&*()\\[\\]{}\\-_+=~`|:;\"'<>,.\\/?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{8,}";
+    final RegExGenerator passwordGenerator=new RegExGenerator(passwordRegEx);
+    final String password=passwordGenerator.random();
+    /* Note that a generator can be instantiated once and used many times. */
+    final String password2=passwordGenerator.random();
+
+    assertNotEquals(password,password2);
+}
+```
+[//]: # (@formatter:on)
+
+See [Java 8 Covered Expression Constructs](docs/regex.md) for specific pattern support limitations.
+
 ## Extend and make your own
 
 The library is extendable, so you can create your own randomization classes
@@ -103,8 +136,7 @@ You can see how this is done in any of the Test classes above, or use the
 following sample as a template:
 
 ```java
-public class TestObject extends AbstractTest<Object>
-{
+public class TestObject extends AbstractTest<Object> {
 
     /** The instance of {@link TestObject}. */
     public static final TestObject INSTANCE = new TestObject();
@@ -115,8 +147,7 @@ public class TestObject extends AbstractTest<Object>
     public static final Object OBJECT = TestRandom.random(Object.class);
 
     /** Instantiate a utility to produce randomized {@link Object} objects. */
-    public TestObject()
-    {
+    public TestObject() {
         super(Object.class);
     }
 
@@ -128,8 +159,7 @@ public class TestObject extends AbstractTest<Object>
      *
      * @return an object
      */
-    public static Object randomObject()
-    {
+    public static Object randomObject() {
         return INSTANCE.random();
     }
 }

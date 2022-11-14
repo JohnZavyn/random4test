@@ -1,3 +1,7 @@
+/*
+ * Copyright 2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.generator;
 
 import static com.threeleaf.test.random.TestInteger.INT_10;
@@ -19,7 +23,7 @@ class ParagraphGeneratorTest {
     /** Test {@link ParagraphGenerator#randomChapter()}. */
     @Test
     void randomChapter() {
-        String result = paragraphGenerator.randomChapter();
+        final String result = paragraphGenerator.randomChapter();
 
         assertTrue(result.length() > INT_10);
     }
@@ -27,9 +31,9 @@ class ParagraphGeneratorTest {
     /** Test {@link ParagraphGenerator#randomChapter(int)}. */
     @Test
     void randomChapterParagraphs() {
-        int paragraphCount = random1to10();
+        final int paragraphCount = random1to10();
 
-        String result = paragraphGenerator.randomChapter(paragraphCount);
+        final String result = paragraphGenerator.randomChapter(paragraphCount);
 
         assertEquals(paragraphCount, result.split("\n").length);
     }
@@ -43,9 +47,9 @@ class ParagraphGeneratorTest {
     /** Test {@link ParagraphGenerator#randomParagraph(int)}. */
     @Test
     void randomParagraphSentences() {
-        int sentenceCount = random1to10();
+        final int sentenceCount = random1to10();
 
-        String result = paragraphGenerator.randomParagraph(sentenceCount);
+        final String result = paragraphGenerator.randomParagraph(sentenceCount);
 
         assertEquals(sentenceCount, result.split("[.?!]").length);
     }
@@ -53,7 +57,7 @@ class ParagraphGeneratorTest {
     /** Test {@link ParagraphGenerator#randomPunctuationTerminal()}. */
     @Test
     void randomPunctuationTerminal() {
-        String result = paragraphGenerator.randomPunctuationTerminal();
+        final String result = paragraphGenerator.randomPunctuationTerminal();
 
         assertTrue(".".equals(result) || "?".equals(result) || "!".equals(result));
     }
@@ -67,9 +71,9 @@ class ParagraphGeneratorTest {
     /** Test {@link ParagraphGenerator#randomSentence(int)}. */
     @Test
     void randomSentenceWords() {
-        int wordCount = random1to10();
+        final int wordCount = random1to10();
 
-        String result = paragraphGenerator.randomSentence(wordCount);
+        final String result = paragraphGenerator.randomSentence(wordCount);
 
         assertEquals(wordCount, result.split(SPACE).length);
     }

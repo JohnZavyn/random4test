@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestInteger.INT_01;
@@ -18,8 +22,8 @@ class TestCollectionUtilTest {
     /** Test {@link TestCollectionUtil#chooseOneFrom(Collection)}. */
     @Test
     void chooseOneFrom() {
-        List<String> collection = asList(STRING_05, STRING_08, STRING_10, STRING_16);
-        Set<String> results = new HashSet<>();
+        final List<String> collection = asList(STRING_05, STRING_08, STRING_10, STRING_16);
+        final Set<String> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
         for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
@@ -37,8 +41,8 @@ class TestCollectionUtilTest {
     /** Test {@link TestCollectionUtil#chooseOneFrom(Object[])}. */
     @Test
     void chooseOneFromArray() {
-        Object[] array = new Object[]{STRING_10, STRING_16, STRING_32, STRING_99};
-        Set<String> results = new HashSet<>();
+        final Object[] array = new Object[]{STRING_10, STRING_16, STRING_32, STRING_99};
+        final Set<String> results = new HashSet<>();
         boolean allPossibilitiesFound = false;
 
         for (int loopNumber = 0; loopNumber < LOOP_COUNT_MAX; loopNumber++) {
@@ -56,13 +60,13 @@ class TestCollectionUtilTest {
     /** Test {@link TestCollectionUtil} constructor. */
     @Test
     void constructor() throws Exception {
-        Constructor<TestCollectionUtil> constructor =
+        final Constructor<TestCollectionUtil> constructor =
             TestCollectionUtil.class.getDeclaredConstructor();
         assertTrue(Modifier.isPrivate(constructor.getModifiers()));
         constructor.setAccessible(true);
         try {
             constructor.newInstance();
-        } catch (Exception e) {
+        } catch (final Exception e) {
             assertTrue(e instanceof InvocationTargetException);
         }
     }
@@ -71,7 +75,7 @@ class TestCollectionUtilTest {
     @Test
     void randomCollectionOf() {
         for (int counter = 0; counter < INT_10; counter++) {
-            Collection<Long> result = TestCollectionUtil.randomCollectionOf(Long.class);
+            final Collection<Long> result = TestCollectionUtil.randomCollectionOf(Long.class);
 
             assertFalse(result.isEmpty());
         }

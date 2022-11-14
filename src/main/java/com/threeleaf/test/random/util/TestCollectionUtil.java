@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestBoolean.randomBoolean;
@@ -31,7 +35,7 @@ public final class TestCollectionUtil {
      *
      * @see TestArrayUtil#chooseOneFrom(Object[])
      */
-    public static <T> T chooseOneFrom(@Nonnull T[] array) {
+    public static <T> T chooseOneFrom(@Nonnull final T[] array) {
         return chooseOneFrom(asList(array));
     }
 
@@ -43,11 +47,18 @@ public final class TestCollectionUtil {
      *
      * @return a random object
      */
-    public static <T> T chooseOneFrom(@Nonnull Collection<T> collection) {
-        return collection.stream()
-            .skip(randomBetween(0, collection.size() - 1))
-            .findFirst()
-            .orElse(null);
+    public static <T> T chooseOneFrom(@Nonnull final Collection<T> collection) {
+        T value = null;
+        try {
+            value = collection.stream()
+                .skip(randomBetween(0, collection.size() - 1))
+                .findFirst()
+                .orElse(null);
+        } catch (final NullPointerException e) {
+            /* findFirst() will fail if it selects a null from a collection. */
+        }
+
+        return value;
     }
 
     /**
@@ -61,10 +72,10 @@ public final class TestCollectionUtil {
      * @return a List or Set of randomized objects
      */
     public static <T> Collection<T> randomCollectionOf(
-        int size, @Nonnull Function<String[], T> randomFunction,
-        String... fieldsExcluded
+        final int size, @Nonnull final Function<String[], T> randomFunction,
+        final String... fieldsExcluded
     ) {
-        Collection<T> collection;
+        final Collection<T> collection;
         if (randomBoolean()) {
             collection = randomSetOf(size, randomFunction, fieldsExcluded);
         } else {
@@ -84,8 +95,8 @@ public final class TestCollectionUtil {
      * @return a List or Set of randomized objects
      */
     public static <T> Collection<T> randomCollectionOf(
-        @Nonnull Function<String[], T> randomFunction,
-        String... fieldsExcluded
+        @Nonnull final Function<String[], T> randomFunction,
+        final String... fieldsExcluded
     ) {
         return randomCollectionOf(random1to10(), randomFunction, fieldsExcluded);
     }
@@ -101,8 +112,8 @@ public final class TestCollectionUtil {
      * @return a List or Set of randomized objects
      */
     public static <T> Collection<T> randomCollectionOf(
-        int size, @Nonnull Class<T> type,
-        String... fieldsExcluded
+        final int size, @Nonnull final Class<T> type,
+        final String... fieldsExcluded
     ) {
         return randomCollectionOf(size, randomType(type), fieldsExcluded);
     }
@@ -117,8 +128,8 @@ public final class TestCollectionUtil {
      * @return a List or Set of randomized objects
      */
     public static <T> Collection<T> randomCollectionOf(
-        @Nonnull Class<T> type,
-        String... fieldsExcluded
+        @Nonnull final Class<T> type,
+        final String... fieldsExcluded
     ) {
         return randomCollectionOf(random1to10(), type, fieldsExcluded);
     }
@@ -133,8 +144,8 @@ public final class TestCollectionUtil {
      * @return a List or Set with a randomized object
      */
     public static <T> Collection<T> randomCollectionSingleOf(
-        @Nonnull Function<String[], T> randomFunction,
-        String... fieldsExcluded
+        @Nonnull final Function<String[], T> randomFunction,
+        final String... fieldsExcluded
     ) {
         return randomCollectionOf(INT_01, randomFunction, fieldsExcluded);
     }
@@ -149,8 +160,8 @@ public final class TestCollectionUtil {
      * @return a List or Set with a randomized object
      */
     public static <T> Collection<T> randomCollectionSingleOf(
-        @Nonnull Class<T> type,
-        String... fieldsExcluded
+        @Nonnull final Class<T> type,
+        final String... fieldsExcluded
     ) {
         return randomCollectionOf(INT_01, type, fieldsExcluded);
     }

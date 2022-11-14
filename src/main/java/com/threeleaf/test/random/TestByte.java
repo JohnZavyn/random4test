@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2022, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestInteger.*;
@@ -324,7 +328,7 @@ public class TestByte extends AbstractRandom<Byte> {
     public static final Byte BYTE_SMALL = randomPercent();
 
     /** The maximum value for an unsigned byte. */
-    public static final int BYTE_UNSIGNED_MAX = (int) Byte.MAX_VALUE - Byte.MIN_VALUE;
+    public static final int BYTE_UNSIGNED_MAX = Byte.MAX_VALUE - Byte.MIN_VALUE;
 
     /** The primitive byte 00. */
     public static final byte B_00 = 0;
@@ -721,7 +725,7 @@ public class TestByte extends AbstractRandom<Byte> {
     /**
      * A random unsigned byte.
      *
-     * @return a number between 0 to 255 inclusive
+     * @return a number between 0 and 255 inclusive
      */
     public static int randomUnsigned() {
         return TestInteger.randomBetween(INT_00, BYTE_UNSIGNED_MAX);

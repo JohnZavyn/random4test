@@ -1,14 +1,21 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random.util;
 
+import static com.threeleaf.test.random.TestBoolean.coinFlip;
 import static com.threeleaf.test.random.TestInteger.randomBetween;
 import static com.threeleaf.test.random.TestString.*;
-import static java.lang.Character.isWhitespace;
+import static java.lang.Character.*;
 import static java.util.UUID.randomUUID;
 import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 import static lombok.AccessLevel.PRIVATE;
 
 import java.util.*;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 
 import lombok.NoArgsConstructor;
@@ -33,6 +40,38 @@ public final class TestStringUtil {
     public static final int STRING_SHORT_LENGTH_MIN = 5;
 
     /**
+     * Convert an array of integers into a String.
+     *
+     * @param stringChars the ASCII integers
+     *
+     * @return the string
+     */
+    public static String arrayToString(final int[] stringChars) {
+        final StringBuilder stringBuilder = new StringBuilder(stringChars.length);
+        for (final int character : stringChars) {
+            stringBuilder.append(toChars(character));
+        }
+
+        return stringBuilder.toString();
+    }
+
+    /**
+     * Convert an array of characters into a String.
+     *
+     * @param stringChars the ASCII characters
+     *
+     * @return the string
+     */
+    public static String arrayToString(final char[] stringChars) {
+        final StringBuilder stringBuilder = new StringBuilder(stringChars.length);
+        for (final char character : stringChars) {
+            stringBuilder.append(character);
+        }
+
+        return stringBuilder.toString();
+    }
+
+    /**
      * Capitalize first letter of a string.
      *
      * @param string the String to capitalize
@@ -40,12 +79,15 @@ public final class TestStringUtil {
      * @return the capitalized string
      */
     public static String capitalize(final String string) {
-        return isEmpty(string) ? string
+        return isEmpty(string)
+            ? string
             : string.substring(0, 1).toUpperCase() + string.substring(1);
     }
 
     public static String chooseOneFrom(final String string) {
-        return Character.toString(TestCharacterUtil.chooseOneFrom(string));
+        return string.isEmpty()
+            ? EMPTY
+            : Character.toString(TestCharacterUtil.chooseOneFrom(string));
     }
 
     /**
@@ -118,7 +160,7 @@ public final class TestStringUtil {
         return !isBlank(chars);
     }
 
-    public static String join(final List<Character> characters) {
+    public static String join(final Collection<Character> characters) {
         return characters.stream().map(Object::toString).collect(joining());
     }
 
@@ -200,6 +242,52 @@ public final class TestStringUtil {
     }
 
     /**
+     * Convert string characters to random upper and lower case.
+     *
+     * @param string the original string
+     *
+     * @return the randomly capitalized string
+     */
+    public static String randomizeCase(final String string) {
+        return arrayToString(randomizeCase(string.codePoints()));
+    }
+
+    /**
+     * Randomly convert an integer array to upper and lower case characters.
+     *
+     * @param characters the input characters
+     *
+     * @return the characters randomly upper and lower cased
+     */
+    public static int[] randomizeCase(final int[] characters) {
+        return randomizeCase(Arrays.stream(characters));
+    }
+
+    /**
+     * Randomly convert an IntStream to upper and lower case character array.
+     *
+     * @param characters the input characters
+     *
+     * @return the characters randomly upper and lower cased
+     */
+    public static int[] randomizeCase(final IntStream characters) {
+        return randomizeCase(characters.boxed());
+    }
+
+    /**
+     * Randomly convert an Integer Stream to upper and lower case character array.
+     *
+     * @param characters the input characters
+     *
+     * @return the characters randomly upper and lower cased
+     */
+    public static int[] randomizeCase(final Stream<Integer> characters) {
+        return characters
+            .mapToInt(character -> coinFlip() ? toUpperCase(character) : toLowerCase(character))
+            .toArray();
+    }
+
+    /**
      * Returns the string, converting a null value to an empty string.
      *
      * @param string the string
@@ -246,5 +334,21 @@ public final class TestStringUtil {
      */
     public static String test(final String suffix) {
         return TEST_PREFIX + (isBlank(suffix) ? randomStringShort() : suffix);
+    }
+
+    /**
+     * Convert an array of characters into a String.
+     *
+     * @param stringChars the ASCII characters
+     *
+     * @return the string
+     */
+    public static String toString(final Collection<Character> stringChars) {
+        final StringBuilder stringBuilder = new StringBuilder(stringChars.size());
+        for (final char character : stringChars) {
+            stringBuilder.append(character);
+        }
+
+        return stringBuilder.toString();
     }
 }

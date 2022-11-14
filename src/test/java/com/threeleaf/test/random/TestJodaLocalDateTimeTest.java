@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -23,7 +27,7 @@ class TestJodaLocalDateTimeTest {
     /** Test {@link TestJodaLocalDateTime#randomRecent()}. */
     @Test
     void randomRecent() {
-        LocalDateTime randomDate = TestJodaLocalDateTime.randomRecent();
+        final LocalDateTime randomDate = TestJodaLocalDateTime.randomRecent();
 
         assertTrue(randomDate.isAfter(TestJodaLocalDateTime.YEAR_LAST.minusDays(1)));
         assertTrue(randomDate.isBefore(TestJodaLocalDateTime.YEAR_NEXT.plusDays(1)));

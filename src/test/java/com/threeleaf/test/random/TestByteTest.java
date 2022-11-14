@@ -1,3 +1,7 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestByte.*;
@@ -20,7 +24,7 @@ class TestByteTest {
     /** Test {@link TestByte#randomHex()}. */
     @Test
     void randomHex() {
-        int unsigned = Integer.parseInt(TestByte.randomHex(), INT_16);
+        final int unsigned = Integer.parseInt(TestByte.randomHex(), INT_16);
         assertTrue(unsigned <= BYTE_UNSIGNED_MAX);
         assertTrue(unsigned >= INT_00);
     }
@@ -32,7 +36,7 @@ class TestByteTest {
         byte min = 100;
 
         for (int i = 1; i < 1000; i++) {
-            byte percent = TestByte.randomPercent();
+            final byte percent = TestByte.randomPercent();
 
             max = (byte) Math.max(max, percent);
             min = (byte) Math.min(min, percent);

@@ -1,8 +1,14 @@
+/*
+ * Copyright 2019-2020, ThreeLeaf.com
+ */
+
 package com.threeleaf.test.random;
 
 import static com.threeleaf.test.random.TestDate.*;
+import static java.time.temporal.ChronoUnit.DAYS;
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.time.ZoneId;
 import java.util.Date;
 
 import org.apache.commons.validator.routines.DateValidator;
@@ -12,7 +18,7 @@ import org.junit.jupiter.api.Test;
 class TestDateTest {
 
     /** The {@link DateValidator}. */
-    final DateValidator dateValidator = DateValidator.getInstance();
+    private final DateValidator dateValidator = DateValidator.getInstance();
 
     /** Test {@link TestDate} constants. */
     @Test
@@ -57,8 +63,20 @@ class TestDateTest {
     /** Test {@link TestDate} constants. */
     @Test
     void weeks() {
-        assertEquals(-1, dateValidator.compareWeeks(WEEK_LAST, TODAY, TIME_ZONE));
-        assertEquals(1, dateValidator.compareWeeks(WEEK_NEXT, TODAY, TIME_ZONE));
+        assertEquals(
+            7,
+            DAYS.between(
+                WEEK_LAST.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                TODAY.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+            )
+        );
+        assertEquals(
+            -7,
+            DAYS.between(
+                WEEK_NEXT.toInstant().atZone(ZoneId.systemDefault()).toLocalDate(),
+                TODAY.toInstant().atZone(ZoneId.systemDefault()).toLocalDate()
+            )
+        );
     }
 
     /** Test {@link TestDate} constants. */
