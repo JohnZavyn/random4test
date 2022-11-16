@@ -49,9 +49,9 @@ class CharRangeComplimentTest {
         charRangeCompliment = new CharRangeCompliment(CHARACTER_56, CHARACTER_66);
     }
 
-    /** Test {@link CharRangeCompliment#weight()}. */
+    /** Test {@link CharRangeCompliment#length()}. */
     @Test
     void weight() {
-        assertEquals(MAX_VALUE - CHARACTER_66 + CHARACTER_56, charRangeCompliment.weight());
+        assertEquals(MAX_VALUE - CHARACTER_66 + CHARACTER_56, charRangeCompliment.length());
     }
 }

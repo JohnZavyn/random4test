@@ -70,15 +70,15 @@ public class GroupLoop extends Node {
 
     /** {@inheritDoc} */
     @Override
-    void updateNodeInfo(final NodeInfo info) {
-        info.setMaxValid(false);
-        info.setDeterministic(false);
-        super.updateNodeInfo(info);
+    public int length() {
+        return atom.length();
     }
 
     /** {@inheritDoc} */
     @Override
-    public int weight() {
-        return atom.weight();
+    void updateNodeInfo(final NodeInfo info) {
+        info.setMaxValid(false);
+        info.setDeterministic(false);
+        super.updateNodeInfo(info);
     }
 }

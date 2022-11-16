@@ -44,15 +44,15 @@ public class GroupTail extends Node {
 
     /** {@inheritDoc} */
     @Override
-    public String random(final Integer forBackreference) {
-        return capturingGroupReference.equals(forBackreference)
-            ? EMPTY
-            : groupEndTag + getNext().random(forBackreference);
+    public int length() {
+        return 0;
     }
 
     /** {@inheritDoc} */
     @Override
-    public int weight() {
-        return 0;
+    public String random(final Integer forBackreference) {
+        return capturingGroupReference.equals(forBackreference)
+            ? EMPTY
+            : groupEndTag + getNext().random(forBackreference);
     }
 }

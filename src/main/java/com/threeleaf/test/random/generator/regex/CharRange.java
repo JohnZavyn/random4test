@@ -111,7 +111,7 @@ public class CharRange extends Char {
     }
 
     @Override
-    public int weight() {
+    public int length() {
         return lastCharacter - firstCharacter;
     }
 }

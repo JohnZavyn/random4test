@@ -30,15 +30,15 @@ class SliceNode extends Node {
     }
 
     @Override
+    public int length() {
+        return INT_01;
+    }
+
+    @Override
     void updateNodeInfo(final NodeInfo info) {
         info.setMinLength(info.getMinLength() + string.length());
         info.setMaxLength(info.getMaxLength() + string.length());
 
         super.updateNodeInfo(info);
-    }
-
-    @Override
-    public int weight() {
-        return INT_01;
     }
 }

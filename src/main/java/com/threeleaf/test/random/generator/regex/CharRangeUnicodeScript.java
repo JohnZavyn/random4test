@@ -407,7 +407,7 @@ public class CharRangeUnicodeScript extends Char {
     }
 
     @Override
-    public int weight() {
+    public int length() {
         int weight = 0;
         for (final Pair<Integer, Integer> unicodeScriptRange : unicodeScriptRanges) {
             weight += unicodeScriptRange.getRight() - unicodeScriptRange.getLeft();

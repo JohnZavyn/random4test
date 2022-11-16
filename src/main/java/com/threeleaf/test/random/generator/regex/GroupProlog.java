@@ -22,6 +22,12 @@ public class GroupProlog extends Node {
 
     /** {@inheritDoc} */
     @Override
+    public int length() {
+        return atom.length();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     public String random(final Integer forBackreference) {
         return atom.random(forBackreference);
         /* No next.random() here. Atom takes over the chain. */
@@ -31,11 +37,5 @@ public class GroupProlog extends Node {
     @Override
     void updateNodeInfo(final NodeInfo info) {
         atom.updateNodeInfo(info);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int weight() {
-        return atom.weight();
     }
 }

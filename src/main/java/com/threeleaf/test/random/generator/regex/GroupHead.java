@@ -84,7 +84,7 @@ public class GroupHead extends Node {
     }
 
     @Override
-    public int weight() {
-        return getNext().weight();
+    public int length() {
+        return getNext().length();
     }
 }

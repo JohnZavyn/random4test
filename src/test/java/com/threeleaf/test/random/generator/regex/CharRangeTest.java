@@ -48,9 +48,9 @@ class CharRangeTest {
         charRange = new CharRange(CHARACTER_10, CHARACTER_126);
     }
 
-    /** Test {@link CharRange#weight()}. */
+    /** Test {@link CharRange#length()}. */
     @Test
     void weight() {
-        assertEquals(CHARACTER_126 - CHARACTER_10, charRange.weight());
+        assertEquals(CHARACTER_126 - CHARACTER_10, charRange.length());
     }
 }

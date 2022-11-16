@@ -34,11 +34,11 @@ public class Branch extends Node {
         atoms = new ArrayList<>();
         if (first != null) {
             atoms.add(first);
-            weightTotal += first.weight();
+            weightTotal += first.length();
         }
         if (second != null) {
             atoms.add(second);
-            weightTotal += second.weight();
+            weightTotal += second.length();
         }
     }
 
@@ -49,7 +49,13 @@ public class Branch extends Node {
      */
     void add(@NonNull final Node node) {
         atoms.add(node);
-        weightTotal += node.weight();
+        weightTotal += node.length();
+    }
+
+    /** {@inheritDoc} */
+    @Override
+    public int length() {
+        return weightTotal;
     }
 
     /** {@inheritDoc} */
@@ -59,7 +65,7 @@ public class Branch extends Node {
         Node atomSelected = null;
         int weightSum = 0;
         for (final Node atom : atoms) {
-            weightSum += atom.weight();
+            weightSum += atom.length();
             if (weightSum >= weightSelected) {
                 atomSelected = atom;
                 break;
@@ -97,11 +103,5 @@ public class Branch extends Node {
         info.setMaxLength(info.getMaxLength() + maxOriginal);
         info.setMaxValid(info.isMaxValid() && maxValidOriginal);
         info.setDeterministic(false);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int weight() {
-        return weightTotal;
     }
 }

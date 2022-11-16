@@ -37,6 +37,11 @@ final class ZeroOrOne extends Node {
     }
 
     @Override
+    public int length() {
+        return atom.length();
+    }
+
+    @Override
     void updateNodeInfo(final NodeInfo info) {
                 /* Max length can increase by the length of one atom. The min must be the same,
                 since this node may add zero or one atom. */
@@ -46,10 +51,5 @@ final class ZeroOrOne extends Node {
         info.setDeterministic(false);
 
         super.updateNodeInfo(info);
-    }
-
-    @Override
-    public int weight() {
-        return atom.weight();
     }
 }

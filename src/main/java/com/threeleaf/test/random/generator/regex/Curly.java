@@ -75,6 +75,12 @@ public class Curly extends Node {
 
     /** {@inheritDoc} */
     @Override
+    public int length() {
+        return atom.length();
+    }
+
+    /** {@inheritDoc} */
+    @Override
     void updateNodeInfo(final NodeInfo info) {
         /*  Save original info */
         final int minOriginal = info.getMinLength();
@@ -109,11 +115,5 @@ public class Curly extends Node {
         }
 
         super.updateNodeInfo(info);
-    }
-
-    /** {@inheritDoc} */
-    @Override
-    public int weight() {
-        return atom.weight();
     }
 }

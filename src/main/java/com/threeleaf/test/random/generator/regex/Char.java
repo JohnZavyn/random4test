@@ -37,15 +37,15 @@ abstract class Char extends Node {
     }
 
     @Override
+    public int length() {
+        return INT_01;
+    }
+
+    @Override
     void updateNodeInfo(final NodeInfo info) {
         /* This node returns exactly 1 character, so increase min and max by 1 */
         info.setMinLength(info.getMinLength() + 1);
         info.setMaxLength(info.getMaxLength() + 1);
         super.updateNodeInfo(info);
-    }
-
-    @Override
-    public int weight() {
-        return INT_01;
     }
 }

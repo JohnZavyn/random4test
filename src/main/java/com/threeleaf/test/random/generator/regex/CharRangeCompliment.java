@@ -144,7 +144,7 @@ public class CharRangeCompliment extends Char {
     }
 
     @Override
-    public int weight() {
+    public int length() {
         return MAX_VALUE - lastCharacter + firstCharacter;
     }
 }

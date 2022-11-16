@@ -23,7 +23,7 @@ final class BranchConnector extends Node {
     }
 
     @Override
-    public int weight() {
+    public int length() {
         return 0;
     }
 }

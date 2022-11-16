@@ -8,7 +8,7 @@ Easily provide random numbers, strings, and collections to JUnit tests.
 &nbsp;
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-brightgreen.svg)](https://www.gnu.org/licenses/gpl-3.0)
 &nbsp;
-[![JavaDoc](http://javadoc-badge.appspot.com/com.threeleaf/random4test.svg?label=javadoc)](http://www.threeleaf.com/random4test/javadoc/)
+[![JavaDoc](https://javadoc.io/badge2/com.threeleaf/random4test/javadoc.svg)](https://javadoc.io/doc/com.threeleaf/random4test)
 
 ## Maven dependency
 
@@ -19,7 +19,7 @@ Add to Maven projects with:
 <dependency>
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>5.0.0</version>
+    <version>5.0.1</version>
 </dependency>
 ```
 

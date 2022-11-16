@@ -24,7 +24,7 @@ final class Begin extends Node {
     }
 
     @Override
-    public int weight() {
+    public int length() {
         return 0;
     }
 }

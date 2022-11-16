@@ -44,6 +44,23 @@ public class Node {
     }
 
     /**
+     * The length of a node when branching. For example, if a Branch contains atoms CharRange
+     * (0-9) and CharRange (a-z), we would end up with a disproportionate number of numbers if we
+     * did a simple selection on each range. By weighting the first at 10 and the second at 26,
+     * it is possible to get a proper proportion of each of the options available.
+     *
+     * @return the calculated weight of the node
+     */
+    public int length() {
+        final String canonicalName = getClass().getCanonicalName();
+        if (!Node.class.getCanonicalName().equals(canonicalName)) {
+            log.error("Implement {}.length()", canonicalName);
+        }
+
+        return 0;
+    }
+
+    /**
      * Generate a random String from this Node.
      *
      * @param forBackreference optional group number for when calculating the contents of a
@@ -64,22 +81,5 @@ public class Node {
         if (next != null) {
             next.updateNodeInfo(info);
         }
-    }
-
-    /**
-     * The weight of a node when branching. For example, if a Branch contains atoms CharRange
-     * (0-9) and CharRange (a-z), we would end up with a disproportionate number of numbers if we
-     * did a simple selection on each range. By weighting the first at 10 and the second at 26,
-     * it is possible to get a proper proportion of each of the options available.
-     *
-     * @return the calculated weight of the node
-     */
-    public int weight() {
-        final String canonicalName = getClass().getCanonicalName();
-        if (!Node.class.getCanonicalName().equals(canonicalName)) {
-            log.error("Implement {}.weight()", canonicalName);
-        }
-
-        return 0;
     }
 }
