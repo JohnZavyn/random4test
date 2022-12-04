@@ -7,9 +7,11 @@ package com.threeleaf.test.random.generator.regex;
 import static com.threeleaf.test.random.TestString.*;
 
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 /** Handles word boundaries (\b for whitespace, and \B for non-whitespace). */
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class WordBoundary extends Char {
 
     /** The Boundary characters to choose from. */

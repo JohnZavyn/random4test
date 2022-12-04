@@ -1,16 +1,13 @@
 /*
  * Copyright 2019-2022, ThreeLeaf.com
  */
-/*
- * Copyright 2022, ThreeLeaf.com
- */
 
 package com.threeleaf.test.random.util;
 
 import static com.threeleaf.test.random.TestBoolean.oneOutOf;
 import static com.threeleaf.test.random.TestDouble.randomPercent;
 import static com.threeleaf.test.random.TestGender.PRONOUNS_THIRD_PERSON;
-import static com.threeleaf.test.random.TestInteger.INT_10;
+import static com.threeleaf.test.random.TestInteger.INT_100;
 import static com.threeleaf.test.random.TestLocalDate.TODAY;
 import static com.threeleaf.test.random.model.Gender.FEMALE;
 import static com.threeleaf.test.random.model.Gender.MALE;
@@ -21,10 +18,11 @@ import static com.threeleaf.test.random.util.TestMapUtil.chooseOneValueFrom;
 import static com.threeleaf.test.random.util.TestNameUtil.*;
 import static lombok.AccessLevel.PRIVATE;
 
-import java.time.LocalDate;
-
 import com.threeleaf.test.random.model.Gender;
 import com.threeleaf.test.random.model.Person;
+
+import java.time.LocalDate;
+
 import lombok.NoArgsConstructor;
 
 /** Utilities to create random people. */
@@ -55,10 +53,10 @@ public class TestPersonUtil {
         }
         person.setNameLast(randomNameLast());
         person.setBirthday((LocalDate) TestDateUtil.addFractionalYears(TODAY, -randomPercent()));
-        if (oneOutOf(INT_10)) {
+        if (oneOutOf(INT_100)) {
             person.setTitle(chooseOneFrom(getTitlesFor(gender)));
         }
-        if (oneOutOf(INT_10) && MALE.equals(gender)) {
+        if (oneOutOf(INT_100) && MALE.equals(gender)) {
             /* TODO: Add more suffixes */
             person.setSuffix("Jr.");
         }
