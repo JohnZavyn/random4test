@@ -19,7 +19,7 @@ Add to Maven projects with:
 <dependency>
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>5.0.1</version>
+    <version>5.1.0</version>
 </dependency>
 ```
 
@@ -196,4 +196,3 @@ Array, Collection, and Map utilities include
 
 * randomXxxOf, randomXxxSingleOf, chooseOneFrom static methods, so you can generate simple
   collections on the fly.
-
