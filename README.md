@@ -19,7 +19,7 @@ Add to Maven projects with:
 <dependency>
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>5.1.1</version>
+    <version>5.1.2</version>
 </dependency>
 ```
 
