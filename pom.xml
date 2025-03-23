@@ -14,7 +14,7 @@
 
     <groupId>com.threeleaf</groupId>
     <artifactId>random4test</artifactId>
-    <version>5.1.2</version>
+    <version>5.1.3</version>
     <packaging>jar</packaging>
 
     <name>Random For Test</name>
@@ -69,30 +69,41 @@
         <commons-lang3.version>3.14.0</commons-lang3.version>
         <commons-validator.version>1.9.0</commons-validator.version>
         <findbugs.version>3.0.0</findbugs.version>
-        <guava.version>33.2.1-jre</guava.version>
+        <guava.version>33.0.0-jre</guava.version>
         <jackson-databind.version>2.17.0</jackson-databind.version>
         <joda-time.version>2.12.7</joda-time.version>
         <junit.version>5.10.2</junit.version>
-        <logback.version>1.3.12 <!-- last Java 1.8 version --></logback.version>
+        <logback.version>1.3.14</logback.version>
         <lombok.version>1.18.32</lombok.version>
         <random-beans.version>3.9.0</random-beans.version>
 
         <!-- Plugin versions -->
         <maven-clean-plugin.version>3.3.2</maven-clean-plugin.version>
         <maven-compiler-plugin.version>3.13.0</maven-compiler-plugin.version>
-        <maven-deploy-plugin.version>3.1.2</maven-deploy-plugin.version>
-        <maven-enforcer-plugin.version>3.5.0</maven-enforcer-plugin.version>
-        <maven-gpg-plugin.version>3.2.4</maven-gpg-plugin.version>
-        <maven-install-plugin.version>3.1.2</maven-install-plugin.version>
-        <maven-jar-plugin.version>3.4.1</maven-jar-plugin.version>
-        <maven-javadoc-plugin.version>3.7.0</maven-javadoc-plugin.version>
+        <maven-deploy-plugin.version>3.1.1</maven-deploy-plugin.version>
+        <maven-enforcer-plugin.version>3.4.1</maven-enforcer-plugin.version>
+        <maven-gpg-plugin.version>3.2.1</maven-gpg-plugin.version>
+        <maven-install-plugin.version>3.1.1</maven-install-plugin.version>
+        <maven-jar-plugin.version>3.3.0</maven-jar-plugin.version>
+        <maven-javadoc-plugin.version>3.6.3</maven-javadoc-plugin.version>
         <maven-project-info-reports-plugin.version>3.5.0</maven-project-info-reports-plugin.version>
         <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
-        <maven-site-plugin.version>4.0.0-M15</maven-site-plugin.version>
-        <maven-source-plugin.version>3.3.1</maven-source-plugin.version>
+        <maven-site-plugin.version>4.0.0-M13</maven-site-plugin.version>
+        <maven-source-plugin.version>3.3.0</maven-source-plugin.version>
         <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
-        <nexus-staging-maven-plugin.version>1.7.0</nexus-staging-maven-plugin.version>
+        <nexus-staging-maven-plugin.version>1.6.13</nexus-staging-maven-plugin.version>
     </properties>
+
+    <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
 
     <dependencyManagement>
         <dependencies>
@@ -381,6 +392,8 @@
                                             <arg>--pinentry-mode</arg>
                                             <arg>loopback</arg>
                                             <arg>--no-tty</arg>
+                                            <arg>--pinentry-mode</arg>
+                                            <arg>loopback</arg>
                                         </gpgArguments>
                                     </configuration>
                                 </execution>
@@ -393,7 +406,7 @@
                             <extensions>true</extensions>
                             <configuration>
                                 <serverId>ossrh</serverId>
-                                <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                                <nexusUrl>https://s01.oss.sonatype.org/</nexusUrl>
                                 <autoReleaseAfterClose>true</autoReleaseAfterClose>
                             </configuration>
                         </plugin>

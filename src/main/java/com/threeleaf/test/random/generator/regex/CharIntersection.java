@@ -7,6 +7,8 @@ package com.threeleaf.test.random.generator.regex;
 import static com.threeleaf.test.random.util.TestCharacterUtil.toCharacterSet;
 
 import java.util.Set;
+import java.util.HashSet;
+import java.util.stream.Collectors;
 
 import com.threeleaf.test.random.util.TestStringUtil;
 import lombok.Data;
@@ -66,14 +68,38 @@ public class CharIntersection extends Char {
      * @param chars2 the second set of characters
      */
     public CharIntersection(final Char chars1, final Char chars2) {
+        String result;
         final Set<Character> characters1 = toCharacterSet(chars1.getCharacters());
         final Set<Character> characters2 = toCharacterSet(chars2.getCharacters());
-        characters1.retainAll(characters2);
-
-        characters = TestStringUtil.toString(characters1);
-        if (characters.length() == 0) {
-            throw new IllegalArgumentException("Intersection has zero characters");
+        
+        /* Handle empty sets */
+        if (characters1.isEmpty() || characters2.isEmpty()) {
+            result = "";
         }
+        /* Handle special case for Unicode properties */
+        else if (chars1 instanceof CharUnicodeType || chars2 instanceof CharUnicodeType) {
+            result = handleUnicodeIntersection(chars1, chars2);
+        }
+        else {
+            characters1.retainAll(characters2);
+            result = TestStringUtil.toString(characters1);
+        }
+        characters = result;
+    }
+
+    private String handleUnicodeIntersection(final Char chars1, final Char chars2) {
+        /* Get all characters from both sets */
+        final Set<Character> allChars = new HashSet<>();
+        allChars.addAll(toCharacterSet(chars1.getCharacters()));
+        allChars.addAll(toCharacterSet(chars2.getCharacters()));
+        
+        /* Filter characters that match both sets */
+        final Set<Character> intersection = allChars.stream()
+            .filter(c -> chars1.getValue(null).contains(String.valueOf(c)))
+            .filter(c -> chars2.getValue(null).contains(String.valueOf(c)))
+            .collect(Collectors.toSet());
+            
+        return TestStringUtil.toString(intersection);
     }
 
     /** Get the characters to choose from. */

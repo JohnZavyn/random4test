@@ -227,74 +227,40 @@ public class RegExRandomStringFactory {
         final CharBit bits = new CharBit();
         boolean include = true;
         boolean firstInClass = true;
+        boolean isIntersection = false;
+        boolean isNegated = false;
         int ch = next();
         for (; ; ) {
             switch (ch) {
                 case '^':
-                    if (firstInClass) {
-                        /* Negates if first character in a class */
-                        if (codePoints[cursor - 1] != '[') {
-                            break;
-                        }
+                    /* Negates if first character in a class */
+                    if (firstInClass && codePoints[cursor - 1] == '[') {
                         ch = next();
-                        include = !include;
+                        isNegated = true;
                         continue;
-                    } else {
-                        /* ^ not first in class, treat as literal */
-                        break;
                     }
+                    break;
                 case '[':
                     firstInClass = false;
                     node = createCharNode(true);
                     if (prev == null) {
                         prev = node;
                     } else {
-                        prev = new CharUnion(prev, node);
+                        if (isIntersection) {
+                            prev = new CharIntersection(prev, node);
+                            isIntersection = false;
+                        } else {
+                            prev = new CharUnion(prev, node);
+                        }
                     }
                     ch = peek();
                     continue;
                 case '&':
-                    firstInClass = false;
-                    ch = next();
-                    if (ch == '&') {
+                    if (peek() == '&') {
+                        next(); // Skip second &
+                        isIntersection = true;
                         ch = next();
-                        Char rightNode = null;
-                        while (ch != ']' && ch != '&') {
-                            if (ch == '[') {
-                                if (rightNode == null) {
-                                    rightNode = createCharNode(true);
-                                } else {
-                                    rightNode = new CharUnion(rightNode, createCharNode(true));
-                                }
-                            } else {
-                                /* abc&&def */
-                                cursor--;
-                                rightNode = createCharNode(false);
-                            }
-                            ch = peek();
-                        }
-                        if (rightNode != null) {
-                            node = rightNode;
-                        }
-                        if (prev == null) {
-                            if (rightNode == null) {
-                                throw error("Bad class syntax");
-                            } else {
-                                prev = rightNode;
-                            }
-                        } else {
-                            prev = new CharIntersection(prev, node);
-                        }
-                    } else {
-                        /* treat as a literal & */
-                        cursor--;
-                        break;
-                    }
-                    continue;
-                case 0:
-                    firstInClass = false;
-                    if (cursor >= patternLength) {
-                        throw error("Unclosed character class");
+                        continue;
                     }
                     break;
                 case ']':
@@ -303,7 +269,8 @@ public class RegExRandomStringFactory {
                         if (consume) {
                             next();
                         }
-                        return prev;
+                        /* For negated character classes, complement the entire result */
+                        return isNegated ? prev.complement() : prev;
                     }
                     break;
                 default:
@@ -311,21 +278,14 @@ public class RegExRandomStringFactory {
                     break;
             }
             node = range(bits);
-            if (include) {
-                if (prev == null) {
-                    prev = node;
-                } else {
-                    if (prev != node) {
-                        prev = new CharUnion(prev, node);
-                    }
-                }
+            if (prev == null) {
+                prev = node;
             } else {
-                if (prev == null) {
-                    prev = node.complement();
+                if (isIntersection) {
+                    prev = new CharIntersection(prev, node);
+                    isIntersection = false;
                 } else {
-                    if (prev != node) {
-                        prev = new CharDifference(prev, node);
-                    }
+                    prev = new CharUnion(prev, node);
                 }
             }
             ch = peek();

@@ -8,8 +8,11 @@ import static com.threeleaf.test.random.TestInteger.randomBetween;
 import static com.threeleaf.test.random.TestRandom.RANDOM;
 import static java.lang.Character.*;
 import static java.lang.Character.UnicodeScript.*;
+import static java.util.Locale.ENGLISH;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.common.collect.*;
 import lombok.Data;
@@ -25,6 +28,25 @@ import org.apache.commons.lang3.tuple.Pair;
 @Data
 @EqualsAndHashCode(callSuper = false)
 public class CharRangeUnicodeScript extends Char {
+
+    /** Map of script name aliases to their canonical names */
+    private static final Map<String, String> SCRIPT_ALIASES = new HashMap<>();
+
+    static {
+        /* Add script name aliases */
+        SCRIPT_ALIASES.put("VAI", "Vai");
+        SCRIPT_ALIASES.put("THAI", "Thai");
+        SCRIPT_ALIASES.put("LAO", "Lao");
+        SCRIPT_ALIASES.put("TAMIL", "Tamil");
+        SCRIPT_ALIASES.put("ARABIC", "Arabic");
+        SCRIPT_ALIASES.put("LATIN", "Latin");
+        SCRIPT_ALIASES.put("GREEK", "Greek");
+        SCRIPT_ALIASES.put("CYRILLIC", "Cyrillic");
+        SCRIPT_ALIASES.put("HEBREW", "Hebrew");
+        SCRIPT_ALIASES.put("HANGUL", "Hangul");
+        SCRIPT_ALIASES.put("HAN", "Han");
+        SCRIPT_ALIASES.put("YI", "Yi");
+    }
 
     /**
      * A map with all the Unicode script ranges. Note that the pattern matcher does not always
@@ -356,17 +378,22 @@ public class CharRangeUnicodeScript extends Char {
             .put(UNKNOWN, new ImmutablePair<>(0xE01F0, 0x10FFFF))
             .build();
 
+    /** The Unicode script ranges for this script */
     private final Collection<Pair<Integer, Integer>> unicodeScriptRanges;
 
+    /**
+     * Create a new Unicode script character range.
+     *
+     * @param name the name of the script
+     */
     public CharRangeUnicodeScript(final String name) {
-
-        final UnicodeScript unicodeScript;
-        try {
-            unicodeScript = UnicodeScript.forName(name);
-        } catch (final IllegalArgumentException ignored) {
-            throw new IllegalArgumentException("Unknown Unicode script name {" + name + "}");
-        }
-
+        /* Convert the name to uppercase for alias lookup */
+        final String upperName = name.toUpperCase(ENGLISH);
+        /* Get the canonical name from aliases or use the original name */
+        final String canonicalName = SCRIPT_ALIASES.getOrDefault(upperName, name);
+        /* Get the Unicode script enum */
+        final UnicodeScript unicodeScript = UnicodeScript.forName(canonicalName);
+        /* Get the ranges for this script */
         unicodeScriptRanges = UNICODE_BLOCK_SCRIPTS.get(unicodeScript);
     }
 
