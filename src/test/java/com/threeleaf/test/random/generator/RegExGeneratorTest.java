@@ -1,14 +1,8 @@
 /*
- * Copyright 2022, ThreeLeaf.com
+ * Copyright 2022-2025, ThreeLeaf.com
  */
 
 package com.threeleaf.test.random.generator;
-
-import static com.threeleaf.test.random.util.VersionValidator.*;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import com.threeleaf.test.random.generator.regex.RegExRandomStringFactory;
 import com.threeleaf.test.random.util.StringFormatSupplier;
@@ -17,17 +11,23 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import static com.threeleaf.test.random.util.VersionValidator.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 /** Test {@link RegExRandomStringFactory}. */
 @Slf4j
 class RegExGeneratorTest {
 
     @ParameterizedTest
     @CsvSource(value = {
-        MAVEN_VERSION_REGEX + ",MAVEN_VERSION_REGEX",
-        SEMANTIC_VERSION_REGEX + ",SEMANTIC_VERSION_REGEX",
-        SPRING_VERSION_REGEX + ",SPRING_VERSION_REGEX"
+            MAVEN_VERSION_REGEX + ",MAVEN_VERSION_REGEX",
+            SEMANTIC_VERSION_REGEX + ",SEMANTIC_VERSION_REGEX",
+            SPRING_VERSION_REGEX + ",SPRING_VERSION_REGEX"
     })
-    @CsvFileSource(resources = "/RegExGeneratorTests.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/RegExGeneratorTestsJava8.csv", numLinesToSkip = 1)
     void random(final String regularExpression, final String purpose) {
         final RegExGenerator regExGenerator = new RegExGenerator(regularExpression);
 
@@ -39,12 +39,12 @@ class RegExGeneratorTest {
         final boolean matches = m.matches();
 
         final StringFormatSupplier messageSupplier = new StringFormatSupplier(
-            "RegEx: `%s`, value: `%s`, Found: %b, Matches: %b, Purpose: `%s`",
-            regularExpression,
-            value,
-            found,
-            matches,
-            purpose
+                "RegEx: `%s`, value: `%s`, Found: %b, Matches: %b, Purpose: `%s`",
+                regularExpression,
+                value,
+                found,
+                matches,
+                purpose
         );
 
         final String message = messageSupplier.get();

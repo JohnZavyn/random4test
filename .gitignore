@@ -1,10 +1,9 @@
 # IntelliJ Idea
-**/*.iml
-**/.idea
-**/.run
+*.iml
+.idea/
 
 # Java target folders
-**/target
+target/
 
 # Mac files
 .DS_Store
@@ -32,3 +31,6 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+
+# Environment variables
+.env

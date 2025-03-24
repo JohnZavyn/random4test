@@ -1,0 +1,11 @@
+Regular Expression,Purpose
+[^1234],Simple negation
+[^c],Single character negation
+[^a-z],Range negation
+[^a-zA-Z],Multiple range negation
+[a-z&&[^aeiou]],Simple intersection with negation
+[0-9&&[4-6]],Simple intersection
+[a-z&&[aeiou]],Vowels intersection
+[a-z&&[^aeiou]],Consonants intersection
+[a-z&&[a-f]],Range intersection
+[a-z&&[^m-p]],Range negation intersection
